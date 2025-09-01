@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rosewt.dev/sitemap-index.xml
