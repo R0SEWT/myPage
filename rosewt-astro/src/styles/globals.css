@@ -4,7 +4,43 @@
 @import "tailwindcss";
 
 
-:root { color-scheme: light dark; }
+:root { color-scheme: light dark; 
+  --teal: #1ABC9C;
+  --lilac: #8E44AD;
+  --cosmos: #2C3E50;
+  --dawn: #F1C40F;
+  --cloud: #ECF0F1;
+}
+
 section { scroll-margin-top: 80px; } /* evita que el header tape títulos */
+
+
+
+/* Utilidades personalizadas */
+.text-teal {
+  color: var(--teal);
+}
+
+.bg-teal {
+  background-color: var(--teal);
+}
+
+.hover\:text-teal:hover {
+  color: var(--teal);
+}
+
+.from-teal {
+  --tw-gradient-from: var(--teal) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(26 188 156 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-lilac\/70 {
+  --tw-gradient-to: rgb(142 68 173 / 0.7) var(--tw-gradient-to-position);
+}
+
+.border-teal {
+  border-color: var(--teal);
+}
 
 
