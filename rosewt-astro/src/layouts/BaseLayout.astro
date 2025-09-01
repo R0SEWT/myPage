@@ -1,0 +1,11 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import '../styles/globals.css';
+const { title, description } = Astro.props;
+---
+<html lang="es" class="scroll-smooth">
+  <BaseHead {title} {description} />
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <slot />
+  </body>
+</html>
