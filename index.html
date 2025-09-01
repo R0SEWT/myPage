@@ -1,256 +1,273 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rody Sebastián Vilchez Marin — CV & Portafolio</title>
-  <meta name="description" content="CV y portafolio de Rody Sebastián Vilchez Marin — Data Science, IA, ML, QA Automation."/>
-  <meta property="og:title" content="Rody Sebastián Vilchez Marin — CV & Portafolio" />
-  <meta property="og:description" content="Data Science · IA · ML · QA Automation" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-image.png" />
-  <meta name="theme-color" content="#1565c0" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <title>Rody Vilchez — Data & AI</title>
+  <meta name="description" content="Portafolio de Rody Vilchez: Data Science, Machine Learning, IA aplicada y proyectos académicos." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind vía CDN para prototipado rápido (luego migramos a build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Paleta base clases utilitarias.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cosmos: '#2C3E50',     // Midnight Cosmos
+            teal: '#1ABC9C',       // Teal Luminescente
+            dawn: '#F1C40F',       // Amanecer Dorado
+            lilac: '#8E44AD',      // Lilac Etéreo
+            cloud: '#ECF0F1'       // Nube Serena
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    :root{
-      --bg:#0b0c10;            /* Negro sobrio */
-      --surface:#121419;       /* Superficie oscura */
-      --text:#e6e7ea;          /* Texto principal */
-      --muted:#9aa4b2;         /* Texto secundario */
-      --accent:#1565c0;        /* Azul profundo */
-      --accent-2:#c62828;      /* Rojo sobrio */
-      --line:rgba(255,255,255,.10);
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .light{
-      --bg:#ffffff;
-      --surface:#f7f7f9;
-      --text:#101114;
-      --muted:#606a78;
-      --accent:#1565c0;
-      --accent-2:#c62828;
-      --line:rgba(16,17,20,.10);
-      --shadow: 0 8px 24px rgba(16,17,20,.08);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .id{display:flex;align-items:center;gap:16px}
-    .avatar{width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;box-shadow:var(--shadow);border:1px solid var(--line)}
-    h1{font-size:30px;margin:0 0 4px}
-    .tagline{margin:0;color:var(--muted);font-weight:500}
-    .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0));font-size:14px}
-    .chip svg{width:16px;height:16px;opacity:.9}
-    nav{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,var(--bg) 70%,rgba(0,0,0,0));backdrop-filter:saturate(1.2);margin:18px 0 8px;border-top:1px dashed var(--line);padding:12px 0}
-    .tabs{display:flex;gap:12px;flex-wrap:wrap}
-    .tab{padding:8px 12px;border:1px solid var(--line);border-radius:10px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    section{margin:26px 0;padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
-    section h2{margin:4px 0 14px;font-size:20px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-    .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    .skills{display:flex;gap:8px;flex-wrap:wrap}
-    .skill{padding:6px 10px;border:1px solid var(--line);border-radius:10px;font-size:13px;background:rgba(255,255,255,.03)}
-    .kpi{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    .kpi h3{margin:0 0 6px;font-size:16px}
-    .kpi p{margin:0;color:var(--muted)}
-    .btns{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(120deg,var(--accent) 0%, var(--accent-2) 100%);color:#fff;border:none;padding:10px 14px;border-radius:12px;font-weight:700;letter-spacing:.2px}
-    .btn.secondary{background:none;border:1px solid var(--line);color:var(--text)}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px}
-    .footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px;margin-top:20px}
-    @media (max-width:900px){header{flex-direction:column;align-items:flex-start}.footer{flex-direction:column;gap:8px}}
-    /* Print */
-    @media print{
-      nav,.btns,.chip{display:none}
-      body{background:#fff;color:#000}
-      section{border:none;padding:0}
-      .card{border:1px solid #ddd;box-shadow:none}
-    }
-    .theme-toggle{cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:8px 10px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03)}
+    :root { color-scheme: light dark; }
+    html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
   </style>
+  <!-- JSON-LD SEO: Person + WebSite -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Rody Sebastián Vilchez Marin",
-    "jobTitle": "Data Science & ML",
-    "email": "mailto:rody.vilchez00@gmail.com",
-    "telephone": "+51 987 082 126",
-    "url": "/",
-    "sameAs": ["https://github.com/R0SEWT","https://www.linkedin.com/in/r0sewt/"]
+    "name": "Rody Sebastián Vilchez Marín",
+    "jobTitle": "Estudiante de CS | Data & AI",
+    "url": "https://rosewt.dev/",
+    "sameAs": [
+      "https://github.com/R0SEWT",
+      "https://www.linkedin.com/in/r0sewt/"
+    ]
   }
   </script>
 </head>
-<body class="light">
-  <div class="container">
-    <header>
-      <div class="id">
-        <div class="avatar" aria-hidden="true">RV</div>
-        <div>
-          <h1>Rody Sebastián Vilchez Marin</h1>
-          <p class="tagline">Estudiante de Ciencias de la Computación — Data & AI</p>
-          <div class="links">
-            <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-1.4 4.25-6.6 4.125L5.4 8.25a.75.75 0 1 1 .8-1.25l5.8 3.625L17.8 7a.75.75 0 1 1 .8 1.25Z"/></svg><a href="mailto:rody.vilchez00@gmail.com">rody.vilchez00@gmail.com</a></span>
-            <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5a2 2 0 0 1 2-2h2l1 3h8l1-3h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm9 14a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg><a href="tel:+51987082126">+51 987 082 126</a></span>
-            <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 1 0 12 12A12.014 12.014 0 0 0 12 .5Zm3.87 18.1a.75.75 0 0 1-1.04-.23 3.84 3.84 0 0 0-.63-.75c.68-.08 1.22-.18 1.66-.35 1-.39 1.73-1.17 1.97-2.33a6.38 6.38 0 0 0 .09-1.11 3 3 0 0 0-.52-1.73 2.9 2.9 0 0 0-.21-.28 1.59 1.59 0 0 0 .1-.57 2.37 2.37 0  0 0-.33-1.16 1.71 1.71 0 0 0-.16-.25 1.31 1.31 0 0 0 .06-.26 2.55 2.55 0 0 0 .01-.27 1.74 1.74 0 0 0-.27-.93 3.42 3.42 0 0 0-.81-.88 3.76 3.76 0 0 0-1.2-.6 7.39 7.39 0 0 0-1.76-.25h-.1a10.73 10.73 0 0 0-2.3.26 4.38 4.38 0 0 0-1.13.44 3.44 3.44 0 0 0-1.53 1.64 1.8 1.8 0 0 0-.05.18 1.37 1.37 0 0 0-.05.36 2.76 2.76 0 0 0 .01.29 1.34 1.34 0 0 0 .06.3 1.8 1.8 0 0 0-.2.33 2.5 2.5 0 0 0-.25.88c0 .09 0 .18.01.27a1.28 1.28 0 0 0 .07.3 2 2 0 0 0-.31 1 2.58 2.58 0 0 0 .06.62 1.52 1.52 0 0 0 .05.19 2.89 2.89 0 0 0-.43 1.34 6.36 6.36 0  0 0 .12 1.22c.27 1.26 1.05 2.07 2.15 2.43.41.14.9.23 1.55.3-.15.15-.3.32-.45.52a.75.75 0 0 1-1.2-.9c.74-.98 1.48-1.5 2.27-1.5s1.53.52 2.27 1.5a.75.75 0 0 1-.2 1.05Z"/></svg><a href="https://github.com/R0SEWT" target="_blank" rel="noreferrer">github.com/R0SEWT</a></span>
-            <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5h14.04c.82 0 1.48.66 1.48 1.48v14.04c0 .82-.66 1.48-1.48 1.48H4.98A1.48 1.48 0 0 1 3.5 19.02V4.98C3.5 4.16 4.16 3.5 4.98 3.5ZM7 8h2.2v8H7V8Zm1.1-3a1.28 1.28 0 1 0 0 2.56A1.28 1.28 0 0 0 8.1 5Zm9 5.01c0-2.4-1.28-3.51-2.99-3.51-1.38 0-2 .76-2.35 1.3v-1.11H9.6c.03.74 0 8.31 0 8.31h2.16v-4.64c0-.25.02-.5.09-.68.2-.5.64-1.02 1.38-1.02 0 0 1.24 0 1.24 1.61v4.73H16.7l-.01-4.99Z"/></svg><a href="https://www.linkedin.com/in/r0sewt/" target="_blank" rel="noreferrer">LinkedIn</a></span>
-          </div>
-          <div class="btns" style="margin-top:12px">
-            <a class="btn" href="/CV_ESP.pdf" download>Descargar CV (PDF)</a>
-            <button class="btn secondary" id="printBtn">Imprimir</button>
-            <button class="theme-toggle" id="themeBtn" aria-label="Alternar tema">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8-4a1 1 0 0 1 1 1 9 9 0 0 1-9 9 1 1 0 1 1 0-2 7 7 0 0 0 7-7 1 1 0 0 1 1-1ZM4 11a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h1Z"/></svg>
-              Tema
-            </button>
-          </div>
-        </div>
+<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <!-- Nav -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#home" class="font-semibold tracking-tight text-lg">Rody <span class="text-teal">Vilchez</span></a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#proyectos" class="hover:text-teal">Proyectos</a>
+        <a href="#experiencia" class="hover:text-teal">Experiencia</a>
+        <a href="#publicaciones" class="hover:text-teal">Publicaciones</a>
+        <a href="#contacto" class="hover:text-teal">Contacto</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="modeToggle" class="inline-flex items-center rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-800" aria-label="Alternar modo">
+          <span class="i">🌓</span>
+        </button>
+        <a href="/cv.pdf" class="inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white hover:opacity-90">Descargar CV</a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <nav>
-      <div class="tabs">
-        <a class="tab" href="#sobre-mi">Sobre mí</a>
-        <a class="tab" href="#experiencia">Experiencia</a>
-        <a class="tab" href="#proyectos">Proyectos</a>
-        <a class="tab" href="#educacion">Educación</a>
-        <a class="tab" href="#habilidades">Habilidades</a>
-        <a class="tab" href="#certificaciones">Certificaciones</a>
-        <a class="tab" href="#voluntariado">Voluntariado</a>
-        <a class="tab" href="#contacto">Contacto</a>
-      </div>
-    </nav>
-
-    <main>
-      <section id="sobre-mi" class="kpi">
-        <div>
-          <h3>Sobre mí</h3>
-          <p>CS @ UPC. Me muevo entre <strong>Data Science</strong>, <strong>IA/ML</strong> y <strong>QA Automation</strong>. Me gustan soluciones simples que funcionan y puedo desplegar.</p>
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+          Construyo soluciones <span class="text-teal">Data & IA</span> con enfoque aplicado
+        </h1>
+        <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-300">
+          Estudiante de CS (8vo ciclo) y QA Trainee. Me enfoco en ML práctico, RAG, visión por computadora y herramientas para análisis de datos. Busco roles de Data/ML donde crear impacto real.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#proyectos" class="rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold">Ver proyectos</a>
+          <a href="https://github.com/R0SEWT" target="_blank" rel="noopener" class="rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800">GitHub</a>
         </div>
-        <div class="mono">Lima, Perú · UTC‑5</div>
-      </section>
-
-      <section id="experiencia">
-        <h2>Experiencia</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>QA Trainee — Visma Latam</h3>
-            <div class="mono">Dic 2024 – Presente · Cypress, Jira, QA</div>
-            <ul>
-              <li>Automatización de validaciones y pruebas de interfaz con Cypress; extracción y verificación de datos para asegurar consistencia.</li>
-              <li>Diseño, ejecución y documentación de casos de prueba funcionales y reportes.</li>
-              <li>Registro y seguimiento de bugs en Jira, colaborando con desarrollo.</li>
-              <li>Scripts de control de calidad previo a importación masiva de casos de prueba.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="proyectos">
-        <h2>Proyectos</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Clasificador de Emociones con NAO</h3>
-            <p>Sistema de detección de emociones para robot NAO con CNNs y keypoints; API Flask para interacción.</p>
-            <p class="mono">Python · PyTorch · TensorFlow · MediaPipe · Optuna · Flask</p>
-            <p><a href="https://github.com/R0SEWT/nao-cnn-emotion" target="_blank" rel="noreferrer">Repositorio</a></p>
-          </article>
-          <article class="card">
-            <h3>Precios de Vivienda — Dinamarca</h3>
-            <p>EDA + modelado (1992–2024). XGBoost + Optuna y H2O AutoML. Interpretabilidad con SHAP.</p>
-            <p class="mono">Python · H2O.ai · SHAP · XGBoost · Optuna · Pandas</p>
-            <p><a href="https://github.com/R0SEWT/Denmark-HousePrices-Analysis" target="_blank" rel="noreferrer">Repositorio</a></p>
-          </article>
-          <article class="card">
-            <h3>SpotiOrganizer</h3>
-            <p>Organiza canciones por tempo/estado de ánimo y genera playlists personalizadas.</p>
-            <p class="mono">Python · Spotify API · scikit‑learn · Clustering</p>
-            <p><a href="https://github.com/R0SEWT/spotify-playlist-organizer" target="_blank" rel="noreferrer">Repositorio</a></p>
-          </article>
-        </div>
-      </section>
-
-      <section id="educacion">
-        <h2>Educación</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>UPC — Ciencias de la Computación</h3>
-            <p class="mono">Mención Data Science Avanzado · 8.º ciclo · Décimo superior · Lima, Perú</p>
-            <p>Graduación estimada: 2026‑2</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="habilidades">
-        <h2>Habilidades</h2>
-        <div class="skills">
-          <span class="skill">Python</span><span class="skill">SQL</span><span class="skill">R</span><span class="skill">C++</span>
-          <span class="skill">Pandas</span><span class="skill">scikit‑learn</span><span class="skill">H2O.ai</span><span class="skill">SHAP</span>
-          <span class="skill">XGBoost</span><span class="skill">Optuna</span><span class="skill">Matplotlib</span>
-          <span class="skill">FastAPI</span><span class="skill">Flask</span><span class="skill">APIs REST</span>
-          <span class="skill">Docker</span><span class="skill">Git/GitHub</span>
-          <span class="skill">Google Cloud</span><span class="skill">Azure (básico)</span>
-          <span class="skill">Cypress</span><span class="skill">Power BI</span>
-        </div>
-      </section>
-
-      <section id="certificaciones">
-        <h2>Certificaciones</h2>
-        <ul>
-          <li>Machine Learning en Google Cloud — Google Cloud Skills Boost</li>
-          <li>Certificación Profesional en Análisis de Datos — Google</li>
-          <li>Python para Ciencia de Datos — Google</li>
-          <li>Winter Camp AI 2025 — PUCP</li>
-          <li>Fundamentos de IA Generativa — IBM</li>
-          <li>IA centrada en el ser humano — Tecnológico de Monterrey</li>
+        <ul class="mt-6 flex flex-wrap gap-2 text-xs text-slate-500">
+          <li class="rounded-full border border-slate-200 dark:border-slate-800 px-3 py-1">Python</li>
+          <li class="rounded-full border border-slate-200 dark:border-slate-800 px-3 py-1">H2O.ai</li>
+          <li class="rounded-full border border-slate-200 dark:border-slate-800 px-3 py-1">XGBoost</li>
+          <li class="rounded-full border border-slate-200 dark:border-slate-800 px-3 py-1">Optuna</li>
+          <li class="rounded-full border border-slate-200 dark:border-slate-800 px-3 py-1">RAG</li>
+          <li class="rounded-full border border-slate-200 dark:border-slate-800 px-3 py-1">CV</li>
         </ul>
-      </section>
-
-      <section id="voluntariado">
-        <h2>Voluntariado</h2>
-        <p>Asociación KP — Voluntario (2022–2023). 95 horas de apoyo en refugios, campañas de esterilización y educación comunitaria.</p>
-      </section>
-
-      <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Escríbeme a <a href="mailto:rody.vilchez00@gmail.com">rody.vilchez00@gmail.com</a> o por <a href="https://www.linkedin.com/in/r0sewt/" target="_blank" rel="noreferrer">LinkedIn</a>.</p>
-        <div class="btns">
-          <a class="btn" href="/CV_ESP.pdf" download>Descargar CV (PDF)</a>
-          <button class="btn secondary" id="printBtn2">Imprimir</button>
-        </div>
-      </section>
-
-      <div class="footer">
-        <div>© <span id="year"></span> Rody Sebastián Vilchez Marin</div>
-        <div>Hecho con HTML + CSS • Ligero y rápido</div>
       </div>
-    </main>
-  </div>
+      <div class="relative">
+        <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-teal to-lilac/70 p-[2px] shadow-xl">
+          <div class="h-full w-full rounded-2xl bg-white dark:bg-slate-900 p-6 flex items-center">
+            <div class="grid grid-cols-2 gap-4 w-full">
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                <p class="text-xs text-slate-500">Proyecto</p>
+                <p class="font-semibold">Imitator (SLT)</p>
+                <p class="text-xs text-slate-500">ST-GCN + Transformer · Offline</p>
+              </div>
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                <p class="text-xs text-slate-500">EDA</p>
+                <p class="font-semibold">Danish Housing Prices</p>
+                <p class="text-xs text-slate-500">H2O + SHAP/LIME · 1.5M rows</p>
+              </div>
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                <p class="text-xs text-slate-500">RAG</p>
+                <p class="font-semibold">ArbitrIA</p>
+                <p class="text-xs text-slate-500">Legal-tech · LlamaIndex</p>
+              </div>
+              <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                <p class="text-xs text-slate-500">QA</p>
+                <p class="font-semibold">Cypress + Jenkins</p>
+                <p class="text-xs text-slate-500">Mapping & auto-tests</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="mt-2 text-xs text-slate-500">*  screenshots reales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-2xl md:text-3xl font-bold">Proyectos seleccionados</h2>
+        <a href="https://github.com/R0SEWT?tab=repositories" target="_blank" rel="noopener" class="text-sm hover:text-teal">Ver todo →</a>
+      </div>
+      <div id="grid-proyectos" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Experiencia -->
+  <section id="experiencia" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold">Experiencia</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+          <header class="flex items-center justify-between">
+            <h3 class="font-semibold">QA Trainee — Visma LATAM (Mandü)</h3>
+            <span class="text-xs text-slate-500">2024–2025</span>
+          </header>
+          <ul class="mt-3 text-sm list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+            <li>Automatización de pruebas con Cypress; generación de suites a partir del DOM.</li>
+            <li>Gestión de datos/selectores vía fixtures JSON; reporte de bugs en Jira.</li>
+            <li>Integración con Jenkins; métricas y coverage en flujos críticos.</li>
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+          <header class="flex items-center justify-between">
+            <h3 class="font-semibold">Proyectos Académicos — UPC</h3>
+            <span class="text-xs text-slate-500">2023–2025</span>
+          </header>
+          <ul class="mt-3 text-sm list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+            <li>Reconocimiento de emociones con NAO: CNNs + keypoints faciales/posturales.</li>
+            <li>RAG legal (ArbitrIA): ingestion service + LlamaIndex + chat contextual.</li>
+            <li>Big Data (H2O): modelo de precios de vivienda en Dinamarca con SHAP/LIME.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publicaciones / Docs -->
+  <section id="publicaciones" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold">Publicaciones & Docs</h2>
+      <ul class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
+        <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:bg-white/60 dark:hover:bg-slate-900/60 transition">
+          <a href="#" class="font-semibold hover:text-teal">Imitator: Gloss‑Free SLT via Embedding Alignment</a>
+          <p class="text-slate-500">Borrador IEEE — 2025</p>
+        </li>
+        <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:bg-white/60 dark:hover:bg-slate-900/60 transition">
+          <a href="#" class="font-semibold hover:text-teal">Danish Housing Prices — EDA + ML</a>
+          <p class="text-slate-500">Reporte técnico — 2025</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+          <p class="text-sm text-slate-600 dark:text-slate-300">¿Colab? ¿Pasantía en Data/ML? Hablemos.</p>
+          <ul class="mt-3 text-sm space-y-1">
+            <li>Email: <a class="hover:text-teal" href="mailto:rody.vilchez00@gmail.com">rody.vilchez00@gmail.com</a></li>
+            <li>LinkedIn: <a class="hover:text-teal" href="https://www.linkedin.com/in/r0sewt/" target="_blank" rel="noopener">r0sewt</a></li>
+            <li>GitHub: <a class="hover:text-teal" href="https://github.com/R0SEWT" target="_blank" rel="noopener">R0SEWT</a></li>
+          </ul>
+        </div>
+        <form class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+          <label class="block text-sm font-medium">Envíame un mensaje (simulado)</label>
+          <input class="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm" placeholder="Tu email" />
+          <textarea class="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm h-28" placeholder="Tu mensaje..."></textarea>
+          <button type="button" class="mt-3 rounded-xl bg-teal px-4 py-2 text-sm font-semibold text-white">Enviar</button>
+          <p class="mt-2 text-xs text-slate-500">* Conecta a Formspree/Netlify Forms más adelante.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">
+    © <span id="y"></span> Rody Vilchez — Lima, Perú
+  </footer>
 
   <script>
-    const themeBtn = document.getElementById('themeBtn');
-    const printBtn = document.getElementById('printBtn');
-    const printBtn2 = document.getElementById('printBtn2');
-    const body = document.body;
+    // Theme toggle persistente
+    const modeToggle = document.getElementById('modeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const saved = localStorage.getItem('theme');
-    if(saved){ body.className = saved; }
-    if(themeBtn){themeBtn.addEventListener('click',()=>{
-      body.classList.toggle('light');
-      const mode = body.classList.contains('light') ? 'light' : 'dark';
-      body.className = mode;
-      localStorage.setItem('theme', mode);
-    });}
-    const doPrint = ()=>window.print();
-    if (printBtn) printBtn.addEventListener('click',doPrint);
-    if (printBtn2) printBtn2.addEventListener('click',doPrint);
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const setTheme = (t) => {
+      if (t === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', t);
+    };
+    setTheme(saved || (prefersDark ? 'dark' : 'light'));
+    modeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Año footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Data de proyectos (edítala o genera con IA)
+    const proyectos = [
+      {
+        name: 'Imitator — Sign Language Translation',
+        desc: 'ST-GCN + Transformer. Embeddings compatibles con LLM. Offline y privado.',
+        tags: ['PyTorch','Keypoints','Transformer','ONNX'],
+        link: 'https://github.com/R0SEWT',
+      },
+      {
+        name: 'ArbitrIA — Legal RAG',
+        desc: 'RAG para arbitrajes: ingestion, chunking, embeddings y chat contextual.',
+        tags: ['Python','LlamaIndex','FastAPI'],
+        link: '#',
+      },
+      {
+        name: 'Danish Housing Prices',
+        desc: 'EDA y modelos con H2O.ai; interpretación con SHAP/LIME sobre 1.5M transacciones.',
+        tags: ['H2O.ai','SHAP','LIME','EDA'],
+        link: '#',
+      },
+      {
+        name: 'QA Automation @ Visma',
+        desc: 'Framework Cypress + Jenkins; generación de tests con asistencia IA.',
+        tags: ['Cypress','Jenkins','TypeScript'],
+        link: '#',
+      }
+    ];
+
+    const grid = document.getElementById('grid-proyectos');
+    proyectos.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-md transition bg-white/70 dark:bg-slate-900/50 backdrop-blur';
+      card.innerHTML = `
+        <h3 class="font-semibold">${p.name}</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${p.desc}</p>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
+          ${p.tags.map(t => `<span class='rounded-full border border-slate-200 dark:border-slate-800 px-2 py-0.5'>${t}</span>`).join('')}
+        </div>
+        <a href="${p.link}" target="_blank" rel="noopener" class="mt-4 inline-flex text-sm font-medium hover:text-teal">Ver más →</a>
+      `;
+      grid.appendChild(card);
+    });
   </script>
 </body>
 </html>
