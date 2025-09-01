@@ -9,6 +9,9 @@ import react from '@astrojs/react';
 
 import sitemap from '@astrojs/sitemap';
 
+
+
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -16,4 +19,9 @@ export default defineConfig({
   },
 
   integrations: [mdx(), react(), sitemap()]
+  ,
+  site: 'https://rosewt.dev',            // requerido por sitemap y canonical
+  output: 'static'    
 });
+
+
