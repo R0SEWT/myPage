@@ -86,19 +86,14 @@
 #       - name: Deploy to GitHub Pages
 #         id: deployment
 #         uses: actions/deploy-pages@v4
-
 name: Deploy Astro to GitHub Pages
-
 on:
-  push:
-    branches: [ main ]
+  push: { branches: [ main ] }
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -108,14 +103,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: withastro/action@v4
         with:
           path: ./rosewt-astro
           node-version: 20
           package-manager: npm
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./rosewt-astro/dist
+          path: ./rosewt-astro/dist   # 👈 ESTE PATH DEBE EXISTIR
 
   deploy:
     needs: build
