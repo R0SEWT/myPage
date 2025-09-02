@@ -9,8 +9,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://rosewt.dev',  // necesario para sitemap y canonical
   output: 'static',
+  base: '/', // importante: nada de '/myPage'
   vite: {
     plugins: [tailwindcss()],
   },
   integrations: [mdx(), react(), sitemap()],
 });
+
