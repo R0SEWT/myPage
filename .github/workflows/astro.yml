@@ -87,8 +87,8 @@
 #         id: deployment
 #         uses: actions/deploy-pages@v4
 
-
 name: Deploy Astro to GitHub Pages
+
 on:
   push:
     branches: [ main ]
@@ -113,6 +113,9 @@ jobs:
           path: ./rosewt-astro
           node-version: 20
           package-manager: npm
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./rosewt-astro/dist
 
   deploy:
     needs: build
