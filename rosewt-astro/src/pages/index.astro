@@ -8,6 +8,8 @@ import Badge from '../components/Badge.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects', p => p.data.published !== false);
+// Ordenar por fecha (más recientes primero)
+projects.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 <BaseLayout title="Rody Vilchez — Data & AI" description="Portafolio de proyectos en Data/ML, RAG y QA.">
   <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 dark:border-slate-800 supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60">
