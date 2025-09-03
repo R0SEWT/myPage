@@ -5,11 +5,14 @@ import MobileMenu from '../components/MobileMenu.jsx';
 import ProjectCard from '../components/ProjectCard.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 import Badge from '../components/Badge.astro';
+import ContactCards from '../components/ContactCards.astro';
+import ContactForm from '../components/ContactForm.astro';
+import WhatImLookingFor from '../components/WhatImLookingFor.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects', p => p.data.published !== false);
 // Ordenar por fecha (más recientes primero)
-projects.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Date(a.data.date || '2024-01-01').getTime());
 ---
 <BaseLayout title="Rody Vilchez — Data & AI" description="Portafolio de proyectos en Data/ML, RAG y QA.">
   <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 dark:border-slate-800 supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60">
@@ -55,7 +58,7 @@ projects.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).
               <Badge text="XGBoost" animated />
               <Badge text="Optuna" animated />
               <Badge text="RAG" variant="primary" animated />
-              <Badge text="Deep Learning" variant="secondary" animated />
+              <Badge text="CV" variant="secondary" animated />
             </div>
           </div>
         </ScrollReveal>
@@ -87,7 +90,7 @@ projects.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).
                 </div>
               </div>
             </div>
-            <p class="mt-2 text-xs text-slate-500"> </p>
+            <p class="mt-2 text-xs text-slate-500">* screenshots reales.</p>
           </div>
         </ScrollReveal>
       </div>
@@ -172,24 +175,39 @@ projects.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).
     <!-- Contact -->
     <section id="contact" class="py-16 md:py-24">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
-        <div class="mt-6 grid md:grid-cols-2 gap-6">
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-            <p class="text-sm text-slate-600 dark:text-slate-300">¿Colab? ¿Pasantía en Data/ML? Hablemos.</p>
-            <ul class="mt-3 text-sm space-y-1">
-              <li>Email: <a class="hover:text-teal" href="mailto:rody.vilchez00@gmail.com">rody.vilchez00@gmail.com</a></li>
-              <li>LinkedIn: <a class="hover:text-teal" href="https://www.linkedin.com/in/r0sewt/" target="_blank" rel="noopener">r0sewt</a></li>
-              <li>GitHub: <a class="hover:text-teal" href="https://github.com/R0SEWT" target="_blank" rel="noopener">R0SEWT</a></li>
-            </ul>
+        <ScrollReveal>
+          <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold">¡Hablemos!</h2>
+            <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              ¿Interesado en colaborar? ¿Tienes una oportunidad en Data/ML? Me encantaría conocer tu proyecto.
+            </p>
           </div>
-          <form class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-            <label class="block text-sm font-medium">Envíame un mensaje (simulado)</label>
-            <input class="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm" placeholder="Tu email" />
-            <textarea class="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm h-28" placeholder="Tu mensaje..."></textarea>
-            <button type="button" class="mt-3 rounded-xl bg-teal px-4 py-2 text-sm font-semibold text-white">Enviar</button>
-            <p class="mt-2 text-xs text-slate-500">* Conecta a Formspree/Netlify Forms más adelante.</p>
-          </form>
+        </ScrollReveal>
+        
+        <div class="grid lg:grid-cols-3 gap-6">
+          <ScrollReveal delay={100}>
+            <ContactCards />
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <ContactForm />
+          </ScrollReveal>
+
+          <ScrollReveal delay={300}>
+            <WhatImLookingFor />
+          </ScrollReveal>
         </div>
+        
+        <ScrollReveal delay={400}>
+          <div class="mt-12 text-center">
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">¿Prefieres el contacto directo?</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <Badge text="📧 Respuesta < 48h" variant="primary" />
+              <Badge text="💼 Abierto a colaboraciones" variant="secondary" />
+              <Badge text="🚀 Disponible para proyectos" animated />
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   </main>
