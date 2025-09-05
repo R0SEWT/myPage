@@ -14,7 +14,20 @@ const { title, description, keywords, type } = Astro.props;
 
 <html lang="es" class="scroll-smooth">
   <BaseHead title={title} description={description} keywords={keywords} type={type} />
-  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <script is:inline>
+    // Aplicar tema inmediatamente para evitar FOUC
+    (function() {
+      const theme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (theme === 'dark' || (!theme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
     <slot />
   </body>
 </html>
