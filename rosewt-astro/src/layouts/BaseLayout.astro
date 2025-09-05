@@ -1,10 +1,19 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+import BaseHead from '../components/layout/BaseHead.astro';
 import '../styles/globals.css';
-const { title, description } = Astro.props;
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  type?: string;
+}
+
+const { title, description, keywords, type } = Astro.props;
 ---
+
 <html lang="es" class="scroll-smooth">
-  <BaseHead {title} {description} />
+  <BaseHead title={title} description={description} keywords={keywords} type={type} />
   <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
     <slot />
   </body>
