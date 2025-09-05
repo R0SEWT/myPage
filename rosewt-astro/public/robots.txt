@@ -1,3 +1,21 @@
 User-agent: *
 Allow: /
+
+# Disallow admin/temp directories (if any in the future)
+Disallow: /admin/
+Disallow: /temp/
+Disallow: *.json$
+
+# Allow important files
+Allow: /CV.pdf
+Allow: /favicon.svg
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://rosewt.dev/sitemap-index.xml
+Sitemap: https://rosewt.dev/sitemap-0.xml
+
+# Host declaration
+Host: https://rosewt.dev

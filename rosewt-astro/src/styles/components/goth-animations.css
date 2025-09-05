@@ -1,0 +1,200 @@
+/* === ANIMACIONES GOTH-CYBERPUNK SUTILES === */
+
+/* Variables para animaciones */
+:root {
+  --glow-primary: #1ABC9C;
+  --glow-secondary: #8E44AD;
+  --glow-accent: #2C3E50;
+  --shadow-cyber: 0 0 20px rgba(26, 188, 156, 0.1);
+  --shadow-goth: 0 0 30px rgba(142, 68, 173, 0.08);
+}
+
+/* Pulso sutil en elementos interactivos */
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(26, 188, 156, 0.4);
+  }
+}
+
+/* Glitch muy sutil para texto */
+@keyframes subtleGlitch {
+  0%, 90%, 100% {
+    transform: translateX(0);
+    filter: hue-rotate(0deg);
+  }
+  2% {
+    transform: translateX(0.5px);
+    filter: hue-rotate(1deg);
+  }
+  4% {
+    transform: translateX(-0.3px);
+    filter: hue-rotate(-1deg);
+  }
+}
+
+/* Flotación suave */
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Respiración de brillo */
+@keyframes breatheGlow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 3px rgba(26, 188, 156, 0.1));
+  }
+  50% {
+    filter: brightness(1.05) drop-shadow(0 0 8px rgba(26, 188, 156, 0.2));
+  }
+}
+
+/* Ondas de energía en bordes */
+@keyframes energyWave {
+  0% {
+    border-color: rgba(26, 188, 156, 0.3);
+    box-shadow: inset 0 0 10px rgba(26, 188, 156, 0.1);
+  }
+  50% {
+    border-color: rgba(142, 68, 173, 0.4);
+    box-shadow: inset 0 0 15px rgba(142, 68, 173, 0.15);
+  }
+  100% {
+    border-color: rgba(26, 188, 156, 0.3);
+    box-shadow: inset 0 0 10px rgba(26, 188, 156, 0.1);
+  }
+}
+
+/* Aplicar animaciones a elementos específicos */
+
+/* Botones y elementos interactivos */
+.btn, button, .theme-toggle {
+  animation: breatheGlow 4s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Excluir botones principales de cambios de color */
+.btn:not(.theme-toggle):hover, 
+button:not(.theme-toggle):hover {
+  animation: softFloat 2s ease-in-out infinite;
+}
+
+/* Solo el theme toggle mantiene el pulso de color */
+.theme-toggle:hover {
+  animation: subtlePulse 2s ease-in-out infinite;
+}
+
+/* Tarjetas de proyectos */
+.project-card, .effect-card {
+  animation: softFloat 6s ease-in-out infinite;
+  animation-delay: calc(var(--card-index, 0) * 0.5s);
+}
+
+.project-card:hover {
+  animation: energyWave 3s ease-in-out infinite;
+}
+
+/* Títulos principales */
+h1, h2.section-title {
+  animation: subtleGlitch 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Elementos de navegación */
+.nav-link {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  animation: breatheGlow 2s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(26, 188, 156, 0.3);
+}
+
+/* Efectos especiales para elementos glass */
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: energyWave 8s ease-in-out infinite;
+}
+
+.dark .glass {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 188, 156, 0.05) 0%,
+    rgba(142, 68, 173, 0.03) 100%
+  );
+  border: 1px solid rgba(26, 188, 156, 0.1);
+}
+
+/* Animación de aparición escalonada */
+@keyframes staggeredFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplicar aparición escalonada a secciones */
+.section {
+  animation: staggeredFadeIn 0.8s ease-out;
+  animation-delay: calc(var(--section-index, 0) * 0.2s);
+  animation-fill-mode: both;
+}
+
+/* Efecto de línea de código */
+@keyframes codeTyping {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.code-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(26, 188, 156, 0.2), transparent);
+  animation: codeTyping 3s ease-in-out infinite;
+}
+
+/* Reducir movimiento para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Solo animaciones muy sutiles en modo reducido */
+@media (prefers-reduced-motion: reduce) {
+  .btn, button {
+    animation: none;
+  }
+  
+  .btn:hover, button:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+  }
+}

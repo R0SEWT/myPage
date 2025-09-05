@@ -1,0 +1,27 @@
+---
+import ThemeToggle from './ThemeToggle.jsx';
+import MobileMenu from './MobileMenu.jsx';
+import { SITE_CONFIG, NAVIGATION_LINKS } from '../../lib/constants';
+---
+
+<header class="backdrop-blur sticky top-0 z-40 border-b supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 scan-lines" role="banner">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
+    <a href="#home" class="font-semibold tracking-tight text-lg subtle-interference" aria-label="Rody Vilchez - Ir al inicio">
+      Rody <span class="text-teal">Vilchez</span>
+    </a>
+    
+    <nav id="navigation" class="hidden md:flex gap-6 text-sm" role="navigation" aria-label="Navegación principal">
+      {NAVIGATION_LINKS.map((link) => (
+        <a href={link.href} class="nav-item nav-link effect-base hover:text-teal focus-ring">{link.label}</a>
+      ))}
+    </nav>
+    
+    <div class="flex items-center gap-2">
+      <ThemeToggle client:idle />
+      <a href={SITE_CONFIG.cv} class="effect-button inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white focus-ring hover:opacity-90 transition-opacity" aria-label="Descargar CV en formato PDF">
+        Descargar CV
+      </a>
+      <MobileMenu client:idle />
+    </div>
+  </div>
+</header>

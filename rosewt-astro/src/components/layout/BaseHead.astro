@@ -1,0 +1,140 @@
+---
+const {
+  title = 'Rody Vilchez — Data & AI',
+  description = 'Portafolio: ML aplicado, RAG, CV y proyectos.',
+  image = '/gothLampGirl.jpg', // Temporal hasta crear OG específica
+  url = 'https://rosewt.dev',
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  keywords = 'Data Science, Machine Learning, RAG, Computer Vision, QA, Python, H2O, PyTorch, LlamaIndex, Astro, Portfolio'
+} = Astro.props;
+
+// Construir URL completa para imagen
+const imageUrl = new URL(image, url).toString();
+const canonicalUrl = new URL(Astro.url.pathname, url).toString();
+---
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Preconnect para performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://github.com" />
+  <link rel="dns-prefetch" href="https://linkedin.com" />
+  
+  <!-- Preload critical resources -->
+  <link rel="modulepreload" href="/src/components/layout/ThemeToggle.jsx" />
+  <link rel="modulepreload" href="/src/components/layout/MobileMenu.jsx" />
+  
+  <!-- Favicon optimizado -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalUrl} />
+  
+  <!-- Prevent theme flash -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+      
+      if (shouldUseDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
+  <!-- Título optimizado -->
+  <title>{title}</title>
+  
+  <!-- Meta tags básicos -->
+  <meta name="description" content={description} />
+  <meta name="author" content="Rody Sebastián Vilchez Marín" />
+  <meta name="keywords" content={keywords} />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="es-ES" />
+  <meta name="geo.region" content="PE-LIM" />
+  <meta name="geo.placename" content="Lima, Perú" />
+
+  <!-- Theme color para barras del navegador -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Open Graph optimizado -->
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Rody Vilchez Portfolio" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:image:alt" content={`${title} - Portfolio Preview`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_ES" />
+  {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+  {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+  <!-- Twitter Card optimizado -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@rosewt_dev" />
+  <meta name="twitter:creator" content="@rosewt_dev" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageUrl} />
+  <meta name="twitter:image:alt" content={`${title} - Portfolio Preview`} />
+
+  <!-- JSON-LD Person enriquecido -->
+  <!-- JSON-LD Person enriquecido -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rody Sebastián Vilchez Marín",
+    "alternateName": "R0SEWT",
+    "jobTitle": "Data Science Student & QA Trainee",
+    "description": "Estudiante de Computer Science especializado en Machine Learning, RAG, Computer Vision y QA Automation",
+    "url": "https://rosewt.dev",
+    "image": "${imageUrl}",
+    "email": "rody.vilchez00@gmail.com",
+    "telephone": "+51-xxx-xxx-xxx",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lima",
+      "@country": "PE"
+    },
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Universidad Peruana de Ciencias Aplicadas",
+      "alternateName": "UPC"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Visma LATAM (Mandü)",
+      "jobTitle": "QA Trainee"
+    },
+    "knowsAbout": [
+      "Data Science",
+      "Machine Learning", 
+      "Computer Vision",
+      "RAG (Retrieval-Augmented Generation)",
+      "QA Automation",
+      "Python",
+      "PyTorch",
+      "H2O.ai",
+      "LlamaIndex",
+      "Cypress"
+    ],
+    "sameAs": [
+      "https://github.com/R0SEWT",
+      "https://www.linkedin.com/in/r0sewt/"
+    ]
+  }
+  </script>
+</head>

@@ -1,0 +1,50 @@
+---
+import ScrollReveal from '../ui/ScrollReveal.astro';
+import Badge from '../ui/Badge.astro';
+import ContactCards from './ContactCards.astro';
+import ContactForm from './ContactForm.astro';
+import WhatImLookingFor from './WhatImLookingFor.astro';
+import { CONTACT_BADGES } from '../../lib/constants';
+---
+
+<section id="contact" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <ScrollReveal>
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold">¡Hablemos!</h2>
+        <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          ¿Interesado en colaborar? ¿Tienes una oportunidad en Data/ML? Me encantaría conocer tu proyecto.
+        </p>
+      </div>
+    </ScrollReveal>
+    
+    <div class="grid lg:grid-cols-3 gap-6">
+      <ScrollReveal delay={100}>
+        <ContactCards />
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <ContactForm />
+      </ScrollReveal>
+
+      <ScrollReveal delay={300}>
+        <WhatImLookingFor />
+      </ScrollReveal>
+    </div>
+    
+    <ScrollReveal delay={400}>
+      <div class="mt-12 text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">¿Prefieres el contacto directo?</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          {CONTACT_BADGES.map((badge) => (
+            <Badge 
+              text={badge.text} 
+              variant={'variant' in badge ? badge.variant : undefined}
+              animated={'animated' in badge ? badge.animated : undefined}
+            />
+          ))}
+        </div>
+      </div>
+    </ScrollReveal>
+  </div>
+</section>

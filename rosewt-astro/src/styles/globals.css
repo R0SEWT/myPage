@@ -3,109 +3,14 @@
 @tailwind utilities;
 @import "tailwindcss";
 
-:root { 
-  color-scheme: light dark; 
-  --teal: #1ABC9C;
-  --lilac: #8E44AD;
-  --cosmos: #2C3E50;
-  --dawn: #F1C40F;
-  --cloud: #ECF0F1;
-}
-
-section { 
-  scroll-margin-top: 80px; /* evita que el header tape títulos */
-}
-
-/* Animaciones suaves */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(26, 188, 156, 0); }
-}
-
-/* Utilidades de animación */
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 4s infinite;
-}
-
-/* Scroll personalizado */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgb(241 245 249 / 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--teal);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(26, 188, 156, 0.8);
-}
-
-/* Utilidades personalizadas */
-.text-teal {
-  color: var(--teal);
-}
-
-.bg-teal {
-  background-color: var(--teal);
-}
-
-.hover\:text-teal:hover {
-  color: var(--teal);
-}
-
-.from-teal {
-  --tw-gradient-from: var(--teal) var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(26 188 156 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.to-lilac\/70 {
-  --tw-gradient-to: rgb(142 68 173 / 0.7) var(--tw-gradient-to-position);
-}
-
-.border-teal {
-  border-color: var(--teal);
-}
-
-/* Efectos glassmorphism mejorados */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dark .glass {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
+/* === IMPORTS === */
+@import "./components/base.css";
+@import "./components/animations.css";
+@import "./components/effects.css";
+@import "./components/utilities.css";
+@import "./components/light-theme-fixes.css";
+@import "./components/theme-transitions.css";
+@import "./components/goth-animations.css";
+@import "./components/cyber-effects.css";
 
 
