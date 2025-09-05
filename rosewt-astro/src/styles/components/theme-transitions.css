@@ -1,0 +1,182 @@
+/* === ANIMACIÓN DE CAMBIO DE TEMA === */
+
+/* Transición suave para todos los elementos afectados por el tema */
+*, *::before, *::after {
+  transition: 
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Respeto por reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+
+/* Animación específica para el body durante el cambio */
+body {
+  transition: 
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para elementos glass */
+.glass {
+  transition: 
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para cards */
+.effect-card {
+  transition: 
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para el header */
+header {
+  transition: 
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para inputs y formularios */
+input, textarea, select, button {
+  transition: 
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación específica para el botón de tema */
+.theme-toggle {
+  transition: 
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Estado de transición del botón */
+.theme-toggle.transitioning {
+  transform: scale(0.95);
+}
+
+/* Efecto de onda en el botón de tema */
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(26, 188, 156, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: 
+    width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.theme-toggle:active::before,
+.theme-toggle.transitioning::before {
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+}
+
+/* Animación del ícono dentro del botón */
+.theme-toggle svg {
+  transition: 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rotación suave del ícono al cambiar */
+.theme-toggle:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Animación para secciones con fondos alternos */
+section {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para texto y enlaces */
+a, p, h1, h2, h3, h4, h5, h6, span {
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación suave para SVGs */
+svg {
+  transition: 
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    fill 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación para borders */
+[class*="border"] {
+  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Micro-animación al aplicar el tema dark */
+.dark {
+  animation: themeTransition 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Animación muy sutil durante la transición */
+@keyframes themeTransition {
+  0% {
+    opacity: 0.98;
+  }
+  50% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Animación suave de fade para cambios muy sutiles */
+@keyframes themeFade {
+  0% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Aplicar fade a elementos específicos durante la transición */
+.glass, .effect-card {
+  animation: themeFade 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Desactivar animación de tema en reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dark {
+    animation: none !important;
+  }
+  
+  @keyframes themeTransition {
+    0%, 100% {
+      opacity: 1;
+    }
+  }
+}
