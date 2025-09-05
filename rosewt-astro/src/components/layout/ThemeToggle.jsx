@@ -24,7 +24,7 @@ export default function ThemeToggle() {
       aria-label={`Cambiar a modo ${dark ? 'claro' : 'oscuro'}`}
       aria-pressed={dark ?? false}
       onClick={toggleTheme}
-      className="effect-button inline-flex items-center rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-1.5 text-sm focus-ring"
+      className="theme-toggle effect-button inline-flex items-center rounded-xl px-3 py-1.5 text-sm focus-ring"
       title={`Cambiar a modo ${dark ? 'claro' : 'oscuro'}`}
     >
       {dark ? (

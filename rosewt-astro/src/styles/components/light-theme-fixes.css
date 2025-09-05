@@ -1,0 +1,234 @@
+/* === MEJORAS PARA TEMA CLARO === */
+
+/* Corregir backgrounds de secciones alternos */
+.bg-slate-50 {
+  background-color: rgb(248 250 252) !important;
+}
+
+.dark .bg-slate-900\/30 {
+  background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+/* Asegurar que en modo oscuro las secciones tengan el fondo correcto */
+.dark .bg-slate-50 {
+  background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+/* Mejorar el efecto glass en modo claro */
+.glass {
+  background: rgba(248, 250, 252, 0.85) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.6) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Corregir colores de texto según el tema */
+.text-slate-900 {
+  color: rgb(15 23 42) !important;
+}
+
+.dark .text-slate-900 {
+  color: rgb(248 250 252) !important;
+}
+
+.text-slate-100 {
+  color: rgb(248 250 252) !important;
+}
+
+.dark .text-slate-100 {
+  color: rgb(248 250 252) !important;
+}
+
+.text-slate-600 {
+  color: rgb(71 85 105) !important;
+}
+
+.dark .text-slate-600 {
+  color: rgb(203 213 225) !important;
+}
+
+.text-slate-300 {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .text-slate-300 {
+  color: rgb(203 213 225) !important;
+}
+
+.text-slate-500 {
+  color: rgb(100 116 139) !important;
+}
+
+.dark .text-slate-500 {
+  color: rgb(148 163 184) !important;
+}
+
+/* Mejorar bordes en modo claro */
+.border-slate-200 {
+  border-color: rgb(226 232 240) !important;
+}
+
+.dark .border-slate-200 {
+  border-color: rgb(71 85 105) !important;
+}
+
+.border-slate-800 {
+  border-color: rgb(30 41 59) !important;
+}
+
+.dark .border-slate-800 {
+  border-color: rgb(71 85 105) !important;
+}
+
+/* Mejorar inputs en modo claro */
+input, textarea, select {
+  color: rgb(15 23 42) !important;
+  background-color: rgb(255 255 255) !important;
+  border-color: rgb(203 213 225) !important;
+}
+
+.dark input, .dark textarea, .dark select {
+  color: rgb(248 250 252) !important;
+  background-color: rgb(30 41 59) !important;
+  border-color: rgb(71 85 105) !important;
+}
+
+/* Focus states mejorados para ambos temas */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--teal) !important;
+  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1) !important;
+}
+
+.dark input:focus, .dark textarea:focus, .dark select:focus {
+  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2) !important;
+}
+
+/* Mejorar text placeholders */
+input::placeholder, textarea::placeholder {
+  color: rgb(100 116 139) !important;
+}
+
+.dark input::placeholder, .dark textarea::placeholder {
+  color: rgb(148 163 184) !important;
+}
+
+/* Mejorar cards de publicaciones */
+li.rounded-xl {
+  background-color: rgb(255 255 255) !important;
+  border-color: rgb(226 232 240) !important;
+}
+
+.dark li.rounded-xl {
+  background-color: rgb(30 41 59) !important;
+  border-color: rgb(71 85 105) !important;
+}
+
+/* Hover states para cards de publicaciones */
+li.rounded-xl:hover {
+  background-color: rgb(248 250 252) !important;
+}
+
+.dark li.rounded-xl:hover {
+  background-color: rgb(51 65 85) !important;
+}
+
+/* Mejorar efectos hover en modo claro */
+.effect-lift:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark .effect-lift:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Mejorar cards en modo claro */
+.effect-card {
+  background: rgb(255 255 255) !important;
+  border: 1px solid rgb(226 232 240) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark .effect-card {
+  background: rgb(15 23 42) !important;
+  border: 1px solid rgb(30 41 59) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+.effect-card:hover {
+  background: rgb(248 250 252) !important;
+  box-shadow: 0 8px 25px rgba(26, 188, 156, 0.08) !important;
+}
+
+.dark .effect-card:hover {
+  background: rgb(30 41 59) !important;
+  box-shadow: 0 8px 25px rgba(26, 188, 156, 0.15) !important;
+}
+
+/* Mejorar ThemeToggle button */
+.theme-toggle {
+  background: rgb(255 255 255) !important;
+  border: 1px solid rgb(226 232 240) !important;
+  color: rgb(71 85 105) !important;
+}
+
+.dark .theme-toggle {
+  background: rgb(30 41 59) !important;
+  border: 1px solid rgb(71 85 105) !important;
+  color: rgb(203 213 225) !important;
+}
+
+.theme-toggle:hover {
+  background: rgb(248 250 252) !important;
+  border-color: var(--teal) !important;
+}
+
+.dark .theme-toggle:hover {
+  background: rgb(51 65 85) !important;
+  border-color: var(--teal) !important;
+}
+
+/* Asegurar que los SVG tengan el color correcto */
+svg {
+  color: inherit !important;
+}
+
+/* Mejorar el header backdrop */
+header.backdrop-blur {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+.dark header.backdrop-blur {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
+}
+
+/* Mejorar tags en ProjectCard */
+span.rounded-full {
+  background-color: rgb(248 250 252) !important;
+  border-color: rgb(226 232 240) !important;
+  color: rgb(71 85 105) !important;
+}
+
+.dark span.rounded-full {
+  background-color: rgb(30 41 59) !important;
+  border-color: rgb(71 85 105) !important;
+  color: rgb(203 213 225) !important;
+}
+
+/* Forzar colores correctos en body */
+body {
+  background-color: rgb(255 255 255) !important;
+  color: rgb(15 23 42) !important;
+}
+
+.dark body {
+  background-color: rgb(2 6 23) !important;
+  color: rgb(248 250 252) !important;
+}
