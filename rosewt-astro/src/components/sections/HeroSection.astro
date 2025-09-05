@@ -4,21 +4,21 @@ import Badge from '../ui/Badge.astro';
 import { SITE_CONFIG, MAIN_TECHNOLOGIES, FEATURED_PROJECTS } from '../../lib/constants';
 ---
 
-<section id="home" class="relative overflow-hidden" role="banner" aria-labelledby="hero-heading">
+<section id="home" class="relative overflow-hidden matrix-bg particles" role="banner" aria-labelledby="hero-heading">
   <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
     <ScrollReveal>
       <div>
-        <h1 id="hero-heading" class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-          Construyo soluciones <span class="text-teal animate-pulse-soft" aria-label="Data e Inteligencia Artificial">Data & IA</span> con enfoque aplicado
+        <h1 id="hero-heading" class="hero-title text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+          Construyo soluciones <span class="text-teal subtle-interference" aria-label="Data e Inteligencia Artificial">Data & IA</span> con enfoque aplicado
         </h1>
         <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-300">
           Estudiante de CS (8vo ciclo) y QA Trainee. Me enfoco en ML práctico, RAG, visión por computadora y herramientas para análisis de datos. Busco roles de Data/ML donde crear impacto real.
         </p>
         <div class="mt-6 flex flex-wrap gap-3" role="group" aria-label="Enlaces principales">
-          <a href="#projects" class="effect-button rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold focus-ring" aria-label="Ver proyectos destacados">
+          <a href="#projects" class="effect-button rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold focus-ring hover:opacity-90 transition-opacity" aria-label="Ver proyectos destacados">
             Ver proyectos
           </a>
-          <a href={SITE_CONFIG.github} target="_blank" rel="noopener" class="effect-button rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold focus-ring" aria-label="Ver perfil de GitHub (abre en nueva ventana)">
+          <a href={SITE_CONFIG.github} target="_blank" rel="noopener" class="effect-button rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold focus-ring hover:opacity-90 transition-opacity" aria-label="Ver perfil de GitHub (abre en nueva ventana)">
             GitHub
           </a>
         </div>
@@ -37,7 +37,7 @@ import { SITE_CONFIG, MAIN_TECHNOLOGIES, FEATURED_PROJECTS } from '../../lib/con
     <ScrollReveal delay={200}>
       <div class="relative" role="img" aria-label="Vista previa de proyectos destacados">
         <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-teal to-lilac/70 p-[2px] shadow-xl animate-float">
-          <div class="h-full w-full rounded-2xl bg-white dark:bg-slate-900 p-6 flex items-center glass">
+          <div class="h-full w-full rounded-2xl p-6 flex items-center glass">
             <div class="grid grid-cols-2 gap-4 w-full">
               {FEATURED_PROJECTS.map((project) => (
                 <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors" role="region" aria-label={project.ariaLabel}>
