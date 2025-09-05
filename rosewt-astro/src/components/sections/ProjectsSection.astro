@@ -1,0 +1,48 @@
+---
+import ScrollReveal from '../ui/ScrollReveal.astro';
+import ProjectCard from '../ui/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+// Obtener proyectos desde el contexto del padre
+export interface Props {
+  projects?: any[];
+}
+
+const { projects: propsProjects } = Astro.props;
+
+let projects = propsProjects;
+
+if (!projects) {
+  projects = await getCollection('projects', p => p.data.published !== false);
+  // Ordenar por fecha (más recientes primero)
+  projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Date(a.data.date || '2024-01-01').getTime());
+}
+---
+
+<section id="projects" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30" role="region" aria-labelledby="projects-heading">
+  <div class="max-w-6xl mx-auto px-4">
+    <ScrollReveal>
+      <div class="flex items-end justify-between gap-4">
+        <h2 id="projects-heading" class="text-2xl md:text-3xl font-bold">Proyectos seleccionados</h2>
+        <a href="https://github.com/R0SEWT?tab=repositories" target="_blank" rel="noopener" class="text-sm hover:text-teal transition-colors group">
+          Ver todo 
+          <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </ScrollReveal>
+    
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map(({ id, data }, index) => (
+        <ScrollReveal delay={index * 100}>
+          <ProjectCard
+            href={data.url}
+            title={data.title}
+            desc={data.description}
+            tags={data.tags}
+            key={id}
+          />
+        </ScrollReveal>
+      ))}
+    </div>
+  </div>
+</section>
