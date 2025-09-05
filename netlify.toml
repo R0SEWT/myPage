@@ -1,7 +1,7 @@
 [build]
   base = "rosewt-astro/"
   command = "npm run build"
-  publish = "rosewt-astro/dist"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
