@@ -1,0 +1,44 @@
+/* === UTILIDADES DE COLOR === */
+.text-teal {
+  color: var(--teal);
+}
+
+.bg-teal {
+  background-color: var(--teal);
+}
+
+.hover\:text-teal:hover {
+  color: var(--teal);
+}
+
+.from-teal {
+  --tw-gradient-from: var(--teal) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(26 188 156 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-lilac\/70 {
+  --tw-gradient-to: rgb(142 68 173 / 0.7) var(--tw-gradient-to-position);
+}
+
+.border-teal {
+  border-color: var(--teal);
+}
+
+/* === SCROLL PERSONALIZADO === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(241 245 249 / 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 188, 156, 0.8);
+}
