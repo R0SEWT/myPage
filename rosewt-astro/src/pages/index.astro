@@ -20,10 +20,16 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
   keywords="Rody Vilchez, Data Science, Machine Learning, RAG, Computer Vision, QA Automation, Python, PyTorch, H2O, LlamaIndex, Portfolio, Lima Peru"
   type="website"
 >
-  <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 dark:border-slate-800 supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60">
+  <!-- Skip Navigation Links -->
+  <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+  <a href="#navigation" class="skip-link">Ir a navegación</a>
+  <a href="#projects" class="skip-link">Ir a proyectos</a>
+  <a href="#contact" class="skip-link">Ir a contacto</a>
+
+  <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 dark:border-slate-800 supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60" role="banner">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
-      <a href="#home" class="font-semibold tracking-tight text-lg">Rody <span class="text-teal">Vilchez</span></a>
-      <nav class="hidden md:flex gap-6 text-sm">
+      <a href="#home" class="font-semibold tracking-tight text-lg" aria-label="Rody Vilchez - Ir al inicio">Rody <span class="text-teal">Vilchez</span></a>
+      <nav id="navigation" class="hidden md:flex gap-6 text-sm" role="navigation" aria-label="Navegación principal">
         <a href="#projects" class="hover:text-teal transition-colors">Proyectos</a>
         <a href="#experience" class="hover:text-teal transition-colors">Experiencia</a>
         <a href="#publications" class="hover:text-teal transition-colors">Publicaciones</a>
@@ -31,33 +37,33 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
       </nav>
       <div class="flex items-center gap-2">
         <ThemeToggle client:idle />
-        <a href="/CV.pdf" class="inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white hover:opacity-90">Descargar CV</a>
+        <a href="/CV.pdf" class="inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white hover:opacity-90" aria-label="Descargar CV en formato PDF">Descargar CV</a>
         <MobileMenu client:idle />
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section id="home" class="relative overflow-hidden">
+  <main id="main-content" role="main">
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden" role="banner" aria-labelledby="hero-heading">
       <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <ScrollReveal>
           <div>
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-              Construyo soluciones <span class="text-teal animate-pulse-glow">Data & IA</span> con enfoque aplicado
+            <h1 id="hero-heading" class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+              Construyo soluciones <span class="text-teal animate-pulse-glow" aria-label="Data e Inteligencia Artificial">Data & IA</span> con enfoque aplicado
             </h1>
             <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-300">
               Estudiante de CS (8vo ciclo) y QA Trainee. Me enfoco en ML práctico, RAG, visión por computadora y herramientas para análisis de datos. Busco roles de Data/ML donde crear impacto real.
             </p>
-            <div class="mt-6 flex flex-wrap gap-3">
-              <a href="#projects" class="group rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold hover:scale-105 transition-transform">
+            <div class="mt-6 flex flex-wrap gap-3" role="group" aria-label="Enlaces principales">
+              <a href="#projects" class="group rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold hover:scale-105 transition-transform" aria-label="Ver proyectos destacados">
                 Ver proyectos
               </a>
-              <a href="https://github.com/R0SEWT" target="_blank" rel="noopener" class="group rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 transition-all">
+              <a href="https://github.com/R0SEWT" target="_blank" rel="noopener" class="group rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 transition-all" aria-label="Ver perfil de GitHub (abre en nueva ventana)">
                 GitHub
               </a>
             </div>
-            <div class="mt-6 flex flex-wrap gap-2 text-xs text-slate-500">
+            <div class="mt-6 flex flex-wrap gap-2 text-xs text-slate-500" role="list" aria-label="Tecnologías principales">
               <Badge text="Python" animated />
               <Badge text="H2O.ai" animated />
               <Badge text="XGBoost" animated />
@@ -68,26 +74,26 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
           </div>
         </ScrollReveal>
         <ScrollReveal delay={200}>
-          <div class="relative">
+          <div class="relative" role="img" aria-label="Vista previa de proyectos destacados">
             <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-teal to-lilac/70 p-[2px] shadow-xl animate-float">
               <div class="h-full w-full rounded-2xl bg-white dark:bg-slate-900 p-6 flex items-center glass">
                 <div class="grid grid-cols-2 gap-4 w-full">
-                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors">
+                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors" role="region" aria-label="Proyecto Imitator">
                     <p class="text-xs text-slate-500">Proyecto</p>
                     <p class="font-semibold">Imitator (SLT)</p>
                     <p class="text-xs text-slate-500">ST-GCN + Transformer · Offline</p>
                   </div>
-                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors">
+                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors" role="region" aria-label="Análisis Housing Prices">
                     <p class="text-xs text-slate-500">EDA</p>
                     <p class="font-semibold">Danish Housing Prices</p>
                     <p class="text-xs text-slate-500">H2O + SHAP/LIME · 1.5M rows</p>
                   </div>
-                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors">
+                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors" role="region" aria-label="Proyecto ArbitrIA">
                     <p class="text-xs text-slate-500">RAG</p>
                     <p class="font-semibold">ArbitrIA</p>
                     <p class="text-xs text-slate-500">Legal-tech · LlamaIndex</p>
                   </div>
-                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors">
+                  <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-teal/30 transition-colors" role="region" aria-label="Automatización QA">
                     <p class="text-xs text-slate-500">QA</p>
                     <p class="font-semibold">Cypress + Jenkins</p>
                     <p class="text-xs text-slate-500">Mapping & auto-tests</p>
@@ -95,18 +101,18 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
                 </div>
               </div>
             </div>
-            <p class="mt-2 text-xs text-slate-500">* screenshots reales.</p>
+            <p class="mt-2 text-xs text-slate-500" aria-label="Nota: capturas de pantalla reales de proyectos">* screenshots reales.</p>
           </div>
         </ScrollReveal>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30">
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30" role="region" aria-labelledby="projects-heading">
       <div class="max-w-6xl mx-auto px-4">
         <ScrollReveal>
           <div class="flex items-end justify-between gap-4">
-            <h2 class="text-2xl md:text-3xl font-bold">Proyectos seleccionados</h2>
+            <h2 id="projects-heading" class="text-2xl md:text-3xl font-bold">Proyectos seleccionados</h2>
             <a href="https://github.com/R0SEWT?tab=repositories" target="_blank" rel="noopener" class="text-sm hover:text-teal transition-colors group">
               Ver todo 
               <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
