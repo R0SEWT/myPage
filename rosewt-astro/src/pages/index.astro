@@ -30,14 +30,14 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
       <a href="#home" class="font-semibold tracking-tight text-lg" aria-label="Rody Vilchez - Ir al inicio">Rody <span class="text-teal">Vilchez</span></a>
       <nav id="navigation" class="hidden md:flex gap-6 text-sm" role="navigation" aria-label="Navegación principal">
-        <a href="#projects" class="hover:text-teal transition-colors">Proyectos</a>
-        <a href="#experience" class="hover:text-teal transition-colors">Experiencia</a>
-        <a href="#publications" class="hover:text-teal transition-colors">Publicaciones</a>
-        <a href="#contact" class="hover:text-teal transition-colors">Contacto</a>
+        <a href="#projects" class="effect-base hover:text-teal focus-ring">Proyectos</a>
+        <a href="#experience" class="effect-base hover:text-teal focus-ring">Experiencia</a>
+        <a href="#publications" class="effect-base hover:text-teal focus-ring">Publicaciones</a>
+        <a href="#contact" class="effect-base hover:text-teal focus-ring">Contacto</a>
       </nav>
       <div class="flex items-center gap-2">
         <ThemeToggle client:idle />
-        <a href="/CV.pdf" class="inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white hover:opacity-90" aria-label="Descargar CV en formato PDF">Descargar CV</a>
+        <a href="/CV.pdf" class="effect-button inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white focus-ring" aria-label="Descargar CV en formato PDF">Descargar CV</a>
         <MobileMenu client:idle />
       </div>
     </div>
@@ -50,16 +50,16 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
         <ScrollReveal>
           <div>
             <h1 id="hero-heading" class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-              Construyo soluciones <span class="text-teal animate-pulse-glow" aria-label="Data e Inteligencia Artificial">Data & IA</span> con enfoque aplicado
+              Construyo soluciones <span class="text-teal animate-pulse-soft" aria-label="Data e Inteligencia Artificial">Data & IA</span> con enfoque aplicado
             </h1>
             <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-300">
               Estudiante de CS (8vo ciclo) y QA Trainee. Me enfoco en ML práctico, RAG, visión por computadora y herramientas para análisis de datos. Busco roles de Data/ML donde crear impacto real.
             </p>
             <div class="mt-6 flex flex-wrap gap-3" role="group" aria-label="Enlaces principales">
-              <a href="#projects" class="group rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold hover:scale-105 transition-transform" aria-label="Ver proyectos destacados">
+              <a href="#projects" class="effect-button rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold focus-ring" aria-label="Ver proyectos destacados">
                 Ver proyectos
               </a>
-              <a href="https://github.com/R0SEWT" target="_blank" rel="noopener" class="group rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 transition-all" aria-label="Ver perfil de GitHub (abre en nueva ventana)">
+              <a href="https://github.com/R0SEWT" target="_blank" rel="noopener" class="effect-button rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 text-sm font-semibold focus-ring" aria-label="Ver perfil de GitHub (abre en nueva ventana)">
                 GitHub
               </a>
             </div>
@@ -101,7 +101,7 @@ projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Da
                 </div>
               </div>
             </div>
-            <p class="mt-2 text-xs text-slate-500" aria-label="Nota: capturas de pantalla reales de proyectos">* screenshots reales.</p>
+            <p class="mt-2 text-xs text-slate-500" aria-label="Nota: capturas de pantalla reales de proyectos"></p>
           </div>
         </ScrollReveal>
       </div>
