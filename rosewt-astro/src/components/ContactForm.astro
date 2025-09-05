@@ -4,7 +4,23 @@ const { } = Astro.props;
 
 <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white/50 dark:bg-slate-900/50 backdrop-blur">
   <h3 class="text-lg font-semibold mb-4">Envíame un mensaje</h3>
-  <form class="space-y-4" data-netlify="true" method="POST" name="contact">
+  <form 
+    class="space-y-4" 
+    name="contact" 
+    method="POST" 
+    data-netlify="true" 
+    netlify-honeypot="bot-field"
+    action="/gracias"
+  >
+    <input type="hidden" name="form-name" value="contact" />
+    
+    <!-- Campo anti-spam oculto -->
+    <p style="display: none;">
+      <label>
+        Don't fill this out if you're human: 
+        <input name="bot-field" />
+      </label>
+    </p>
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Nombre</label>
