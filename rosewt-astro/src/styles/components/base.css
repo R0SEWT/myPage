@@ -6,6 +6,27 @@
   --cosmos: #2C3E50;
   --dawn: #F1C40F;
   --cloud: #ECF0F1;
+  
+  /* Variables para transiciones suaves */
+  --transition-colors: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Aplicar transiciones suaves a todos los elementos */
+*,
+*::before,
+*::after {
+  transition: var(--transition-colors);
+}
+
+/* Base styles con transiciones */
+html {
+  transition: var(--transition-colors);
+}
+
+body {
+  transition: var(--transition-colors);
 }
 
 /* === ACCESIBILIDAD === */

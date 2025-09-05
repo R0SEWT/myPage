@@ -35,6 +35,21 @@ const canonicalUrl = new URL(Astro.url.pathname, url).toString();
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalUrl} />
   
+  <!-- Prevent theme flash -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+      
+      if (shouldUseDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <!-- Título optimizado -->
   <title>{title}</title>
   
