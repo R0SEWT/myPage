@@ -14,7 +14,12 @@ const projects = await getCollection('projects', p => p.data.published !== false
 // Ordenar por fecha (más recientes primero)
 projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Date(a.data.date || '2024-01-01').getTime());
 ---
-<BaseLayout title="Rody Vilchez — Data & AI" description="Portafolio de proyectos en Data/ML, RAG y QA.">
+<BaseLayout 
+  title="Rody Vilchez — Data Scientist & ML Engineer | Portfolio" 
+  description="Estudiante de Computer Science especializado en Machine Learning, RAG, Computer Vision y QA. Proyectos con PyTorch, H2O.ai, LlamaIndex y más."
+  keywords="Rody Vilchez, Data Science, Machine Learning, RAG, Computer Vision, QA Automation, Python, PyTorch, H2O, LlamaIndex, Portfolio, Lima Peru"
+  type="website"
+>
   <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 dark:border-slate-800 supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
       <a href="#home" class="font-semibold tracking-tight text-lg">Rody <span class="text-teal">Vilchez</span></a>
