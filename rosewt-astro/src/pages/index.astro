@@ -21,10 +21,18 @@ import Footer from '../components/layout/Footer.astro';
   
   <main id="main-content" role="main">
     <HeroSection />
-    <ProjectsSection />
-    <ExperienceSection />
-    <PublicationsSection />
-    <ContactSection />
+    <div class="section" style="--section-index: 1;">
+      <ProjectsSection />
+    </div>
+    <div class="section" style="--section-index: 2;">
+      <ExperienceSection />
+    </div>
+    <div class="section" style="--section-index: 3;">
+      <PublicationsSection />
+    </div>
+    <div class="section" style="--section-index: 4;">
+      <ContactSection />
+    </div>
   </main>
 
   <Footer />
