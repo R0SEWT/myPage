@@ -1,0 +1,31 @@
+---
+import { EXPERIENCE } from '../../lib/constants';
+
+export interface ExperienceItem {
+  title: string;
+  company: string;
+  period: string;
+  responsibilities: string[];
+}
+---
+
+<section id="experience" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-bold">Experiencia</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-6">
+      {EXPERIENCE.map((exp) => (
+        <article class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+          <header class="flex items-center justify-between">
+            <h3 class="font-semibold">{exp.title} — {exp.company}</h3>
+            <span class="text-xs text-slate-500">{exp.period}</span>
+          </header>
+          <ul class="mt-3 text-sm list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+            {exp.responsibilities.map((responsibility) => (
+              <li>{responsibility}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

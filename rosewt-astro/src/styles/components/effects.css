@@ -1,0 +1,80 @@
+/* === SISTEMA DE EFECTOS ESTANDARIZADO === */
+
+/* Base Transition - Usado en TODOS los elementos interactivos */
+.effect-base {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover Effects - Un solo efecto por elemento */
+.effect-lift {
+  transform: translateY(0);
+}
+.effect-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.effect-glow {
+  box-shadow: 0 0 0 0 transparent;
+}
+.effect-glow:hover {
+  box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+}
+
+.effect-fade {
+  opacity: 1;
+}
+.effect-fade:hover {
+  opacity: 0.85;
+}
+
+.effect-tint {
+  background-color: transparent;
+}
+.effect-tint:hover {
+  background-color: rgba(26, 188, 156, 0.05);
+}
+
+/* Combined Effects - Para casos específicos */
+.effect-card {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.effect-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 188, 156, 0.1);
+}
+
+.effect-button {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+}
+.effect-button:hover {
+  transform: scale(1.02);
+}
+.effect-button:active {
+  transform: scale(0.98);
+}
+
+/* Glass Effect Estandarizado */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Focus States Unificados */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
