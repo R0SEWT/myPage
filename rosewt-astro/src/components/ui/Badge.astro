@@ -1,14 +1,19 @@
 ---
-const { text, variant = 'default', animated = false } = Astro.props;
+interface Props {
+  text: string;
+  variant?: 'default' | 'primary' | 'secondary';
+  animated?: boolean;
+}
+const { text, variant = 'default', animated = false } = Astro.props as Props;
 
-const variants = {
+const variants: Record<NonNullable<Props['variant']>, string> = {
   default: 'border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300',
   primary: 'border-teal/30 bg-teal/10 text-teal',
   secondary: 'border-purple-300 bg-purple-50 text-purple-700 dark:border-purple-500 dark:bg-purple-900/30 dark:text-purple-300'
 };
 
 const baseClasses = 'inline-block rounded-full px-3 py-1 text-xs font-medium border';
-const variantClasses = variants[variant] || variants.default;
+const variantClasses = variants[variant];
 const interactiveClasses = animated ? 'effect-button cursor-pointer' : '';
 ---
 
