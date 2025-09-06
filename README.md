@@ -21,7 +21,7 @@ Un portafolio moderno y responsivo construido con **Astro**, **TypeScript** y **
 - **Componentes**: Astro + React (hidratación selectiva)  
 - **Contenido**: Markdown/MDX  
 - **Íconos**: Heroicons  
-- **Deployment**: GitHub Pages  
+- **Deployment**: Netlify  
 
 ## Desarrollo Local
 
@@ -34,3 +34,12 @@ npm run dev
 
 # Construir para producción
 npm run build
+```
+
+El sitio se despliega automáticamente en [Netlify](https://www.netlify.com/).
+
+Para comprobar el estilo de código:
+
+```bash
+npm run lint
+```
