@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+/** @typedef {import('sitemap').EnumChangefreq} EnumChangefreq */
 
 export default defineConfig({
   site: 'https://rosewt.dev',
@@ -31,13 +32,13 @@ export default defineConfig({
         // Configurar prioridades y frecuencias
         if (item.url === 'https://rosewt.dev/') {
           item.priority = 1.0;
-          item.changefreq = 'weekly';
+          item.changefreq = /** @type {EnumChangefreq} */ ('weekly');
         } else if (item.url.includes('/gracias')) {
           item.priority = 0.3;
-          item.changefreq = 'yearly';
+          item.changefreq = /** @type {EnumChangefreq} */ ('yearly');
         } else {
           item.priority = 0.7;
-          item.changefreq = 'monthly';
+          item.changefreq = /** @type {EnumChangefreq} */ ('monthly');
         }
         item.lastmod = new Date().toISOString();
         return item;
