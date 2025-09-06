@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
+import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://rosewt.dev',
@@ -31,13 +31,13 @@ export default defineConfig({
         // Configurar prioridades y frecuencias
         if (item.url === 'https://rosewt.dev/') {
           item.priority = 1.0;
-          item.changefreq = 'weekly';
+          item.changefreq = ChangeFreqEnum.WEEKLY;
         } else if (item.url.includes('/gracias')) {
           item.priority = 0.3;
-          item.changefreq = 'yearly';
+          item.changefreq = ChangeFreqEnum.YEARLY;
         } else {
           item.priority = 0.7;
-          item.changefreq = 'monthly';
+          item.changefreq = ChangeFreqEnum.MONTHLY;
         }
         item.lastmod = new Date().toISOString();
         return item;
