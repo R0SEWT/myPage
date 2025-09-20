@@ -14,18 +14,15 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
-    mdx(), 
-    react(), 
+    mdx(),
+    react(),
     sitemap({
-      customPages: [
-        'https://rosewt.dev/',
-        'https://rosewt.dev/gracias'
-      ],
+      customPages: ['https://rosewt.dev/', 'https://rosewt.dev/gracias'],
       i18n: {
         defaultLocale: 'es',
         locales: {
-          es: 'es-ES'
-        }
+          es: 'es-ES',
+        },
       },
       serialize(item) {
         // Configurar prioridades y frecuencias
@@ -41,8 +38,7 @@ export default defineConfig({
         }
         item.lastmod = new Date().toISOString();
         return item;
-      }
-    })
+      },
+    }),
   ],
 });
-
