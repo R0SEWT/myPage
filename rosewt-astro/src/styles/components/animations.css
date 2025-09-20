@@ -1,12 +1,14 @@
 /* === ANIMACIONES === */
 /* Reduced motion respect */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .animate-fade-in,
   .animate-pulse-soft {
     animation: none !important;
@@ -20,7 +22,7 @@
   }
 }
 
-section { 
+section {
   scroll-margin-top: 80px; /* evita que el header tape títulos */
 }
 
@@ -38,16 +40,18 @@ section {
   }
 
   @keyframes subtlePulse {
-    0%, 100% { 
-      opacity: 1; 
+    0%,
+    100% {
+      opacity: 1;
     }
-    50% { 
-      opacity: 0.7; 
+    50% {
+      opacity: 0.7;
     }
   }
 
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {

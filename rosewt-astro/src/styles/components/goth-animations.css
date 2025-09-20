@@ -2,16 +2,17 @@
 
 /* Variables para animaciones */
 :root {
-  --glow-primary: #1ABC9C;
-  --glow-secondary: #8E44AD;
-  --glow-accent: #2C3E50;
+  --glow-primary: #1abc9c;
+  --glow-secondary: #8e44ad;
+  --glow-accent: #2c3e50;
   --shadow-cyber: 0 0 20px rgba(26, 188, 156, 0.1);
   --shadow-goth: 0 0 30px rgba(142, 68, 173, 0.08);
 }
 
 /* Pulso sutil en elementos interactivos */
 @keyframes subtlePulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 5px rgba(26, 188, 156, 0.2);
   }
   50% {
@@ -21,7 +22,9 @@
 
 /* Glitch muy sutil para texto */
 @keyframes subtleGlitch {
-  0%, 90%, 100% {
+  0%,
+  90%,
+  100% {
     transform: translateX(0);
     filter: hue-rotate(0deg);
   }
@@ -37,7 +40,8 @@
 
 /* Flotación suave */
 @keyframes softFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -47,7 +51,8 @@
 
 /* Respiración de brillo */
 @keyframes breatheGlow {
-  0%, 100% {
+  0%,
+  100% {
     filter: brightness(1) drop-shadow(0 0 3px rgba(26, 188, 156, 0.1));
   }
   50% {
@@ -74,13 +79,15 @@
 /* Aplicar animaciones a elementos específicos */
 
 /* Botones y elementos interactivos */
-.btn, button, .theme-toggle {
+.btn,
+button,
+.theme-toggle {
   animation: breatheGlow 4s ease-in-out infinite;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Excluir botones principales de cambios de color */
-.btn:not(.theme-toggle):hover, 
+.btn:not(.theme-toggle):hover,
 button:not(.theme-toggle):hover {
   animation: softFloat 2s ease-in-out infinite;
 }
@@ -91,7 +98,8 @@ button:not(.theme-toggle):hover {
 }
 
 /* Tarjetas de proyectos */
-.project-card, .effect-card {
+.project-card,
+.effect-card {
   animation: softFloat 6s ease-in-out infinite;
   animation-delay: calc(var(--card-index, 0) * 0.5s);
 }
@@ -101,7 +109,8 @@ button:not(.theme-toggle):hover {
 }
 
 /* Títulos principales */
-h1, h2.section-title {
+h1,
+h2.section-title {
   animation: subtleGlitch 8s ease-in-out infinite;
   animation-delay: 2s;
 }
@@ -172,7 +181,12 @@ h1, h2.section-title {
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(26, 188, 156, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(26, 188, 156, 0.2),
+    transparent
+  );
   animation: codeTyping 3s ease-in-out infinite;
 }
 
@@ -189,11 +203,13 @@ h1, h2.section-title {
 
 /* Solo animaciones muy sutiles en modo reducido */
 @media (prefers-reduced-motion: reduce) {
-  .btn, button {
+  .btn,
+  button {
     animation: none;
   }
-  
-  .btn:hover, button:hover {
+
+  .btn:hover,
+  button:hover {
     transform: scale(1.02);
     transition: transform 0.2s ease;
   }
