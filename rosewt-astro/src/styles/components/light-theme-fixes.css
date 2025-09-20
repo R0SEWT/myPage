@@ -87,34 +87,44 @@
 }
 
 /* Mejorar inputs en modo claro */
-input, textarea, select {
+input,
+textarea,
+select {
   color: rgb(15 23 42) !important;
   background-color: rgb(255 255 255) !important;
   border-color: rgb(203 213 225) !important;
 }
 
-.dark input, .dark textarea, .dark select {
+.dark input,
+.dark textarea,
+.dark select {
   color: rgb(248 250 252) !important;
   background-color: rgb(30 41 59) !important;
   border-color: rgb(71 85 105) !important;
 }
 
 /* Focus states mejorados para ambos temas */
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: var(--teal) !important;
   box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1) !important;
 }
 
-.dark input:focus, .dark textarea:focus, .dark select:focus {
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
   box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2) !important;
 }
 
 /* Mejorar text placeholders */
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: rgb(100 116 139) !important;
 }
 
-.dark input::placeholder, .dark textarea::placeholder {
+.dark input::placeholder,
+.dark textarea::placeholder {
   color: rgb(148 163 184) !important;
 }
 

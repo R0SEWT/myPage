@@ -1,66 +1,83 @@
 ---
-title: "NAO Emotion Detection — CNN + Robótica Social"
-description: "Sistema de IA para detección de emociones faciales en robot NAO, diseñado para apoyo psicoeducativo en niños con TEA mediante Redes Neuronales Convolucionales (CNN) y Flask API."
-tags: ["Python","PyTorch","Flask","OpenCV","NAO","CNN","Computer Vision","TEA","Optuna"]
-url: "https://github.com/R0SEWT/Nao-CNN-Emotion"
-date: "2025-6-20"
+title: 'NAO Emotion Detection — CNN + Robótica Social'
+description: 'Sistema de IA para detección de emociones faciales en robot NAO, diseñado para apoyo psicoeducativo en niños con TEA mediante Redes Neuronales Convolucionales (CNN) y Flask API.'
+tags:
+  [
+    'Python',
+    'PyTorch',
+    'Flask',
+    'OpenCV',
+    'NAO',
+    'CNN',
+    'Computer Vision',
+    'TEA',
+    'Optuna',
+  ]
+url: 'https://github.com/R0SEWT/Nao-CNN-Emotion'
+date: '2025-6-20'
 published: true
 featured: true
 ---
 
-## 🤖 Visión General
+## Visión General
 
 Sistema integral de detección de emociones faciales implementado en el robot NAO, diseñado específicamente para apoyo psicoeducativo en niños con Trastorno del Espectro Autista (TEA). El proyecto combina visión por computadora, deep learning y robótica social para crear una herramienta de intervención terapéutica innovadora.
 
-## 🎯 Objetivos del Proyecto
+## Objetivos del Proyecto
 
 ### **Objetivo General**
+
 Desarrollar un sistema de IA que detecte emociones faciales desde la cámara del NAO y adapte sus respuestas vocales y gestuales según el resultado, proporcionando apoyo especializado a niños con TEA.
 
 ### **Objetivos Específicos**
+
 - **Comparación de arquitecturas**: Evaluar CNNs (MobileNetV2, VGG19, Custom) para optimal performance en NAO
 - **Validación práctica**: Pruebas reales en FabLab con usuarios objetivo
 - **Documentación completa**: Sistema replicable para otros entornos terapéuticos
 
-## 🏗️ Arquitectura del Sistema
+## Arquitectura del Sistema
 
 ### **Flujo Técnico**
+
 1. **Captura**: NAO toma imagen desde cámara frontal
 2. **Transmisión**: Imagen codificada en base64 → Flask API vía HTTP
 3. **Procesamiento**: CNN analiza emoción facial en laptop
 4. **Respuesta**: NAO reacciona con voz y gestos expresivos adaptados
 
 ### **Stack Tecnológico**
+
 - **Robot**: NAO (Python 2.7 + pynaoqi)
 - **Backend**: Flask API (Python 3.10)
-- **Modelos ML**: 
+- **Modelos ML**:
   - CNN (MobileNetV2 / VGG19)
   - Keypoints faciales (MediaPipe + MLP)
   - Keypoints posturales (MediaPipe Pose + MLP)
 - **Optimización**: Optuna hyperparameter tuning
 - **Comunicación**: HTTP RESTful (sin ROS/sockets)
 
-## 🧠 Modelos de Deep Learning
+##  Modelos de Deep Learning
 
 ### **Arquitecturas Comparadas**
+
 ```python
 # MobileNetV2 (Optimizado para recursos limitados)
 - Parámetros: ~3.4M
 - Accuracy: 89.2%
 - Latencia: 15ms promedio
 
-# VGG19 (Precisión superior)  
+# VGG19 (Precisión superior)
 - Parámetros: ~143M
 - Accuracy: 91.7%
 - Latencia: 45ms promedio
 
 # Custom CNN (Balanceado)
-- Parámetros: ~2.1M  
+- Parámetros: ~2.1M
 - Accuracy: 87.4%
 - Latencia: 12ms promedio
 ```
 
 ### **Optimización con Optuna**
+
 - **AutoSampler**: Búsqueda inteligente de hiperparámetros
 - **MedianPruner**: Early stopping para trials subóptimos
 - **Multi-objective**: Balance accuracy vs. inference time
@@ -69,6 +86,7 @@ Desarrollar un sistema de IA que detecte emociones faciales desde la cámara del
 ## 💻 Implementación Técnica
 
 ### **Estructura Modular**
+
 ```bash
 📁 Componentes principales:
 ├── apiflask/           # Flask API + endpoint /emocion
@@ -80,7 +98,8 @@ Desarrollar un sistema de IA que detecte emociones faciales desde la cámara del
 ```
 
 ### **Pipeline de Datos**
-1. **Preprocesamiento**: 
+
+1. **Preprocesamiento**:
    - Face detection con OpenCV Haar Cascades
    - Normalización 48x48 grayscale
    - Data augmentation (rotation, flip, brightness)
@@ -89,7 +108,6 @@ Desarrollar un sistema de IA que detecte emociones faciales desde la cámara del
    - Transfer learning con ImageNet pretrained
    - Cross-validation 5-fold
    - Learning rate scheduling
-   
 3. **Deployment**:
    - Model serving con Flask
    - Real-time inference < 50ms
@@ -98,40 +116,46 @@ Desarrollar un sistema de IA que detecte emociones faciales desde la cámara del
 ## 🧪 Validación y Resultados
 
 ### **Métricas de Performance**
+
 - **Dataset**: FER2013 (35K+ imágenes, 7 emociones)
 - **Accuracy promedio**: 89.1% (validation set)
 - **F1-Score macro**: 0.87
 - **Latencia end-to-end**: 120ms (NAO → API → Respuesta)
 
 ### **Pruebas en FabLab**
+
 - **Participantes**: 15 usuarios (staff universitario)
 - **Sesiones**: 45 minutos c/u
 - **Detección correcta**: 91.3% en condiciones controladas
 - **Respuesta del NAO**: Gestos adaptativos según emoción detectada
 
 ### **Emociones Soportadas**
+
 `happy` • `sad` • `angry` • `surprise` • `fear` • `disgust` • `neutral`
 
 ## 🔬 Aplicación en TEA
 
 ### **Enfoque Psicoeducativo**
+
 - **Intervención vicaria**: NAO como mediador social seguro
-- **Retroalimentación inmediata**: Reconocimiento emocional en tiempo real  
+- **Retroalimentación inmediata**: Reconocimiento emocional en tiempo real
 - **Adaptación personalizada**: Respuestas graduales según perfil del niño
 - **Documentación de progreso**: Logging de sesiones para terapeutas
 
 ### **Valor Clínico**
+
 El sistema contribuye al **desarrollo de habilidades socioemocionales** en niños con TEA, proporcionando un entorno predictible y no amenazante para practicar reconocimiento y expresión emocional.
 
 ## 🚀 Instalación y Uso
 
 ### **Setup Rápido**
+
 ```bash
 # Clonar repositorio
 git clone https://github.com/R0SEWT/NAO_CNN_EMOTION_CLASSIFICATION.git
 cd NAO_CNN_EMOTION_CLASSIFICATION
 
-# Configurar entornos automáticamente  
+# Configurar entornos automáticamente
 chmod +x setup.sh && ./setup.sh
 
 # Ejecutar API Flask
@@ -143,20 +167,23 @@ python apiflask/api_emocion.py
 ```
 
 ### **Entornos Conda**
+
 - **nao_py27**: Python 2.7 + pynaoqi SDK
 - **nao_sv**: Python 3.10 + ML dependencies
 
 ## 📊 Contribuciones Técnicas
 
 ### **Innovaciones del Proyecto**
+
 1. **Integración robótica**: Primer sistema emotion-aware para NAO en contexto TEA
 2. **Pipeline optimizado**: < 50ms inference con modelos compactos
 3. **Validación práctica**: Evidencia empírica en entorno real (FabLab)
 4. **Arquitectura modular**: Framework extensible para otras aplicaciones
 
 ### **Impacto Académico**
+
 - **Investigación aplicada**: Robótica social + Computer Vision para TEA
-- **Metodología comparativa**: Benchmark de arquitecturas CNN en dispositivos limitados  
+- **Metodología comparativa**: Benchmark de arquitecturas CNN en dispositivos limitados
 - **Documentación completa**: Sistema completamente replicable
 
 ## 🔗 Recursos Adicionales
@@ -167,4 +194,4 @@ python apiflask/api_emocion.py
 
 ---
 
-*Este proyecto representa la convergencia entre IA, robótica social y terapia asistida, demostrando el potencial de la tecnología para apoyar el desarrollo socioemocional en poblaciones con necesidades especiales.*
+_Este proyecto representa la convergencia entre IA, robótica social y terapia asistida, demostrando el potencial de la tecnología para apoyar el desarrollo socioemocional en poblaciones con necesidades especiales._
