@@ -1,6 +1,6 @@
 ---
 title: 'NAO Emotion Detection — Vision & Robotics'
-description: 'Sistema de reconocimiento de emociones para robot NAO en intervención psicoeducativa (TEA). Pipeline end-to-end con <120ms de latencia: captura → HTTP → inferencia CNN → respuesta adaptativa. Comparación de 3 arquitecturas bajo restricciones de hardware.'
+description: 'Sistema de reconocimiento de emociones para robot NAO en intervención psicoeducativa (TEA). Pipeline end-to-end con menos de 120ms de latencia: captura, HTTP, inferencia CNN, respuesta adaptativa. Comparación de 3 arquitecturas bajo restricciones de hardware.'
 tags: ['PyTorch', 'Flask', 'OpenCV', 'MediaPipe', 'Optuna', 'CNN', 'Computer Vision']
 url: 'https://github.com/R0SEWT/Nao-CNN-Emotion'
 date: '2025-06-20'
@@ -13,7 +13,7 @@ Sistema de reconocimiento de emociones faciales implementado en robot NAO, dise�
 
 ## Arquitectura
 
-Pipeline end-to-end: **captura** (cámara NAO) → **transmisión** base64 HTTP → **Flask API** → **inferencia CNN** → **respuesta adaptativa** del robot (voz + gestos). Latencia total <120ms.
+Pipeline end-to-end: **captura** (cámara NAO) → **transmisión** base64 HTTP → **Flask API** → **inferencia CNN** → **respuesta adaptativa** del robot (voz + gestos). Latencia total &lt;120ms.
 
 ## Decisiones técnicas
 
@@ -32,6 +32,6 @@ Pipeline end-to-end: **captura** (cámara NAO) → **transmisión** base64 HTTP 
 
 - Hardware limitado del NAO (Python 2.7, pynaoqi SDK)
 - Dataset FER2013 con ruido y variabilidad inherente en expresiones humanas
-- Requisito de latencia <120ms para interacción natural con niños
+- Requisito de latencia &lt;120ms para interacción natural con niños
 
 **Stack:** PyTorch, Flask, OpenCV, MediaPipe, Optuna, Python
