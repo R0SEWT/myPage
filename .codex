@@ -1,0 +1,9 @@
+# Codex Pointer
+
+Canonical repo policy lives in `agents.md`.
+
+Default evidence workflow:
+- Use `cv/master.md` for narrative intent.
+- Use `evidence/claims.md` for claim traceability.
+- Do not inspect `.cv-vault/` unless the user explicitly asks.
+- Treat `CLAUDE.md` as technical context only. If there is a conflict, `agents.md` wins.

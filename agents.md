@@ -5,19 +5,36 @@
 This repository contains the personal website, CV, and professional materials of Rody Vilchez.
 The goal is to present a consistent narrative as an early-career **Applied ML Engineer**, focused on production-oriented AI systems.
 
----
+## Canonical Policy
+
+This file is the canonical policy for agent behavior in this repo.
+If `CLAUDE.md` or `.codex` differ from this file, `agents.md` wins.
 
 ## Source of Truth
 
 | Artifact | Source |
 |---|---|
 | Professional narrative & CV content | `cv/master.md` |
-| PDF rendering | `cv/main.tex` (derived from master.md) |
-| Website copy | `rosewt-astro/src/lib/constants.ts` + MDX project files (derived from master.md) |
+| Claim traceability & public support links | `evidence/claims.md` |
+| Private evidence index | `.cv-vault/INDEX.md` |
+| PDF rendering | `cv/main.tex` (derived from `cv/master.md`) |
+| Website copy | `rosewt-astro/src/lib/constants.ts` + MDX project files (derived from `cv/master.md`) |
 
-No content should be invented outside `cv/master.md`. All surfaces derive from it.
+No public content should be invented outside `cv/master.md`.
+Claims should be treated as verified through `evidence/claims.md`, and private backing documents live in `.cv-vault/`.
 
----
+## Evidence Handling
+
+Default workflow for factual tasks:
+1. Read `cv/master.md` for narrative intent.
+2. Read `evidence/claims.md` for claim IDs and support references.
+3. Inspect `.cv-vault/INDEX.md` or underlying private files only if the user explicitly asks or if the task cannot be completed otherwise.
+
+Rules:
+- Do not inspect `.cv-vault/` by default. It is opt-in, private, and potentially token-heavy.
+- Keep public artifacts out of `.cv-vault/` unless a local snapshot is required because the public resource may change or disappear.
+- Do not expose private files or quote their contents into public-facing surfaces unless the user explicitly requests that behavior.
+- When verifying a claim, cite the relevant `claim_id` and the support reference used.
 
 ## Positioning
 
@@ -34,8 +51,6 @@ No content should be invented outside `cv/master.md`. All surfaces derive from i
 - Generic "student portfolio"
 - Course-based work without system context
 - "used X", "learned Y", "familiar with Z"
-
----
 
 ## Writing Style
 
@@ -58,8 +73,6 @@ All content must emphasize **systems over isolated models**.
 - Engineering constraints handled
 - Design tradeoffs made and why
 
----
-
 ## Consistency Rules
 
 - CV, website, and docs must share the same project names
@@ -67,25 +80,21 @@ All content must emphasize **systems over isolated models**.
 - No duplication with conflicting detail levels
 - Tone: technical, sober, systems-oriented
 
----
-
 ## Evolution Protocol
 
-When updating content:
+When updating factual content:
 1. Modify `cv/master.md` first
-2. Propagate to `cv/main.tex`
-3. Propagate to website (`constants.ts`, MDX files)
-4. Verify cross-consistency
-
----
+2. Update `evidence/claims.md` if the claim text, dates, or support references changed
+3. Update `.cv-vault/INDEX.md` if new private evidence was added
+4. Propagate to `cv/main.tex`
+5. Propagate to website (`constants.ts`, MDX files)
+6. Verify cross-consistency
 
 ## Project Inclusion Criteria
 
 **Include:** Systems with demonstrable architecture, real technical decisions, and production or research constraints.
 
 **Exclude:** Toy projects, tutorial follow-alongs, clustering exercises without system context.
-
----
 
 ## Priority
 
