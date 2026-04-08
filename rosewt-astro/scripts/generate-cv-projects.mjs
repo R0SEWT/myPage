@@ -18,7 +18,10 @@ const OUTPUT_FILE = join(OUTPUT_DIR, 'projects.tex');
 // --- Frontmatter parser ---
 
 function parseFrontmatter(content, filename) {
+  content = content.replace(/\r\n?/g, '\n');
+
   const match = content.match(/^---\n([\s\S]*?)\n---/);
+
   if (!match) throw new Error(`Missing frontmatter in ${filename}`);
   return yaml.load(match[1]);
 }
