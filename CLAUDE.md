@@ -1,6 +1,13 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides technical orientation for Claude Code when working in this repository.
+Canonical repo policy, editorial rules, and evidence handling live in `agents.md`.
+
+## Canonical Pointers
+
+- `agents.md` wins if there is any conflict.
+- Use `cv/master.md` for narrative content and `evidence/claims.md` for factual traceability.
+- Do not inspect `.cv-vault/` unless the user explicitly asks for private evidence.
 
 ## Project Structure
 
@@ -52,20 +59,7 @@ CI runs `lint → check → build` on every push/PR.
 
 ## Editorial Governance
 
-**Source of truth**: `cv/master.md` is the canonical content source. All professional narrative, project descriptions, and experience content originates there.
-
-**Content flow**: `cv/master.md` → `cv/main.tex` (PDF) + website (`constants.ts`, MDX files). Never edit downstream surfaces without updating `master.md` first.
-
-**Positioning**: Applied ML Engineer — RAG Systems, Document Intelligence, Data Pipelines. See `agents.md` for full editorial guidelines.
-
-**Rules for content changes**:
-- Do not invent metrics, claims, or experience not present in `master.md`
-- Do not use weak framing: "enthusiast", "student portfolio", "used X", "learned Y"
-- Describe projects by: problem → architecture → decisions → constraints → impact
-- Adapt descriptions per surface (concise for CV, expanded for web) but never contradict
-- Prioritize systems thinking over toy-project framing
-
-**Rules for code changes**:
-- Propose content changes by referencing `master.md` as the source
-- Maintain alignment between narrative and code/content
-- Favor architecture, tradeoffs, and systems thinking in all descriptions
+- `cv/master.md` is the narrative source of truth.
+- `evidence/claims.md` is the claim traceability layer.
+- Public surfaces must not contradict either file.
+- See `agents.md` for the full policy and update protocol.

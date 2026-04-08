@@ -1,0 +1,13 @@
+# Private evidence vault
+.cv-vault/
+
+# Local LaTeX build artifacts for the CV
+cv/*.aux
+cv/*.fdb_latexmk
+cv/*.fls
+cv/*.log
+cv/*.out
+cv/*.pdf
+cv/*.synctex.gz
+cv/*.toc
+cv/*.xdv
