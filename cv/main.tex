@@ -59,41 +59,10 @@ CS undergraduate building production-oriented ML systems under real-world constr
   \item Designed fixture-based data validation workflows ensuring consistency across systems prior to deployment
 \end{itemize}
 
-% === SELECTED SYSTEMS ===
+% === SELECTED SYSTEMS (auto-generated from MDX) ===
 \section*{Selected Systems}
 
-\textbf{Ask-Papa AI --- RAG \& Document Intelligence} \hfill \textit{FastAPI, Qdrant, MongoDB, OpenAI}
-\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Multi-stage pipeline: PDF/HTML ingestion, format-aware parsing, semantic chunking, embedding, vector indexing
-  \item Handled noisy inputs (OCR artifacts, multilingual content) via preprocessing heuristics and robust chunking
-  \item Batched embedding generation with retry logic and rate-limit backoff to operate within API quotas
-\end{itemize}
-
-\vspace{2pt}
-
-\textbf{ArbitrIA --- Legal RAG System} \hfill \textit{LlamaIndex, FastAPI, PostgreSQL, Docker}
-\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Domain-specific RAG for Peruvian arbitration documents with document-level and chunk-level indexing
-  \item Ingestion service handling variable PDF structures: multi-column layouts, embedded tables, inconsistent headers
-  \item Conversational interface maintaining query context across turns, resolving ambiguous references
-\end{itemize}
-
-\vspace{2pt}
-
-\textbf{NAO Emotion Detection --- Vision \& Robotics} \hfill \textit{PyTorch, Flask, OpenCV, Optuna}
-\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Emotion recognition for NAO robot in ASD clinical intervention; compared MobileNetV2/VGG19/custom CNN
-  \item End-to-end pipeline: camera capture $\rightarrow$ HTTP $\rightarrow$ Flask API $\rightarrow$ inference $\rightarrow$ adaptive response ({<}120ms)
-  \item 150+ Optuna trials with multi-objective search (accuracy vs.\ latency); 91\% detection in FabLab validation
-\end{itemize}
-
-\vspace{2pt}
-
-\textbf{Danish Housing --- Data Pipeline \& Predictive Modeling} \hfill \textit{H2O, XGBoost, SHAP, LIME}
-\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Processing pipeline for 1.5M residential transactions (1992--2024) with missing values and temporal drift
-  \item Benchmarked XGBoost + Optuna vs.\ H2O AutoML; SHAP/LIME interpretability to validate against market dynamics
-\end{itemize}
+\input{sections/projects.tex}
 
 % === RESEARCH ===
 \section*{Research}

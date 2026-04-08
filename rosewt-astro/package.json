@@ -4,12 +4,14 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "prebuild": "node scripts/generate-cv-projects.mjs",
+    "build": "npm run prebuild && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
     "lint": "eslint .",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "cv": "npm run prebuild && cd ../cv && pdflatex -interaction=nonstopmode main.tex"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
