@@ -10,6 +10,19 @@ The goal is to present a consistent narrative as an early-career **Applied ML En
 This file is the canonical policy for agent behavior in this repo.
 If `CLAUDE.md` or `.codex` differ from this file, `agents.md` wins.
 
+## Docs As Code
+
+Process and architecture documentation lives under `docs/`.
+
+- `docs/adr/`: durable decisions that should not be re-decided each session
+- `docs/plans/`: decision-complete initiative plans for multi-step work
+- `docs/standards/`: working conventions and data contracts
+
+Workflow rules:
+- Before substantial multi-step work, check for an active plan in `docs/plans/` or create one.
+- If a change introduces a durable process or architecture decision, add or update an ADR.
+- If a reusable convention changes, update the relevant standard instead of scattering the rule across prompts and comments.
+
 ## Source of Truth
 
 | Artifact | Source |
@@ -89,6 +102,12 @@ When updating factual content:
 4. Propagate to `cv/main.tex`
 5. Propagate to website (`constants.ts`, MDX files)
 6. Verify cross-consistency
+
+When updating process or workflow:
+1. Update or add the relevant ADR in `docs/adr/` if the decision is durable
+2. Update the relevant standard in `docs/standards/` if conventions changed
+3. Update `agents.md` if agent-facing behavior changed
+4. Update or create a plan in `docs/plans/` if the work remains active
 
 ## Project Inclusion Criteria
 

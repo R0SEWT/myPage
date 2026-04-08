@@ -7,3 +7,5 @@ Default evidence workflow:
 - Use `evidence/claims.md` for claim traceability.
 - Do not inspect `.cv-vault/` unless the user explicitly asks.
 - Treat `CLAUDE.md` as technical context only. If there is a conflict, `agents.md` wins.
+- For durable rationale, check `docs/adr/`.
+- For multi-step implementation work, check `docs/plans/`.

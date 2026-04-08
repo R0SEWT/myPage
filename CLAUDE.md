@@ -8,6 +8,7 @@ Canonical repo policy, editorial rules, and evidence handling live in `agents.md
 - `agents.md` wins if there is any conflict.
 - Use `cv/master.md` for narrative content and `evidence/claims.md` for factual traceability.
 - Do not inspect `.cv-vault/` unless the user explicitly asks for private evidence.
+- Use `docs/adr/` for accepted durable decisions and `docs/plans/` for active multi-step work.
 
 ## Project Structure
 
