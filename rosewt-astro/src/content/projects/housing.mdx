@@ -1,10 +1,29 @@
 ---
-title: 'Housing Price Prediction'
-description: 'Predicción de precios inmobiliarios usando ML con feature engineering avanzado y EDA con grandes volumnes de data real.'
-tags: ['Python', 'Scikit-learn', 'Pandas', 'H2O.ai',ṕarquet]
+title: 'Danish Housing — Data Pipeline & Predictive Modeling'
+description: 'Pipeline de procesamiento de datos para 1.5M transacciones residenciales (1992–2024). Feature engineering sobre tipos heterogéneos, benchmarking XGBoost vs H2O AutoML, e interpretabilidad con SHAP/LIME para validación contra dinámicas de mercado.'
+tags: ['H2O.ai', 'XGBoost', 'Optuna', 'SHAP', 'LIME', 'Pandas']
 url: 'https://github.com/R0SEWT/Denmark-HousePrices-Analysis'
 date: '2025-02-01'
 published: true
 ---
 
-Análisis exhaustivo del mercado inmobiliario con técnicas de feature engineering, tratamiento de valores atípicos y modelado predictivo. Implementación con H2O AutoML para optimización automática de hiperparámetros.
+## Sistema
+
+Pipeline de datos a escala para modelado predictivo de precios inmobiliarios en Dinamarca. Procesamiento de 1.5M registros de transacciones residenciales con 30+ años de datos históricos.
+
+## Arquitectura
+
+**Ingesta** de datos heterogéneos → **feature engineering** (geográfico, temporal, tipológico) → **benchmarking** de modelos → **interpretabilidad** para validación.
+
+## Decisiones técnicas
+
+- **Feature engineering** abordando encoding geográfico, estacionalidad temporal e interacciones entre tipos de propiedad
+- **Benchmarking** XGBoost + Optuna vs. H2O AutoML: análisis de tradeoffs rendimiento-interpretabilidad entre familias de modelos
+- **SHAP + LIME** para validar decisiones del modelo contra dinámicas conocidas del mercado y detectar data leakage
+
+## Restricciones
+
+- Datos con valores faltantes, tipos heterogéneos y drift temporal a lo largo de 30+ años
+- Necesidad de interpretabilidad para validar que el modelo captura señales reales, no artefactos
+
+**Stack:** H2O.ai, XGBoost, Optuna, SHAP, LIME, Pandas, Python

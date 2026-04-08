@@ -1,0 +1,136 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[top=0.5in,bottom=0.5in,left=0.55in,right=0.55in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\definecolor{linkblue}{HTML}{1a5276}
+\hypersetup{colorlinks=true,urlcolor=linkblue}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+% === HEADER ===
+\begin{center}
+  \textbf{\LARGE Rody Vilchez Mar\'{i}n}\\[4pt]
+  Applied ML Engineer --- RAG Systems \textperiodcentered{} Document Intelligence \textperiodcentered{} Data Pipelines\\[3pt]
+  \small
+  \href{mailto:rody.vilchez00@gmail.com}{rody.vilchez00@gmail.com} \enspace\textbar\enspace
+  +51\,987\,082\,126 \enspace\textbar\enspace
+  \href{https://rosewt.dev}{rosewt.dev} \enspace\textbar\enspace
+  \href{https://github.com/R0SEWT}{GitHub} \enspace\textbar\enspace
+  \href{https://www.linkedin.com/in/r0sewt/}{LinkedIn}
+\end{center}
+
+\vspace{2pt}
+
+% === SUMMARY ===
+\small
+CS undergraduate building production-oriented ML systems under real-world constraints---API rate limits, noisy multilingual documents, heterogeneous formats, and limited compute. Currently designing RAG pipelines and document intelligence workflows at CIP (CGIAR). Prior work spans legal-domain retrieval, multimodal sign language translation, and vision-based robotics for clinical settings.
+
+\vspace{2pt}
+
+% === EXPERIENCE ===
+\section*{Experience}
+
+\textbf{AI / Data Intern} \hfill \textbf{International Potato Center (CIP, CGIAR)}\\
+\textit{Lima, Peru} \hfill \textit{Apr 2026 -- Present}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Designed document processing pipelines (ingestion $\rightarrow$ parsing $\rightarrow$ chunking $\rightarrow$ embedding $\rightarrow$ vector storage) for multilingual agricultural research corpora
+  \item Built RAG systems for domain-specific QA, handling noisy OCR output and inconsistent document structures
+  \item Implemented metadata enrichment workflows with LLM-based extraction, batching, and rate-limit backoff
+  \item Integrated Qdrant vector search with MongoDB for hybrid retrieval balancing recall against latency constraints
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{QA Engineer Intern} \hfill \textbf{Visma LATAM}\\
+\textit{Lima, Peru} \hfill \textit{Dec 2024 -- Mar 2025}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Developed automated regression suites (Cypress + Jenkins CI/CD), reducing manual validation cycles
+  \item Built DOM-aware test generators extracting selectors and state from live applications
+  \item Designed fixture-based data validation workflows ensuring consistency across systems prior to deployment
+\end{itemize}
+
+% === SELECTED SYSTEMS ===
+\section*{Selected Systems}
+
+\textbf{Ask-Papa AI --- RAG \& Document Intelligence} \hfill \textit{FastAPI, Qdrant, MongoDB, OpenAI}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Multi-stage pipeline: PDF/HTML ingestion, format-aware parsing, semantic chunking, embedding, vector indexing
+  \item Handled noisy inputs (OCR artifacts, multilingual content) via preprocessing heuristics and robust chunking
+  \item Batched embedding generation with retry logic and rate-limit backoff to operate within API quotas
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{ArbitrIA --- Legal RAG System} \hfill \textit{LlamaIndex, FastAPI, PostgreSQL, Docker}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Domain-specific RAG for Peruvian arbitration documents with document-level and chunk-level indexing
+  \item Ingestion service handling variable PDF structures: multi-column layouts, embedded tables, inconsistent headers
+  \item Conversational interface maintaining query context across turns, resolving ambiguous references
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{NAO Emotion Detection --- Vision \& Robotics} \hfill \textit{PyTorch, Flask, OpenCV, Optuna}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Emotion recognition for NAO robot in ASD clinical intervention; compared MobileNetV2/VGG19/custom CNN
+  \item End-to-end pipeline: camera capture $\rightarrow$ HTTP $\rightarrow$ Flask API $\rightarrow$ inference $\rightarrow$ adaptive response ({<}120ms)
+  \item 150+ Optuna trials with multi-objective search (accuracy vs.\ latency); 91\% detection in FabLab validation
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{Danish Housing --- Data Pipeline \& Predictive Modeling} \hfill \textit{H2O, XGBoost, SHAP, LIME}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Processing pipeline for 1.5M residential transactions (1992--2024) with missing values and temporal drift
+  \item Benchmarked XGBoost + Optuna vs.\ H2O AutoML; SHAP/LIME interpretability to validate against market dynamics
+\end{itemize}
+
+% === RESEARCH ===
+\section*{Research}
+
+\textbf{Imitator --- Multimodal Sign Language Translation} \hfill \textit{Forthcoming in Springer CCIS (2026)}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Designed cross-attention architecture aligning ST-GCN visual keypoints with LLM text embeddings
+  \item Gloss-free translation via embedding imitation; stable alignment (MSE + cosine $\approx$ 8e-4) across validation
+\end{itemize}
+
+% === EDUCATION ===
+\section*{Education}
+
+\textbf{B.Sc.\ Computer Science} \hfill \textbf{Universidad Peruana de Ciencias Aplicadas (UPC)}\\
+8th semester --- top 10\% of class \hfill \textit{Expected graduation: 2026}
+
+% === SKILLS ===
+\section*{Skills}
+
+\begin{tabular}{@{} l l @{}}
+  \textbf{ML \& AI} & PyTorch, scikit-learn, H2O.ai, Optuna, SHAP, LIME \\
+  \textbf{RAG \& Retrieval} & LlamaIndex, embeddings, Qdrant, document processing \\
+  \textbf{Data} & Pandas, feature engineering, ETL design, large-scale processing \\
+  \textbf{Backend} & FastAPI, Flask, REST APIs, MongoDB, PostgreSQL \\
+  \textbf{Infrastructure} & Docker, Git, CI/CD (Jenkins), Linux \\
+  \textbf{Languages} & Spanish (native), English (advanced) \\
+\end{tabular}
+
+\vspace{4pt}
+
+% === CERTIFICATIONS ===
+\section*{Certifications}
+
+AI Engineer for Data Scientists (DataCamp) \textperiodcentered{}
+ML Specialization (Google Cloud) \textperiodcentered{}
+Data Analytics (Google) \textperiodcentered{}
+Python for Everybody (U.\ Michigan) \textperiodcentered{}
+Winter Camp AI 2025 (PUCP)
+
+\end{document}
