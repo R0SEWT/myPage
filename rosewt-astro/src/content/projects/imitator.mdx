@@ -1,10 +1,31 @@
 ---
-title: 'Imitator — Sign Language Translation'
-description: 'ST-GCN + Transformer para traducción de lenguaje de señas. Extraccion de Keypoints para mapear a embeddings compatibles con LLM.'
-tags: ['PyTorch', 'Computer Vision', 'Transformer']
+title: 'Imitator — Multimodal Sign Language Translation'
+description: 'Arquitectura multimodal para traducción de lenguaje de señas sin gloss. Alineación de secuencias de keypoints visuales (ST-GCN) con embeddings de texto derivados de LLM via cross-attention. Forthcoming in Springer CCIS (2026).'
+tags: ['PyTorch', 'Computer Vision', 'Transformer', 'NLP']
 url: 'https://github.com/nakato156/Multimodal-Sign-Language-Model'
 date: '2025-04-01'
 published: true
 ---
 
-Sistema de traducción de lenguaje de señas que combina ST-GCN para extracción de características espaciotemporales con arquitectura Transformer. Procesamiento offline, embeddings compatibles con LLMs y optimización ONNX para inferencia rápida. Enfoque en privacidad y eficiencia computacional.
+## Sistema
+
+Modelo multimodal para traducción de lenguaje de señas que elimina la dependencia de anotaciones gloss. Alinea representaciones visuales de keypoints con embeddings textuales mediante cross-attention.
+
+**Publicación:** Forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación.
+
+## Arquitectura
+
+**ST-GCN** (keypoints espaciotemporales de video) → **cross-attention** → alineación con **embeddings de texto** derivados de LLM. Mapeo de secuencias de video de longitud variable a espacios de embedding estructurados.
+
+## Decisiones técnicas
+
+- **Gloss-free** por diseño: elimina el cuello de botella de anotación que limita los enfoques convencionales
+- **Cross-attention** para alinear modalidades con longitudes de secuencia dispares (video → texto)
+- **Embedding imitation** como alternativa lightweight a pipelines completos de traducción
+
+## Resultados
+
+- Alineación estable de embeddings: MSE + cosine similarity ≈ 8e-4 en validación
+- Demostración de viabilidad del enfoque gloss-free para traducción de lenguaje de señas
+
+**Stack:** PyTorch, ST-GCN, Transformer, Python
