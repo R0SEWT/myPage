@@ -49,17 +49,6 @@ Lima, Peru | Dec 2024 – Mar 2025
 
 # Selected Systems
 
-## Ask-Papa AI — RAG & Document Intelligence System
-FastAPI · Qdrant · MongoDB · OpenAI Embeddings
-
-- Architected a multi-stage document processing pipeline: PDF/HTML ingestion, format-aware parsing, semantic chunking, embedding generation, and vector indexing
-- Designed retrieval workflows combining dense vector search with metadata filtering to serve domain-specific queries over thousands of agricultural research documents
-- Handled noisy inputs (OCR artifacts, inconsistent formatting, multilingual content) through preprocessing heuristics and robust chunking strategies
-- Implemented batched embedding generation with retry logic and rate-limit backoff to operate within API quotas
-- Built metadata enrichment pipelines using LLM-based extraction to improve retrieval precision and enable faceted search
-
----
-
 ## ArbitrIA — Legal RAG System
 LlamaIndex · FastAPI · OpenAI · PostgreSQL · Docker
 
@@ -107,7 +96,7 @@ Forthcoming in Springer CCIS (2026) — accepted, pending publication
 
 ## B.Sc. Computer Science
 Universidad Peruana de Ciencias Aplicadas (UPC)  
-8th semester — top 10% of class  
+8th semester  
 Expected graduation: 2026-2
 
 ---
@@ -140,7 +129,6 @@ Spanish (native), English (advanced)
 - Machine Learning Specialization — Google Cloud Skills Boost
 - Professional Data Analytics Certificate — Google
 - Python for Everybody — University of Michigan
-- Winter Camp AI 2025 — PUCP
 
 ---
 
