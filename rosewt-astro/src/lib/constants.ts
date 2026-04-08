@@ -56,34 +56,6 @@ export const PUBLICATIONS = [
   },
 ] as const;
 
-// === PROYECTOS DESTACADOS EN HERO === //
-export const FEATURED_PROJECTS = [
-  {
-    label: 'RAG',
-    title: 'Ask-Papa AI',
-    description: 'Document intelligence · Qdrant · FastAPI',
-    ariaLabel: 'Sistema Ask-Papa AI',
-  },
-  {
-    label: 'Legal RAG',
-    title: 'ArbitrIA',
-    description: 'LlamaIndex · retrieval semántico',
-    ariaLabel: 'Sistema ArbitrIA',
-  },
-  {
-    label: 'Vision',
-    title: 'NAO Emotion Detection',
-    description: 'PyTorch · Flask · sub-120ms pipeline',
-    ariaLabel: 'Sistema NAO Emotion Detection',
-  },
-  {
-    label: 'Research',
-    title: 'Imitator (SLT)',
-    description: 'ST-GCN + Transformer · Springer CCIS',
-    ariaLabel: 'Paper Imitator',
-  },
-] as const;
-
 // === NAVEGACIÓN === //
 export const NAVIGATION_LINKS = [
   { href: '#projects', label: 'Sistemas' },

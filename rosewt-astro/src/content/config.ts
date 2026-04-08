@@ -9,6 +9,14 @@ const projects = defineCollection({
     url: z.string().url().optional(),
     published: z.boolean().default(true),
     date: z.string().optional(),
+    // Hero section fields
+    featured: z.boolean().default(false),
+    order: z.number().optional(),
+    heroLabel: z.string().optional(),
+    heroDescription: z.string().optional(),
+    // CV generation fields
+    cvBullets: z.array(z.string()).optional(),
+    cvStack: z.string().optional(),
   }),
 });
 
