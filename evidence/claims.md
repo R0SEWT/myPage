@@ -18,7 +18,7 @@ Support references use one of these prefixes:
 - `repo`: public source repository
 - `public_url`: public page, profile, demo, release, or PDF
 - `paper`: paper page, preprint, or publication record
-- `vault_doc`: local private evidence indexed in `.cv-vault/INDEX.md`
+- `vault_doc`: local private evidence indexed in `.cv-vault/INDEX.md`, including private emails or publisher records
 - `screenshot`: local snapshot indexed in `.cv-vault/INDEX.md`
 
 ## Experience
@@ -43,10 +43,9 @@ Support references use one of these prefixes:
 
 ### sys-ask-papa-001
 - `surface`: `both`
-- `publicable`: `yes`
-- `claim`: Built a document intelligence and RAG pipeline for agricultural research corpora with ingestion, parsing, chunking, embeddings, and vector indexing.
+- `publicable`: `no`
+- `claim`: Internal collaboration on a document intelligence and RAG workflow within current work at CIP; keep as internal context, not as a public claim to verify externally.
 - `supports`:
-  - `vault_doc`: `ask_papa_internal_summary`
   - `public_url`: `https://rosewt.dev/`
 
 ### sys-arbitria-001
@@ -81,17 +80,16 @@ Support references use one of these prefixes:
 - `claim`: Co-authored the multimodal sign language translation system "Imitator", accepted for Springer CCIS 2026 and pending publication.
 - `supports`:
   - `repo`: `https://github.com/nakato156/Multimodal-Sign-Language-Model`
-  - `vault_doc`: `imitator_acceptance_notice`
+  - `vault_doc`: `imitator_springer_publication_record`
 
 ## Education
 
 ### edu-upc-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: B.Sc. Computer Science student at UPC, expected graduation in 2026-2, top 10% of class.
+- `claim`: B.Sc. Computer Science student at UPC, expected graduation in 2026-2.
 - `supports`:
-  - `vault_doc`: `upc_enrollment_2026`
-  - `vault_doc`: `upc_rank_record_2026`
+  - `public_url`: `https://www.linkedin.com/in/r0sewt/`
 
 ## Certifications
 
@@ -122,10 +120,3 @@ Support references use one of these prefixes:
 - `claim`: Python for Everybody by the University of Michigan.
 - `supports`:
   - `vault_doc`: `python_for_everybody_certificate`
-
-### cert-pucp-wcai-001
-- `surface`: `both`
-- `publicable`: `yes`
-- `claim`: Winter Camp AI 2025 by PUCP.
-- `supports`:
-  - `vault_doc`: `pucp_winter_camp_ai_2025`
