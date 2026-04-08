@@ -1,9 +1,9 @@
 // === DATOS DEL SITIO === //
 export const SITE_CONFIG = {
   name: 'Rody Vilchez',
-  tagline: 'Data Scientist & ML Engineer',
+  tagline: 'Applied ML Engineer',
   description:
-    'Estudiante de Computer Science especializado en Machine Learning, RAG, Computer Vision y QA. Proyectos con PyTorch, H2O.ai, LlamaIndex y más.',
+    'Applied ML Engineer especializado en RAG systems, document intelligence y data pipelines. Diseño de sistemas de ML bajo restricciones reales: API limits, datos ruidosos y formatos heterogéneos.',
   url: 'https://rosewt.dev',
   author: 'Rody Sebastián Vilchez Marín',
   email: 'rody.vilchez00@gmail.com',
@@ -15,34 +15,34 @@ export const SITE_CONFIG = {
 
 // === TECNOLOGÍAS PRINCIPALES === //
 export const MAIN_TECHNOLOGIES = [
-  { text: 'Python', animated: true },
-  { text: 'H2O.ai', animated: true },
-  { text: 'XGBoost', animated: true },
-  { text: 'Optuna', animated: true },
-  { text: 'RAG', variant: 'primary' as const, animated: true },
-  { text: 'CV', variant: 'secondary' as const, animated: true },
+  { text: 'RAG Systems', variant: 'primary' as const, animated: true },
+  { text: 'Document Intelligence', variant: 'secondary' as const, animated: true },
+  { text: 'PyTorch', animated: true },
+  { text: 'FastAPI', animated: true },
+  { text: 'LlamaIndex', animated: true },
+  { text: 'Vector Search', animated: true },
 ] as const;
 
 // === EXPERIENCIA === //
 export const EXPERIENCE = [
   {
-    title: 'QA Trainee',
-    company: 'Visma LATAM (Mandü)',
-    period: '2024–2025',
+    title: 'AI / Data Intern',
+    company: 'International Potato Center (CIP, CGIAR)',
+    period: '2026–Presente',
     responsibilities: [
-      'Automatización de pruebas con Cypress; generación de suites a partir del DOM.',
-      'Gestión de datos/selectores vía fixtures JSON; reporte de bugs en Jira.',
-      'Integración con Jenkins; métricas y coverage en flujos críticos.',
+      'Pipelines de procesamiento de documentos: ingesta → parsing → chunking → embedding → vector storage para corpora multilingües.',
+      'Sistemas RAG para QA sobre documentos de investigación agrícola con manejo de OCR ruidoso y estructuras inconsistentes.',
+      'Integración Qdrant + MongoDB para retrieval híbrido balanceando recall vs. latencia.',
     ],
   },
   {
-    title: 'Proyectos Académicos',
-    company: 'UPC',
-    period: '2023–2025',
+    title: 'QA Engineer Intern',
+    company: 'Visma LATAM',
+    period: '2024–2025',
     responsibilities: [
-      'Reconocimiento de emociones con NAO: CNNs + keypoints faciales/posturales.',
-      'RAG legal (ArbitrIA): ingestion service + LlamaIndex + chat contextual.',
-      'Big Data (H2O): modelo de precios de vivienda en Dinamarca con SHAP/LIME.',
+      'Suites de regresión automatizadas con Cypress + Jenkins CI/CD.',
+      'Generadores de tests DOM-aware extrayendo selectores y estado de aplicaciones en vivo.',
+      'Workflows de validación de datos con fixtures para consistencia pre-deployment.',
     ],
   },
 ] as const;
@@ -50,13 +50,8 @@ export const EXPERIENCE = [
 // === PUBLICACIONES === //
 export const PUBLICATIONS = [
   {
-    title: 'Imitator: Gloss‑Free SLT via Embedding Alignment',
-    description: 'Borrador IEEE — 2025',
-    link: '#',
-  },
-  {
-    title: 'Danish Housing Prices — EDA + ML',
-    description: 'Reporte técnico — 2025',
+    title: 'Imitator — Multimodal Sign Language Translation',
+    description: 'Forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación',
     link: '#',
   },
 ] as const;
@@ -64,42 +59,42 @@ export const PUBLICATIONS = [
 // === PROYECTOS DESTACADOS EN HERO === //
 export const FEATURED_PROJECTS = [
   {
-    label: 'Proyecto',
-    title: 'Imitator (SLT)',
-    description: 'ST-GCN + Transformer · Offline',
-    ariaLabel: 'Proyecto Imitator',
-  },
-  {
-    label: 'EDA',
-    title: 'Danish Housing Prices',
-    description: 'H2O + SHAP/LIME · 1.5M rows',
-    ariaLabel: 'Análisis Housing Prices',
-  },
-  {
     label: 'RAG',
-    title: 'ArbitrIA',
-    description: 'Legal-tech · LlamaIndex',
-    ariaLabel: 'Proyecto ArbitrIA',
+    title: 'Ask-Papa AI',
+    description: 'Document intelligence · Qdrant · FastAPI',
+    ariaLabel: 'Sistema Ask-Papa AI',
   },
   {
-    label: 'QA',
-    title: 'Cypress + Jenkins',
-    description: 'Mapping & auto-tests',
-    ariaLabel: 'Automatización QA',
+    label: 'Legal RAG',
+    title: 'ArbitrIA',
+    description: 'LlamaIndex · retrieval semántico',
+    ariaLabel: 'Sistema ArbitrIA',
+  },
+  {
+    label: 'Vision',
+    title: 'NAO Emotion Detection',
+    description: 'PyTorch · Flask · <120ms pipeline',
+    ariaLabel: 'Sistema NAO Emotion Detection',
+  },
+  {
+    label: 'Research',
+    title: 'Imitator (SLT)',
+    description: 'ST-GCN + Transformer · Springer CCIS',
+    ariaLabel: 'Paper Imitator',
   },
 ] as const;
 
 // === NAVEGACIÓN === //
 export const NAVIGATION_LINKS = [
-  { href: '#projects', label: 'Proyectos' },
+  { href: '#projects', label: 'Sistemas' },
   { href: '#experience', label: 'Experiencia' },
-  { href: '#publications', label: 'Publicaciones' },
+  { href: '#publications', label: 'Investigación' },
   { href: '#contact', label: 'Contacto' },
 ] as const;
 
 // === BADGES DE CONTACTO === //
 export const CONTACT_BADGES = [
-  { text: '📧 Respuesta < 48h', variant: 'primary' as const },
-  { text: '💼 Abierto a colaboraciones', variant: 'secondary' as const },
-  { text: '🚀 Disponible para proyectos', animated: true },
+  { text: 'Respuesta < 48h', variant: 'primary' as const },
+  { text: 'Abierto a roles Data/ML', variant: 'secondary' as const },
+  { text: 'Disponible para colaboraciones', animated: true },
 ] as const;

@@ -1,21 +1,30 @@
 ---
-title: 'ArbitrIA — Legal RAG (Restringido)'
-description: 'Sistema RAG especializado en documentos legales: ingesta inteligente, embeddings semánticos, reportes inteligentes y chat contextual para consultas jurídicas precisas.'
-tags: ['Python', 'LlamaIndex', 'FastAPI', 'OpenAI', 'RAG', 'Legal-tech']
+title: 'ArbitrIA — Legal RAG System'
+description: 'Sistema RAG para consulta de documentos de arbitraje peruano. Retrieval semántico con indexación a nivel de documento y chunk, ingesta de PDFs con estructura variable, e interfaz conversacional con contexto entre turnos.'
+tags: ['LlamaIndex', 'FastAPI', 'OpenAI', 'PostgreSQL', 'Docker', 'RAG']
 url: 'https://github.com/ArbitrIA'
 date: '2025-05-01'
 published: true
-featured: false
 ---
 
-Sistema RAG (Retrieval-Augmented Generation) especializado en documentos legales de arbitraje.
+## Sistema
 
-**Características principales:**
+RAG system domain-specific para documentos legales de arbitraje en Perú. Permite question answering contextual sobre textos legales complejos con ambigüedad inherente.
 
-- **Chunking inteligente**: Procesamiento optimizado para documentos PDF complejos
-- **Embeddings semánticos**: Búsqueda contextual avanzada con OpenAI
-- **Chat contextual**: Interfaz conversacional para consultas jurídicas
-- **API REST**: Backend escalable con FastAPI
-- **Pipeline optimizado**: Procesamiento eficiente de grandes volúmenes de documentos
+## Arquitectura
 
-**Stack técnico:** Python, LlamaIndex, FastAPI, OpenAI API, PostgreSQL, Docker
+**Ingesta** → **indexación** dual (documento + chunk) → **retrieval semántico** → **generación contextual** con LlamaIndex. Backend FastAPI, storage en PostgreSQL, containerizado con Docker.
+
+## Decisiones técnicas
+
+- **Indexación dual** (documento y chunk): balance entre recall global y relevancia granular
+- **Ingesta robusta** para PDFs legales con layouts multi-columna, tablas embebidas y headers inconsistentes
+- **Interfaz conversacional** que mantiene contexto entre turnos y resuelve referencias ambiguas contra el corpus
+
+## Restricciones
+
+- Documentos legales con estructura altamente variable y terminología técnica
+- Queries ambiguas que requieren resolución de contexto contra múltiples documentos
+- Necesidad de respuestas precisas en dominio donde errores tienen consecuencias reales
+
+**Stack:** LlamaIndex, FastAPI, OpenAI API, PostgreSQL, Docker
