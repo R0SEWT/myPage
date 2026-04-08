@@ -73,7 +73,7 @@ export const FEATURED_PROJECTS = [
   {
     label: 'Vision',
     title: 'NAO Emotion Detection',
-    description: 'PyTorch · Flask · <120ms pipeline',
+    description: 'PyTorch · Flask · sub-120ms pipeline',
     ariaLabel: 'Sistema NAO Emotion Detection',
   },
   {
