@@ -6,6 +6,11 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 
+\makeatletter
+% Allow \input files to resolve when LaTeX runs from repo root or cv/.
+\def\input@path{{./}{cv/}}
+\makeatother
+
 \definecolor{linkblue}{HTML}{1a5276}
 \hypersetup{colorlinks=true,urlcolor=linkblue}
 

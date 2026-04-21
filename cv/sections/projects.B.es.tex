@@ -1,0 +1,25 @@
+\textbf{GENO-MAP --- Correspondence-Free Diagnostics for High-Dimensional Data \enspace\href{\detokenize{https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps}}{[GitHub]}} \hfill \textit{PCA, UMAP, kNN Graphs}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+\item Diseñé un framework de validación sin correspondencia basado en invariantes de grafos kNN para evaluar la estructura de vecindad en representaciones de alta dimensionalidad\item Mostré que la estructura de vecindad es robusta bajo perturbaciones severas, con degradación continua y sin cambios de fase
+\item Evidencié que PCA preserva mejor la estabilidad estructural que autoencoders y que UMAP no altera el grafo analítico, solo su visualización
+\item Presentado como poster en SALA 2026, validando el enfoque en un entorno de datos reales sin correspondencia explícita
+\end{itemize}
+\vspace{2pt}
+
+\textbf{ArbitrIA --- Legal Retrieval System {[Restringido]}} \hfill \textit{LlamaIndex, FastAPI, PostgreSQL, Docker}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Diseñé un sistema de retrieval para documentos de arbitraje peruano, combinando indexación a nivel documento y chunk para mejorar precisión en consultas complejas
+  \item Implementé pipelines robustos para PDFs heterogéneos (multi-columna, tablas, encabezados inconsistentes)
+  \item Evalué estrategias de chunking mostrando que segmentación fina mejora precisión local pero degrada recuperación global, motivando indexación dual\end{itemize}
+
+\vspace{2pt}
+
+\textbf{Gallstone Risk --- ML for Resource-Constrained Screening 
+\enspace\href{\detokenize{https://gallstone.rosewt.dev/}}{[Demo]}
+\enspace\href{\detokenize{https://github.com/R0SEWT/gallstone-risk-rural-peru-ml}}{[GitHub]}}
+\hfill \textit{XGBoost, SHAP, Optuna}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+\item Reformulé el problema de predicción de colelitiasis como un sistema de decisión bajo restricciones de observabilidad, eliminando dependencia de variables clínicas no disponibles en campo
+\item Evalué el trade-off entre desempeño predictivo y viabilidad operativa, mostrando degradación controlada al reducir el espacio de features
+\item Diseñé una interfaz de inspección human-in-the-loop para analizar predicciones individuales y sensibilidad de variables mediante SHAP
+\end{itemize}
