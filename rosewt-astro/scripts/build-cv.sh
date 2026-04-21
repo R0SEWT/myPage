@@ -9,15 +9,23 @@ node generate-cv-projects.mjs
 
 cd "$REPO_ROOT/cv"
 
-if command -v pdflatex >/dev/null 2>&1; then
-  pdflatex -interaction=nonstopmode main.tex
-elif [ -x "$HOME/.local/bin/tectonic" ]; then
-  "$HOME/.local/bin/tectonic" main.tex
-elif command -v tectonic >/dev/null 2>&1; then
-  tectonic main.tex
-else
-  echo "No LaTeX engine found. Install pdflatex or tectonic." >&2
-  exit 127
-fi
+build_pdf() {
+  local tex_file="$1"
 
-cp main.pdf "$REPO_ROOT/rosewt-astro/public/CV.pdf"
+  if command -v pdflatex >/dev/null 2>&1; then
+    pdflatex -interaction=nonstopmode "$tex_file"
+  elif [ -x "$HOME/.local/bin/tectonic" ]; then
+    "$HOME/.local/bin/tectonic" "$tex_file"
+  elif command -v tectonic >/dev/null 2>&1; then
+    tectonic "$tex_file"
+  else
+    echo "No LaTeX engine found. Install pdflatex or tectonic." >&2
+    exit 127
+  fi
+}
+
+build_pdf main.en.tex
+build_pdf main.es.tex
+
+cp main.en.pdf "$REPO_ROOT/rosewt-astro/public/CV.en.pdf"
+cp main.es.pdf "$REPO_ROOT/rosewt-astro/public/CV.es.pdf"

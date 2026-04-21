@@ -18,8 +18,19 @@ import { SITE_CONFIG, NAVIGATION_LINKS } from '../../lib/constants';
     
     <div class="flex items-center gap-2">
       <ThemeToggle client:idle />
-      <a href={SITE_CONFIG.cv} class="effect-button inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white focus-ring hover:opacity-90 transition-opacity" aria-label="Descargar CV en formato PDF">
-        Descargar CV
+      <a
+        href={SITE_CONFIG.cvEn}
+        class="effect-button inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white focus-ring hover:opacity-90 transition-opacity"
+        aria-label="Descargar CV en inglés (PDF)"
+      >
+        CV (EN)
+      </a>
+      <a
+        href={SITE_CONFIG.cvEs}
+        class="effect-button inline-flex items-center rounded-xl bg-teal px-3 py-1.5 text-sm font-semibold text-white focus-ring hover:opacity-90 transition-opacity"
+        aria-label="Descargar CV en español (PDF)"
+      >
+        CV (ES)
       </a>
       <MobileMenu client:idle />
     </div>

@@ -10,7 +10,8 @@ export const SITE_CONFIG = {
   location: 'Lima, Perú',
   github: 'https://github.com/R0SEWT',
   linkedin: 'https://www.linkedin.com/in/r0sewt/',
-  cv: '/CV.pdf',
+  cvEn: '/CV.en.pdf',
+  cvEs: '/CV.es.pdf',
 } as const;
 
 // === TECNOLOGÍAS PRINCIPALES === //
@@ -52,7 +53,7 @@ export const PUBLICATIONS = [
   {
     title: 'Imitator — Multimodal Sign Language Translation',
     description: 'Forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación',
-    link: '#',
+    link: undefined,
   },
 ] as const;
 

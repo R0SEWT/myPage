@@ -34,9 +34,11 @@ Support references use one of these prefixes:
 ### exp-visma-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: QA Engineer Intern at Visma LATAM, Lima, Peru, Dec 2024 to Mar 2025.
+- `claim`: QA Engineer Intern at Visma LATAM, Lima, Peru, Dec 2024 to Oct 2025.
 - `supports`:
   - `vault_doc`: `visma_employment_2024_12`
+  - `vault_doc`: `visma_employment_2025_04`
+  - `vault_doc`: `visma_employment_2025_09`
   - `public_url`: `https://www.linkedin.com/in/r0sewt/`
 
 ## Systems
@@ -120,3 +122,62 @@ Support references use one of these prefixes:
 - `claim`: Python for Everybody by the University of Michigan.
 - `supports`:
   - `vault_doc`: `python_for_everybody_certificate`
+
+### cert-ibm-genai-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Generative AI Fundamentals by IBM.
+- `supports`:
+  - `vault_doc`: `ibm_genai_fundamentals`
+
+### cert-google-cyber-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Cybersecurity: Defense against the Digital Dark Arts by Google.
+- `supports`:
+  - `vault_doc`: `google_cybersecurity_defense`
+
+### cert-tec-hcai-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Human-Centered AI by Tecnológico de Monterrey.
+- `supports`:
+  - `vault_doc`: `tec_human_centered_ai`
+
+### cert-wtc-gh900-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: GH-900T00 training certificate by WTC.
+- `supports`:
+  - `vault_doc`: `wtc_gh_900t00`
+
+### cert-wtc-az204-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: AZ-204T00 training certificate by WTC.
+- `supports`:
+  - `vault_doc`: `wtc_az_204t00`
+
+## Activities
+
+### act-kp-volunteering-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Completed 95 hours of volunteer work at Asociación KP across 2022–2023 (Lima Metropolitana).
+- `supports`:
+  - `vault_doc`: `kp_volunteering_2022_75h`
+  - `vault_doc`: `kp_volunteering_2023_20h`
+
+### act-datafest-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: 2nd place at DataFest (Universidad ESAN + BCP), held Oct 17–18, 2025.
+- `supports`:
+  - `vault_doc`: `datafest_2025_second_place`
+
+### act-sala-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Participated in Summit of AI in Latam (SALA), held Mar 9–12, 2026 at Universidad San Francisco de Quito.
+- `supports`:
+  - `vault_doc`: `sala_2026_participation`

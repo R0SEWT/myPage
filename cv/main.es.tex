@@ -1,0 +1,118 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[top=0.5in,bottom=0.5in,left=0.55in,right=0.55in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\definecolor{linkblue}{HTML}{1a5276}
+\hypersetup{colorlinks=true,urlcolor=linkblue}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+% === HEADER ===
+\begin{center}
+  \textbf{\LARGE Rody Vilchez}\\[4pt]
+  Ingeniero de ML Aplicado --- Sistemas RAG \textperiodcentered{} Inteligencia Documental \textperiodcentered{} Pipelines de Datos\\[3pt]
+  \small
+  \href{mailto:rody.vilchez00@gmail.com}{rody.vilchez00@gmail.com} \enspace\textbar\enspace
+  +51\,987\,082\,126 \enspace\textbar\enspace
+  \href{https://rosewt.dev}{rosewt.dev} \enspace\textbar\enspace
+  \href{https://github.com/R0SEWT}{GitHub} \enspace\textbar\enspace
+  \href{https://www.linkedin.com/in/r0sewt/}{LinkedIn}
+\end{center}
+
+\vspace{2pt}
+
+% === SUMMARY ===
+\small
+Estudiante de Ciencias de la Computaci\'{o}n construyendo sistemas de ML orientados a producci\'{o}n bajo restricciones reales---l\'{i}mites de tasa de API, documentos multiling\"{u}es ruidosos, formatos heterog\'{e}neos y c\'{o}mputo limitado. Actualmente dise\~{n}o pipelines de RAG y flujos de inteligencia documental en CIP (CGIAR). Trabajo previo incluye retrieval en dominio legal, traducci\'{o}n multimodal de lenguaje de se\~{n}as y rob\'{o}tica basada en visi\'{o}n para entornos cl\'{i}nicos.
+
+\vspace{2pt}
+
+% === EXPERIENCE ===
+\section*{Experiencia}
+
+\textbf{AI / Data Intern} \hfill \textbf{International Potato Center (CIP, CGIAR)}\\
+\textit{Lima, Per\'{u}} \hfill \textit{Abr 2026 -- Presente}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Dise\~{n}\'{e} pipelines de procesamiento de documentos (ingesta $\rightarrow$ parsing $\rightarrow$ chunking $\rightarrow$ embedding $\rightarrow$ almacenamiento vectorial) para corpora multiling\"{u}es de investigaci\'{o}n agr\'{i}cola
+  \item Constru\'{i} sistemas RAG para QA de dominio, manejando OCR ruidoso y estructuras inconsistentes
+  \item Implement\'{e} flujos de enriquecimiento de metadata con extracci\'{o}n basada en LLM, batching y backoff por rate-limit
+  \item Integr\'{e} b\'{u}squeda vectorial (Qdrant) con MongoDB para retrieval h\'{i}brido, balanceando recall vs. latencia
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{QA Engineer Intern} \hfill \textbf{Visma LATAM}\\
+\textit{Lima, Per\'{u}} \hfill \textit{Dic 2024 -- Oct 2025}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Desarroll\'{e} suites de regresi\'{o}n automatizadas (Cypress + Jenkins CI/CD), reduciendo ciclos de validaci\'{o}n manual
+  \item Constru\'{i} generadores de tests DOM-aware que extra\'{i}an selectores y estado desde aplicaciones en vivo
+  \item Dise\~{n}\'{e} flujos de validaci\'{o}n de datos con fixtures, asegurando consistencia entre sistemas previo al despliegue
+\end{itemize}
+
+% === SELECTED SYSTEMS (auto-generated from MDX) ===
+\section*{Proyectos}
+
+\input{sections/projects.es.tex}
+
+% === RESEARCH ===
+\section*{Investigaci\'{o}n}
+
+\textbf{Imitator --- Traducci\'{o}n Multimodal de Lenguaje de Se\~{n}as} \hfill \textit{Aceptado en Springer CCIS (2026)}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Dise\~{n}\'{e} una arquitectura de cross-attention que alinea keypoints visuales (ST-GCN) con embeddings de texto derivados de LLM
+  \item Traducci\'{o}n sin gloss v\'{i}a embedding imitation; alineaci\'{o}n estable (MSE + cosine $\approx$ 8e-4) en validaci\'{o}n
+\end{itemize}
+
+% === EDUCATION ===
+\section*{Educaci\'{o}n}
+
+\textbf{B.Sc.\ Ciencias de la Computaci\'{o}n} \hfill \textbf{Universidad Peruana de Ciencias Aplicadas (UPC)}\\
+9no ciclo \hfill \textit{Graduaci\'{o}n estimada: 2026-2}
+
+% === SKILLS ===
+\section*{Habilidades}
+
+\begin{tabular}{@{} l l @{} }
+  \textbf{ML \& IA} & PyTorch, scikit-learn, H2O.ai, Optuna, SHAP, LIME \\
+  \textbf{RAG \& Recuperaci\'{o}n} & LlamaIndex, embeddings, Qdrant, procesamiento de documentos \\
+  \textbf{Datos} & Pandas, feature engineering, dise\~{n}o de ETL, procesamiento a escala \\
+  \textbf{Backend} & FastAPI, Flask, REST APIs, MongoDB, PostgreSQL \\
+  \textbf{Infraestructura} & Docker, Git, CI/CD (Jenkins), Linux \\
+  \textbf{Idiomas} & Espa\~{n}ol (nativo), Ingl\'{e}s (intermedio) \\
+\end{tabular}
+
+\vspace{4pt}
+
+% === CERTIFICATIONS ===
+\section*{Certificaciones}
+
+AZ-204T00 (WTC, 2026) \textperiodcentered{}
+GH-900T00 (WTC, 2026) \textperiodcentered{}
+AI Engineer for Data Scientists (DataCamp, 2025) \textperiodcentered{}
+ML Specialization (Google Cloud, 2025)\\
+Python for Everybody (U.\ Michigan, 2025) \textperiodcentered{}
+Data Analytics (Google, 2024) \textperiodcentered{}
+Fundamentos de IA Generativa (IBM, 2024)\\
+IA centrada en el ser humano (Tec de Monterrey, 2022) \textperiodcentered{}
+Seguridad inform\'{a}tica (Google, 2022)
+
+\vspace{2pt}
+
+% === ACTIVIDADES ===
+\section*{Actividades}
+
+Asociaci\'{o}n KP (Voluntariado, 95h en total, 2022--2023) \textperiodcentered{}
+DataFest (2do lugar, 2025) \textperiodcentered{}
+SALA (participante, 2026)
+
+\end{document}
