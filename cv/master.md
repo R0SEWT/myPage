@@ -1,6 +1,6 @@
 # Identity
 
-Name: Rody Vilchez Marín  
+Name: Rody Vilchez  
 Location: Lima, Peru  
 Email: rody.vilchez00@gmail.com  
 Phone: +51 987 082 126
@@ -38,7 +38,7 @@ Lima, Peru | Apr 2026 – Present
 ---
 
 ## QA Engineer Intern — Visma LATAM
-Lima, Peru | Dec 2024 – Mar 2025
+Lima, Peru | Dec 2024 – Oct 2025
 
 - Developed automated regression suites with Cypress integrated into Jenkins CI/CD, reducing manual validation cycles
 - Designed data validation workflows using fixture-based test data to ensure consistency across systems prior to deployment
@@ -96,7 +96,7 @@ Forthcoming in Springer CCIS (2026) — accepted, pending publication
 
 ## B.Sc. Computer Science
 Universidad Peruana de Ciencias Aplicadas (UPC)  
-8th semester  
+9th semester  
 Expected graduation: 2026-2
 
 ---
@@ -119,16 +119,21 @@ FastAPI, Flask, REST APIs, MongoDB, PostgreSQL
 Docker, Git, CI/CD (Jenkins), Linux
 
 ## Languages
-Spanish (native), English (advanced)
+Spanish (native), English (intermediate)
 
 ---
 
 # Certifications
 
-- AI Engineer for Data Scientists Associate — DataCamp
-- Machine Learning Specialization — Google Cloud Skills Boost
-- Professional Data Analytics Certificate — Google
-- Python for Everybody — University of Michigan
+- AZ-204T00 training certificate — WTC (2026)
+- GH-900T00 training certificate — WTC (2026)
+- AI Engineer for Data Scientists Associate — DataCamp (2025)
+- Machine Learning Specialization — Google Cloud Skills Boost (2025)
+- Python for Everybody — University of Michigan (2025)
+- Professional Data Analytics Certificate — Google (2024)
+- Generative AI Fundamentals — IBM (2024)
+- Cybersecurity: Defense against the Digital Dark Arts — Google (2022)
+- Human-Centered AI — Tecnológico de Monterrey (2022)
 
 ---
 
@@ -138,3 +143,11 @@ Spanish (native), English (advanced)
 - Representation learning and embedding alignment
 - Data-centric AI and pipeline engineering
 - Production ML systems under real-world constraints
+
+---
+
+# Activities
+
+- Asociación KP — Volunteering (95 hours total across 2022–2023)
+- DataFest (Universidad ESAN + BCP) — 2nd place (2025)
+- Summit of AI in Latam (SALA) — participant (2026)

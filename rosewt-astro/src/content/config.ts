@@ -16,7 +16,9 @@ const projects = defineCollection({
     heroDescription: z.string().optional(),
     // CV generation fields
     cvBullets: z.array(z.string()).optional(),
+    cvBulletsEs: z.array(z.string()).optional(),
     cvStack: z.string().optional(),
+    cvTitleEs: z.string().optional(),
   }),
 });
 

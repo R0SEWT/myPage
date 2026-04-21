@@ -1,0 +1,27 @@
+% AUTO-GENERATED from MDX frontmatter — do not edit manually
+% Run: node scripts/generate-cv-projects.mjs
+% Lang: es
+
+\textbf{ArbitrIA --- Sistema RAG Legal \enspace\href{\detokenize{https://github.com/ArbitrIA}}{[GitHub]}} \hfill \textit{LlamaIndex, FastAPI, PostgreSQL, Docker}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item RAG específico de dominio para documentos de arbitraje peruano con indexación a nivel de documento y chunk
+  \item Servicio de ingesta que maneja PDFs con estructura variable: layouts multi-columna, tablas embebidas y encabezados inconsistentes
+  \item Interfaz conversacional que mantiene contexto entre turnos y resuelve referencias ambiguas
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{NAO Emotion Detection --- Visión y Robótica \enspace\href{\detokenize{https://github.com/R0SEWT/Nao-CNN-Emotion}}{[GitHub]}} \hfill \textit{PyTorch, Flask, OpenCV, Optuna}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Reconocimiento de emociones para robot NAO en intervención clínica para TEA; comparación MobileNetV2/VGG19/CNN custom
+  \item Pipeline end-to-end: captura de cámara, HTTP, Flask API, inferencia y respuesta adaptativa (<120ms)
+  \item 150+ trials de Optuna con búsqueda multi-objetivo (accuracy vs. latencia); 91\% de detección en validación en FabLab
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{Danish Housing --- Pipeline de Datos y Modelado Predictivo \enspace\href{\detokenize{https://github.com/R0SEWT/Denmark-HousePrices-Analysis}}{[GitHub]}} \hfill \textit{H2O, XGBoost, SHAP, LIME}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Pipeline de procesamiento para 1.5M transacciones residenciales (1992–2024) con valores faltantes y drift temporal
+  \item Benchmark de XGBoost + Optuna vs. H2O AutoML; interpretabilidad con SHAP/LIME para validar contra dinámicas de mercado
+\end{itemize}

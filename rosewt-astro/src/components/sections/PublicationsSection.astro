@@ -14,7 +14,11 @@ export interface Publication {
     <ul class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
       {PUBLICATIONS.map((pub) => (
         <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:bg-white/60 dark:hover:bg-slate-900/60 transition">
-          <a href={pub.link} class="font-semibold hover:text-teal">{pub.title}</a>
+          {pub.link ? (
+            <a href={pub.link} class="font-semibold hover:text-teal">{pub.title}</a>
+          ) : (
+            <span class="font-semibold">{pub.title}</span>
+          )}
           <p class="text-slate-500">{pub.description}</p>
         </li>
       ))}
