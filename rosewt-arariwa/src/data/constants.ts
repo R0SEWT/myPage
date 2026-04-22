@@ -3,7 +3,7 @@
 export const SITE_CONFIG = {
   name: 'Rody Vilchez',
   headline: 'Applied ML Engineer',
-  subheadline: 'Retrieval · Document Intelligence · Evaluación y Robustez',
+  subheadline: 'RAG Systems · Document Intelligence · Data Pipelines',
   summary:
     'Diseño sistemas de IA aplicados para condiciones no ideales: retrieval, document intelligence y pipelines sobre corpus multilingües ruidosos. Actualmente en CIP (CGIAR), construyendo workflows de procesamiento de documentos y question answering para investigación agrícola.',
   location: 'Lima, Perú',
@@ -81,7 +81,7 @@ export const SPECIMENS: Specimen[] = [
     ],
     venue: 'SALA 2026 · Poster',
     stack: 'Python · scikit-learn',
-    metric: 'Estable · sin fase',
+    metric: 'kNN invariant · no phase transition',
     url: 'https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps',
   },
   {
@@ -101,7 +101,7 @@ export const SPECIMENS: Specimen[] = [
     ],
     venue: 'Interno · propietario',
     stack: 'LlamaIndex · FastAPI',
-    metric: 'Dual index',
+    metric: 'Doc + chunk retrieval',
   },
   {
     code: 'SPEC·003',
@@ -120,7 +120,7 @@ export const SPECIMENS: Specimen[] = [
     ],
     venue: 'gallstone.rosewt.dev',
     stack: 'XGBoost · SHAP',
-    metric: 'Degrad. controlada',
+    metric: 'AUC conservado · menos features',
     url: 'https://gallstone.rosewt.dev/',
   },
   {
@@ -169,6 +169,78 @@ export const EXPERIENCE: ExperienceEntry[] = [
       'Construyó generadores de tests DOM-aware que extraían selectores y estado en runtime desde aplicaciones en vivo.',
     ],
   },
+];
+
+export const STACK_RAIL: string[] = [
+  'LlamaIndex',
+  'FastAPI',
+  'PyTorch',
+  'PostgreSQL',
+  'Docker',
+  'XGBoost',
+];
+
+export interface SkillGroup {
+  label: string;
+  items: string[];
+}
+
+export const SKILLS: SkillGroup[] = [
+  {
+    label: 'ML / AI Systems',
+    items: ['PyTorch', 'scikit-learn', 'Optuna', 'model evaluation', 'multimodal pipelines'],
+  },
+  {
+    label: 'Retrieval / Document AI',
+    items: ['Embeddings', 'Qdrant', 'LlamaIndex', 'chunking', 'parsing', 'document processing'],
+  },
+  {
+    label: 'Data / Backend',
+    items: ['Pandas', 'FastAPI', 'Flask', 'REST APIs', 'MongoDB', 'PostgreSQL', 'ETL'],
+  },
+  {
+    label: 'Infrastructure',
+    items: ['Docker', 'Git', 'Linux', 'Jenkins', 'CI/CD'],
+  },
+];
+
+export interface EducationEntry {
+  institution: string;
+  degree: string;
+  expected: string;
+}
+
+export const EDUCATION: EducationEntry[] = [
+  {
+    institution: 'Universidad Peruana de Ciencias Aplicadas (UPC)',
+    degree: 'B.Sc. Computer Science',
+    expected: 'Esperada 2026-2',
+  },
+];
+
+export interface Certification {
+  label: string;
+  issuer: string;
+  year: string;
+}
+
+export const CERTIFICATIONS: Certification[] = [
+  { label: 'AZ-204T00 · Developing Solutions for Microsoft Azure', issuer: 'WTC', year: '2026' },
+  { label: 'GH-900T00 · GitHub Foundations', issuer: 'WTC', year: '2026' },
+  { label: 'AI Engineer for Data Scientists', issuer: 'DataCamp', year: '2025' },
+  { label: 'Machine Learning Specialization', issuer: 'Google Cloud', year: '2025' },
+  { label: 'Google Data Analytics', issuer: 'Google', year: '2024' },
+];
+
+export interface Activity {
+  label: string;
+  detail: string;
+  year: string;
+}
+
+export const ACTIVITIES: Activity[] = [
+  { label: '2º lugar · DataFest', detail: 'BCP × ESAN', year: '2025' },
+  { label: 'Full grant · SALA', detail: 'Summit of AI in LatAm', year: '2026' },
 ];
 
 export const RESEARCH: ResearchEntry[] = [

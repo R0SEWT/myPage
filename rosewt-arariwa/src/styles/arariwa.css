@@ -22,33 +22,34 @@
 
 
 /* ============================================================
-   VARIANTE A — 70% ANDINO / 30% FMA  (default)
-   Negro carbón, ocre tostado, cochinilla, blanco hueso.
+   VARIANTE A — ALCHEMIST ANDINO (70/30)
+   Mahogany + oak, crimson wax-seal, brass.
    ============================================================ */
 :root,
 [data-variant="andino"] {
-  /* Surfaces */
-  --bg:            #14100c;   /* carbón */
-  --bg-card:       #1a1510;
-  --bg-raised:     #221b14;
+  /* Surfaces — mahogany/oak, más cálidos que carbón */
+  --bg:            #1c1714;   /* mahogany */
+  --bg-card:       #251e19;   /* oak */
+  --bg-raised:     #2d251d;
 
-  /* Ink (text) */
-  --ink:           #ede4d6;   /* hueso */
-  --ink-dim:       #b7aa91;
-  --ink-faded:     #847a66;
+  /* Ink — parchment escalonado para AA a 13px */
+  --ink:           #e8dfd4;   /* pergamino */
+  --ink-dim:       #c9b9a0;
+  --ink-faded:     #9c8b7a;
 
-  /* Saturated */
-  --accent:        #c2410c;   /* cochinilla oscuro */
-  --accent-2:      #b8823a;   /* ocre tostado */
+  /* Saturated — crimson sello + brass transmutación */
+  --accent:        #8b2635;   /* crimson wax-seal */
+  --accent-2:      #c9a962;   /* brass dorado */
+  --accent-3:      #a83424;   /* moche-red para circuit paths */
 
   /* Lines */
-  --line:          #3a3228;
+  --line:          #4a3f35;
   --line-bright:   #6b5d48;
 
   /* Semantic */
-  --success:       #7a8b3c;   /* verde oliva CIP */
-  --warning:       #b8823a;   /* usa el mismo ocre */
-  --danger:        #c2410c;   /* usa el mismo cochineal */
+  --success:       #7a8b3c;
+  --warning:       #c9a962;
+  --danger:        #8b2635;
 
   /* Atmosphere */
   --sigil-opacity:   0.08;
@@ -57,27 +58,28 @@
 }
 
 /* ============================================================
-   VARIANTE B — 30% ANDINO / 70% FMA
-   Pergamino envejecido, tinta negra, dorado, rojo sangre.
+   VARIANTE B — ALCHEMIST FMA (30/70)
+   Más pergamino, brass dominante, vignette más marcado.
    ============================================================ */
 [data-variant="fma"] {
-  --bg:            #1c1712;
-  --bg-card:       #241e17;
-  --bg-raised:     #2d2619;
+  --bg:            #1c1714;   /* mahogany base */
+  --bg-card:       #2a2219;   /* oak más cálido */
+  --bg-raised:     #35291e;
 
-  --ink:           #eaddb3;   /* pergamino */
-  --ink-dim:       #cdb78d;
-  --ink-faded:     #947d56;
+  --ink:           #ede4d4;   /* pergamino más claro */
+  --ink-dim:       #d1bfa4;
+  --ink-faded:     #a59379;   /* AA en 13px sobre #1c1714 */
 
-  --accent:        #8b1a1a;   /* rojo sangre alquimia */
-  --accent-2:      #c9a14a;   /* dorado tinta */
+  --accent:        #8b2635;   /* crimson */
+  --accent-2:      #d4b06e;   /* brass ligeramente más dorado */
+  --accent-3:      #a83424;
 
-  --line:          #3d3322;
+  --line:          #4d4235;
   --line-bright:   #7a6442;
 
-  --success:       #6b7a3c;
-  --warning:       #c9a14a;
-  --danger:        #8b1a1a;
+  --success:       #7a8b3c;
+  --warning:       #d4b06e;
+  --danger:        #8b2635;
 
   --sigil-opacity:   0.14;
   --texture-opacity: 0.045;
@@ -124,12 +126,15 @@
   --font-body:     'EB Garamond', 'Cormorant Garamond', Georgia, serif;
   --font-mono:     'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  /* Scale — editorial, not web */
-  --fs-folio:      10px;   /* mono, labels & codes */
-  --fs-meta:       11px;
+  /* Scale — editorial, not web.
+     Rule: mono ≤11px SOLO para folios/códigos/seals (información descartable).
+     Cualquier contenido informativo sube a 13px+ en mono o 15px+ en serif. */
+  --fs-folio:      11px;   /* mono, folios & codes (decoración) */
+  --fs-meta:       13px;   /* mono, CONTENIDO legible (Rol, Filiación, Estado) */
   --fs-body:       17px;
   --fs-lede:       20px;
   --fs-pull:       26px;   /* thesis / pullquote */
+  --fs-dropcap:    72px;   /* illuminated manuscript drop cap */
   --fs-h4:         26px;
   --fs-h3:         34px;
   --fs-h2:         44px;
