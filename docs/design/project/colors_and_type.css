@@ -1,0 +1,248 @@
+/* ============================================================
+   ARARIWA DESIGN SYSTEM — TOKENS
+   Banco de Germoplasma Digital
+   ============================================================
+
+   Two canonical variants, switched via [data-variant] on <body>:
+     andino  — 70% Andino / 30% FMA  (default, saturated cochineal)
+     fma     — 30% Andino / 70% FMA  (aged parchment, gold+blood)
+
+   Three tertiary cultural palettes, opt-in via [data-culture]:
+     paracas — ocean indigo + polychrome embroidery reds
+     nazca   — desert earth + oxide line-drawing
+     moche   — portrait-vessel red + slip cream
+
+   Fonts: Cormorant Garamond (display), EB Garamond (body),
+          JetBrains Mono (monospace/archival).
+
+   Load Google Fonts in the HTML <head>:
+     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+   ============================================================ */
+
+
+/* ============================================================
+   VARIANTE A — 70% ANDINO / 30% FMA  (default)
+   Negro carbón, ocre tostado, cochinilla, blanco hueso.
+   ============================================================ */
+:root,
+[data-variant="andino"] {
+  /* Surfaces */
+  --bg:            #14100c;   /* carbón */
+  --bg-card:       #1a1510;
+  --bg-raised:     #221b14;
+
+  /* Ink (text) */
+  --ink:           #e8dfd1;   /* hueso */
+  --ink-dim:       #9a8e78;
+  --ink-faded:     #5a5245;
+
+  /* Saturated */
+  --accent:        #c2410c;   /* cochinilla oscuro */
+  --accent-2:      #b8823a;   /* ocre tostado */
+
+  /* Lines */
+  --line:          #3a3228;
+  --line-bright:   #6b5d48;
+
+  /* Semantic */
+  --success:       #7a8b3c;   /* verde oliva CIP */
+  --warning:       #b8823a;   /* usa el mismo ocre */
+  --danger:        #c2410c;   /* usa el mismo cochineal */
+
+  /* Atmosphere */
+  --sigil-opacity:   0.08;
+  --texture-opacity: 0.025;
+  --grid-opacity:    0.035;
+}
+
+/* ============================================================
+   VARIANTE B — 30% ANDINO / 70% FMA
+   Pergamino envejecido, tinta negra, dorado, rojo sangre.
+   ============================================================ */
+[data-variant="fma"] {
+  --bg:            #1c1712;
+  --bg-card:       #241e17;
+  --bg-raised:     #2d2619;
+
+  --ink:           #e5d5a8;   /* pergamino */
+  --ink-dim:       #b09872;
+  --ink-faded:     #6b5a3e;
+
+  --accent:        #8b1a1a;   /* rojo sangre alquimia */
+  --accent-2:      #c9a14a;   /* dorado tinta */
+
+  --line:          #3d3322;
+  --line-bright:   #7a6442;
+
+  --success:       #6b7a3c;
+  --warning:       #c9a14a;
+  --danger:        #8b1a1a;
+
+  --sigil-opacity:   0.14;
+  --texture-opacity: 0.045;
+  --grid-opacity:    0.025;
+}
+
+/* ============================================================
+   PALETAS CULTURALES (opt-in, modular)
+   Overlay a cualquier variante con [data-culture="..."] en un
+   contenedor local. No reemplazan --bg/--ink; exponen nuevos
+   tokens para acentos regionales.
+   ============================================================ */
+[data-culture="paracas"] {
+  /* Textiles polícromos de la península — azul oceánico, rojo granate, ocre melón */
+  --paracas-indigo:   #1e3a5f;
+  --paracas-granate:  #7a1e2a;
+  --paracas-melon:    #d97757;
+  --paracas-jade:     #4a7a6a;
+  --paracas-cream:    #e8dfd1;
+}
+[data-culture="nazca"] {
+  /* Desierto y líneas — terracota, óxido, pampa */
+  --nazca-terracotta: #a05234;
+  --nazca-oxido:      #6b3420;
+  --nazca-pampa:      #c9a878;
+  --nazca-obsidian:   #2a1f18;
+  --nazca-cream:      #ecdfc8;
+}
+[data-culture="moche"] {
+  /* Cerámica retrato — rojo Moche, engobe crema, negro reducción */
+  --moche-red:        #a83424;
+  --moche-slip:       #e8d4a8;
+  --moche-reduction:  #2a1a12;
+  --moche-shadow:     #5a3a24;
+  --moche-verdigris:  #5a7a6a;
+}
+
+
+/* ============================================================
+   TYPE TOKENS
+   ============================================================ */
+:root {
+  --font-display:  'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body:     'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  --font-mono:     'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Scale — editorial, not web */
+  --fs-folio:      10px;   /* mono, labels & codes */
+  --fs-meta:       11px;
+  --fs-body:       17px;
+  --fs-lede:       20px;
+  --fs-pull:       26px;   /* thesis / pullquote */
+  --fs-h4:         26px;
+  --fs-h3:         34px;
+  --fs-h2:         44px;
+  --fs-h1:         clamp(48px, 7vw, 92px);
+
+  /* Tracking */
+  --track-mono:    0.2em;    /* archival labels */
+  --track-mono-tight: 0.1em;
+  --track-display: -0.01em;  /* tight optical serif */
+  --track-h1:      -0.02em;
+
+  /* Leading */
+  --lh-display:    0.95;
+  --lh-body:       1.6;
+  --lh-pull:       1.55;
+}
+
+
+/* ============================================================
+   SPACE / RHYTHM TOKENS
+   Sharp corners are the default. Radii exist but are rarely used.
+   ============================================================ */
+:root {
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  80px;
+  --space-10: 120px;
+
+  --radius-0: 0;       /* default */
+  --radius-1: 2px;     /* the only radius we use */
+
+  /* No soft shadows. Seals and alchemy circles don't float. */
+  --shadow-specimen: 0 0 0 1px var(--line-bright);
+  --shadow-raised:   inset 0 0 0 1px var(--line-bright);
+
+  /* Grid */
+  --grid-max:  1240px;
+  --grid-pad:  48px;
+}
+
+
+/* ============================================================
+   MOTION TOKENS
+   Motion must mean something. Default to stillness.
+   ============================================================ */
+:root {
+  --dur-fast:    0.3s;
+  --dur-med:     0.5s;
+  --dur-slow:    0.8s;
+  --dur-sigil:   180s;           /* sigil rotation — 3 min per cycle */
+
+  --ease-out:    cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+
+/* ============================================================
+   BASE RESET (opt-in — use .arariwa-base on <body> or container)
+   ============================================================ */
+body.arariwa-base,
+.arariwa-base {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background var(--dur-slow) ease, color var(--dur-slow) ease;
+}
+.arariwa-base * { box-sizing: border-box; }
+
+/* Grain texture overlay — adds to any container with .arariwa-texture */
+.arariwa-texture {
+  position: relative;
+}
+.arariwa-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  opacity: var(--texture-opacity);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+
+/* ============================================================
+   UTILITY CLASSES — editorial building blocks
+   ============================================================ */
+.arw-mono       { font-family: var(--font-mono); letter-spacing: var(--track-mono); text-transform: uppercase; }
+.arw-display    { font-family: var(--font-display); letter-spacing: var(--track-display); font-weight: 400; }
+.arw-italic     { font-family: var(--font-display); font-style: italic; color: var(--accent-2); font-weight: 300; }
+.arw-code       { font-family: var(--font-mono); color: var(--accent); letter-spacing: var(--track-mono-tight); }
+.arw-quechua    { font-variant: small-caps; letter-spacing: 0.12em; color: var(--ink); }
+.arw-folio      { font-family: var(--font-mono); font-size: var(--fs-folio); letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-faded); }
+
+
+/* ============================================================
+   SIGIL ROTATION — shared keyframe
+   ============================================================ */
+@keyframes arariwa-rotate-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.arariwa-sigil-rotate {
+  animation: arariwa-rotate-slow var(--dur-sigil) linear infinite;
+  transform-origin: center;
+}

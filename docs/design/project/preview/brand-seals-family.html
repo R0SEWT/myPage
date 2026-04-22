@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Seal Family</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1>Familia de <em>sellos</em></h1><span class="meta">ARV · BRAND · 02</span></header>
+  <p class="sub">Tres variaciones por dominio: Retrieval, Research, Systems. Mismo armazón (círculos + chakana + cuadrado inscrito), distinto glifo interno. Sólo los tres — no inventar un cuarto sin necesidad.</p>
+  
+<style>
+  .fam{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;border-top:1px solid var(--line);padding-top:40px}
+  .f{background:var(--bg-card);border:1px solid var(--line-bright);padding:32px;text-align:center;position:relative}
+  .f::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:2px;background:var(--accent)}
+  .f .seal{width:160px;height:160px;margin:0 auto 24px}
+  .f b{display:block;font-family:var(--font-display);font-style:italic;font-size:24px;font-weight:400;color:var(--ink);margin-bottom:8px}
+  .f .code{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .f p{font-family:var(--font-body);font-size:14px;color:var(--ink-dim);line-height:1.55;margin:0}
+</style>
+<div class="fam">
+  <div class="f">
+    <div class="seal"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2);width:100%;height:100%"><circle cx="100" cy="100" r="96" stroke-width="0.6"/><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="72" stroke-width="0.5"/><path d="M100 20L180 100L100 180L20 100Z" stroke-width="0.4"/><path d="M100 62L112 62L112 74L124 74L124 86L138 86L138 114L124 114L124 126L112 126L112 138L88 138L88 126L76 126L76 114L62 114L62 86L76 86L76 74L88 74L88 62Z" stroke-width="1.1"/><circle cx="100" cy="100" r="6"/><circle cx="100" cy="100" r="2" fill="currentColor"/><g stroke-width="0.7"><circle cx="100" cy="38" r="2.5" fill="currentColor"/><circle cx="162" cy="100" r="2.5" fill="currentColor"/><circle cx="100" cy="162" r="2.5" fill="currentColor"/><circle cx="38" cy="100" r="2.5" fill="currentColor"/><line x1="100" y1="38" x2="162" y2="100" stroke-width="0.4"/><line x1="162" y1="100" x2="100" y2="162" stroke-width="0.4"/><line x1="100" y1="162" x2="38" y2="100" stroke-width="0.4"/><line x1="38" y1="100" x2="100" y2="38" stroke-width="0.4"/></g></svg></div>
+    <b>Retrieval</b><div class="code">SPEC · 001</div>
+    <p>Red de vecindades kNN. Búsqueda y recuperación.</p>
+  </div>
+  <div class="f">
+    <div class="seal"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2);width:100%;height:100%"><circle cx="100" cy="100" r="96" stroke-width="0.6"/><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="72" stroke-width="0.5"/><path d="M100 20L180 100L100 180L20 100Z" stroke-width="0.4"/><path d="M100 62L112 62L112 74L124 74L124 86L138 86L138 114L124 114L124 126L112 126L112 138L88 138L88 126L76 126L76 114L62 114L62 86L76 86L76 74L88 74L88 62Z" stroke-width="1.1"/><g stroke-width="0.7"><line x1="74" y1="94" x2="126" y2="94"/><line x1="74" y1="100" x2="126" y2="100"/><line x1="74" y1="106" x2="126" y2="106"/></g><circle cx="100" cy="100" r="4" fill="currentColor"/><g stroke-width="0.8"><path d="M100 40L106 52L94 52Z"/><path d="M160 100L148 106L148 94Z"/><path d="M100 160L94 148L106 148Z"/><path d="M40 100L52 94L52 106Z"/></g></svg></div>
+    <b>Research</b><div class="code">SPEC · 002</div>
+    <p>Pliegues del folio. DocAI, papers, talks.</p>
+  </div>
+  <div class="f">
+    <div class="seal"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2);width:100%;height:100%"><circle cx="100" cy="100" r="96" stroke-width="0.6"/><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="72" stroke-width="0.5"/><path d="M100 20L180 100L100 180L20 100Z" stroke-width="0.4"/><path d="M100 62L112 62L112 74L124 74L124 86L138 86L138 114L124 114L124 126L112 126L112 138L88 138L88 126L76 126L76 114L62 114L62 86L76 86L76 74L88 74L88 62Z" stroke-width="1.1"/><rect x="76" y="76" width="48" height="48" stroke-width="0.6"/><rect x="86" y="86" width="28" height="28" stroke-width="0.5"/><circle cx="100" cy="100" r="3" fill="currentColor"/></svg></div>
+    <b>Systems</b><div class="code">SPEC · 003</div>
+    <p>Doble indexación. Aplicaciones, despliegue.</p>
+  </div>
+</div>
+</div></body></html>

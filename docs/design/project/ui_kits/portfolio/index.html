@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rody Vilchez — Banco de Germoplasma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     VARIANTE A — 70% ANDINO / 30% FMA (default)
+     Paleta: negro carbón, ocre tostado, rojo cochinilla, blanco hueso
+     ============================================ */
+  :root,
+  [data-variant="andino"] {
+    --bg: #14100c;
+    --bg-card: #1a1510;
+    --bg-raised: #221b14;
+    --ink: #e8dfd1;
+    --ink-dim: #9a8e78;
+    --ink-faded: #5a5245;
+    --accent: #c2410c;        /* cochinilla oscuro */
+    --accent-2: #b8823a;      /* ocre tostado */
+    --line: #3a3228;
+    --line-bright: #6b5d48;
+    --success: #7a8b3c;       /* verde oliva apagado, tipo CIP */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'EB Garamond', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --sigil-opacity: 0.08;
+    --texture-opacity: 0.025;
+    --grid-opacity: 0.035;
+  }
+
+  /* ============================================
+     VARIANTE B — 30% ANDINO / 70% FMA
+     Paleta: pergamino envejecido, tinta negra, dorado, rojo sangre
+     ============================================ */
+  [data-variant="fma"] {
+    --bg: #1c1712;
+    --bg-card: #241e17;
+    --bg-raised: #2d2619;
+    --ink: #e5d5a8;           /* pergamino */
+    --ink-dim: #b09872;
+    --ink-faded: #6b5a3e;
+    --accent: #8b1a1a;        /* rojo sangre alquimia */
+    --accent-2: #c9a14a;      /* dorado tinta */
+    --line: #3d3322;
+    --line-bright: #7a6442;
+    --success: #6b7a3c;
+    --sigil-opacity: 0.14;
+    --texture-opacity: 0.045;
+    --grid-opacity: 0.025;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.8s ease, color 0.8s ease;
+    position: relative;
+  }
+
+  /* Noise / grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+    opacity: var(--texture-opacity);
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: overlay;
+  }
+
+  /* Grilla de archivo sutil */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: var(--grid-opacity);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ============================================
+     TOGGLE DE VARIANTE (control flotante)
+     ============================================ */
+  .variant-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+    display: flex;
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--line-bright);
+    border-radius: 2px;
+    padding: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .variant-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--ink-dim);
+    padding: 8px 14px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    transition: all 0.3s;
+  }
+  .variant-toggle button.active {
+    background: var(--accent);
+    color: var(--ink);
+  }
+  .variant-toggle button:hover:not(.active) {
+    color: var(--ink);
+  }
+  .variant-toggle-label {
+    position: fixed;
+    top: 60px;
+    right: 24px;
+    z-index: 100;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-faded);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  /* ============================================
+     LAYOUT BASE
+     ============================================ */
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ============================================
+     HEADER / BARRA DE ARCHIVO
+     ============================================ */
+  .archive-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .archive-bar-left {
+    display: flex;
+    gap: 32px;
+  }
+  .archive-code {
+    color: var(--accent);
+  }
+  .archive-bar-nav {
+    display: flex;
+    gap: 28px;
+  }
+  .archive-bar-nav a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .archive-bar-nav a:hover {
+    color: var(--ink);
+  }
+
+  /* ============================================
+     HERO / FOLIO DE PORTADA
+     ============================================ */
+  .hero {
+    min-height: 90vh;
+    padding: 80px 0 120px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 80px;
+    align-items: start;
+    position: relative;
+  }
+
+  .hero-sigil {
+    position: absolute;
+    top: 40px;
+    right: -80px;
+    width: 560px;
+    height: 560px;
+    opacity: var(--sigil-opacity);
+    pointer-events: none;
+    animation: rotate-slow 180s linear infinite;
+  }
+  @keyframes rotate-slow {
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-folio {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 48px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .hero-folio-sep {
+    width: 40px;
+    height: 1px;
+    background: var(--line-bright);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-2);
+    font-weight: 300;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-dim);
+    line-height: 1.4;
+    max-width: 580px;
+    margin-bottom: 48px;
+  }
+
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faded);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    row-gap: 10px;
+    max-width: 580px;
+  }
+  .hero-meta dt {
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+  .hero-meta dd {
+    color: var(--ink-dim);
+  }
+  .hero-meta dd a {
+    color: var(--accent-2);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-2);
+  }
+
+  /* Tarjeta lateral del hero — ficha de espécimen */
+  .specimen-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line-bright);
+    padding: 28px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+    position: relative;
+  }
+  .specimen-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    height: 4px;
+    background: var(--accent);
+  }
+  .specimen-card-label {
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .specimen-card-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+  }
+  .specimen-card-row span:last-child {
+    color: var(--ink);
+  }
+  .specimen-card-quote {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ============================================
+     SECCIÓN DIVISORIA / SIGIL
+     ============================================ */
+  .section-divider {
+    padding: 100px 0 60px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .section-divider-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--line-bright), transparent);
+  }
+  .section-sigil {
+    width: 64px;
+    height: 64px;
+    opacity: 0.7;
+  }
+
+  /* ============================================
+     SECCIÓN: THESIS / MANIFIESTO
+     ============================================ */
+  .thesis {
+    padding: 40px 0 120px;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .thesis-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  .thesis p {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1.55;
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 300;
+  }
+  .thesis p + p {
+    margin-top: 28px;
+    font-size: 20px;
+    font-style: normal;
+    color: var(--ink-dim);
+  }
+  .thesis-emphasis {
+    color: var(--accent-2);
+    font-style: normal;
+  }
+
+  /* ============================================
+     SECCIÓN: CATÁLOGO DE ESPECÍMENES (proyectos)
+     ============================================ */
+  .catalog {
+    padding: 80px 0;
+  }
+  .catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .catalog-title {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .catalog-title em {
+    font-style: italic;
+    color: var(--accent-2);
+  }
+  .catalog-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  .specimen-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .specimen {
+    display: grid;
+    grid-template-columns: 120px 1fr 320px;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    position: relative;
+    transition: background 0.4s, padding 0.4s;
+    cursor: pointer;
+  }
+  .specimen:hover {
+    background: var(--bg-card);
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .specimen:hover .specimen-sigil {
+    opacity: 1;
+    transform: rotate(30deg);
+  }
+
+  .specimen-id {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-faded);
+    line-height: 1.8;
+  }
+  .specimen-id .code {
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+  .specimen-id .year {
+    color: var(--ink-dim);
+  }
+  .specimen-id .status {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 8px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .specimen-id .status.active { color: var(--success); border-color: var(--success); }
+  .specimen-id .status.research { color: var(--accent-2); border-color: var(--accent-2); }
+  .specimen-id .status.restricted { color: var(--accent); border-color: var(--accent); }
+
+  .specimen-body h3 {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .specimen-body .specimen-subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-dim);
+    margin-bottom: 24px;
+  }
+  .specimen-body p {
+    font-size: 16px;
+    color: var(--ink-dim);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    max-width: 58ch;
+  }
+  .specimen-body .specimen-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .specimen-body .specimen-tags span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border: 1px solid var(--line-bright);
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+
+  .specimen-metadata {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faded);
+    position: relative;
+  }
+  .specimen-sigil {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    width: 88px;
+    height: 88px;
+    opacity: 0.35;
+    transition: opacity 0.5s, transform 1.2s ease;
+  }
+  .specimen-metadata dl {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .specimen-metadata dt {
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .specimen-metadata dd {
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .specimen-metadata .metric {
+    color: var(--accent-2);
+    font-size: 22px;
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+
+  /* ============================================
+     SECCIÓN: LINAJE (experience como timeline)
+     ============================================ */
+  .lineage {
+    padding: 120px 0;
+  }
+  .lineage-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+  }
+  .lineage-title {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  .lineage-title em {
+    font-style: italic;
+    color: var(--accent-2);
+  }
+  .lineage-intro {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .lineage-entry {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+  }
+  .lineage-entry:first-child {
+    padding-top: 0;
+  }
+  .lineage-period {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    padding-top: 6px;
+  }
+  .lineage-period .current {
+    display: block;
+    margin-top: 6px;
+    color: var(--accent);
+  }
+  .lineage-content h4 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .lineage-content h5 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-dim);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .lineage-content p {
+    font-size: 15px;
+    color: var(--ink-dim);
+    margin-bottom: 10px;
+  }
+
+  /* ============================================
+     SECCIÓN: RESEARCH FRAGMENT
+     ============================================ */
+  .research {
+    padding: 120px 0;
+    background: var(--bg-card);
+    margin: 0 -48px;
+    padding-left: 48px;
+    padding-right: 48px;
+    border-top: 1px solid var(--line-bright);
+    border-bottom: 1px solid var(--line-bright);
+    position: relative;
+  }
+  .research::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+  }
+  .research-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+  }
+  .research-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .research-label-sub {
+    display: block;
+    margin-top: 8px;
+    color: var(--ink-faded);
+  }
+  .research-body h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .research-body h2 em {
+    font-style: italic;
+    color: var(--accent-2);
+  }
+  .research-body .venue {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-dim);
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .research-body p {
+    font-size: 17px;
+    color: var(--ink-dim);
+    line-height: 1.65;
+    margin-bottom: 18px;
+    max-width: 65ch;
+  }
+  .research-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .research-metric {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+  .research-metric .val {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--accent-2);
+    margin-bottom: 4px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ============================================
+     FOOTER / COLOFÓN
+     ============================================ */
+  .colofon {
+    padding: 120px 0 60px;
+    text-align: center;
+  }
+  .colofon-sigil {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 40px;
+    opacity: 0.6;
+  }
+  .colofon h2 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .colofon-contact {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--accent-2);
+    margin-bottom: 48px;
+  }
+  .colofon-contact a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-bright);
+    padding-bottom: 2px;
+  }
+  .colofon-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-sigil { right: -200px; width: 400px; height: 400px; }
+    .specimen { grid-template-columns: 1fr; gap: 16px; }
+    .lineage-grid, .research-inner { grid-template-columns: 1fr; gap: 40px; }
+    .container { padding: 0 24px; }
+    .archive-bar { padding: 12px 24px; }
+    .variant-toggle { top: 60px; right: 12px; }
+    .variant-toggle-label { top: 96px; right: 12px; }
+  }
+</style>
+</head>
+<body data-variant="andino">
+
+<!-- TOGGLE DE VARIANTE -->
+<div class="variant-toggle">
+  <button class="active" onclick="setVariant('andino', this)">70% Andino</button>
+  <button onclick="setVariant('fma', this)">70% FMA</button>
+</div>
+<div class="variant-toggle-label">
+  cambia la variante<br>para comparar
+</div>
+
+<!-- BARRA DE ARCHIVO -->
+<header class="archive-bar">
+  <div class="archive-bar-left">
+    <span class="archive-code">CIP · ARV — R.V. / 2026</span>
+    <span>Banco de Germoplasma Digital</span>
+  </div>
+  <nav class="archive-bar-nav">
+    <a href="#thesis">Tesis</a>
+    <a href="#catalog">Catálogo</a>
+    <a href="#lineage">Linaje</a>
+    <a href="#research">Research</a>
+    <a href="#colofon">Contacto</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- ============================================
+       HERO / FOLIO DE PORTADA
+       ============================================ -->
+  <section class="hero">
+    <!-- Sigilo rotando — chakana + círculo de transmutación fusionados -->
+    <svg class="hero-sigil" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="1" style="color: var(--accent-2)">
+        <!-- Círculo externo -->
+        <circle cx="200" cy="200" r="195" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="180"/>
+        <circle cx="200" cy="200" r="140" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="100"/>
+        <circle cx="200" cy="200" r="60" stroke-width="0.5"/>
+
+        <!-- Chakana central (cruz andina escalonada) -->
+        <path d="M 200 140 L 220 140 L 220 160 L 240 160 L 240 180 L 260 180 L 260 220 L 240 220 L 240 240 L 220 240 L 220 260 L 180 260 L 180 240 L 160 240 L 160 220 L 140 220 L 140 180 L 160 180 L 160 160 L 180 160 L 180 140 Z" stroke-width="1.2"/>
+        <circle cx="200" cy="200" r="12"/>
+        <circle cx="200" cy="200" r="4" fill="currentColor"/>
+
+        <!-- Cuadrado inscrito rotado 45° (FMA) -->
+        <path d="M 200 40 L 360 200 L 200 360 L 40 200 Z" stroke-width="0.5"/>
+
+        <!-- Triángulos radiales (4 direcciones, ley de equivalencia) -->
+        <path d="M 200 80 L 212 100 L 188 100 Z"/>
+        <path d="M 320 200 L 300 212 L 300 188 Z"/>
+        <path d="M 200 320 L 188 300 L 212 300 Z"/>
+        <path d="M 80 200 L 100 188 L 100 212 Z"/>
+
+        <!-- Glifos radiales (8 direcciones) -->
+        <g stroke-width="0.7">
+          <circle cx="200" cy="50" r="4"/>
+          <circle cx="306" cy="94" r="4"/>
+          <circle cx="350" cy="200" r="4"/>
+          <circle cx="306" cy="306" r="4"/>
+          <circle cx="200" cy="350" r="4"/>
+          <circle cx="94" cy="306" r="4"/>
+          <circle cx="50" cy="200" r="4"/>
+          <circle cx="94" cy="94" r="4"/>
+        </g>
+
+        <!-- Líneas diagonales del círculo -->
+        <line x1="50" y1="200" x2="350" y2="200" stroke-width="0.3"/>
+        <line x1="200" y1="50" x2="200" y2="350" stroke-width="0.3"/>
+      </g>
+    </svg>
+
+    <div>
+      <div class="hero-folio">
+        <span>Folio 00 · Portada</span>
+        <span class="hero-folio-sep"></span>
+        <span>Lima · 12°S 77°O</span>
+      </div>
+
+      <h1>Rody<br>Vilchez, <em>curador</em><br>de sistemas<br>aplicados.</h1>
+
+      <p class="hero-subtitle">
+        Construyo pipelines de recuperación e inteligencia documental sobre corpus multilingües ruidosos. Trabajo actualmente en el <strong>Centro Internacional de la Papa</strong>, continuando una línea que empezó hace seis mil años.
+      </p>
+
+      <dl class="hero-meta">
+        <dt>Rol</dt><dd>Applied ML Engineer — Retrieval · Document Intelligence</dd>
+        <dt>Filiación</dt><dd>CIP (CGIAR) · UPC</dd>
+        <dt>Enlaces</dt><dd><a href="#">rosewt.dev</a> · <a href="#">github</a> · <a href="#">linkedin</a></dd>
+        <dt>Correspondencia</dt><dd><a href="mailto:rody.vilchez00@gmail.com">rody.vilchez00@gmail.com</a></dd>
+      </dl>
+    </div>
+
+    <aside class="specimen-card">
+      <div class="specimen-card-label">Ficha del portador</div>
+      <div class="specimen-card-row"><span>Código</span><span>ARV·R.V·26</span></div>
+      <div class="specimen-card-row"><span>Procedencia</span><span>Lima, Perú</span></div>
+      <div class="specimen-card-row"><span>Linaje</span><span>UPC · CIP</span></div>
+      <div class="specimen-card-row"><span>Dominios</span><span>Retrieval · DocAI</span></div>
+      <div class="specimen-card-row"><span>Estado</span><span style="color:var(--success)">Activo</span></div>
+      <div class="specimen-card-row"><span>Publicaciones</span><span>2 · conferencia</span></div>
+      <div class="specimen-card-row"><span>Sistemas</span><span>3 · catalogados</span></div>
+
+      <div class="specimen-card-quote">
+        "Los Papa Arariwa fueron los primeros agricultores científicos del continente. Trabajo desde esa línea."
+      </div>
+    </aside>
+  </section>
+
+  <!-- DIVISOR -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <!-- Mini sigilo -->
+    <svg class="section-sigil" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="1" style="color: var(--accent)">
+        <circle cx="32" cy="32" r="30"/>
+        <path d="M 32 16 L 40 16 L 40 24 L 48 24 L 48 40 L 40 40 L 40 48 L 24 48 L 24 40 L 16 40 L 16 24 L 24 24 L 24 16 Z"/>
+        <circle cx="32" cy="32" r="3" fill="currentColor"/>
+      </g>
+    </svg>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- ============================================
+       TESIS / MANIFIESTO
+       ============================================ -->
+  <section class="thesis" id="thesis">
+    <div class="thesis-label">· Tesis del archivo ·</div>
+    <p>
+      Los Papa Arariwa preservaron durante seis mil años la biodiversidad de la papa mediante un sistema de conocimiento codificado en <span class="thesis-emphasis">textiles, rituales y prácticas agrícolas</span>. Eran ingenieros antes del término.
+    </p>
+    <p>
+      Este portafolio es un banco de germoplasma digital: cada sistema que construyo es un espécimen catalogado — con su procedencia, sus restricciones, su linaje y su resultado. La ley de equivalencia es real: no hay modelo sin intercambio.
+    </p>
+  </section>
+
+  <!-- ============================================
+       CATÁLOGO DE ESPECÍMENES (Selected Systems)
+       ============================================ -->
+  <section class="catalog" id="catalog">
+    <div class="catalog-header">
+      <h2 class="catalog-title">Catálogo de <em>especímenes</em></h2>
+      <span class="catalog-meta">03 sistemas · filtrables por dominio</span>
+    </div>
+
+    <div class="specimen-grid">
+
+      <!-- ESPÉCIMEN 001 — GENO-MAP -->
+      <article class="specimen">
+        <div class="specimen-id">
+          <span class="code">SPEC·001</span>
+          <span class="year">2025 — 2026</span>
+          <span class="status active">Publicado</span>
+        </div>
+        <div class="specimen-body">
+          <h3>GENO-MAP</h3>
+          <p class="specimen-subtitle">Diagnóstico libre de correspondencia para mapas de diversidad</p>
+          <p>
+            Marco de validación basado en invariantes de grafos kNN para evaluar estructura de vecindades en representaciones de alta dimensión. Demostré que la estructura de vecindades permanece robusta bajo perturbaciones severas, con degradación continua y sin transiciones de fase.
+          </p>
+          <p>
+            PCA preserva estabilidad estructural mejor que autoencoders; UMAP cambia la visualización, no el grafo analítico.
+          </p>
+          <div class="specimen-tags">
+            <span>PCA</span><span>UMAP</span><span>kNN Graphs</span><span>Sweet Potato</span>
+          </div>
+        </div>
+        <div class="specimen-metadata">
+          <svg class="specimen-sigil" viewBox="0 0 80 80">
+            <g fill="none" stroke="currentColor" stroke-width="1" style="color: var(--accent-2)">
+              <circle cx="40" cy="40" r="36"/>
+              <circle cx="40" cy="40" r="24"/>
+              <circle cx="40" cy="40" r="12"/>
+              <!-- Red de nodos -->
+              <circle cx="40" cy="8" r="2" fill="currentColor"/>
+              <circle cx="72" cy="40" r="2" fill="currentColor"/>
+              <circle cx="40" cy="72" r="2" fill="currentColor"/>
+              <circle cx="8" cy="40" r="2" fill="currentColor"/>
+              <line x1="40" y1="8" x2="72" y2="40"/>
+              <line x1="72" y1="40" x2="40" y2="72"/>
+              <line x1="40" y1="72" x2="8" y2="40"/>
+              <line x1="8" y1="40" x2="40" y2="8"/>
+            </g>
+          </svg>
+          <dl>
+            <dt>Venue</dt><dd>SALA 2026 · Poster</dd>
+            <dt>Dominio</dt><dd>Diagnóstico · HD</dd>
+            <dt>Stack</dt><dd>Python · scikit-learn</dd>
+            <dt>Resultado</dt><dd class="metric">Estable · sin fase</dd>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ESPÉCIMEN 002 — ArbitrIA -->
+      <article class="specimen">
+        <div class="specimen-id">
+          <span class="code">SPEC·002</span>
+          <span class="year">2024 — 2025</span>
+          <span class="status restricted">Restringido</span>
+        </div>
+        <div class="specimen-body">
+          <h3>ArbitrIA</h3>
+          <p class="specimen-subtitle">Sistema de recuperación legal para arbitraje peruano</p>
+          <p>
+            Sistema de recuperación combinando indexación a nivel documento y a nivel chunk para mejorar precisión en consultas complejas. Pipelines robustos sobre PDFs heterogéneos con layouts multicolumna, tablas embebidas y encabezados inconsistentes.
+          </p>
+          <p>
+            Demostré que segmentación más fina mejora precisión local a costa de recuperación global — motivando el esquema de indexación dual.
+          </p>
+          <div class="specimen-tags">
+            <span>LlamaIndex</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span>
+          </div>
+        </div>
+        <div class="specimen-metadata">
+          <svg class="specimen-sigil" viewBox="0 0 80 80">
+            <g fill="none" stroke="currentColor" stroke-width="1" style="color: var(--accent-2)">
+              <circle cx="40" cy="40" r="36"/>
+              <!-- Dos capas de indexación -->
+              <rect x="20" y="20" width="40" height="40" stroke-width="0.7"/>
+              <rect x="28" y="28" width="24" height="24" stroke-width="0.5"/>
+              <line x1="20" y1="30" x2="60" y2="30" stroke-width="0.3"/>
+              <line x1="20" y1="40" x2="60" y2="40" stroke-width="0.3"/>
+              <line x1="20" y1="50" x2="60" y2="50" stroke-width="0.3"/>
+              <circle cx="40" cy="40" r="3" fill="currentColor"/>
+            </g>
+          </svg>
+          <dl>
+            <dt>Venue</dt><dd>Interno · propietario</dd>
+            <dt>Dominio</dt><dd>Legal · Retrieval</dd>
+            <dt>Stack</dt><dd>LlamaIndex · FastAPI</dd>
+            <dt>Resultado</dt><dd class="metric">Dual index</dd>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ESPÉCIMEN 003 — Gallstone Risk -->
+      <article class="specimen">
+        <div class="specimen-id">
+          <span class="code">SPEC·003</span>
+          <span class="year">2024</span>
+          <span class="status active">Demo activa</span>
+        </div>
+        <div class="specimen-body">
+          <h3>Gallstone Risk</h3>
+          <p class="specimen-subtitle">ML para tamizaje en entornos de recursos limitados</p>
+          <p>
+            Reformulé predicción de cálculos biliares como sistema de decisión bajo restricciones de observabilidad, removiendo dependencia de variables clínicas no disponibles en campo. Evalué el trade-off rendimiento↔viabilidad operativa, mostrando degradación controlada al reducir el espacio de características.
+          </p>
+          <p>
+            Interfaz de inspección humano-en-el-loop con análisis de sensibilidad vía SHAP.
+          </p>
+          <div class="specimen-tags">
+            <span>XGBoost</span><span>SHAP</span><span>Optuna</span><span>Rural Peru</span>
+          </div>
+        </div>
+        <div class="specimen-metadata">
+          <svg class="specimen-sigil" viewBox="0 0 80 80">
+            <g fill="none" stroke="currentColor" stroke-width="1" style="color: var(--accent-2)">
+              <circle cx="40" cy="40" r="36"/>
+              <!-- Árbol de decisión abstracto -->
+              <circle cx="40" cy="18" r="3"/>
+              <circle cx="24" cy="40" r="3"/>
+              <circle cx="56" cy="40" r="3"/>
+              <circle cx="16" cy="60" r="3"/>
+              <circle cx="32" cy="60" r="3"/>
+              <circle cx="48" cy="60" r="3"/>
+              <circle cx="64" cy="60" r="3"/>
+              <line x1="40" y1="21" x2="24" y2="37"/>
+              <line x1="40" y1="21" x2="56" y2="37"/>
+              <line x1="24" y1="43" x2="16" y2="57"/>
+              <line x1="24" y1="43" x2="32" y2="57"/>
+              <line x1="56" y1="43" x2="48" y2="57"/>
+              <line x1="56" y1="43" x2="64" y2="57"/>
+            </g>
+          </svg>
+          <dl>
+            <dt>Demo</dt><dd>gallstone.rosewt.dev</dd>
+            <dt>Dominio</dt><dd>Salud · Rural</dd>
+            <dt>Stack</dt><dd>XGBoost · SHAP</dd>
+            <dt>Resultado</dt><dd class="metric">Degrad. controlada</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       LINAJE / EXPERIENCIA
+       ============================================ -->
+  <section class="lineage" id="lineage">
+    <div class="lineage-grid">
+      <div>
+        <div class="lineage-intro">· Procedencia del espécimen</div>
+        <h2 class="lineage-title">Linaje<br>y <em>filiación</em></h2>
+      </div>
+      <div>
+        <div class="lineage-entry">
+          <div class="lineage-period">
+            Oct 2025 →<br>
+            <span class="current">Presente</span>
+          </div>
+          <div class="lineage-content">
+            <h4>AI / Data Intern</h4>
+            <h5>International Potato Center · CIP, CGIAR</h5>
+            <p>Diseño de pipelines de procesamiento documental para workflow GraphRAG interno sobre corpus multilingües (ES, EN, FR, PT, ZH) con OCR ruidoso, layout irregular y clasificación parcial.</p>
+            <p>Co-construcción de agente de soporte IT en Copilot Studio desplegado en Teams, con escalamiento human-in-the-loop vía Adaptive Cards.</p>
+          </div>
+        </div>
+
+        <div class="lineage-entry">
+          <div class="lineage-period">
+            Dic 2024 —<br>Oct 2025
+          </div>
+          <div class="lineage-content">
+            <h4>QA Trainee</h4>
+            <h5>Visma LATAM</h5>
+            <p>Agente LLM que genera pruebas E2E automatizadas desde especificaciones. Suites Cypress integradas en Jenkins para flujos críticos. Generadores DOM-aware que extraen selectores y estado runtime de aplicaciones vivas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       RESEARCH / FRAGMENTO DESTACADO
+       ============================================ -->
+</div>
+
+<section class="research" id="research">
+  <div class="research-inner">
+    <div>
+      <div class="research-label">
+        Fragmento de Research
+        <span class="research-label-sub">· Papers · Talks</span>
+      </div>
+    </div>
+    <div class="research-body">
+      <h2>Imitator — <em>traducción de lengua de señas multimodal</em></h2>
+      <p class="venue">Presentado en WAILAMP 2025 y SIMBIG 2025 · En Springer CCIS (2026), aceptado, pendiente de publicación</p>
+      <p>
+        Reformulación de la traducción de lengua de señas como alineamiento en el espacio latente de un LLM, evitando gloss como representación intermedia.
+      </p>
+      <p>
+        Arquitectura con queries latentes y atención cruzada que proyecta secuencias de keypoints en embeddings alineados con tokens, desacoplando la longitud temporal de entrada de la longitud de salida. La imitación de embeddings permite aprendizaje robusto en settings de bajos recursos.
+      </p>
+
+      <div class="research-metrics">
+        <div class="research-metric">
+          <span class="val">8×10⁻⁴</span>
+          MSE + cosine · alineamiento
+        </div>
+        <div class="research-metric">
+          <span class="val">0</span>
+          retraining del LLM
+        </div>
+        <div class="research-metric">
+          <span class="val">2</span>
+          conferencias · CCIS próx.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- ============================================
+       COLOFÓN / CONTACTO
+       ============================================ -->
+  <section class="colofon" id="colofon">
+    <svg class="colofon-sigil" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="1" style="color: var(--accent-2)">
+        <circle cx="60" cy="60" r="56"/>
+        <circle cx="60" cy="60" r="42" stroke-width="0.5"/>
+        <path d="M 60 28 L 72 28 L 72 40 L 84 40 L 84 72 L 72 72 L 72 84 L 48 84 L 48 72 L 36 72 L 36 40 L 48 40 L 48 28 Z"/>
+        <circle cx="60" cy="60" r="6"/>
+        <circle cx="60" cy="60" r="2" fill="currentColor"/>
+      </g>
+    </svg>
+    <h2>Correspondencia abierta.</h2>
+    <p class="colofon-contact">
+      <a href="mailto:rody.vilchez00@gmail.com">rody.vilchez00@gmail.com</a>
+    </p>
+    <div class="colofon-meta">
+      <span>Lima · Perú · 2026</span>
+      <span>Banco de Germoplasma Digital</span>
+      <span>v 0.1 · en construcción</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function setVariant(v, btn) {
+    document.body.dataset.variant = v;
+    document.querySelectorAll('.variant-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

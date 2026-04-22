@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Display Type</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+  .spec-row{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .spec-row .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .spec-row .lbl span{display:block;color:var(--accent);margin-bottom:6px}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h">
+    <h1>Display · <em>serif editorial</em></h1>
+    <span class="meta">ARV · TYPE · 01</span>
+  </header>
+  <p class="sub">Cormorant Garamond para toda la jerarquía display. Italic reservado para una palabra por titular, siempre en ocre. Nunca mezclar con sans-serif.</p>
+  
+<div class="spec-row">
+  <div class="lbl"><span>H1 · Folio</span>Cormorant<br>400 / 92px<br>tracking -0.02em</div>
+  <div style="font-family:var(--font-display);font-weight:400;font-size:92px;line-height:0.95;letter-spacing:-0.02em;color:var(--ink)">Rody Vilchez,<br><em style="font-style:italic;color:var(--accent-2);font-weight:300">curador</em> de sistemas.</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>H2 · Sección</span>Cormorant<br>400 / 48px<br>tracking -0.01em</div>
+  <div style="font-family:var(--font-display);font-weight:400;font-size:48px;line-height:1.05;letter-spacing:-0.01em;color:var(--ink)">Catálogo de <em style="font-style:italic;color:var(--accent-2)">especímenes</em></div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>H3 · Espécimen</span>Cormorant<br>400 / 34px</div>
+  <div style="font-family:var(--font-display);font-weight:400;font-size:34px;line-height:1.1;color:var(--ink)">GENO-MAP</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>H4 · Linaje</span>Cormorant<br>500 / 26px</div>
+  <div style="font-family:var(--font-display);font-weight:500;font-size:26px;color:var(--ink)">AI / Data Intern</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Subtítulo</span>Cormorant italic<br>400 / 22px</div>
+  <div style="font-family:var(--font-display);font-style:italic;font-size:22px;color:var(--ink-dim);line-height:1.4">Diagnóstico libre de correspondencia para mapas de diversidad</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Pull · Tesis</span>Cormorant italic<br>300 / 26px</div>
+  <div style="font-family:var(--font-display);font-weight:300;font-style:italic;font-size:26px;line-height:1.55;color:var(--ink);max-width:60ch">Los Papa Arariwa preservaron durante seis mil años la biodiversidad de la papa mediante un sistema de conocimiento codificado en <span style="color:var(--accent-2);font-style:normal">textiles, rituales y prácticas agrícolas</span>.</div>
+</div>
+
+</div>
+</body></html>

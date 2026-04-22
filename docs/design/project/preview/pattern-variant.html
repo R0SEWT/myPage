@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Variant System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1>Sistema de <em>variantes</em></h1><span class="meta">ARV · PATT · 01</span></header>
+  <p class="sub">El toggle Andino/FMA es una decisión central del proyecto: el mismo sistema bajo dos tesis estéticas, comparables en vivo. Todo cambio de paleta pasa por variables CSS, nunca por duplicación de código.</p>
+  
+<style>
+  .vp{display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:1px solid var(--line);padding-top:32px}
+  .vd{padding:32px;border:1px solid var(--line-bright);position:relative;min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+  .vd::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:3px;background:var(--accent)}
+  .vd .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:20px}
+  .vd h3{font-family:var(--font-display);font-size:32px;font-weight:400;line-height:1.1;letter-spacing:-0.01em;color:var(--ink);margin:0 0 12px}
+  .vd h3 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .vd p{font-family:var(--font-body);font-size:15px;color:var(--ink-dim);line-height:1.55;margin:0 0 20px}
+  .vd .swatches{display:flex;gap:8px;margin-top:auto}
+  .vd .sw{width:40px;height:40px;border:1px solid var(--line-bright)}
+  code{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:0.1em}
+</style>
+<div class="vp">
+  <div class="vd" data-variant="andino" style="background:var(--bg)">
+    <div>
+      <div class="lbl">Variante · default</div>
+      <h3>70% <em>Andino</em></h3>
+      <p>Carbón + hueso + cochinilla. El sistema por defecto. Tono archival andino con alquimia como acento.</p>
+      <p><code>data-variant="andino"</code></p>
+    </div>
+    <div class="swatches"><div class="sw" style="background:#14100c"></div><div class="sw" style="background:#e8dfd1"></div><div class="sw" style="background:#c2410c"></div><div class="sw" style="background:#b8823a"></div><div class="sw" style="background:#7a8b3c"></div></div>
+  </div>
+  <div class="vd" data-variant="fma" style="background:var(--bg)">
+    <div>
+      <div class="lbl">Variante · alterna</div>
+      <h3>70% <em>FMA</em></h3>
+      <p>Pergamino + tinta oro + rojo sangre. Desplazamiento hacia alquimia occidental — para folios rituales o de investigación filosófica.</p>
+      <p><code>data-variant="fma"</code></p>
+    </div>
+    <div class="swatches"><div class="sw" style="background:#1c1712"></div><div class="sw" style="background:#e5d5a8"></div><div class="sw" style="background:#8b1a1a"></div><div class="sw" style="background:#c9a14a"></div><div class="sw" style="background:#6b7a3c"></div></div>
+  </div>
+</div>
+<p class="sub" style="margin-top:32px">El toggle <em style="color:var(--accent-2)">70% Andino / 70% FMA</em> vive fijo en la esquina superior derecha. Toda la paleta cambia vía CSS vars en 0.8s — sin flash, sin recarga. El usuario puede comparar la misma página bajo dos tesis visuales.</p>
+</div></body></html>

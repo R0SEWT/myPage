@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Textile Pattern</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1><em>Step-fret</em> textil</h1><span class="meta">ARV · BRAND · 05</span></header>
+  <p class="sub">Patrón de escalón tomado del vocabulario textil andino. Una sola línea, dos bandas por bloque, sólo en ocre. Separador de sección y cenefa — nunca fondo bajo texto.</p>
+  
+<style>
+  .pt{aspect-ratio:3/1;background:var(--bg-card);border:1px solid var(--line-bright);overflow:hidden;position:relative}
+  .pt svg{width:100%;height:100%;display:block}
+  .notes{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:baseline}
+  .notes .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--ink-faded);text-transform:uppercase}
+  .notes p{font-family:var(--font-body);font-size:15px;color:var(--ink-dim);margin:0;line-height:1.55;max-width:50ch}
+</style>
+<div class="pt">
+<svg viewBox="0 0 600 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2)" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="stepfret" x="0" y="0" width="80" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 40L20 40L20 20L40 20L40 0L60 0L60 20L80 20L80 40" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="40" y="40" fill="url(#stepfret)" opacity="0.9"/>
+  <rect width="600" height="40" y="120" fill="url(#stepfret)" opacity="0.9" transform="scale(1,-1) translate(0,-160)"/>
+  <line x1="0" y1="100" x2="600" y2="100" stroke-width="0.3"/>
+</svg>
+</div>
+
+<div class="notes" style="margin-top:32px"><div class="lbl">Nombre</div><p><em style="color:var(--accent-2);font-style:italic">Step-fret</em> — escalón textil andino, unidad repetida en ambas direcciones.</p></div>
+<div class="notes"><div class="lbl">Origen</div><p>Motivo común en textiles precolombinos (Paracas, Chimú, Wari). Aquí simplificado a línea de 1px, 80×40 unidad base.</p></div>
+<div class="notes"><div class="lbl">Uso</div><p>Separador horizontal entre secciones, cenefa de pie, marco de espécimen. Siempre en ocre <code class="arw-code">--accent-2</code> al 60–80%.</p></div>
+<div class="notes"><div class="lbl">Regla</div><p>Nunca como fondo de párrafo — pierde legibilidad. Nunca en cochinilla sólido — satura.</p></div>
+</div></body></html>

@@ -14,7 +14,7 @@ Links:
 
 # Headline
 
-Applied ML Engineer — Retrieval · Document Intelligence · Evaluation & Robustness
+Applied ML Engineer — Retrieval · Document Intelligence · Evaluation & Robustness   
 
 ---
 

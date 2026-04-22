@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-label="Arariwa">
+  <g transform="translate(60 60)">
+    <circle r="46" fill="none" stroke="#1C1814" stroke-width="1.2"></circle>
+    <circle r="40" fill="none" stroke="#1C1814" stroke-width="1.2"></circle>
+    <path fill="#1C1814" d="M -8 -30 h 16 v 12 h 12 v 6 h 10 v 10 h -10 v 6 h -12 v 12 h -16 v -12 h -12 v -6 h -10 v -10 h 10 v -6 h 12 z"></path>
+    <rect x="-4" y="-4" width="8" height="8" fill="#F2ECE0"></rect>
+    <g fill="none" stroke="#1C1814" stroke-width="1">
+      <line x1="0" y1="-46" x2="0" y2="-52"></line>
+      <line x1="46" y1="0" x2="52" y2="0"></line>
+      <line x1="0" y1="46" x2="0" y2="52"></line>
+      <line x1="-46" y1="0" x2="-52" y2="0"></line>
+    </g>
+    <circle cx="0" cy="-52" r="1.6" fill="#A0281E"></circle>
+  </g>
+  <text x="130" y="72" font-family="&#39;Cormorant Garamond&#39;,Georgia,serif" font-weight="500" font-size="56" letter-spacing="-0.015em" fill="#1C1814">Arariwa</text>
+  <text x="131" y="92" font-family="&#39;JetBrains Mono&#39;,monospace" font-size="9" letter-spacing="2" fill="#3A342C">GERMOPLASMA · EST. MMXXV</text>
+</svg>

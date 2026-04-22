@@ -1,9 +1,6 @@
-# Private evidence vault
-.cv-vault/
 **/node_modules/
 **/.vite/
 **/.DS_Store
-# Local LaTeX build artifacts for the CV
 cv/*.aux
 cv/*.fdb_latexmk
 cv/*.fls
