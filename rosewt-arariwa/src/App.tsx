@@ -5,7 +5,9 @@ import { SPECIMENS, EXPERIENCE, RESEARCH } from './data/constants';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { SpecimenCard } from './components/SpecimenCard';
+import { Skills } from './components/Skills';
 import { ExperienceItem } from './components/ExperienceItem';
+import { Credentials } from './components/Credentials';
 import { ResearchItem } from './components/ResearchItem';
 import { Footer } from './components/Footer';
 
@@ -46,7 +48,7 @@ export default function App() {
         <section className="catalog" id="catalogo">
           <div className="catalog-header">
             <h2 className="catalog-title">Catálogo de <em>especímenes</em></h2>
-            <span className="catalog-meta">{String(SPECIMENS.length).padStart(2, '0')} sistemas · filtrables por dominio</span>
+            <span className="catalog-meta">{String(SPECIMENS.length).padStart(2, '0')} especímenes catalogados · retrieval · docAI · cv · pipelines</span>
           </div>
           <div className="specimen-grid">
             {SPECIMENS.map((s) => (
@@ -54,6 +56,9 @@ export default function App() {
             ))}
           </div>
         </section>
+
+        {/* Skills */}
+        <Skills />
 
         {/* Linaje */}
         <section className="lineage" id="lineage">
@@ -69,6 +74,9 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {/* Credentials */}
+        <Credentials />
 
       </div>
 
