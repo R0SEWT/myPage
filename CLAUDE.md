@@ -12,49 +12,52 @@ Canonical repo policy, editorial rules, and evidence handling live in `agents.md
 
 ## Project Structure
 
-All source code lives under `rosewt-astro/`. Commands must be run from that directory.
+All source code lives under `rosewt-arariwa/`. Commands must be run from that directory.
+`rosewt-astro/` is deprecated and deleted — do not reference it.
+Design system assets and UI kit reference files live in `docs/design/`.
 
 ```
-rosewt-astro/
+rosewt-arariwa/
   src/
-    components/
-      layout/     # Header, Footer, BaseHead, ThemeToggle (React), MobileMenu (React)
-      sections/   # Page sections: Hero, Projects, Experience, Publications, Contact
-      ui/         # Reusable: Badge, ProjectCard, ScrollReveal, SkipLinks
-    content/
-      projects/   # MDX files — one per project, validated by content/config.ts
-    layouts/      # BaseLayout.astro wraps all pages
-    lib/
-      constants.ts  # All site data: SITE_CONFIG, EXPERIENCE, PUBLICATIONS, etc.
-    pages/        # index.astro, 404.astro, gracias.astro
-    styles/       # globals.css + components/*.css (animations, cyber-effects, etc.)
-  public/         # Static assets: CV.pdf, favicon, images
+    components/       # React components: Header, Hero, Footer, sections, atoms
+    data/
+      constants.ts    # All site data: experience, publications, contact, etc.
+    styles/
+      arariwa.css     # Design tokens (colors, type, spacing)
+      layout.css      # Layout and component styles
+  public/
+    assets/           # SVG brand assets (wordmark, seals, patterns)
+    CV.en.pdf
+    CV.es.pdf
+
+docs/design/          # Arariwa design system reference (not deployed)
+  project/
+    assets/           # Brand SVGs
+    colors_and_type.css
+    preview/          # HTML previews of design tokens and components
+    ui_kits/portfolio/  # Reference UI kit
 ```
 
 ## Commands
 
-All commands from `rosewt-astro/`:
+All commands from `rosewt-arariwa/`:
 
 ```bash
-npm run dev        # Start dev server
-npm run build      # Production build
+npm run dev        # Start dev server (Vite)
+npm run build      # Production build (tsc + vite build)
 npm run preview    # Preview production build
-npm run check      # Astro type-check (runs astro check)
 npm run lint       # ESLint
-npm run format     # Prettier --write
 ```
-
-CI runs `lint → check → build` on every push/PR.
 
 ## Architecture
 
-**Astro + selective hydration**: The site is fully static (`output: 'static'`). Most components are `.astro` (zero JS). Interactive components (`ThemeToggle`, `MobileMenu`) are React with `client:load` or equivalent directives.
+**React + Vite**: SPA built with React and TypeScript. Vite handles bundling and dev server.
 
-**Content layer**: Projects are MDX files in `src/content/projects/`. Their schema is defined in `src/content/config.ts` with Zod. Add a new project by dropping an `.mdx` file there — `ProjectsSection.astro` queries them via `getCollection('projects')`.
+**Site data in one place**: All text content (experience, publications, contact info, tech stack) is exported from `src/data/constants.ts`. Components consume these constants rather than hardcoding strings.
 
-**Site data in one place**: All text content (experience, publications, navigation, contact info, tech stack) is exported from `src/lib/constants.ts`. Sections consume these constants rather than hardcoding strings.
+**Styling**: Custom CSS using the Arariwa design system (`arariwa.css` for tokens, `layout.css` for structure). No Tailwind.
 
-**Styling**: Tailwind CSS v4 (via `@tailwindcss/vite` plugin, not PostCSS). Global base styles in `src/styles/globals.css`, which imports modular CSS files from `src/styles/components/`. Dark/light theme is managed via a `ThemeScript.astro` injected in `<head>` to prevent flash.
+**Design system**: `docs/design/` contains the full Arariwa brand reference — colors, typography, spacing, component previews, and a portfolio UI kit. Use these as the canonical visual reference when building or modifying UI.
 
 **Deployment**: Netlify. Config in `netlify.toml`. Domain: `rosewt.dev`.
 

@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Wordmark</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1><em>Wordmark</em> Arariwa</h1><span class="meta">ARV · BRAND · 03</span></header>
+  <p class="sub">Wordmark serif con "i" ocre itálica — único punto de color. Lockup horizontal para headers, monograma ARV para tamaños pequeños, barra archival monospace como firma superior.</p>
+  
+<style>
+  .wm-demo{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:60px 0;text-align:center}
+  .wm{font-family:var(--font-display);font-weight:400;font-size:88px;line-height:1;color:var(--ink);letter-spacing:-0.02em}
+  .wm em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .wm-mono{font-family:var(--font-mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-top:28px}
+  .wm-alt{padding:32px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:center}
+  .wm-alt .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .lockup{display:flex;align-items:center;gap:20px}
+  .lockup .seal{width:64px;height:64px}
+  .lockup .txt{font-family:var(--font-display);font-size:28px;color:var(--ink);line-height:1.1}
+  .lockup .txt em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .lockup .tag{display:block;font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-faded);margin-top:4px}
+</style>
+<div class="wm-demo">
+  <div class="wm">Arar<em>i</em>wa</div>
+  <div class="wm-mono">Banco de Germoplasma Digital</div>
+</div>
+
+<div class="wm-alt">
+  <div class="lbl">Lockup horizontal</div>
+  <div class="lockup">
+    <div class="seal"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2);width:100%;height:100%"><circle cx="100" cy="100" r="96" stroke-width="0.6"/><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="72" stroke-width="0.5"/><path d="M 100 20 L 180 100 L 100 180 L 20 100 Z" stroke-width="0.4"/><path d="M 100 62 L 112 62 L 112 74 L 124 74 L 124 86 L 138 86 L 138 114 L 124 114 L 124 126 L 112 126 L 112 138 L 88 138 L 88 126 L 76 126 L 76 114 L 62 114 L 62 86 L 76 86 L 76 74 L 88 74 L 88 62 Z" stroke-width="1.1"/><circle cx="100" cy="100" r="6"/><circle cx="100" cy="100" r="2" fill="currentColor"/></svg></div>
+    <div class="txt">Arar<em>i</em>wa<span class="tag">CIP · ARV / 2026</span></div>
+  </div>
+</div>
+
+<div class="wm-alt">
+  <div class="lbl">Monograma</div>
+  <div style="font-family:var(--font-display);font-size:64px;color:var(--accent-2);font-style:italic;font-weight:300">ARV</div>
+</div>
+
+<div class="wm-alt">
+  <div class="lbl">Barra archival</div>
+  <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-dim)">
+    <span style="color:var(--accent)">CIP · ARV — R.V. / 2026</span>
+    <span style="margin:0 16px">·</span>
+    Banco de Germoplasma Digital
+  </div>
+</div>
+</div></body></html>

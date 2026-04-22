@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Specimen Row</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1>Fila de <em>espécimen</em></h1><span class="meta">ARV · COMP · 01</span></header>
+  <p class="sub">La unidad atómica del catálogo. Tres columnas — identificador, cuerpo, metadatos con sello. El sigilo rota 30° en hover y la fila se expande respetando el hairline inferior.</p>
+  
+<style>
+  .sp-demo{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .specimen{display:grid;grid-template-columns:120px 1fr 260px;gap:40px;padding:40px 0;border-bottom:1px solid var(--line);align-items:start;transition:background 0.4s,padding 0.4s;cursor:pointer}
+  .specimen:hover{background:var(--bg-card);padding-left:20px;padding-right:20px}
+  .specimen:last-child{border-bottom:none}
+  .sid{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;color:var(--ink-faded);line-height:1.8}
+  .sid .code{color:var(--accent);display:block;margin-bottom:8px;font-size:11px}
+  .sid .year{color:var(--ink-dim)}
+  .sid .status{display:inline-block;margin-top:12px;padding:3px 8px;background:var(--bg-raised);border:1px solid var(--line);text-transform:uppercase;font-size:9px;letter-spacing:0.2em}
+  .sid .status.active{color:var(--success);border-color:var(--success)}
+  .sid .status.restricted{color:var(--accent);border-color:var(--accent)}
+  .sb h3{font-family:var(--font-display);font-size:32px;font-weight:400;line-height:1.1;margin:0 0 8px;letter-spacing:-0.01em;color:var(--ink)}
+  .sb .subt{font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--ink-dim);margin-bottom:20px}
+  .sb p{font-family:var(--font-body);font-size:16px;color:var(--ink-dim);line-height:1.65;margin:0 0 16px;max-width:58ch}
+  .sb .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .sb .tags span{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;padding:4px 10px;border:1px solid var(--line-bright);color:var(--ink-dim);text-transform:uppercase}
+  .sm{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-faded);position:relative}
+  .sm .sigil{position:absolute;top:-8px;right:0;width:72px;height:72px;opacity:0.4;transition:opacity 0.5s,transform 1.2s ease}
+  .specimen:hover .sm .sigil{opacity:1;transform:rotate(30deg)}
+  .sm dl{margin-top:84px;display:grid;gap:10px;margin-block-end:0}
+  .sm dt{text-transform:uppercase;color:var(--ink-faded);font-size:9px;letter-spacing:0.2em}
+  .sm dd{color:var(--ink);margin:0 0 4px}
+  .sm .metric{color:var(--accent-2);font-size:20px;font-family:var(--font-display);letter-spacing:0}
+</style>
+<div class="sp-demo">
+  <article class="specimen">
+    <div class="sid"><span class="code">SPEC·001</span><span class="year">2025 — 2026</span><span class="status active">Publicado</span></div>
+    <div class="sb">
+      <h3>GENO-MAP</h3>
+      <p class="subt">Diagnóstico libre de correspondencia para mapas de diversidad</p>
+      <p>Marco de validación basado en invariantes de grafos kNN. PCA preserva estabilidad estructural mejor que autoencoders; UMAP cambia la visualización, no el grafo analítico.</p>
+      <div class="tags"><span>PCA</span><span>UMAP</span><span>kNN Graphs</span><span>Sweet Potato</span></div>
+    </div>
+    <div class="sm">
+      <svg class="sigil" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2)"><circle cx="100" cy="100" r="88"/><path d="M100 62L112 62L112 74L124 74L124 86L138 86L138 114L124 114L124 126L112 126L112 138L88 138L88 126L76 126L76 114L62 114L62 86L76 86L76 74L88 74L88 62Z" stroke-width="1.1"/><circle cx="100" cy="100" r="3" fill="currentColor"/></svg>
+      <dl><dt>Venue</dt><dd>SALA 2026 · Poster</dd><dt>Dominio</dt><dd>Diagnóstico · HD</dd><dt>Resultado</dt><dd class="metric">Estable · sin fase</dd></dl>
+    </div>
+  </article>
+  <article class="specimen">
+    <div class="sid"><span class="code">SPEC·002</span><span class="year">2024 — 2025</span><span class="status restricted">Restringido</span></div>
+    <div class="sb">
+      <h3>ArbitrIA</h3>
+      <p class="subt">Sistema de recuperación legal para arbitraje peruano</p>
+      <p>Indexación dual a nivel documento y chunk. Pipelines robustos sobre PDFs heterogéneos con layouts multicolumna, tablas embebidas y encabezados inconsistentes.</p>
+      <div class="tags"><span>LlamaIndex</span><span>FastAPI</span><span>PostgreSQL</span></div>
+    </div>
+    <div class="sm">
+      <svg class="sigil" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2)"><circle cx="100" cy="100" r="88"/><rect x="76" y="76" width="48" height="48"/><rect x="86" y="86" width="28" height="28" stroke-width="0.6"/><circle cx="100" cy="100" r="3" fill="currentColor"/></svg>
+      <dl><dt>Venue</dt><dd>Interno · propietario</dd><dt>Dominio</dt><dd>Legal · Retrieval</dd><dt>Resultado</dt><dd class="metric">Dual index</dd></dl>
+    </div>
+  </article>
+</div>
+</div></body></html>

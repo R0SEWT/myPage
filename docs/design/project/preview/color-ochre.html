@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Variante FMA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h">
+    <h1>Variante <em>FMA</em> — pergamino</h1>
+    <span class="meta">ARV · COLOR · 03</span>
+  </header>
+  <p class="sub">Paleta alternativa que desplaza el sistema hacia alquimia: pergamino, tinta oro y rojo sangre. Activable por toggle para comparar direcciones sin duplicar diseño.</p>
+  
+<style>
+  .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px}
+  .sw{border:1px solid var(--line);background:var(--bg-card);padding:0;display:flex;flex-direction:column}
+  .sw-chip{height:120px;border-bottom:1px solid var(--line)}
+  .sw-body{padding:16px 18px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-dim)}
+  .sw-body b{display:block;font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--ink);letter-spacing:0;text-transform:none;margin-bottom:6px;font-style:italic}
+  .sw-body .hex{color:var(--accent-2);text-transform:uppercase}
+  .sw-body .note{color:var(--ink-faded);margin-top:10px;display:block;text-transform:uppercase;font-size:9px;letter-spacing:0.2em}
+</style>
+<p class="sub" style="margin-top:-20px">Alterna a la variante FMA poniendo <code class="arw-code">data-variant="fma"</code> en <code class="arw-code">&lt;body&gt;</code> o un contenedor.</p>
+<div data-variant="fma" style="background:var(--bg);padding:32px;border:1px solid var(--line-bright);margin-top:24px">
+<div class="sw-grid">
+<div class="sw"><div class="sw-chip" style="background:#1c1712"></div>
+  <div class="sw-body"><b>Pergamino</b>--bg<br><span class="hex">#1c1712</span>
+  <span class="note">Surface 0</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#241e17"></div>
+  <div class="sw-body"><b>Pergamino carta</b>--bg-card<br><span class="hex">#241e17</span>
+  <span class="note">Surface 1</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#e5d5a8"></div>
+  <div class="sw-body"><b>Tinta hueso</b>--ink · pergamino<br><span class="hex">#e5d5a8</span>
+  <span class="note">Ink primary</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#b09872"></div>
+  <div class="sw-body"><b>Tinta polvo</b>--ink-dim<br><span class="hex">#b09872</span>
+  <span class="note">Ink dim</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#8b1a1a"></div>
+  <div class="sw-body"><b>Rojo sangre</b>--accent · alquimia<br><span class="hex">#8b1a1a</span>
+  <span class="note">Saturated</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#c9a14a"></div>
+  <div class="sw-body"><b>Dorado</b>--accent-2 · tinta oro<br><span class="hex">#c9a14a</span>
+  <span class="note">Emphasis</span></div></div>
+</div>
+</div>
+</div>
+</body></html>

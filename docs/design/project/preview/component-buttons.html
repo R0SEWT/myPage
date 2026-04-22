@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Buttons & Toggles</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1>Controles — <em>sin floridura</em></h1><span class="meta">ARV · COMP · 03</span></header>
+  <p class="sub">Botones rectangulares, mono uppercase, tracking 0.2em. Sin sombras. El toggle de variante es el único control con fondo sólido — marca que estás cambiando algo del sistema, no navegando.</p>
+  
+<style>
+  .row{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:center}
+  .row .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .btn{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--line-bright);background:transparent;color:var(--ink);cursor:pointer;transition:all 0.3s;border-radius:0}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.solid{background:var(--accent);border-color:var(--accent)}
+  .btn.solid:hover{background:var(--bg);color:var(--accent)}
+  .btn.ghost{border-color:transparent;color:var(--ink-dim)}
+  .btn.ghost:hover{color:var(--ink)}
+  .toggle{display:inline-flex;background:var(--bg-card);border:1px solid var(--line-bright);border-radius:2px;padding:4px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase}
+  .toggle button{background:transparent;border:none;color:var(--ink-dim);padding:8px 14px;cursor:pointer;font-family:inherit;font-size:inherit;letter-spacing:inherit}
+  .toggle button.active{background:var(--accent);color:var(--ink)}
+  .link{font-family:var(--font-display);color:var(--accent-2);text-decoration:none;border-bottom:1px dotted var(--accent-2);font-size:18px}
+</style>
+<div>
+  <div class="row"><div class="lbl">Primario</div><div><button class="btn solid">Abrir folio</button> <button class="btn">Secundario</button> <button class="btn ghost">Ghost</button></div></div>
+  <div class="row"><div class="lbl">Toggle variante</div><div><div class="toggle"><button class="active">70% Andino</button><button>70% FMA</button></div></div></div>
+  <div class="row"><div class="lbl">Enlace editorial</div><div><a class="link" href="#">Centro Internacional de la Papa</a></div></div>
+  <div class="row"><div class="lbl">Estados</div><div><button class="btn" disabled style="opacity:0.4">Disabled</button> <button class="btn" style="border-color:var(--accent);color:var(--accent)">Hover</button></div></div>
+</div>
+</div></body></html>

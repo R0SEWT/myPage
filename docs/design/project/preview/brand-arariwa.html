@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Secondary Motif</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1><em>Chakana sembrada</em></h1><span class="meta">ARV · BRAND · 04</span></header>
+  <p class="sub">Motivo secundario que reemplaza la figuración humana. Chakana central rodeada por cuatro parcelas de semillas unidas por líneas de intercambio — la identidad se ancla en vocabulario textil, no en retrato.</p>
+  
+<style>
+  .fig-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .fig-demo{aspect-ratio:1;background:var(--bg-card);border:1px solid var(--line-bright);padding:60px;position:relative}
+  .fig-demo::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:3px;background:var(--accent)}
+  .fig-notes dt{font-family:var(--font-mono);font-size:9px;letter-spacing:0.25em;color:var(--ink-faded);text-transform:uppercase;margin-bottom:6px}
+  .fig-notes dd{font-family:var(--font-body);font-size:15px;color:var(--ink-dim);margin:0 0 18px;line-height:1.55;max-width:50ch}
+</style>
+<div class="fig-grid">
+  <div class="fig-demo">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent-2);width:100%;height:100%">
+      <!-- Textile step-fret motif grid (Paracas-inspired) -->
+      <g stroke-width="0.8">
+        <!-- Central chakana spine -->
+        <path d="M100 30L110 30L110 45L125 45L125 60L140 60L140 85L125 85L125 100L140 100L140 115L125 115L125 140L110 140L110 155L100 155L90 155L90 140L75 140L75 115L60 115L60 100L75 100L75 85L60 85L60 60L75 60L75 45L90 45L90 30Z" stroke-width="1.2"/>
+        <!-- Seed dots around -->
+        <circle cx="100" cy="100" r="4" fill="currentColor"/>
+        <circle cx="100" cy="75" r="2" fill="currentColor"/>
+        <circle cx="100" cy="125" r="2" fill="currentColor"/>
+        <circle cx="80" cy="100" r="2" fill="currentColor"/>
+        <circle cx="120" cy="100" r="2" fill="currentColor"/>
+        <!-- Outer field markers (4 cardinal seeds, like planted plots) -->
+        <g stroke-width="0.5">
+          <path d="M20 20L35 20L35 35L20 35Z"/><circle cx="27.5" cy="27.5" r="1.5" fill="currentColor"/>
+          <path d="M165 20L180 20L180 35L165 35Z"/><circle cx="172.5" cy="27.5" r="1.5" fill="currentColor"/>
+          <path d="M20 165L35 165L35 180L20 180Z"/><circle cx="27.5" cy="172.5" r="1.5" fill="currentColor"/>
+          <path d="M165 165L180 165L180 180L165 180Z"/><circle cx="172.5" cy="172.5" r="1.5" fill="currentColor"/>
+        </g>
+        <!-- Connection lines (ayni) -->
+        <line x1="35" y1="27.5" x2="60" y2="60" stroke-width="0.3"/>
+        <line x1="165" y1="27.5" x2="140" y2="60" stroke-width="0.3"/>
+        <line x1="35" y1="172.5" x2="60" y2="140" stroke-width="0.3"/>
+        <line x1="165" y1="172.5" x2="140" y2="140" stroke-width="0.3"/>
+      </g>
+    </svg>
+  </div>
+  <div class="fig-notes">
+    <dl>
+      <dt>Motivo</dt><dd><em style="color:var(--accent-2)">Chakana sembrada</em> — chakana central rodeada por cuatro parcelas de semillas con líneas de intercambio (<span class="arw-quechua">ayni</span>).</dd>
+      <dt>Respeto cultural</dt><dd>Evitamos figuración humana estilizada. La identidad se ancla en lenguaje textil abstracto, no en el retrato del Papa Arariwa histórico — esa línea merece trabajo con una persona quechua-hablante, no un ejercicio gráfico solitario.</dd>
+      <dt>Uso</dt><dd>Patrón secundario para portadas, separadores de sección, fondo sutil al 8% de opacidad. Nunca competir con el sello principal.</dd>
+    </dl>
+  </div>
+</div>
+</div></body></html>

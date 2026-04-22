@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Special Type</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+  .spec-row{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .spec-row .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .spec-row .lbl span{display:block;color:var(--accent);margin-bottom:6px}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h">
+    <h1>Italic, <em>quechua</em>, citas</h1>
+    <span class="meta">ARV · TYPE · 03</span>
+  </header>
+  <p class="sub">Conjunto mínimo de tratamientos especiales: énfasis italic, versalitas Quechua, pullquote, enlace punteado, código inline. Úsense con avaricia — más de dos en una página satura.</p>
+  
+<div class="spec-row">
+  <div class="lbl"><span>Italic énfasis</span>Palabra única ocre</div>
+  <div style="font-family:var(--font-display);font-size:52px;line-height:1;color:var(--ink)">de sistemas <em style="font-style:italic;color:var(--accent-2);font-weight:300">aplicados</em></div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Quechua SC</span>Versalitas 0.12em<br>palabras rituales</div>
+  <div style="font-family:var(--font-display);font-size:28px;color:var(--ink)">La ley del <span style="font-variant:small-caps;letter-spacing:0.12em;color:var(--accent-2)">ayni</span> — intercambio recíproco.<br>El deber del <span style="font-variant:small-caps;letter-spacing:0.12em;color:var(--accent-2)">yachay</span> — conocimiento.</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Pullquote</span>Serif italic<br>sangría izquierda<br>borde cochineal</div>
+  <blockquote style="font-family:var(--font-display);font-style:italic;font-size:22px;line-height:1.5;color:var(--ink);border-left:2px solid var(--accent);padding:4px 0 4px 28px;max-width:56ch">"Los Papa Arariwa fueron los primeros agricultores científicos del continente. Trabajo desde esa línea."</blockquote>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Link inline</span>Dotted underline<br>ocre sobre hueso</div>
+  <div style="font-family:var(--font-body);font-size:17px;color:var(--ink-dim);line-height:1.6;max-width:56ch">Trabajo actualmente en el <a href="#" style="color:var(--accent-2);text-decoration:none;border-bottom:1px dotted var(--accent-2)">Centro Internacional de la Papa</a>, continuando una línea que empezó hace seis mil años.</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Code · mono inline</span>Fondo sutil<br>borde hairline</div>
+  <div style="font-family:var(--font-body);font-size:17px;color:var(--ink-dim);line-height:1.6">Arquitectura con <code style="font-family:var(--font-mono);font-size:0.85em;background:var(--bg-raised);border:1px solid var(--line);padding:2px 8px;color:var(--accent-2)">latent-query attention</code> sobre keypoints.</div>
+</div>
+
+</div>
+</body></html>
