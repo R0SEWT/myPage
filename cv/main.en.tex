@@ -14,6 +14,7 @@
 % Allow \input files to resolve when LaTeX runs from repo root or cv/.
 \def\input@path{{./}{cv/}}
 \makeatother
+\providecommand{\projectssectionfile}{sections/projects.en.tex}
 
 \definecolor{linkblue}{HTML}{1a5276}
 \hypersetup{colorlinks=true,urlcolor=linkblue}
@@ -26,10 +27,9 @@
 
 \begin{document}
 
-% === HEADER ===
 \begin{center}
   \textbf{\LARGE Rody Vilchez}\\[4pt]
-  Applied ML Engineer --- RAG Systems \textperiodcentered{} Document Intelligence \textperiodcentered{} Data Pipelines\\[3pt]
+  Applied ML / AI Systems --- Retrieval \textperiodcentered{} Document Intelligence \textperiodcentered{} Evaluation \& Robustness\\[3pt]
   \small
   \href{mailto:rody.vilchez00@gmail.com}{rody.vilchez00@gmail.com} \enspace\textbar\enspace
   +51\,987\,082\,126 \enspace\textbar\enspace
@@ -40,88 +40,72 @@
 
 \vspace{2pt}
 
-% === SUMMARY ===
 \small
-CS undergraduate building production-oriented ML systems under real-world constraints---API rate limits, noisy multilingual documents, heterogeneous formats, and limited compute. Currently designing RAG pipelines and document intelligence workflows at CIP (CGIAR). Prior work spans legal-domain retrieval, multimodal sign language translation, and vision-based robotics for clinical settings.
+I design applied AI systems for non-ideal conditions: retrieval, document intelligence, and data pipelines over noisy multilingual corpora. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research. My focus is evaluation, robustness, and model behavior under real constraints.
 
 \vspace{2pt}
 
-% === EXPERIENCE ===
 \section*{Experience}
 
 \textbf{AI / Data Intern} \hfill \textbf{International Potato Center (CIP, CGIAR)}\\
-\textit{Lima, Peru} \hfill \textit{Apr 2026 -- Present}
+\textit{Lima, Peru} \hfill \textit{Oct 2025 -- Present}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Designed document processing pipelines (ingestion $\rightarrow$ parsing $\rightarrow$ chunking $\rightarrow$ embedding $\rightarrow$ vector storage) for multilingual agricultural research corpora
-  \item Built RAG systems for domain-specific QA, handling noisy OCR output and inconsistent document structures
-  \item Implemented metadata enrichment workflows with LLM-based extraction, batching, and rate-limit backoff
-  \item Integrated Qdrant vector search with MongoDB for hybrid retrieval balancing recall against latency constraints
+  \item Designed document processing pipelines for an internal GraphRAG workflow over multilingual corpora (Spanish, English, French, Portuguese, Chinese) with noisy OCR, irregular layout and partial classification; ingestion, parsing, chunking, embedding and vector storage
+  \item Implemented LLM-based structured metadata enrichment with schema validation, batching and rate-limit backoff to improve retrieval quality over heterogeneous documents
+  \item Co-built an IT support agent in Copilot Studio deployed in Teams for level-0 resolution over internal technical documentation and escalation to ticketing
+  \item Designed the escalation flow: when the agent cannot solve a case or the user explicitly requests it, it pre-fills the ticket from conversational context via structured output, with human-in-the-loop review through Adaptive Cards before submission
 \end{itemize}
 
 \vspace{2pt}
 
-\textbf{QA Engineer Intern} \hfill \textbf{Visma LATAM}\\
+\textbf{QA Trainee} \hfill \textbf{Visma LATAM}\\
 \textit{Lima, Peru} \hfill \textit{Dec 2024 -- Oct 2025}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Developed automated regression suites (Cypress + Jenkins CI/CD), reducing manual validation cycles
-  \item Built DOM-aware test generators extracting selectors and state from live applications
-  \item Designed fixture-based data validation workflows ensuring consistency across systems prior to deployment
+  \item Built an LLM-based agent that generates automated end-to-end tests from specifications, reducing manual effort in creating and maintaining regression suites
+  \item Developed Cypress regression suites integrated into Jenkins for critical flows that had to remain stable across successive integrations
+  \item Built DOM-aware test generators that extracted selectors and runtime state from live applications, improving maintainability under UI changes
 \end{itemize}
 
-% === PROJECTS (auto-generated from MDX) ===
-\section*{Projects}
+\section*{Projects \& Research}
+\input{\projectssectionfile}
 
-\input{sections/projects.en.tex}
-
-% === RESEARCH ===
-\section*{Research}
-
-\textbf{Imitator --- Multimodal Sign Language Translation} \hfill \textit{Forthcoming in Springer CCIS (2026)}
-\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Designed cross-attention architecture aligning ST-GCN visual keypoints with LLM text embeddings
-  \item Gloss-free translation via embedding imitation; stable alignment (MSE + cosine $\approx$ 8e-4) across validation
-\end{itemize}
-
-% === EDUCATION ===
 \section*{Education}
 
 \textbf{B.Sc.\ Computer Science} \hfill \textbf{Universidad Peruana de Ciencias Aplicadas (UPC)}\\
-9th semester \hfill \textit{Expected graduation: 2026-2}
+\textit{Expected graduation: 2026-2}
 
-% === SKILLS ===
 \section*{Skills}
 
-\begin{tabular}{@{} l l @{} }
-  \textbf{ML \& AI} & PyTorch, scikit-learn, H2O.ai, Optuna, SHAP, LIME \\
-  \textbf{RAG \& Retrieval} & LlamaIndex, embeddings, Qdrant, document processing \\
-  \textbf{Data} & Pandas, feature engineering, ETL design, large-scale processing \\
-  \textbf{Backend} & FastAPI, Flask, REST APIs, MongoDB, PostgreSQL \\
-  \textbf{Infrastructure} & Docker, Git, CI/CD (Jenkins), Linux \\
-  \textbf{Languages} & Spanish (native), English (intermediate) \\
+\begin{tabular}{@{} l l @{}}
+  \textbf{ML / AI Systems} & PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines \\
+  \textbf{Retrieval / Document AI} & embeddings, Qdrant, LlamaIndex, chunking, parsing, document processing \\
+  \textbf{Data / Backend} & Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL \\
+  \textbf{Infrastructure} & Docker, Git, Linux, Jenkins, CI/CD \\
 \end{tabular}
 
 \vspace{4pt}
 
-% === CERTIFICATIONS ===
 \section*{Certifications}
 
-AZ-204T00 (WTC, 2026) \textperiodcentered{}
-GH-900T00 (WTC, 2026) \textperiodcentered{}
+Developing Solutions for Microsoft Azure (AZ-204T00, WTC, 2026) \textperiodcentered{}
+GitHub Foundations (GH-900T00, WTC, 2026) \textperiodcentered{}
 AI Engineer for Data Scientists (DataCamp, 2025) \textperiodcentered{}
-ML Specialization (Google Cloud, 2025)\\
-Python for Everybody (U.\ Michigan, 2025) \textperiodcentered{}
-Data Analytics (Google, 2024) \textperiodcentered{}
-Generative AI Fundamentals (IBM, 2024)\\
-Human-Centered AI (Tec de Monterrey, 2022) \textperiodcentered{}
-Cybersecurity Defense (Google, 2022)
+Machine Learning Specialization (Google Cloud, 2025) \textperiodcentered{}
+Google Data Analytics (Google, 2024) \textperiodcentered{}
+Human-Centered AI (Tec de Monterrey, 2022)
 
 \vspace{2pt}
 
-% === ACTIVITIES ===
 \section*{Activities}
 
-Asociaci\'{o}n KP (Volunteer, 95h total, 2022--2023) \textperiodcentered{}
-DataFest (2nd place, 2025) \textperiodcentered{}
-SALA (participant, 2026)
+DataFest - BCP x ESAN (2nd place, 2025) \textperiodcentered{}
+SALA 2026 - Summit of AI in LatAm (full grant recipient and participant, 2026) \textperiodcentered{}
+Asociaci\'{o}n KP (Volunteer, 95h total, 2022--2023)
+
+\vspace{2pt}
+
+\section*{Languages}
+
+Spanish (native) \textperiodcentered{} English (intermediate)
 
 \end{document}

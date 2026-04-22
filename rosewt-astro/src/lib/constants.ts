@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
   name: 'Rody Vilchez',
   tagline: 'Applied ML Engineer',
   description:
-    'Applied ML Engineer especializado en RAG systems, document intelligence y data pipelines. Diseño de sistemas de ML bajo restricciones reales: API limits, datos ruidosos y formatos heterogéneos.',
+    'Applied ML Engineer especializado en retrieval, document intelligence y evaluación de sistemas bajo restricciones reales: datos ruidosos, corpus multilingües y formatos heterogéneos.',
   url: 'https://rosewt.dev',
   author: 'Rody Sebastián Vilchez Marín',
   email: 'rody.vilchez00@gmail.com',
@@ -16,11 +16,11 @@ export const SITE_CONFIG = {
 
 // === TECNOLOGÍAS PRINCIPALES === //
 export const MAIN_TECHNOLOGIES = [
-  { text: 'RAG Systems', variant: 'primary' as const, animated: true },
+  { text: 'Retrieval', variant: 'primary' as const, animated: true },
   { text: 'Document Intelligence', variant: 'secondary' as const, animated: true },
+  { text: 'Evaluation', animated: true },
   { text: 'PyTorch', animated: true },
   { text: 'FastAPI', animated: true },
-  { text: 'LlamaIndex', animated: true },
   { text: 'Vector Search', animated: true },
 ] as const;
 
@@ -29,21 +29,22 @@ export const EXPERIENCE = [
   {
     title: 'AI / Data Intern',
     company: 'International Potato Center (CIP, CGIAR)',
-    period: '2026–Presente',
+    period: 'Oct 2025–Presente',
     responsibilities: [
-      'Pipelines de procesamiento de documentos: ingesta → parsing → chunking → embedding → vector storage para corpora multilingües.',
-      'Sistemas RAG para QA sobre documentos de investigación agrícola con manejo de OCR ruidoso y estructuras inconsistentes.',
-      'Integración Qdrant + MongoDB para retrieval híbrido balanceando recall vs. latencia.',
+      'Pipelines documentales para un GraphRAG interno sobre corpus multilingües con OCR ruidoso, layout irregular e ingesta, parsing, chunking, embedding y vector storage.',
+      'Enriquecimiento de metadata con structured output basado en LLM, validación de esquema, batching y backoff frente a rate limits.',
+      'Co-diseño de un agente de soporte TI en Copilot Studio desplegado en Teams para resolución nivel 0 sobre documentación técnica interna.',
+      'Flujo de escalamiento a ticketing con prellenado estructurado desde el contexto conversacional y revisión human-in-the-loop vía Adaptive Cards.',
     ],
   },
   {
-    title: 'QA Engineer Intern',
+    title: 'QA Trainee',
     company: 'Visma LATAM',
-    period: '2024–2025',
+    period: 'Dic 2024–Oct 2025',
     responsibilities: [
-      'Suites de regresión automatizadas con Cypress + Jenkins CI/CD.',
-      'Generadores de tests DOM-aware extrayendo selectores y estado de aplicaciones en vivo.',
-      'Workflows de validación de datos con fixtures para consistencia pre-deployment.',
+      'Agente basado en LLM que genera tests end-to-end a partir de especificaciones, reduciendo esfuerzo manual en creación y mantenimiento.',
+      'Suites de regresión automatizadas con Cypress integradas en Jenkins para flujos críticos en integraciones sucesivas.',
+      'Generadores de pruebas DOM-aware para extraer selectores y estado desde aplicaciones en ejecución.',
     ],
   },
 ] as const;
@@ -52,8 +53,8 @@ export const EXPERIENCE = [
 export const PUBLICATIONS = [
   {
     title: 'Imitator — Multimodal Sign Language Translation',
-    description: 'Forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación',
-    link: undefined,
+    description: 'Presentado en WAILAMP 2025 y SIMBIG 2025; forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación',
+    link: 'https://github.com/nakato156/Multimodal-Sign-Language-Model',
   },
 ] as const;
 

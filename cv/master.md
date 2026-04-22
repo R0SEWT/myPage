@@ -14,81 +14,72 @@ Links:
 
 # Headline
 
-Applied ML Engineer — RAG Systems · Document Intelligence · Data Pipelines
+Applied ML Engineer — Retrieval · Document Intelligence · Evaluation & Robustness
 
 ---
 
 # Summary
 
-Computer Science undergraduate building production-oriented ML systems under real-world constraints — API rate limits, noisy multilingual documents, heterogeneous data formats, and limited compute budgets. Currently designing RAG pipelines, document intelligence workflows, and data processing systems at the International Potato Center (CIP, CGIAR). Prior work spans legal-domain retrieval, multimodal sign language translation, and vision-based robotics for clinical settings, with consistent emphasis on system architecture, engineering tradeoffs, and deployment viability.
+I design applied AI systems for non-ideal conditions: retrieval, document intelligence, and data pipelines over noisy multilingual corpora. I am currently at the International Potato Center (CIP, CGIAR), building document processing and question answering workflows for agricultural research. My work focuses on evaluation, robustness, and model behavior under real constraints.
 
 ---
 
 # Experience
 
 ## AI / Data Intern — International Potato Center (CIP, CGIAR)
-Lima, Peru | Apr 2026 – Present
+Lima, Peru | Oct 2025 – Present
 
-- Designed end-to-end document processing pipelines (ingestion → parsing → chunking → embedding → vector storage) for agricultural research corpora spanning multiple languages and formats
-- Built retrieval-augmented generation systems for domain-specific question answering, handling noisy OCR output and inconsistent document structures
-- Implemented metadata enrichment workflows using LLMs with batching and failure recovery to handle API rate limits and partial data availability
-- Integrated Qdrant vector search with MongoDB for hybrid retrieval, balancing recall against latency constraints
-- Engineered structured evaluation pipelines for retrieval quality under real-world data conditions
+- Designed document processing pipelines for an internal GraphRAG workflow over multilingual corpora (Spanish, English, French, Portuguese, Chinese) with noisy OCR, irregular layout, and partial classification, covering ingestion, parsing, chunking, embedding, and vector storage
+- Implemented LLM-based structured metadata enrichment with schema validation, batching, and rate-limit backoff to improve retrieval quality over heterogeneous documents
+- Co-built an IT support agent in Copilot Studio deployed in Teams, covering level-0 resolution over internal technical documentation and escalation to ticketing
+- Designed the escalation flow: when the agent cannot solve a case or the user explicitly requests it, it pre-fills the ticket from conversational context via structured output, with human-in-the-loop review through Adaptive Cards before submission
 
----
-
-## QA Engineer Intern — Visma LATAM
+## QA Trainee — Visma LATAM
 Lima, Peru | Dec 2024 – Oct 2025
 
-- Developed automated regression suites with Cypress integrated into Jenkins CI/CD, reducing manual validation cycles
-- Designed data validation workflows using fixture-based test data to ensure consistency across systems prior to deployment
-- Built DOM-aware test generators that extracted selectors and state from live applications to accelerate test authoring
-- Collaborated with engineering to debug system-level issues using structured, reproducible test scenarios
+- Built an LLM-based agent that generates automated end-to-end tests from specifications, reducing manual effort in creating and maintaining regression suites
+- Developed Cypress regression suites integrated into Jenkins for critical flows that had to remain stable across successive integrations
+- Built DOM-aware test generators that extracted selectors and runtime state from live applications, improving test maintainability under UI changes
 
 ---
 
 # Selected Systems
 
-## ArbitrIA — Legal RAG System
-LlamaIndex · FastAPI · OpenAI · PostgreSQL · Docker
+## GENO-MAP — Correspondence-Free Diagnostics for High-Dimensional Data
+PCA · UMAP · kNN Graphs  
+GitHub: https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps
 
-- Built a domain-specific RAG system for querying Peruvian arbitration documents, supporting contextual question answering over complex legal texts
-- Designed semantic retrieval pipelines with document-level and chunk-level indexing strategies to balance recall and answer relevance
-- Implemented an ingestion service handling PDFs with variable structure: multi-column layouts, embedded tables, and inconsistent section headers
-- Developed a conversational interface that maintained query context across turns, resolving ambiguous references against the document corpus
+- Designed a correspondence-free validation framework based on kNN graph invariants to evaluate neighborhood structure in high-dimensional representations
+- Showed that neighborhood structure remains robust under severe perturbations, with continuous degradation and no phase transitions
+- Showed that PCA preserves structural stability better than autoencoders, and that UMAP changes the visualization rather than the analytical graph
+- Presented as a poster at SALA 2026, validating the approach on real-world data without explicit correspondence
 
----
+## ArbitrIA — Legal Retrieval System [Restricted]
+LlamaIndex · FastAPI · PostgreSQL · Docker
 
-## NAO Emotion Detection — Vision & Robotics System
-PyTorch · Flask · OpenCV · MediaPipe · Optuna
+- Designed a retrieval system for Peruvian arbitration documents, combining document-level and chunk-level indexing to improve precision on complex queries
+- Implemented robust pipelines for heterogeneous PDFs, including multi-column layouts, embedded tables, and inconsistent headers
+- Evaluated chunking strategies and showed that finer segmentation improves local precision while hurting global retrieval, motivating dual indexing
 
-- Designed an emotion recognition system for the NAO robot targeting psychoeducational intervention for children with ASD (Autism Spectrum Disorder)
-- Compared three CNN architectures (MobileNetV2, VGG19, custom) under hardware constraints — selected MobileNetV2 for its accuracy/latency tradeoff (89% accuracy, 15ms inference)
-- Built an end-to-end inference pipeline: NAO camera capture → base64 HTTP transmission → Flask API → model inference → adaptive robot response, with <120ms total latency
-- Optimized hyperparameters across 150+ Optuna trials with multi-objective search (accuracy vs. inference time) and median pruning
-- Validated in controlled FabLab sessions with 15 participants, achieving 91% correct detection rate under real lighting conditions
+## Gallstone Risk — ML for Resource-Constrained Screening
+XGBoost · SHAP · Optuna  
+Demo: https://gallstone.rosewt.dev/  
+GitHub: https://github.com/R0SEWT/gallstone-risk-rural-peru-ml
 
----
-
-## Danish Housing — Large-Scale Data Pipeline & Predictive Modeling
-H2O AutoML · XGBoost · Optuna · SHAP · LIME
-
-- Engineered a data processing pipeline for 1.5M residential transaction records (1992–2024) with heterogeneous feature types, missing values, and temporal drift
-- Designed feature engineering strategies addressing geographic encoding, temporal seasonality, and property-type interactions
-- Benchmarked XGBoost with Optuna tuning against H2O AutoML, analyzing performance-interpretability tradeoffs across model families
-- Implemented interpretability analysis using SHAP and LIME to validate model decisions against known market dynamics and detect data leakage
+- Reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in the field
+- Evaluated the trade-off between predictive performance and operational viability, showing controlled degradation as the feature space is reduced
+- Designed a human-in-the-loop inspection interface for individual predictions and feature sensitivity analysis with SHAP
 
 ---
 
 # Research
 
 ## Imitator — Multimodal Sign Language Translation
-Forthcoming in Springer CCIS (2026) — accepted, pending publication
+Presented at WAILAMP 2025 and SIMBIG 2025; forthcoming in Springer CCIS (2026) — accepted, pending publication
 
-- Designed a multimodal architecture aligning ST-GCN visual keypoint sequences with LLM-derived text embeddings via cross-attention
-- Mapped variable-length video inputs into structured embedding spaces without requiring intermediate gloss annotations
-- Achieved stable embedding alignment (MSE + cosine similarity ≈ 8e-4) across validation, demonstrating viability of gloss-free translation
-- Proposed a lightweight alternative to conventional sign language translation pipelines, reducing annotation dependency
+- Reformulated sign language translation as alignment in an LLM latent space, avoiding gloss as an intermediate representation
+- Designed an architecture with latent queries and cross-attention that projects keypoint sequences into token-aligned embeddings, decoupling temporal input length from output length
+- Showed that embedding imitation enables robust learning in low-resource settings, with stable alignment (MSE + cosine similarity ≈ 8×10^-4) without retraining the LLM
 
 ---
 
@@ -96,27 +87,23 @@ Forthcoming in Springer CCIS (2026) — accepted, pending publication
 
 ## B.Sc. Computer Science
 Universidad Peruana de Ciencias Aplicadas (UPC)  
-9th semester  
 Expected graduation: 2026-2
 
 ---
 
 # Skills
 
-## ML & AI
-PyTorch, scikit-learn, H2O.ai, Optuna, SHAP, LIME
+## ML / AI Systems
+PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines
 
-## RAG & Retrieval
-LlamaIndex, embeddings, vector search (Qdrant), document processing
+## Retrieval / Document AI
+Embeddings, Qdrant, LlamaIndex, chunking, parsing, document processing
 
-## Data & Pipelines
-Pandas, feature engineering, ETL design, large-scale data processing
-
-## Backend & Systems
-FastAPI, Flask, REST APIs, MongoDB, PostgreSQL
+## Data / Backend
+Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL
 
 ## Infrastructure
-Docker, Git, CI/CD (Jenkins), Linux
+Docker, Git, Linux, Jenkins, CI/CD
 
 ## Languages
 Spanish (native), English (intermediate)
@@ -125,29 +112,17 @@ Spanish (native), English (intermediate)
 
 # Certifications
 
-- AZ-204T00 training certificate — WTC (2026)
-- GH-900T00 training certificate — WTC (2026)
-- AI Engineer for Data Scientists Associate — DataCamp (2025)
-- Machine Learning Specialization — Google Cloud Skills Boost (2025)
-- Python for Everybody — University of Michigan (2025)
-- Professional Data Analytics Certificate — Google (2024)
-- Generative AI Fundamentals — IBM (2024)
-- Cybersecurity: Defense against the Digital Dark Arts — Google (2022)
+- Developing Solutions for Microsoft Azure (AZ-204T00) — WTC (2026)
+- GitHub Foundations (GH-900T00) — WTC (2026)
+- AI Engineer for Data Scientists — DataCamp (2025)
+- Machine Learning Specialization — Google Cloud (2025)
+- Google Data Analytics — Google (2024)
 - Human-Centered AI — Tecnológico de Monterrey (2022)
-
----
-
-# Technical Interests
-
-- Retrieval-augmented generation and document intelligence
-- Representation learning and embedding alignment
-- Data-centric AI and pipeline engineering
-- Production ML systems under real-world constraints
 
 ---
 
 # Activities
 
-- Asociación KP — Volunteering (95 hours total across 2022–2023)
-- DataFest (Universidad ESAN + BCP) — 2nd place (2025)
-- Summit of AI in Latam (SALA) — participant (2026)
+- DataFest — BCP x ESAN, 2nd place (2025)
+- SALA 2026 — Summit of AI in LatAm, full grant recipient and participant (2026)
+- Asociación KP — Volunteering, 95 hours total (2022–2023)

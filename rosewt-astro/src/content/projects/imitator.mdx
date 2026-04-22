@@ -1,22 +1,33 @@
 ---
 title: 'Imitator — Multimodal Sign Language Translation'
-description: 'Arquitectura multimodal para traducción de lenguaje de señas sin gloss. Alineación de secuencias de keypoints visuales (ST-GCN) con embeddings de texto derivados de LLM via cross-attention. Forthcoming in Springer CCIS (2026).'
+description: 'Arquitectura multimodal para traducción de lenguaje de señas sin gloss. Alinea secuencias de keypoints visuales (ST-GCN) con embeddings de texto derivados de LLM mediante cross-attention. Presentado en WAILAMP 2025 y SIMBIG 2025; forthcoming in Springer CCIS (2026).'
 tags: ['PyTorch', 'Computer Vision', 'Transformer', 'NLP']
 url: 'https://github.com/nakato156/Multimodal-Sign-Language-Model'
 date: '2025-04-01'
 published: true
-featured: true
-order: 4
+featured: false
+order: 1
 heroLabel: 'Research'
-heroDescription: 'ST-GCN + Transformer · Springer CCIS'
-cvStack: 'PyTorch, ST-GCN, Transformer'
+heroDescription: 'ST-GCN + Transformer · WAILAMP 2025 · SIMBIG 2025'
+includeInCv: true
+showInProjectsGrid: false
+cvStack: 'Publication: Springer CCIS 2026 · SIMBIG 2025 · WAILAMP 2025'
+cvTitleEs: 'Imitator — Traducción Multimodal de Lenguaje de Señas'
+cvBullets:
+  - 'Reformulated sign language translation as alignment in an LLM latent space, avoiding gloss as an intermediate representation'
+  - 'Designed an architecture with latent queries and cross-attention that projects keypoint sequences into token-aligned embeddings, decoupling temporal input length from output length'
+  - 'Showed that embedding imitation enables robust learning in low-resource settings, with stable alignment (MSE + cosine ≈ 8e-4) without retraining the LLM'
+cvBulletsEs:
+  - 'Reformulé el problema de traducción de señas como alineación en el espacio latente de un LLM, evitando el uso de gloss como representación intermedia'
+  - 'Diseñé una arquitectura con queries latentes y cross-attention que proyecta secuencias de keypoints a embeddings token-aligned, desacoplando longitud temporal de la salida'
+  - 'Demostré que la imitación de embeddings permite aprendizaje robusto en escenarios low-resource, con alineación estable (MSE + cosine ≈ 8e-4) y sin necesidad de retraining del LLM'
 ---
 
 ## Sistema
 
 Modelo multimodal para traducción de lenguaje de señas que elimina la dependencia de anotaciones gloss. Alinea representaciones visuales de keypoints con embeddings textuales mediante cross-attention.
 
-**Publicación:** Forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación.
+**Publicación:** Presentado en WAILAMP 2025 y SIMBIG 2025; forthcoming in Springer CCIS (2026) — aceptado, pendiente de publicación.
 
 ## Arquitectura
 

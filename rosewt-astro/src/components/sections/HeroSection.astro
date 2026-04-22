@@ -4,7 +4,13 @@ import Badge from '../ui/Badge.astro';
 import { SITE_CONFIG, MAIN_TECHNOLOGIES } from '../../lib/constants';
 import { getCollection } from 'astro:content';
 
-const featured = (await getCollection('projects', p => p.data.featured === true))
+const featured = (await getCollection(
+  'projects',
+  p =>
+    p.data.published !== false &&
+    p.data.featured === true &&
+    p.data.showInProjectsGrid !== false
+))
   .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 ---
 
@@ -16,7 +22,7 @@ const featured = (await getCollection('projects', p => p.data.featured === true)
           Diseño sistemas de <span class="data-ai-box text-teal subtle-interference" aria-label="Machine Learning">ML</span> para producción
         </h1>
         <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-300">
-          Applied ML Engineer. Construyo pipelines RAG, sistemas de document intelligence y flujos de datos bajo restricciones reales — API limits, documentos ruidosos, formatos heterogéneos. Actualmente en CIP (CGIAR).
+          Applied ML Engineer. Diseño sistemas de IA aplicada para condiciones no ideales: retrieval, document intelligence y pipelines de datos sobre corpus ruidosos y multilingües. Actualmente en CIP (CGIAR).
         </p>
         <div class="mt-6 flex flex-wrap gap-3" role="group" aria-label="Enlaces principales">
           <a href="#projects" class="effect-button rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 text-sm font-semibold focus-ring hover:opacity-90 transition-opacity" aria-label="Ver sistemas seleccionados">
