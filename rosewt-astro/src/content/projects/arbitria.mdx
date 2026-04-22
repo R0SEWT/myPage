@@ -1,39 +1,40 @@
 ---
-title: 'ArbitrIA — Legal RAG System'
-description: 'Sistema RAG para consulta de documentos de arbitraje peruano. Retrieval semántico con indexación a nivel de documento y chunk, ingesta de PDFs con estructura variable, e interfaz conversacional con contexto entre turnos.'
-tags: ['LlamaIndex', 'FastAPI', 'OpenAI', 'PostgreSQL', 'Docker', 'RAG']
-url: 'https://github.com/ArbitrIA'
+title: 'ArbitrIA — Legal Retrieval System [Restricted]'
+description: 'Sistema de retrieval legal para documentos de arbitraje peruano. Proyecto restringido; combina indexación a nivel documento y chunk, manejo robusto de PDFs heterogéneos y evaluación de trade-offs entre precisión local y recuperación global.'
+tags: ['LlamaIndex', 'FastAPI', 'PostgreSQL', 'Docker', 'Retrieval']
 date: '2025-05-01'
 published: true
 featured: true
-order: 2
-heroLabel: 'Legal RAG'
-heroDescription: 'LlamaIndex · retrieval semántico'
+order: 3
+heroLabel: 'Legal Retrieval'
+heroDescription: 'Dual indexing · legal retrieval'
+includeInCv: true
+showInProjectsGrid: true
 cvStack: 'LlamaIndex, FastAPI, PostgreSQL, Docker'
-cvTitleEs: 'ArbitrIA — Sistema RAG Legal'
+cvTitleEs: 'ArbitrIA — Legal Retrieval System [Restringido]'
 cvBullets:
-  - 'Domain-specific RAG for Peruvian arbitration documents with document-level and chunk-level indexing'
-  - 'Ingestion service handling variable PDF structures: multi-column layouts, embedded tables, inconsistent headers'
-  - 'Conversational interface maintaining query context across turns, resolving ambiguous references'
+  - 'Designed a retrieval system for Peruvian arbitration documents, combining document-level and chunk-level indexing to improve precision on complex queries'
+  - 'Implemented robust pipelines for heterogeneous PDFs, including multi-column layouts, embedded tables, and inconsistent headers'
+  - 'Evaluated chunking strategies and showed that finer segmentation improves local precision while hurting global retrieval, motivating dual indexing'
 cvBulletsEs:
-  - 'RAG específico de dominio para documentos de arbitraje peruano con indexación a nivel de documento y chunk'
-  - 'Servicio de ingesta que maneja PDFs con estructura variable: layouts multi-columna, tablas embebidas y encabezados inconsistentes'
-  - 'Interfaz conversacional que mantiene contexto entre turnos y resuelve referencias ambiguas'
+  - 'Diseñé un sistema de retrieval para documentos de arbitraje peruano, combinando indexación a nivel documento y chunk para mejorar precisión en consultas complejas'
+  - 'Implementé pipelines robustos para PDFs heterogéneos (multi-columna, tablas, encabezados inconsistentes)'
+  - 'Evalué estrategias de chunking mostrando que segmentación fina mejora precisión local pero degrada recuperación global, motivando indexación dual'
 ---
 
 ## Sistema
 
-RAG system domain-specific para documentos legales de arbitraje en Perú. Permite question answering contextual sobre textos legales complejos con ambigüedad inherente.
+Sistema de retrieval legal para documentos de arbitraje peruano. El proyecto se mantiene como trabajo restringido, por lo que el sitio resume el enfoque sin enlazar un repositorio público.
 
 ## Arquitectura
 
-**Ingesta** → **indexación** dual (documento + chunk) → **retrieval semántico** → **generación contextual** con LlamaIndex. Backend FastAPI, storage en PostgreSQL, containerizado con Docker.
+**Ingesta** → **indexación dual** (documento + chunk) → **retrieval semántico** → **QA contextual**. Backend FastAPI, storage en PostgreSQL y despliegue con Docker.
 
 ## Decisiones técnicas
 
 - **Indexación dual** (documento y chunk): balance entre recall global y relevancia granular
 - **Ingesta robusta** para PDFs legales con layouts multi-columna, tablas embebidas y headers inconsistentes
-- **Interfaz conversacional** que mantiene contexto entre turnos y resuelve referencias ambiguas contra el corpus
+- **Evaluación de chunking** para entender el trade-off entre precisión contextual y recuperación global
 
 ## Restricciones
 

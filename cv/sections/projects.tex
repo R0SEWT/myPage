@@ -2,26 +2,37 @@
 % Run: node scripts/generate-cv-projects.mjs
 % Lang: en
 
-\textbf{ArbitrIA --- Legal RAG System \enspace\href{\detokenize{https://github.com/ArbitrIA}}{[GitHub]}} \hfill \textit{LlamaIndex, FastAPI, PostgreSQL, Docker}
+\textbf{Imitator --- Multimodal Sign Language Translation \enspace\href{\detokenize{https://github.com/nakato156/Multimodal-Sign-Language-Model}}{[GitHub]}} \hfill \textit{Publication: Springer CCIS 2026 · SIMBIG 2025 · WAILAMP 2025}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Domain-specific RAG for Peruvian arbitration documents with document-level and chunk-level indexing
-  \item Ingestion service handling variable PDF structures: multi-column layouts, embedded tables, inconsistent headers
-  \item Conversational interface maintaining query context across turns, resolving ambiguous references
+  \item Reformulated sign language translation as alignment in an LLM latent space, avoiding gloss as an intermediate representation
+  \item Designed an architecture with latent queries and cross-attention that projects keypoint sequences into token-aligned embeddings, decoupling temporal input length from output length
+  \item Showed that embedding imitation enables robust learning in low-resource settings, with stable alignment (MSE + cosine $\approx$ 8e-4) without retraining the LLM
 \end{itemize}
 
 \vspace{2pt}
 
-\textbf{NAO Emotion Detection --- Vision \& Robotics \enspace\href{\detokenize{https://github.com/R0SEWT/Nao-CNN-Emotion}}{[GitHub]}} \hfill \textit{PyTorch, Flask, OpenCV, Optuna}
+\textbf{GENO-MAP --- Correspondence-Free Diagnostics for High-Dimensional Data \enspace\href{\detokenize{https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps}}{[GitHub]}} \hfill \textit{PCA, UMAP, kNN Graphs}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Emotion recognition for NAO robot in ASD clinical intervention; compared MobileNetV2/VGG19/custom CNN
-  \item End-to-end pipeline: camera capture, HTTP, Flask API, inference, adaptive response (<120ms)
-  \item 150+ Optuna trials with multi-objective search (accuracy vs. latency); 91\% detection in FabLab validation
+  \item Designed a correspondence-free validation framework based on kNN graph invariants to evaluate neighborhood structure in high-dimensional representations
+  \item Showed that neighborhood structure remains robust under severe perturbations, with continuous degradation and no phase transitions
+  \item Showed that PCA preserves structural stability better than autoencoders, and that UMAP changes the visualization rather than the analytical graph
+  \item Presented as a poster at SALA 2026, validating the approach on real-world data without explicit correspondence
 \end{itemize}
 
 \vspace{2pt}
 
-\textbf{Danish Housing --- Data Pipeline \& Predictive Modeling \enspace\href{\detokenize{https://github.com/R0SEWT/Denmark-HousePrices-Analysis}}{[GitHub]}} \hfill \textit{H2O, XGBoost, SHAP, LIME}
+\textbf{ArbitrIA --- Legal Retrieval System [Restricted]} \hfill \textit{LlamaIndex, FastAPI, PostgreSQL, Docker}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Processing pipeline for 1.5M residential transactions (1992--2024) with missing values and temporal drift
-  \item Benchmarked XGBoost + Optuna vs. H2O AutoML; SHAP/LIME interpretability to validate against market dynamics
+  \item Designed a retrieval system for Peruvian arbitration documents, combining document-level and chunk-level indexing to improve precision on complex queries
+  \item Implemented robust pipelines for heterogeneous PDFs, including multi-column layouts, embedded tables, and inconsistent headers
+  \item Evaluated chunking strategies and showed that finer segmentation improves local precision while hurting global retrieval, motivating dual indexing
+\end{itemize}
+
+\vspace{2pt}
+
+\textbf{Gallstone Risk --- ML for Resource-Constrained Screening\enspace\href{\detokenize{https://gallstone.rosewt.dev/}}{[Demo]}\enspace\href{\detokenize{https://github.com/R0SEWT/gallstone-risk-rural-peru-ml}}{[GitHub]}} \hfill \textit{XGBoost, SHAP, Optuna}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+  \item Reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in the field
+  \item Evaluated the trade-off between predictive performance and operational viability, showing controlled degradation as the feature space is reduced
+  \item Designed a human-in-the-loop inspection interface for individual predictions and feature sensitivity analysis with SHAP
 \end{itemize}

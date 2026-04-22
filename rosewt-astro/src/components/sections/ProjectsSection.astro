@@ -13,9 +13,15 @@ const { projects: propsProjects } = Astro.props;
 let projects = propsProjects;
 
 if (!projects) {
-  projects = await getCollection('projects', p => p.data.published !== false);
-  // Ordenar por fecha (más recientes primero)
-  projects.sort((a, b) => new Date(b.data.date || '2024-01-01').getTime() - new Date(a.data.date || '2024-01-01').getTime());
+  projects = await getCollection(
+    'projects',
+    p => p.data.published !== false && p.data.showInProjectsGrid !== false
+  );
+  projects.sort((a, b) => {
+    const orderDiff = (a.data.order ?? 999) - (b.data.order ?? 999);
+    if (orderDiff !== 0) return orderDiff;
+    return new Date(b.data.date || '2024-01-01').getTime() - new Date(a.data.date || '2024-01-01').getTime();
+  });
 }
 ---
 

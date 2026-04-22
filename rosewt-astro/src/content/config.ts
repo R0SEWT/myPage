@@ -7,6 +7,14 @@ const projects = defineCollection({
     description: z.string(),
     tags: z.array(z.string()).default([]),
     url: z.string().url().optional(),
+    cvLinks: z
+      .array(
+        z.object({
+          label: z.string(),
+          url: z.string().url(),
+        })
+      )
+      .optional(),
     published: z.boolean().default(true),
     date: z.string().optional(),
     // Hero section fields
@@ -14,6 +22,8 @@ const projects = defineCollection({
     order: z.number().optional(),
     heroLabel: z.string().optional(),
     heroDescription: z.string().optional(),
+    includeInCv: z.boolean().default(true),
+    showInProjectsGrid: z.boolean().default(true),
     // CV generation fields
     cvBullets: z.array(z.string()).optional(),
     cvBulletsEs: z.array(z.string()).optional(),

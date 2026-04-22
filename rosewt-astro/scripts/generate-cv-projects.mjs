@@ -41,16 +41,29 @@ function escapeLatex(str) {
     .replace(/→/g, '$\\rightarrow$');
 }
 
-function renderProjectTitle({ title, url }) {
+function renderProjectLinks({ url, cvLinks }) {
+  if (Array.isArray(cvLinks) && cvLinks.length > 0) {
+    return cvLinks
+      .map(
+        ({ label, url: linkUrl }) =>
+          `\\enspace\\href{\\detokenize{${linkUrl}}}{[${escapeLatex(label)}]}`
+      )
+      .join('');
+  }
+
+  if (!url) return '';
+
+  const label = url.includes('github.com') ? 'GitHub' : 'Link';
+  return ` \\enspace\\href{\\detokenize{${url}}}{[${label}]}`;
+}
+
+function renderProjectTitle({ title, url, cvLinks }) {
   const titleParts = title.split(' — ');
   const name = escapeLatex(titleParts[0]);
   const subtitle = titleParts[1] ? escapeLatex(titleParts[1]) : '';
+  const links = renderProjectLinks({ url, cvLinks });
 
-  const label = url ? (url.includes('github.com') ? 'GitHub' : 'Link') : '';
-  const link = url ? `\\href{\\detokenize{${url}}}{[${label}]}` : '';
-  const linkSpacer = url ? '\\enspace' : '';
-
-  return `${name}${subtitle ? ` --- ${subtitle}` : ''}${url ? ` ${linkSpacer}${link}` : ''}`;
+  return `${name}${subtitle ? ` --- ${subtitle}` : ''}${links}`;
 }
 
 function renderProjectsTex({ projects, lang }) {
@@ -58,7 +71,7 @@ function renderProjectsTex({ projects, lang }) {
     const title = lang === 'es' ? p.titleEs : p.title;
     const bulletsSrc = lang === 'es' ? (p.cvBulletsEs ?? p.cvBullets) : p.cvBullets;
 
-    const header = renderProjectTitle({ title, url: p.url });
+    const header = renderProjectTitle({ title, url: p.url, cvLinks: p.cvLinks });
     const stack = escapeLatex(p.cvStack);
     const bullets = bulletsSrc.map(b => `  \\item ${escapeLatex(b)}`).join('\n');
 
@@ -88,7 +101,7 @@ function main() {
     const content = readFileSync(join(PROJECTS_DIR, file), 'utf8');
     const data = parseFrontmatter(content, file);
 
-    if (data.published === false) continue;
+    if (data.includeInCv === false) continue;
     if (!data.cvBullets || !Array.isArray(data.cvBullets)) continue;
 
     projects.push({
@@ -98,16 +111,12 @@ function main() {
       cvBullets: data.cvBullets,
       cvBulletsEs: Array.isArray(data.cvBulletsEs) ? data.cvBulletsEs : null,
       url: typeof data.url === 'string' ? data.url : null,
+      cvLinks: Array.isArray(data.cvLinks) ? data.cvLinks : null,
       order: data.order ?? 999,
-      featured: data.featured ?? false,
     });
   }
 
-  // Sort: featured first, then by order
-  projects.sort((a, b) => {
-    if (a.featured !== b.featured) return b.featured ? 1 : -1;
-    return a.order - b.order;
-  });
+  projects.sort((a, b) => a.order - b.order);
 
   mkdirSync(OUTPUT_DIR, { recursive: true });
   const enOut = renderProjectsTex({ projects, lang: 'en' });

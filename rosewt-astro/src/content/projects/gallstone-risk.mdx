@@ -1,0 +1,45 @@
+---
+title: 'Gallstone Risk — ML for Resource-Constrained Screening'
+description: 'Sistema de predicción de colelitiasis para escenarios con restricciones de observabilidad. Replantea el problema para tamizaje rural, evalúa trade-offs entre desempeño y viabilidad operativa, y ofrece inspección human-in-the-loop con SHAP.'
+tags: ['XGBoost', 'SHAP', 'Optuna', 'Healthcare ML']
+url: 'https://gallstone.rosewt.dev/'
+cvLinks:
+  - label: 'Demo'
+    url: 'https://gallstone.rosewt.dev/'
+  - label: 'GitHub'
+    url: 'https://github.com/R0SEWT/gallstone-risk-rural-peru-ml'
+date: '2025-08-01'
+published: true
+featured: true
+order: 4
+heroLabel: 'Decision Systems'
+heroDescription: 'XGBoost · SHAP · resource constraints'
+includeInCv: true
+showInProjectsGrid: true
+cvStack: 'XGBoost, SHAP, Optuna'
+cvTitleEs: 'Gallstone Risk — ML for Resource-Constrained Screening'
+cvBullets:
+  - 'Reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in the field'
+  - 'Evaluated the trade-off between predictive performance and operational viability, showing controlled degradation as the feature space is reduced'
+  - 'Designed a human-in-the-loop inspection interface for individual predictions and feature sensitivity analysis with SHAP'
+cvBulletsEs:
+  - 'Reformulé el problema de predicción de colelitiasis como un sistema de decisión bajo restricciones de observabilidad, eliminando dependencia de variables clínicas no disponibles en campo'
+  - 'Evalué el trade-off entre desempeño predictivo y viabilidad operativa, mostrando degradación controlada al reducir el espacio de features'
+  - 'Diseñé una interfaz de inspección human-in-the-loop para analizar predicciones individuales y sensibilidad de variables mediante SHAP'
+---
+
+## Sistema
+
+Sistema de predicción de riesgo de colelitiasis orientado a screening en contextos con restricciones de infraestructura. Replantea el problema para operar sin depender de variables clínicas que no siempre están disponibles fuera de entornos hospitalarios.
+
+## Enfoque
+
+**Selección de variables viables en campo** → **entrenamiento y tuning** → **comparación entre escenarios observables** → **inspección individual con SHAP**.
+
+## Resultado
+
+- Degradación controlada al reducir el espacio de variables disponibles
+- Evaluación explícita entre performance y viabilidad operativa
+- Interfaz para revisar predicciones y sensibilidad de features caso por caso
+
+**Stack:** XGBoost, SHAP, Optuna, Python

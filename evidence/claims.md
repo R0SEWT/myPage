@@ -26,15 +26,16 @@ Support references use one of these prefixes:
 ### exp-cip-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: AI / Data Intern at International Potato Center (CIP, CGIAR), Lima, Peru, Apr 2026 to present.
+- `claim`: AI / Data Intern at International Potato Center (CIP, CGIAR), Lima, Peru, Oct 2025 to present.
 - `supports`:
+  - `vault_doc`: `cip_employment_2025_10`
   - `vault_doc`: `cip_employment_2026_04`
   - `public_url`: `https://www.linkedin.com/in/r0sewt/`
 
 ### exp-visma-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: QA Engineer Intern at Visma LATAM, Lima, Peru, Dec 2024 to Oct 2025.
+- `claim`: QA Trainee at Visma LATAM, Lima, Peru, Dec 2024 to Oct 2025.
 - `supports`:
   - `vault_doc`: `visma_employment_2024_12`
   - `vault_doc`: `visma_employment_2025_04`
@@ -46,17 +47,33 @@ Support references use one of these prefixes:
 ### sys-ask-papa-001
 - `surface`: `both`
 - `publicable`: `no`
-- `claim`: Internal collaboration on a document intelligence and RAG workflow within current work at CIP; keep as internal context, not as a public claim to verify externally.
+- `claim`: Internal work on document intelligence, GraphRAG, and metadata enrichment within current work at CIP; keep as internal context, not as a public claim to verify externally.
 - `supports`:
   - `public_url`: `https://rosewt.dev/`
 
 ### sys-arbitria-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: Built a legal-domain RAG system for Peruvian arbitration documents with dual indexing and contextual QA.
+- `claim`: Built a legal retrieval system for Peruvian arbitration documents with dual indexing and contextual QA.
 - `supports`:
   - `repo`: `https://github.com/ArbitrIA`
   - `public_url`: `https://rosewt.dev/`
+
+### sys-geno-map-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Built a correspondence-free validation framework (GENO-MAP) for high-dimensional data analysis using kNN graph invariants; presented as a poster at SALA 2026.
+- `supports`:
+  - `repo`: `https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps`
+  - `vault_doc`: `sala_2026_participation`
+
+### sys-gallstone-001
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Built a gallstone risk prediction system (Gallstone Risk) for resource-constrained screening, with a human-in-the-loop SHAP inspection interface.
+- `supports`:
+  - `repo`: `https://github.com/R0SEWT/gallstone-risk-rural-peru-ml`
+  - `public_url`: `https://gallstone.rosewt.dev/`
 
 ### sys-nao-001
 - `surface`: `both`
@@ -79,9 +96,10 @@ Support references use one of these prefixes:
 ### res-imitator-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: Co-authored the multimodal sign language translation system "Imitator", accepted for Springer CCIS 2026 and pending publication.
+- `claim`: Co-authored the multimodal sign language translation system "Imitator", presented at WAILAMP 2025 and SIMBIG 2025, accepted for Springer CCIS 2026 and pending publication.
 - `supports`:
   - `repo`: `https://github.com/nakato156/Multimodal-Sign-Language-Model`
+  - `vault_doc`: `imitator_simbig_authorship_2025_10`
   - `vault_doc`: `imitator_springer_publication_record`
 
 ## Education
@@ -178,6 +196,6 @@ Support references use one of these prefixes:
 ### act-sala-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: Participated in Summit of AI in Latam (SALA), held Mar 9–12, 2026 at Universidad San Francisco de Quito.
+- `claim`: Participated in Summit of AI in Latam (SALA), held Mar 9–12, 2026 at Universidad San Francisco de Quito; received a full grant.
 - `supports`:
   - `vault_doc`: `sala_2026_participation`
