@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Fields</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1>Campos · <em>sin caja</em></h1><span class="meta">ARV · COMP · 04</span></header>
+  <p class="sub">Inputs sin caja — sólo hairline inferior que se activa en cochinilla al foco. Label mono sobre el campo. Búsqueda archival con ícono textual "BUSCAR →" en lugar de glifo.</p>
+  
+<style>
+  .row{padding:20px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:center}
+  .row .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .field{display:flex;flex-direction:column;gap:6px;max-width:420px}
+  .field label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-faded)}
+  .field input,.field textarea{font-family:var(--font-body);font-size:17px;background:transparent;border:none;border-bottom:1px solid var(--line-bright);color:var(--ink);padding:10px 0;outline:none;transition:border-color 0.3s}
+  .field input:focus,.field textarea:focus{border-bottom-color:var(--accent)}
+  .field input::placeholder{color:var(--ink-faded);font-style:italic}
+  .field textarea{resize:vertical;min-height:80px;font-family:var(--font-body);line-height:1.55}
+  .search{display:flex;align-items:center;gap:12px;border:1px solid var(--line-bright);padding:10px 16px;max-width:420px}
+  .search input{background:transparent;border:none;color:var(--ink);outline:none;font-family:var(--font-body);font-size:17px;flex:1}
+  .search .ico{font-family:var(--font-mono);font-size:10px;color:var(--ink-faded);letter-spacing:0.2em}
+</style>
+<div>
+  <div class="row"><div class="lbl">Text field</div><div class="field"><label>Correspondencia</label><input type="email" placeholder="tu correo"></div></div>
+  <div class="row"><div class="lbl">Textarea</div><div class="field"><label>Nota del folio</label><textarea placeholder="Describe brevemente el espécimen…"></textarea></div></div>
+  <div class="row"><div class="lbl">Search archival</div><div class="search"><span class="ico">BUSCAR →</span><input placeholder="código, dominio, año"></div></div>
+</div>
+</div></body></html>

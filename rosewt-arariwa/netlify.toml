@@ -1,10 +1,7 @@
 [build]
-  base    = "rosewt-arariwa/"
+  base    = "rosewt-arariwa"
   command = "npm run build"
   publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "20"
 
 [[redirects]]
   from   = "/*"

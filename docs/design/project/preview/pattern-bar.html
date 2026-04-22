@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Archive Bar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1>Barra <em>archival</em></h1><span class="meta">ARV · PATT · 04</span></header>
+  <p class="sub">Barra superior sticky y toggle de variante flotante. Los dos controles globales del sistema — uno para navegación, otro para cambio de tesis. Siempre monospace, siempre en voz de catálogo.</p>
+  
+<style>
+  .bar-demo{border:1px solid var(--line-bright);padding:0;background:var(--bg)}
+  .bar{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);border-bottom:1px solid var(--line)}
+  .bar .l{display:flex;gap:24px}
+  .bar .code{color:var(--accent)}
+  .bar nav{display:flex;gap:20px}
+  .bar nav a{color:var(--ink-dim);text-decoration:none}
+  .bar nav a:hover{color:var(--ink)}
+  .bar.scrolled{background:var(--bg-card)}
+  .toggle-demo{position:relative;height:120px;padding:24px;display:flex;align-items:flex-start;justify-content:flex-end;background:var(--bg)}
+  .tg{display:flex;background:var(--bg-card);border:1px solid var(--line-bright);border-radius:2px;padding:4px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase}
+  .tg button{background:transparent;border:none;color:var(--ink-dim);padding:8px 14px;font-family:inherit;font-size:inherit;letter-spacing:inherit;cursor:pointer}
+  .tg button.on{background:var(--accent);color:var(--ink)}
+  .tg-lbl{position:absolute;top:70px;right:24px;font-family:var(--font-mono);font-size:9px;color:var(--ink-faded);letter-spacing:0.2em;text-transform:uppercase;text-align:right;line-height:1.4}
+</style>
+<div class="bar-demo">
+  <header class="bar">
+    <div class="l"><span class="code">CIP · ARV — R.V. / 2026</span><span>Banco de Germoplasma Digital</span></div>
+    <nav><a>Tesis</a><a>Catálogo</a><a>Linaje</a><a>Research</a><a>Contacto</a></nav>
+  </header>
+  <div class="toggle-demo">
+    <div class="tg"><button class="on">70% Andino</button><button>70% FMA</button></div>
+    <div class="tg-lbl">cambia la variante<br>para comparar</div>
+  </div>
+</div>
+<p class="sub" style="margin-top:32px">La barra superior es una cinta monospace con tres zonas: código archival (cochinilla), nombre del proyecto, nav editorial. Sticky al scroll. El toggle flota en la esquina como control de sistema, etiquetado en español con nota subtexto.</p>
+</div></body></html>

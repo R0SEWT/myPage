@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Timeline / Linaje</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h"><h1><em>Linaje</em> — timeline</h1><span class="meta">ARV · PATT · 03</span></header>
+  <p class="sub">Experiencia como linaje editorial: gutter izquierdo con fechas mono, columna derecha con título display + institución italic + cuerpo narrativo. "Presente" se marca en cochinilla para fijar el ahora.</p>
+  
+<style>
+  .tl{border-top:1px solid var(--line-bright)}
+  .ent{display:grid;grid-template-columns:160px 1fr;gap:40px;padding:36px 0;border-bottom:1px solid var(--line)}
+  .p{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faded);padding-top:6px;line-height:1.5}
+  .p .cur{display:block;margin-top:6px;color:var(--accent)}
+  .c h4{font-family:var(--font-display);font-size:26px;font-weight:500;color:var(--ink);margin:0 0 4px}
+  .c h5{font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--ink-dim);font-weight:400;margin:0 0 16px}
+  .c p{font-family:var(--font-body);font-size:15px;color:var(--ink-dim);line-height:1.6;margin:0 0 10px;max-width:62ch}
+</style>
+<div class="tl">
+  <div class="ent">
+    <div class="p">Oct 2025 →<span class="cur">Presente</span></div>
+    <div class="c">
+      <h4>AI / Data Intern</h4>
+      <h5>International Potato Center · CIP, CGIAR</h5>
+      <p>Diseño de pipelines de procesamiento documental para workflow GraphRAG interno sobre corpus multilingües (ES, EN, FR, PT, ZH) con OCR ruidoso, layout irregular y clasificación parcial.</p>
+      <p>Co-construcción de agente de soporte IT en Copilot Studio desplegado en Teams, con escalamiento human-in-the-loop vía Adaptive Cards.</p>
+    </div>
+  </div>
+  <div class="ent">
+    <div class="p">Dic 2024 —<br>Oct 2025</div>
+    <div class="c">
+      <h4>QA Trainee</h4>
+      <h5>Visma LATAM</h5>
+      <p>Agente LLM que genera pruebas E2E automatizadas desde especificaciones. Suites Cypress integradas en Jenkins para flujos críticos. Generadores DOM-aware que extraen selectores y estado runtime.</p>
+    </div>
+  </div>
+</div>
+</div></body></html>

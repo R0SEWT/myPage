@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Paletas culturales</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h">
+    <h1>Capas culturales — <em>Paracas · Nazca · Moche</em></h1>
+    <span class="meta">ARV · COLOR · 04</span>
+  </header>
+  <p class="sub">Tres capas opcionales que añaden vocabulario regional. No reemplazan la variante base; se usan como acentos específicos de folio — un textil Paracas para research cultural, óxidos Nazca para data de campo, rojo Moche para retrato.</p>
+  
+<style>
+  .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px}
+  .sw{border:1px solid var(--line);background:var(--bg-card);padding:0;display:flex;flex-direction:column}
+  .sw-chip{height:120px;border-bottom:1px solid var(--line)}
+  .sw-body{padding:16px 18px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-dim)}
+  .sw-body b{display:block;font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--ink);letter-spacing:0;text-transform:none;margin-bottom:6px;font-style:italic}
+  .sw-body .hex{color:var(--accent-2);text-transform:uppercase}
+  .sw-body .note{color:var(--ink-faded);margin-top:10px;display:block;text-transform:uppercase;font-size:9px;letter-spacing:0.2em}
+</style>
+<p class="sub" style="margin-top:-20px">Paletas opcionales activables con <code class="arw-code">data-culture="paracas|nazca|moche"</code>. Capa regional, no reemplazan la variante base.</p>
+
+<h3 class="arw-display" style="font-size:22px;margin:40px 0 16px;color:var(--ink)">Paracas <em style="font-style:italic;color:var(--accent-2);font-weight:300">· textiles polícromos</em></h3>
+<div class="sw-grid">
+<div class="sw"><div class="sw-chip" style="background:#1e3a5f"></div>
+  <div class="sw-body"><b>Índigo</b>--paracas-indigo<br><span class="hex">#1e3a5f</span>
+  <span class="note">Océano</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#7a1e2a"></div>
+  <div class="sw-body"><b>Granate</b>--paracas-granate<br><span class="hex">#7a1e2a</span>
+  <span class="note">Bordado</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#d97757"></div>
+  <div class="sw-body"><b>Melón</b>--paracas-melon<br><span class="hex">#d97757</span>
+  <span class="note">Polícromo</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#4a7a6a"></div>
+  <div class="sw-body"><b>Jade</b>--paracas-jade<br><span class="hex">#4a7a6a</span>
+  <span class="note">Polícromo</span></div></div>
+</div>
+
+<h3 class="arw-display" style="font-size:22px;margin:40px 0 16px;color:var(--ink)">Nazca <em style="font-style:italic;color:var(--accent-2);font-weight:300">· desierto y líneas</em></h3>
+<div class="sw-grid">
+<div class="sw"><div class="sw-chip" style="background:#a05234"></div>
+  <div class="sw-body"><b>Terracota</b>--nazca-terracotta<br><span class="hex">#a05234</span>
+  <span class="note">Pigmento</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#6b3420"></div>
+  <div class="sw-body"><b>Óxido</b>--nazca-oxido<br><span class="hex">#6b3420</span>
+  <span class="note">Líneas geoglifo</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#c9a878"></div>
+  <div class="sw-body"><b>Pampa</b>--nazca-pampa<br><span class="hex">#c9a878</span>
+  <span class="note">Desierto</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#2a1f18"></div>
+  <div class="sw-body"><b>Obsidiana</b>--nazca-obsidian<br><span class="hex">#2a1f18</span>
+  <span class="note">Sombra</span></div></div>
+</div>
+
+<h3 class="arw-display" style="font-size:22px;margin:40px 0 16px;color:var(--ink)">Moche <em style="font-style:italic;color:var(--accent-2);font-weight:300">· cerámica retrato</em></h3>
+<div class="sw-grid">
+<div class="sw"><div class="sw-chip" style="background:#a83424"></div>
+  <div class="sw-body"><b>Rojo Moche</b>--moche-red<br><span class="hex">#a83424</span>
+  <span class="note">Engobe rojo</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#e8d4a8"></div>
+  <div class="sw-body"><b>Slip crema</b>--moche-slip<br><span class="hex">#e8d4a8</span>
+  <span class="note">Engobe crema</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#2a1a12"></div>
+  <div class="sw-body"><b>Reducción</b>--moche-reduction<br><span class="hex">#2a1a12</span>
+  <span class="note">Negro horno</span></div></div>
+<div class="sw"><div class="sw-chip" style="background:#5a7a6a"></div>
+  <div class="sw-body"><b>Verdigris</b>--moche-verdigris<br><span class="hex">#5a7a6a</span>
+  <span class="note">Oxidación</span></div></div>
+</div>
+</div>
+</body></html>

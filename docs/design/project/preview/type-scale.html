@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Body & Mono</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body.arariwa-base{min-height:100vh;padding:48px;position:relative}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");opacity:var(--texture-opacity);pointer-events:none;z-index:1000;mix-blend-mode:overlay}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:var(--grid-opacity);pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .card-h h1{font-family:var(--font-display);font-weight:400;font-size:44px;letter-spacing:-0.01em;color:var(--ink)}
+  .card-h h1 em{font-style:italic;color:var(--accent-2);font-weight:300}
+  .card-h .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .sub{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--ink-dim);margin-bottom:40px;max-width:72ch}
+  .spec-row{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .spec-row .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faded)}
+  .spec-row .lbl span{display:block;color:var(--accent);margin-bottom:6px}
+</style></head>
+<body class="arariwa-base" data-variant="andino">
+<div class="wrap">
+  <header class="card-h">
+    <h1>Body & <em>mono</em></h1>
+    <span class="meta">ARV · TYPE · 02</span>
+  </header>
+  <p class="sub">EB Garamond para lectura larga; JetBrains Mono como voz archival (folios, códigos, metadatos). Métricas numéricas vuelven al display para coherencia.</p>
+  
+<div class="spec-row">
+  <div class="lbl"><span>Body · Lede</span>EB Garamond<br>400 / 20px</div>
+  <div style="font-family:var(--font-body);font-size:20px;line-height:1.55;color:var(--ink);max-width:60ch">Construyo pipelines de recuperación e inteligencia documental sobre corpus multilingües ruidosos.</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Body · Base</span>EB Garamond<br>400 / 17px<br>line 1.6</div>
+  <div style="font-family:var(--font-body);font-size:17px;line-height:1.6;color:var(--ink-dim);max-width:62ch">Demostré que la estructura de vecindades permanece robusta bajo perturbaciones severas, con degradación continua y sin transiciones de fase. PCA preserva estabilidad estructural mejor que autoencoders.</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Mono · Folio</span>JetBrains Mono<br>400 / 10px<br>tracking 0.25em</div>
+  <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-faded)">Folio 00 · Portada — Lima · 12°S 77°O</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Mono · Código</span>JetBrains Mono<br>500 / 11px<br>tracking 0.15em</div>
+  <div style="font-family:var(--font-mono);font-weight:500;font-size:11px;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase">SPEC·001 — 2025—2026 — Publicado</div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Mono · Ficha</span>JetBrains Mono<br>400 / 10px<br>tracking 0.1em</div>
+  <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-dim);display:grid;grid-template-columns:140px 1fr;gap:8px">
+    <span style="color:var(--ink-faded);text-transform:uppercase">Código</span><span style="color:var(--ink)">ARV·R.V·26</span>
+    <span style="color:var(--ink-faded);text-transform:uppercase">Procedencia</span><span style="color:var(--ink)">Lima, Perú</span>
+    <span style="color:var(--ink-faded);text-transform:uppercase">Linaje</span><span style="color:var(--ink)">UPC · CIP</span>
+  </div>
+</div>
+
+<div class="spec-row">
+  <div class="lbl"><span>Metric · Display</span>Cormorant<br>400 / 32px<br>sans tracking</div>
+  <div style="font-family:var(--font-display);font-size:32px;color:var(--accent-2);letter-spacing:0">8×10⁻⁴ <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;color:var(--ink-faded);text-transform:uppercase;margin-left:12px">MSE + cosine · alineamiento</span></div>
+</div>
+
+</div>
+</body></html>
