@@ -1,44 +1,27 @@
-import type { Variant } from '../App';
+const NAV = [
+  { href: '#thesis', label: 'Tesis' },
+  { href: '#catalogo', label: 'Catálogo' },
+  { href: '#lineage', label: 'Linaje' },
+  { href: '#research', label: 'Research' },
+  { href: '#colofon', label: 'Contacto' },
+];
 
 interface HeaderProps {
-  variant: Variant;
-  onVariantToggle: () => void;
   specimenCount: number;
 }
 
-const NAV = [
-  { href: '#catalogo', label: 'Catálogo' },
-  { href: '#lineage', label: 'Experiencia' },
-  { href: '#investigacion', label: 'Investigación' },
-  { href: '#contacto', label: 'Contacto' },
-];
-
-export function Header({ variant, onVariantToggle, specimenCount }: HeaderProps) {
+export function Header({ specimenCount }: HeaderProps) {
   return (
-    <header className="hdr">
-      <a href="#inicio" style={{ display: 'flex', alignItems: 'center' }}>
-        <img src="/assets/wordmark.svg" alt="Arariwa" className="hdr-wordmark" />
-      </a>
-      <span className="hdr-counter">
-        N.º ENTRADAS · {String(specimenCount).padStart(3, '0')}
-      </span>
-      <div className="hdr-spacer" />
-      <nav>
-        <ul className="hdr-nav">
-          {NAV.map(({ href, label }) => (
-            <li key={href}>
-              <a href={href}>{label}</a>
-            </li>
-          ))}
-        </ul>
+    <header className="archive-bar">
+      <div className="archive-bar-left">
+        <span className="archive-code">CIP · ARV — R.V. / 2026</span>
+        <span>Banco de Germoplasma Digital · {String(specimenCount).padStart(2, '0')} especímenes</span>
+      </div>
+      <nav className="archive-bar-nav">
+        {NAV.map(({ href, label }) => (
+          <a key={href} href={href}>{label}</a>
+        ))}
       </nav>
-      <button
-        className="hdr-variant-toggle"
-        onClick={onVariantToggle}
-        title="Cambiar variante de color"
-      >
-        {variant === 'andino' ? 'FMA' : 'Andino'}
-      </button>
     </header>
   );
 }

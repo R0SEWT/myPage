@@ -33,9 +33,9 @@
   --bg-raised:     #221b14;
 
   /* Ink (text) */
-  --ink:           #e8dfd1;   /* hueso */
-  --ink-dim:       #9a8e78;
-  --ink-faded:     #5a5245;
+  --ink:           #ede4d6;   /* hueso */
+  --ink-dim:       #b7aa91;
+  --ink-faded:     #847a66;
 
   /* Saturated */
   --accent:        #c2410c;   /* cochinilla oscuro */
@@ -65,9 +65,9 @@
   --bg-card:       #241e17;
   --bg-raised:     #2d2619;
 
-  --ink:           #e5d5a8;   /* pergamino */
-  --ink-dim:       #b09872;
-  --ink-faded:     #6b5a3e;
+  --ink:           #eaddb3;   /* pergamino */
+  --ink-dim:       #cdb78d;
+  --ink-faded:     #947d56;
 
   --accent:        #8b1a1a;   /* rojo sangre alquimia */
   --accent-2:      #c9a14a;   /* dorado tinta */

@@ -2,6 +2,9 @@
 .cv-vault/
 **/node_modules/
 **/.vite/
+**/.venv/
+**/__pycache__/
+*.pyc
 **/.DS_Store
 # Local LaTeX build artifacts for the CV
 cv/*.aux

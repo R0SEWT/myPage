@@ -2,22 +2,24 @@ import type { ExperienceEntry } from '../data/constants';
 
 interface ExperienceItemProps {
   entry: ExperienceEntry;
+  isCurrent?: boolean;
 }
 
-export function ExperienceItem({ entry }: ExperienceItemProps) {
+export function ExperienceItem({ entry, isCurrent }: ExperienceItemProps) {
   const { company, role, period, bullets } = entry;
   return (
-    <article className="lineage-item">
-      <div>
-        <h3 className="lineage-role">{role}</h3>
-        <p className="lineage-company">{company}</p>
-        <ul className="lineage-bullets">
-          {bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
+    <div className="lineage-entry">
+      <div className="lineage-period">
+        {period}
+        {isCurrent && <span className="current">Presente</span>}
       </div>
-      <p className="lineage-period">{period}</p>
-    </article>
+      <div className="lineage-content">
+        <h4>{role}</h4>
+        <h5>{company}</h5>
+        {bullets.map((b) => (
+          <p key={b}>{b}</p>
+        ))}
+      </div>
+    </div>
   );
 }

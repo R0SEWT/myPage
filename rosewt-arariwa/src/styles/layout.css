@@ -170,13 +170,14 @@ body::after {
 
 .hero-sigil {
   position: absolute;
-  top: 40px;
-  right: -80px;
-  width: 560px;
-  height: 560px;
+  bottom: -80px;
+  right: -60px;
+  width: 520px;
+  height: 520px;
   opacity: var(--sigil-opacity);
   pointer-events: none;
   animation: rotate-slow 180s linear infinite;
+  z-index: 1;
 }
 
 @keyframes rotate-slow {
@@ -221,8 +222,8 @@ body::after {
   font-family: var(--font-display);
   font-size: 22px;
   font-style: italic;
-  color: var(--ink-dim);
-  line-height: 1.4;
+  color: var(--ink);
+  line-height: 1.45;
   max-width: 580px;
   margin-bottom: 48px;
 }
@@ -263,6 +264,7 @@ body::after {
   letter-spacing: 0.1em;
   color: var(--ink-dim);
   position: relative;
+  z-index: 2;
 }
 
 .ficha-portador::before {
@@ -360,7 +362,7 @@ body::after {
   margin-top: 28px;
   font-size: 20px;
   font-style: normal;
-  color: var(--ink-dim);
+  color: var(--ink);
 }
 
 .thesis-emphasis {
@@ -491,7 +493,7 @@ body::after {
 
 .specimen-body p {
   font-size: 16px;
-  color: var(--ink-dim);
+  color: var(--ink);
   line-height: 1.65;
   margin-bottom: 20px;
   max-width: 58ch;
@@ -556,6 +558,26 @@ body::after {
   font-size: 22px;
   font-family: var(--font-display);
   letter-spacing: 0;
+}
+
+.specimen-link {
+  grid-column: 3;
+  justify-self: start;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-2);
+  padding-bottom: 3px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.specimen-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ----------------------------------------------------------------
@@ -636,7 +658,7 @@ body::after {
 
 .lineage-content p {
   font-size: 15px;
-  color: var(--ink-dim);
+  color: var(--ink);
   margin-bottom: 10px;
   line-height: 1.65;
 }
@@ -711,7 +733,7 @@ body::after {
 
 .research-body p {
   font-size: 17px;
-  color: var(--ink-dim);
+  color: var(--ink);
   line-height: 1.65;
   margin-bottom: 18px;
   max-width: 65ch;
@@ -822,14 +844,6 @@ body::after {
 /* ================================================================
    COMPONENT CSS — matches React component class names
    ================================================================ */
-
-/* fix: .hero no debe ser grid (hero-inner lo maneja internamente) */
-.hero {
-  display: block;
-  min-height: 90vh;
-  padding: 80px 0 120px;
-  position: relative;
-}
 
 /* ----------------------------------------------------------------
    GRID WRAP — contenedor principal

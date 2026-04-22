@@ -22,16 +22,20 @@ export interface Tag {
   variant?: TagVariant;
 }
 
+export type SpecimenStatus = 'Publicado' | 'Restringido' | 'Demo activa' | 'Archivado';
+
 export interface Specimen {
   code: string;
-  year: number;
+  yearRange: string;
   domain: string;
-  status: 'Activo' | 'Archivado';
-  seal: string;
+  status: SpecimenStatus;
   title: string;
+  subtitle: string;
   summary: string;
   tags: Tag[];
-  provenance: string;
+  venue: string;
+  stack: string;
+  metric: string;
   url?: string;
 }
 
@@ -43,82 +47,100 @@ export interface ExperienceEntry {
   bullets: string[];
 }
 
+export interface ResearchMetric {
+  val: string;
+  label: string;
+}
+
 export interface ResearchEntry {
   title: string;
+  titleEm?: string;
   venue: string;
   year: number;
   status: string;
   url: string;
   bullets: string[];
+  metrics: ResearchMetric[];
 }
 
 export const SPECIMENS: Specimen[] = [
   {
-    code: 'ARV-2601',
-    year: 2026,
+    code: 'SPEC·001',
+    yearRange: '2025 — 2026',
     domain: 'Sistemas',
-    status: 'Activo',
-    seal: '/assets/seal-systems.svg',
-    title: 'GENO-MAP — Diagnóstico sin correspondencia para datos de alta dimensión',
+    status: 'Publicado',
+    title: 'GENO-MAP',
+    subtitle: 'Diagnóstico libre de correspondencia para mapas de diversidad',
     summary:
-      'Framework de validación basado en invariantes de grafos kNN para evaluar estructura de vecindad en representaciones de alta dimensión. Presentado como póster en SALA 2026.',
+      'Framework de validación basado en invariantes de grafos kNN para evaluar estructura de vecindades en representaciones de alta dimensión. Demostré que la estructura de vecindades permanece robusta bajo perturbaciones severas, con degradación continua y sin transiciones de fase.',
     tags: [
-      { label: 'PCA · UMAP · kNN', variant: 'default' },
-      { label: 'SALA 2026', variant: 'active' },
-      { label: 'publicado', variant: 'ok' },
+      { label: 'PCA', variant: 'default' },
+      { label: 'UMAP', variant: 'default' },
+      { label: 'kNN Graphs', variant: 'default' },
+      { label: 'Sweet Potato', variant: 'default' },
     ],
-    provenance: 'UPC · Lima, 2025–2026',
+    venue: 'SALA 2026 · Poster',
+    stack: 'Python · scikit-learn',
+    metric: 'Estable · sin fase',
     url: 'https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps',
   },
   {
-    code: 'ARV-2503',
-    year: 2025,
+    code: 'SPEC·002',
+    yearRange: '2024 — 2025',
     domain: 'Retrieval',
-    status: 'Activo',
-    seal: '/assets/seal-retrieval.svg',
-    title: 'ArbitrIA — Sistema de Recuperación Legal [Restringido]',
+    status: 'Restringido',
+    title: 'ArbitrIA',
+    subtitle: 'Sistema de recuperación legal para arbitraje peruano',
     summary:
-      'Sistema de retrieval sobre documentos de arbitraje peruano. Indexación dual (documento + chunk), pipelines robustos para PDFs heterogéneos, evaluación de estrategias de chunking.',
+      'Sistema de recuperación combinando indexación a nivel documento y a nivel chunk para mejorar precisión en consultas complejas. Pipelines robustos sobre PDFs heterogéneos con layouts multicolumna, tablas embebidas y encabezados inconsistentes.',
     tags: [
-      { label: 'LlamaIndex · FastAPI', variant: 'default' },
-      { label: 'PostgreSQL · Docker', variant: 'default' },
-      { label: 'retrieval', variant: 'active' },
-      { label: 'restringido', variant: 'default' },
+      { label: 'LlamaIndex', variant: 'default' },
+      { label: 'FastAPI', variant: 'default' },
+      { label: 'PostgreSQL', variant: 'default' },
+      { label: 'Docker', variant: 'default' },
     ],
-    provenance: 'Lima, 2025',
+    venue: 'Interno · propietario',
+    stack: 'LlamaIndex · FastAPI',
+    metric: 'Dual index',
   },
   {
-    code: 'ARV-2407',
-    year: 2024,
+    code: 'SPEC·003',
+    yearRange: '2024',
     domain: 'Investigación',
-    status: 'Archivado',
-    seal: '/assets/seal-research.svg',
-    title: 'Gallstone Risk — ML para cribado bajo restricciones de recursos',
+    status: 'Demo activa',
+    title: 'Gallstone Risk',
+    subtitle: 'ML para tamizaje en entornos de recursos limitados',
     summary:
-      'Sistema de predicción de riesgo de cálculos biliares con degradación controlada bajo reducción de features clínicos. Diseñado para entornos rurales sin variables de laboratorio.',
+      'Reformulé predicción de cálculos biliares como sistema de decisión bajo restricciones de observabilidad, removiendo dependencia de variables clínicas no disponibles en campo. Evalué el trade-off rendimiento↔viabilidad operativa.',
     tags: [
-      { label: 'XGBoost · SHAP · Optuna', variant: 'default' },
-      { label: 'clínico', variant: 'default' },
-      { label: 'demo', variant: 'ok' },
+      { label: 'XGBoost', variant: 'default' },
+      { label: 'SHAP', variant: 'default' },
+      { label: 'Optuna', variant: 'default' },
+      { label: 'Rural Peru', variant: 'default' },
     ],
-    provenance: 'UPC · Lima, 2024',
+    venue: 'gallstone.rosewt.dev',
+    stack: 'XGBoost · SHAP',
+    metric: 'Degrad. controlada',
     url: 'https://gallstone.rosewt.dev/',
   },
   {
-    code: 'ARV-2501',
-    year: 2025,
+    code: 'SPEC·004',
+    yearRange: '2024 — 2025',
     domain: 'Investigación',
-    status: 'Archivado',
-    seal: '/assets/seal-research.svg',
-    title: 'Imitator — Traducción Multimodal de Lengua de Señas',
+    status: 'Publicado',
+    title: 'Imitator',
+    subtitle: 'Traducción multimodal de lengua de señas',
     summary:
-      'Reformulación de la traducción de señas como alineación en el espacio latente de un LLM. Latent queries + cross-attention, sin glosa intermedia. WAILAMP 2025 · SIMBIG 2025.',
+      'Reformulación de la traducción de señas como alineamiento en el espacio latente de un LLM, evitando gloss como representación intermedia. Latent queries + cross-attention que proyecta keypoints en embeddings alineados con tokens.',
     tags: [
-      { label: 'PyTorch · Transformer', variant: 'default' },
+      { label: 'PyTorch', variant: 'default' },
+      { label: 'Transformer', variant: 'default' },
       { label: 'WAILAMP 2025', variant: 'active' },
       { label: 'Springer CCIS', variant: 'ok' },
     ],
-    provenance: 'UPC · Lima, 2024–2025',
+    venue: 'WAILAMP 2025 · SIMBIG 2025',
+    stack: 'PyTorch · Transformer',
+    metric: '8×10⁻⁴ MSE',
     url: 'https://github.com/nakato156/Multimodal-Sign-Language-Model',
   },
 ];
@@ -151,15 +173,20 @@ export const EXPERIENCE: ExperienceEntry[] = [
 
 export const RESEARCH: ResearchEntry[] = [
   {
-    title: 'Imitator — Multimodal Sign Language Translation',
-    venue: 'WAILAMP 2025 · SIMBIG 2025 · Springer CCIS (2026, aceptado)',
+    title: 'Imitator — ',
+    titleEm: 'traducción de lengua de señas multimodal',
+    venue: 'Presentado en WAILAMP 2025 y SIMBIG 2025 · En Springer CCIS (2026), aceptado, pendiente de publicación',
     year: 2025,
     status: 'Forthcoming',
     url: 'https://github.com/nakato156/Multimodal-Sign-Language-Model',
     bullets: [
-      'Reformuló la traducción de lengua de señas como alineación en el espacio latente de un LLM, evitando la glosa como representación intermedia.',
-      'Arquitectura con latent queries y cross-attention que proyecta secuencias de keypoints en embeddings alineados con tokens.',
-      'Alineación estable (MSE + similitud coseno ≈ 8×10⁻⁴) sin reentrenar el LLM.',
+      'Reformulación de la traducción de lengua de señas como alineamiento en el espacio latente de un LLM, evitando gloss como representación intermedia.',
+      'Arquitectura con latent queries y atención cruzada que proyecta secuencias de keypoints en embeddings alineados con tokens, desacoplando la longitud temporal de entrada de la longitud de salida.',
+    ],
+    metrics: [
+      { val: '8×10⁻⁴', label: 'MSE + cosine · alineamiento' },
+      { val: '0', label: 'retraining del LLM base' },
+      { val: '2', label: 'conferencias · CCIS próx.' },
     ],
   },
 ];
