@@ -2,9 +2,13 @@
 \usepackage[top=0.5in,bottom=0.5in,left=0.55in,right=0.55in]{geometry}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{lmodern}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
+\input{glyphtounicode}
+\pdfgentounicode=1
 
 \makeatletter
 % Allow \input files to resolve when LaTeX runs from repo root or cv/.
@@ -37,7 +41,7 @@
 \vspace{2pt}
 
 \small
-Estudiante de Ciencias de la Computación enfocado en construir sistemas de IA aplicados más allá del demo: retrieval, inteligencia documental y pipelines de datos bajo restricciones reales. Actualmente diseño flujos de procesamiento documental y QA sobre corpus no estructurados multilingües en CIP (CGIAR). Me interesa la evaluación, la robustez y el comportamiento de modelos en condiciones no ideales.
+Diseño sistemas de IA aplicada para condiciones no ideales: retrieval, inteligencia documental y pipelines de datos sobre corpus ruidosos y multilingües. Actualmente en CIP (CGIAR) construyendo pipelines de procesamiento documental y question answering sobre investigación agrícola. Publicación aceptada en Springer CCIS 2026 sobre traducción multimodal de lengua de señas. Mi foco está en la evaluación, la robustez y el comportamiento de modelos bajo restricciones reales.
 \vspace{2pt}
 
 \section*{Experiencia}
@@ -45,37 +49,35 @@ Estudiante de Ciencias de la Computación enfocado en construir sistemas de IA a
 \textbf{AI / Data Intern} \hfill \textbf{International Potato Center (CIP, CGIAR)}\\
 \textit{Lima, Perú} \hfill \textit{Oct 2025 -- Presente}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Diseñé pipelines de procesamiento documental para corpora multilingües de investigación agrícola, cubriendo ingesta, parsing, chunking, embedding y almacenamiento vectorial
-  \item Diseñé un pipeline de retrieval híbrido (vector + metadata filtering) para corpus OCR ruidoso, evaluando degradación de recall bajo ruido estructural (layout inconsistente, tablas fragmentadas) y ajustando chunking/embedding para mantener estabilidad en queries largas.
-  \item Implementé enriquecimiento de metadata con extracción estructurada basada en LLM, incluyendo validación, batching y backoff frente a rate limits
-  \item Integré en bases de datos vectoriales Qdrant y MongoDB en esquemas de retrieval híbrido, optimizando el compromiso entre recall, latencia y consistencia operativa
+  \item Diseñé pipelines de procesamiento documental para alimentar un GraphRAG interno de CIP/CGIAR, sobre corpus multilingüe (español, inglés, francés, portugués, chino) con OCR ruidoso, layout irregular y clasificación parcial; ingesta, parsing, chunking, embedding y almacenamiento vectorial
+  \item Implementé enriquecimiento de metadata con structured output basado en LLM (validación de esquema, batching, backoff frente a rate limits) para mejorar recuperación sobre documentos heterogéneos
+  \item Diseñé y construí en conjunto un agente de soporte TI en Copilot Studio desplegado en Teams, cubriendo resolución de consultas nivel 0 (resolución sobre documentación técnica interna) y escalamiento a ticketing
+  \item Diseñé el flujo de escalamiento: cuando el agente detecta que no puede resolver o el usuario lo pide explícitamente, genera un prellenado del ticket (structured output) a partir del contexto conversacional, con revisión human-in-the-loop vía Adaptive Cards antes del envío
 \end{itemize}
 
 \vspace{2pt}
 
-\textbf{QA Engineer Intern} \hfill \textbf{Visma LATAM}\\
+\textbf{QA Trainee} \hfill \textbf{Visma LATAM}\\
 \textit{Lima, Perú} \hfill \textit{Dic 2024 -- Oct 2025}
 \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-  \item Desarrollé suites de regresión automatizadas con Cypress y Jenkins, reduciendo carga de validación manual y acelerando ciclos de release
-  \item Construí generadores de pruebas DOM-aware para extraer selectores y estado desde aplicaciones en ejecución, mejorando mantenibilidad del testing
-  \item Diseñé flujos de validación de datos con fixtures y checks de consistencia entre sistemas antes de despliegue
+  \item Construí un agente basado en LLM que genera tests automatizados end-to-end a partir de especificaciones, reduciendo el esfuerzo manual en la creación y mantenimiento de suites de regresión
+  \item Desarrollé suites de regresión automatizadas con Cypress integradas en Jenkins, cubriendo flujos críticos que debían permanecer estables a través de integraciones sucesivas
+  \item Construí generadores de pruebas DOM-aware para extraer selectores y estado desde aplicaciones en ejecución, mejorando mantenibilidad del testing frente a cambios de UI
 \end{itemize}
 
-\section*{Proyectos}
+\section*{Proyectos e Investigación}
 \input{\projectssectionfile}
 
-\section*{Investigación}
-
-\textbf{Imitator --- Traducción Multimodal de Lenguaje de Señas} \hfill \textit{WAILAMP 2025, SIMBIG 2025; Springer CCIS (2026)}
-\begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
-\item Reformulé el problema de traducción de señas como alineación en el espacio latente de un LLM, evitando el uso de gloss como representación intermedia
-\item Diseñé una arquitectura con queries latentes y cross-attention que proyecta secuencias de keypoints a embeddings token-aligned, desacoplando longitud temporal de la salida
-\item Demostré que la imitación de embeddings permite aprendizaje robusto en escenarios low-resource, con alineación estable (MSE + cosine $\sim 8\times10^{-4}$) y sin necesidad de retraining del LLM
-\end{itemize}
 \section*{Educación}
 
 \textbf{B.Sc.\ Ciencias de la Computación} \hfill \textbf{Universidad Peruana de Ciencias Aplicadas (UPC)}\\
 \textit{Graduación estimada: 2026-2}
+
+\section*{Reconocimientos y actividades}
+
+DataFest - BCPxESAN (2do lugar, 2025) \textperiodcentered{}
+SALA 2026 - Summit of AI in LatAm (full grant y participante, 2026) \textperiodcentered{}
+Asociación KP (voluntariado, 95h, 2022--2023)
 
 \section*{Habilidades}
 
@@ -84,7 +86,6 @@ Estudiante de Ciencias de la Computación enfocado en construir sistemas de IA a
   \textbf{Retrieval / Document AI} & embeddings, Qdrant, LlamaIndex, chunking, parsing, procesamiento documental \\
   \textbf{Data / Backend} & Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL \\
   \textbf{Infraestructura} & Docker, Git, Linux, Jenkins, CI/CD \\
-  \textbf{Idiomas} & Español (nativo), Inglés (intermedio) \\
 \end{tabular}
 
 \vspace{4pt}
@@ -100,10 +101,8 @@ IA centrada en el ser humano (Tec de Monterrey, 2022)
 
 \vspace{2pt}
 
-\section*{Reconocimientos y actividades}
+\section*{Idiomas}
 
-DataFest - BCPxESAN (2do lugar, 2025) \textperiodcentered{}
-SALA 2026 - Summit of AI in LatAm (full grant y participante, 2026) \textperiodcentered{}
-Asociación KP (voluntariado, 95h, 2022--2023)
+Español (nativo) \textperiodcentered{} Inglés (intermedio)
 
 \end{document}
