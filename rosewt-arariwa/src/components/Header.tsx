@@ -1,44 +1,56 @@
-import type { Variant } from '../App';
+import { useState } from 'react';
+
+const NAV = [
+  { href: '#thesis', label: 'Tesis' },
+  { href: '#catalogo', label: 'Catálogo' },
+  { href: '#research', label: 'Research' },
+  { href: '#lineage', label: 'Linaje' },
+  { href: '#colofon', label: 'Contacto' },
+];
 
 interface HeaderProps {
-  variant: Variant;
-  onVariantToggle: () => void;
   specimenCount: number;
 }
 
-const NAV = [
-  { href: '#catalogo', label: 'Catálogo' },
-  { href: '#lineage', label: 'Experiencia' },
-  { href: '#investigacion', label: 'Investigación' },
-  { href: '#contacto', label: 'Contacto' },
-];
+export function Header({ specimenCount }: HeaderProps) {
+  const [open, setOpen] = useState(false);
 
-export function Header({ variant, onVariantToggle, specimenCount }: HeaderProps) {
   return (
-    <header className="hdr">
-      <a href="#inicio" style={{ display: 'flex', alignItems: 'center' }}>
-        <img src="/assets/wordmark.svg" alt="Arariwa" className="hdr-wordmark" />
-      </a>
-      <span className="hdr-counter">
-        N.º ENTRADAS · {String(specimenCount).padStart(3, '0')}
-      </span>
-      <div className="hdr-spacer" />
-      <nav>
-        <ul className="hdr-nav">
-          {NAV.map(({ href, label }) => (
-            <li key={href}>
-              <a href={href}>{label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+    <header className={`archive-bar${open ? ' open' : ''}`}>
+      <div className="archive-bar-left">
+        <span className="archive-code">CIP · R.V. / 2026</span>
+        <span className="archive-bar-caption">
+          Catálogo de sistemas aplicados · {String(specimenCount).padStart(2, '0')}
+        </span>
+      </div>
+
       <button
-        className="hdr-variant-toggle"
-        onClick={onVariantToggle}
-        title="Cambiar variante de color"
+        className="archive-bar-toggle"
+        onClick={() => setOpen(!open)}
+        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+        aria-expanded={open}
       >
-        {variant === 'andino' ? 'FMA' : 'Andino'}
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" strokeWidth="1.5">
+          {open ? (
+            <>
+              <line x1="2" y1="2" x2="18" y2="12" />
+              <line x1="2" y1="12" x2="18" y2="2" />
+            </>
+          ) : (
+            <>
+              <line x1="0" y1="1" x2="20" y2="1" />
+              <line x1="0" y1="7" x2="20" y2="7" />
+              <line x1="0" y1="13" x2="20" y2="13" />
+            </>
+          )}
+        </svg>
       </button>
+
+      <nav className="archive-bar-nav">
+        {NAV.map(({ href, label }) => (
+          <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
+        ))}
+      </nav>
     </header>
   );
 }

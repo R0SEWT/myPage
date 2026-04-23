@@ -7,17 +7,17 @@ interface ExperienceItemProps {
 export function ExperienceItem({ entry }: ExperienceItemProps) {
   const { company, role, period, bullets } = entry;
   return (
-    <article className="lineage-item">
-      <div>
-        <h3 className="lineage-role">{role}</h3>
-        <p className="lineage-company">{company}</p>
-        <ul className="lineage-bullets">
-          {bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
+    <div className="lineage-entry">
+      <div className="lineage-period">
+        {period}
       </div>
-      <p className="lineage-period">{period}</p>
-    </article>
+      <div className="lineage-content">
+        <h4>{role}</h4>
+        <h5>{company}</h5>
+        {bullets.map((b) => (
+          <p key={b}>{b}</p>
+        ))}
+      </div>
+    </div>
   );
 }
