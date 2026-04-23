@@ -81,7 +81,7 @@ export function Hero() {
           className="ficha-ouroboros"
         />
         <div className="ficha-label">Ficha del portador</div>
-        <div className="ficha-row"><span>Código</span><span>ARV·R.V·26</span></div>
+        <div className="ficha-row"><span>Código</span><span>R.V·26</span></div>
         <div className="ficha-row"><span>Procedencia</span><span>Lima, Perú</span></div>
         <div className="ficha-row"><span>Linaje</span><span>UPC · CIP</span></div>
         <div className="ficha-row"><span>Dominios</span><span>Retrieval · DocAI · Pipelines</span></div>
