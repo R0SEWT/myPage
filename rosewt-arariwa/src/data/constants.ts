@@ -123,26 +123,6 @@ export const SPECIMENS: Specimen[] = [
     metric: 'AUC conservado · menos features',
     url: 'https://gallstone.rosewt.dev/',
   },
-  {
-    code: 'SYS·004',
-    yearRange: '2024 — 2025',
-    domain: 'Investigación',
-    status: 'Publicado',
-    title: 'Imitator',
-    subtitle: 'Traducción multimodal de lengua de señas',
-    summary:
-      'Reformulación de la traducción de señas como alineamiento en el espacio latente de un LLM, evitando gloss como representación intermedia. Latent queries + cross-attention que proyecta keypoints en embeddings alineados con tokens.',
-    tags: [
-      { label: 'PyTorch', variant: 'default' },
-      { label: 'Transformer', variant: 'default' },
-      { label: 'WAILAMP 2025', variant: 'active' },
-      { label: 'Springer CCIS', variant: 'ok' },
-    ],
-    venue: 'WAILAMP 2025 · SIMBIG 2025',
-    stack: 'PyTorch · Transformer',
-    metric: '8×10⁻⁴ MSE',
-    url: 'https://github.com/nakato156/Multimodal-Sign-Language-Model',
-  },
 ];
 
 export const EXPERIENCE: ExperienceEntry[] = [
@@ -152,10 +132,10 @@ export const EXPERIENCE: ExperienceEntry[] = [
     period: 'Oct 2025 – Presente',
     location: 'Lima, Perú',
     bullets: [
-      'Diseñó pipelines de procesamiento de documentos para un workflow GraphRAG interno sobre corpus multilingüe (ES, EN, FR, PT, ZH) con OCR ruidoso, layout irregular y clasificación parcial.',
-      'Implementó enriquecimiento estructurado de metadatos con LLMs: validación de esquema, batching y manejo de rate-limit para mejorar la calidad de retrieval.',
-      'Co-construyó un agente de soporte IT en Copilot Studio desplegado en Teams, con resolución nivel-0 y escalamiento a ticketing.',
-      'Diseñó el flujo de escalamiento: pre-llenado del ticket desde contexto conversacional con revisión human-in-the-loop vía Adaptive Cards.',
+      'Diseñé pipelines de procesamiento de documentos para un workflow GraphRAG interno sobre corpus multilingüe (ES, EN, FR, PT, ZH) con OCR ruidoso, layout irregular y clasificación parcial.',
+      'Implementé enriquecimiento estructurado de metadatos con LLMs: validación de esquema, batching y manejo de rate-limit para mejorar la calidad de retrieval.',
+      'Co-construí un agente de soporte IT en Copilot Studio desplegado en Teams, con resolución nivel-0 y escalamiento a ticketing.',
+      'Diseñé el flujo de escalamiento: pre-llenado del ticket desde contexto conversacional con revisión human-in-the-loop vía Adaptive Cards.',
     ],
   },
   {
@@ -164,9 +144,9 @@ export const EXPERIENCE: ExperienceEntry[] = [
     period: 'Dic 2024 – Oct 2025',
     location: 'Lima, Perú',
     bullets: [
-      'Construyó un agente LLM que genera tests end-to-end automatizados desde especificaciones, reduciendo el esfuerzo manual en suites de regresión.',
-      'Desarrolló suites Cypress en Jenkins para flujos críticos que debían permanecer estables entre integraciones sucesivas.',
-      'Construyó generadores de tests DOM-aware que extraían selectores y estado en runtime desde aplicaciones en vivo.',
+      'Construí un agente LLM que genera tests end-to-end automatizados desde especificaciones, reduciendo el esfuerzo manual en suites de regresión.',
+      'Desarrollé suites Cypress en Jenkins para flujos críticos que debían permanecer estables entre integraciones sucesivas.',
+      'Construí generadores de tests DOM-aware que extraían selectores y estado en runtime desde aplicaciones en vivo.',
     ],
   },
 ];

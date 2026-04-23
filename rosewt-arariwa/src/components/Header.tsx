@@ -3,8 +3,8 @@ import { useState } from 'react';
 const NAV = [
   { href: '#thesis', label: 'Tesis' },
   { href: '#catalogo', label: 'Catálogo' },
-  { href: '#lineage', label: 'Linaje' },
   { href: '#research', label: 'Research' },
+  { href: '#lineage', label: 'Linaje' },
   { href: '#colofon', label: 'Contacto' },
 ];
 

@@ -52,14 +52,6 @@ const SIGILS: Record<string, ReactElement> = {
       <line x1="56" y1="43" x2="64" y2="57" />
     </svg>
   ),
-  'SYS·004': (
-    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: 'var(--accent-2)' }}>
-      <circle cx="40" cy="40" r="36" />
-      <path d="M 12 40 Q 20 20 28 40 Q 36 60 44 40 Q 52 20 60 40 Q 68 60 68 40" strokeWidth="1.2" />
-      <circle cx="40" cy="40" r="4" fill="currentColor" />
-      <line x1="40" y1="12" x2="40" y2="68" strokeWidth="0.3" />
-    </svg>
-  ),
 };
 
 interface SpecimenCardProps {
