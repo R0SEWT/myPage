@@ -1,0 +1,132 @@
+# Rody Vilchez
+
+> Applied Machine Learning Engineer specializing in RAG systems, document intelligence, and data pipelines.
+> Currently at the International Potato Center (CIP, CGIAR), Lima, Peru.
+> B.Sc. Computer Science at Universidad Peruana de Ciencias Aplicadas (UPC), expected 2026.
+
+## Summary
+
+Rody Vilchez is an Applied ML Engineer who designs AI systems for non-ideal conditions. He builds retrieval-augmented generation (RAG) systems, document intelligence pipelines, and data processing workflows over noisy multilingual corpora. His work focuses on evaluation, robustness, and model behavior under real-world constraints. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.
+
+## Core Expertise
+
+- Retrieval systems (RAG systems, semantic search, vector search, retrieval-augmented generation)
+- Document intelligence (document AI, PDF parsing, OCR pipelines, layout analysis)
+- Data pipelines (ETL pipelines, data processing workflows, multilingual ingestion)
+- ML evaluation (model robustness, graph-based metrics, representation analysis)
+- LLM integration (agent workflows, structured output, metadata enrichment)
+
+## Capabilities
+
+- Builds production-grade RAG systems over noisy multilingual corpora
+- Designs document processing pipelines under OCR noise and layout irregularity
+- Evaluates representation robustness using graph-based invariant metrics
+- Implements LLM-based metadata enrichment with schema validation and rate-limit handling
+- Builds end-to-end agent workflows with human-in-the-loop escalation
+- Designs ML systems for resource-constrained deployment (rural health, limited infrastructure)
+
+## Keywords
+
+Applied Machine Learning Engineer, RAG Systems Engineer, Document AI Engineer, GraphRAG systems, multilingual retrieval systems, document intelligence, semantic search, vector search, retrieval-augmented generation, OCR pipelines, PDF parsing, LLM pipelines, embedding pipelines, data engineering, ML systems engineer, NLP engineer, applied AI, Lima Peru
+
+## Links
+
+- Portfolio: [rosewt.dev](https://rosewt.dev)
+- GitHub: [R0SEWT](https://github.com/R0SEWT)
+- LinkedIn: [r0sewt](https://www.linkedin.com/in/r0sewt/)
+- CV (English): [CV.en.pdf](https://rosewt.dev/CV.en.pdf)
+- CV (Spanish): [CV.es.pdf](https://rosewt.dev/CV.es.pdf)
+- Full profile for LLMs: [llms-full.txt](https://rosewt.dev/llms-full.txt)
+
+## Experience — CIP (CGIAR)
+
+Role: AI / Data Intern
+Organization: International Potato Center (CIP, CGIAR)
+Location: Lima, Peru
+Period: Oct 2025 – Present
+
+- Designed document processing pipelines for an internal GraphRAG workflow over multilingual corpora (Spanish, English, French, Portuguese, Chinese) with noisy OCR, irregular layout, and partial classification
+- Implemented LLM-based structured metadata enrichment with schema validation, batching, and rate-limit backoff to improve retrieval quality
+- Co-built an IT support agent in Copilot Studio deployed in Teams with level-0 resolution and escalation to ticketing
+- Designed human-in-the-loop escalation flow with structured output and Adaptive Cards
+
+## Experience — Visma LATAM
+
+Role: QA Trainee
+Organization: Visma LATAM
+Location: Lima, Peru
+Period: Dec 2024 – Oct 2025
+
+- Built an LLM-based agent that generates automated end-to-end tests from specifications
+- Developed Cypress regression suites integrated into Jenkins for critical integration flows
+- Built DOM-aware test generators that extracted selectors and runtime state from live applications
+
+## System — GENO-MAP
+
+Full name: GENO-MAP — Correspondence-Free Diagnostics for High-Dimensional Data
+Stack: Python, scikit-learn, PCA, UMAP, kNN Graphs
+GitHub: https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps
+
+Rody Vilchez designed a correspondence-free validation framework based on kNN graph invariants to evaluate neighborhood structure in high-dimensional representations. Demonstrated that neighborhood structure remains robust under severe perturbations, with continuous degradation and no phase transitions. Poster at SALA 2026.
+
+## System — ArbitrIA
+
+Full name: ArbitrIA — Legal Retrieval System for Peruvian Arbitration
+Stack: LlamaIndex, FastAPI, PostgreSQL, Docker
+Status: Restricted / Proprietary
+
+Rody Vilchez designed a retrieval system (RAG system) for Peruvian arbitration documents combining document-level and chunk-level indexing for improved precision on complex legal queries. Built robust PDF parsing pipelines for heterogeneous documents with multi-column layouts, embedded tables, and inconsistent headers.
+
+## System — Gallstone Risk
+
+Full name: Gallstone Risk — ML for Resource-Constrained Screening
+Stack: XGBoost, SHAP, Optuna, Python
+Demo: https://gallstone.rosewt.dev/
+GitHub: https://github.com/R0SEWT/gallstone-risk-rural-peru-ml
+
+Rody Vilchez reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in rural field settings. Evaluated the performance-viability trade-off with human-in-the-loop SHAP inspection interface.
+
+## Research — Imitator
+
+Full name: Imitator — Multimodal Sign Language Translation
+Venue: Presented at WAILAMP 2025 and SIMBIG 2025; forthcoming in Springer CCIS (2026)
+GitHub: https://github.com/nakato156/Multimodal-Sign-Language-Model
+
+Rody Vilchez co-authored a system that reformulates sign language translation as alignment in an LLM latent space, avoiding gloss as intermediate representation. Architecture uses latent queries and cross-attention to project keypoint sequences into token-aligned embeddings, decoupling temporal input length from output length.
+
+## Skills — ML / AI Systems
+
+PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines, XGBoost, SHAP
+
+## Skills — Retrieval / Document AI
+
+Embeddings, Qdrant, LlamaIndex, chunking strategies, PDF parsing, document processing, OCR pipelines, vector databases
+
+## Skills — Data / Backend
+
+Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL pipelines
+
+## Skills — Infrastructure
+
+Docker, Git, Linux, Jenkins, CI/CD
+
+## Skills — Languages
+
+Spanish (native), English (intermediate)
+
+## Education
+
+B.Sc. Computer Science — Universidad Peruana de Ciencias Aplicadas (UPC), expected 2026-2
+
+## Certifications
+
+- AZ-204T00 · Developing Solutions for Microsoft Azure — WTC (2026)
+- GH-900T00 · GitHub Foundations — WTC (2026)
+- AI Engineer for Data Scientists — DataCamp (2025)
+- Machine Learning Specialization — Google Cloud (2025)
+- Google Data Analytics — Google (2024)
+
+## Activities
+
+- 2nd place · DataFest — BCP × ESAN (2025)
+- Full grant recipient · SALA — Summit of AI in LatAm (2026)
