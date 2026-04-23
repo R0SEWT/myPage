@@ -1,0 +1,170 @@
+# Rody Vilchez — Full Profile
+
+> This is the extended LLM-readable profile for rosewt.dev.
+> For a shorter summary, see: https://rosewt.dev/llms.txt
+
+---
+
+## Identity
+
+Name: Rody Vilchez
+Location: Lima, Peru
+Email: rody.vilchez00@gmail.com
+Portfolio: https://rosewt.dev
+GitHub: https://github.com/R0SEWT
+LinkedIn: https://www.linkedin.com/in/r0sewt/
+
+---
+
+## Headline
+
+Applied Machine Learning Engineer — Retrieval-Augmented Generation (RAG) · Document Intelligence · Evaluation & Robustness
+
+---
+
+## Summary
+
+Rody Vilchez is an Applied ML Engineer who designs AI systems for non-ideal conditions: retrieval, document intelligence, and data pipelines over noisy multilingual corpora. He is currently at the International Potato Center (CIP, CGIAR), building document processing and question answering workflows for agricultural research. His work focuses on evaluation, robustness, and model behavior under real constraints.
+
+---
+
+## Core Expertise
+
+- Retrieval systems (RAG systems, semantic search, vector search, retrieval-augmented generation)
+- Document intelligence (document AI, PDF parsing, OCR pipelines, layout analysis)
+- Data pipelines (ETL pipelines, data processing workflows, multilingual ingestion)
+- ML evaluation (model robustness, graph-based metrics, representation analysis)
+- LLM integration (agent workflows, structured output, metadata enrichment)
+
+## Capabilities
+
+- Builds production-grade RAG systems over noisy multilingual corpora
+- Designs document processing pipelines under OCR noise and layout irregularity
+- Evaluates representation robustness using graph-based invariant metrics
+- Implements LLM-based metadata enrichment with schema validation and rate-limit handling
+- Builds end-to-end agent workflows with human-in-the-loop escalation
+- Designs ML systems for resource-constrained deployment (rural health, limited infrastructure)
+
+## Keywords
+
+Applied Machine Learning Engineer, RAG Systems Engineer, Document AI Engineer, GraphRAG systems, multilingual retrieval systems, document intelligence, semantic search, vector search, retrieval-augmented generation, OCR pipelines, PDF parsing, LLM pipelines, embedding pipelines, data engineering, ML systems engineer, NLP engineer, applied AI, Lima Peru
+
+---
+
+## Experience — CIP (CGIAR)
+
+Role: AI / Data Intern
+Organization: International Potato Center (CIP, CGIAR)
+Location: Lima, Peru
+Period: Oct 2025 – Present
+
+- Designed document processing pipelines for an internal GraphRAG workflow over multilingual corpora (Spanish, English, French, Portuguese, Chinese) with noisy OCR, irregular layout, and partial classification, covering ingestion, parsing, chunking, embedding, and vector storage
+- Implemented LLM-based structured metadata enrichment with schema validation, batching, and rate-limit backoff to improve retrieval quality over heterogeneous documents
+- Co-built an IT support agent in Copilot Studio deployed in Teams, covering level-0 resolution over internal technical documentation and escalation to ticketing
+- Designed the escalation flow: when the agent cannot solve a case or the user explicitly requests it, it pre-fills the ticket from conversational context via structured output, with human-in-the-loop review through Adaptive Cards before submission
+
+## Experience — Visma LATAM
+
+Role: QA Trainee
+Organization: Visma LATAM
+Location: Lima, Peru
+Period: Dec 2024 – Oct 2025
+
+- Built an LLM-based agent that generates automated end-to-end tests from specifications, reducing manual effort in creating and maintaining regression suites
+- Developed Cypress regression suites integrated into Jenkins for critical flows that had to remain stable across successive integrations
+- Built DOM-aware test generators that extracted selectors and runtime state from live applications, improving test maintainability under UI changes
+
+---
+
+## System — GENO-MAP
+
+Full name: GENO-MAP — Correspondence-Free Diagnostics for High-Dimensional Data
+Stack: Python, scikit-learn, PCA, UMAP, kNN Graphs
+GitHub: https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps
+
+- Designed a correspondence-free validation framework based on kNN graph invariants to evaluate neighborhood structure in high-dimensional representations
+- Showed that neighborhood structure remains robust under severe perturbations, with continuous degradation and no phase transitions
+- Showed that PCA preserves structural stability better than autoencoders, and that UMAP changes the visualization rather than the analytical graph
+- Presented as a poster at SALA 2026, validating the approach on real-world data without explicit correspondence
+
+## System — ArbitrIA
+
+Full name: ArbitrIA — Legal Retrieval System for Peruvian Arbitration
+Stack: LlamaIndex, FastAPI, PostgreSQL, Docker
+Status: Restricted / Proprietary
+
+- Designed a retrieval system (RAG system) for Peruvian arbitration documents, combining document-level and chunk-level indexing to improve precision on complex legal queries
+- Implemented robust PDF parsing pipelines for heterogeneous documents, including multi-column layouts, embedded tables, and inconsistent headers
+- Evaluated chunking strategies and showed that finer segmentation improves local precision while hurting global retrieval, motivating dual indexing
+
+## System — Gallstone Risk
+
+Full name: Gallstone Risk — ML for Resource-Constrained Screening
+Stack: XGBoost, SHAP, Optuna, Python
+Demo: https://gallstone.rosewt.dev/
+GitHub: https://github.com/R0SEWT/gallstone-risk-rural-peru-ml
+
+- Reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in rural field settings
+- Evaluated the trade-off between predictive performance and operational viability, showing controlled degradation as the feature space is reduced
+- Designed a human-in-the-loop inspection interface for individual predictions and feature sensitivity analysis with SHAP
+
+---
+
+## Research — Imitator
+
+Full name: Imitator — Multimodal Sign Language Translation
+Venue: Presented at WAILAMP 2025 and SIMBIG 2025; forthcoming in Springer CCIS (2026) — accepted, pending publication
+GitHub: https://github.com/nakato156/Multimodal-Sign-Language-Model
+
+- Reformulated sign language translation as alignment in an LLM latent space, avoiding gloss as an intermediate representation
+- Designed an architecture with latent queries and cross-attention that projects keypoint sequences into token-aligned embeddings, decoupling temporal input length from output length
+- Showed that embedding imitation enables robust learning in low-resource settings, with stable alignment (MSE + cosine similarity ≈ 8×10^-4) without retraining the LLM
+
+---
+
+## Education
+
+B.Sc. Computer Science
+Universidad Peruana de Ciencias Aplicadas (UPC)
+Expected graduation: 2026-2
+
+---
+
+## Skills — ML / AI Systems
+
+PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines, XGBoost, SHAP
+
+## Skills — Retrieval / Document AI
+
+Embeddings, Qdrant, LlamaIndex, chunking strategies, PDF parsing, document processing, OCR pipelines, vector databases, semantic search
+
+## Skills — Data / Backend
+
+Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL pipelines
+
+## Skills — Infrastructure
+
+Docker, Git, Linux, Jenkins, CI/CD
+
+## Skills — Languages
+
+Spanish (native), English (intermediate)
+
+---
+
+## Certifications
+
+- Developing Solutions for Microsoft Azure (AZ-204T00) — WTC (2026)
+- GitHub Foundations (GH-900T00) — WTC (2026)
+- AI Engineer for Data Scientists — DataCamp (2025)
+- Machine Learning Specialization — Google Cloud (2025)
+- Google Data Analytics — Google (2024)
+- Human-Centered AI — Tecnológico de Monterrey (2022)
+
+---
+
+## Activities
+
+- DataFest — BCP × ESAN, 2nd place (2025)
+- SALA 2026 — Summit of AI in LatAm, full grant recipient and participant (2026)
+- Asociación KP — Volunteering, 95 hours total (2022–2023)
