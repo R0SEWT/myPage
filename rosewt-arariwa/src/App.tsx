@@ -20,6 +20,7 @@ export default function App() {
     <>
       <Header specimenCount={SPECIMENS.length} />
 
+      <main>
       <div className="container">
 
         <Hero />
@@ -95,6 +96,7 @@ export default function App() {
 
         <Footer />
       </div>
+      </main>
     </>
   );
 }
