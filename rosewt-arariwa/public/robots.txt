@@ -1,20 +1,29 @@
 User-agent: *
 Allow: /
 
-# Disallow admin/temp directories (if any in the future)
+# Bloquea basura si aparece
 Disallow: /admin/
 Disallow: /temp/
-Disallow: *.json$
+Disallow: /*.json$
 
-# Allow important files
-Allow: /CV.pdf
-Allow: /favicon.svg
+# PRIORIDAD: contenido clave
+Allow: /CV.en.pdf
+Allow: /CV.es.pdf
+Allow: /llms.txt
+Allow: /llms-full.txt
 
-# Crawl delay for polite crawling
-Crawl-delay: 1
+# Reduce ruido de crawlers irrelevantes
+User-agent: AhrefsBot
+Crawl-delay: 10
 
-# Sitemap location
+User-agent: MJ12bot
+Disallow: /
+
+# AI Crawlers (mantener abiertos)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://rosewt.dev/sitemap.xml
-
-# Host declaration
-Host: https://rosewt.dev
