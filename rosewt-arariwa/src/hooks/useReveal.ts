@@ -2,8 +2,15 @@ import { useEffect } from 'react';
 
 export function useReveal() {
   useEffect(() => {
+    document.documentElement.classList.add('js-reveal');
+
     const elements = document.querySelectorAll<HTMLElement>('[data-reveal]');
     if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('revealed'));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {

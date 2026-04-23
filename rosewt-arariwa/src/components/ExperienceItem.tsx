@@ -2,16 +2,14 @@ import type { ExperienceEntry } from '../data/constants';
 
 interface ExperienceItemProps {
   entry: ExperienceEntry;
-  isCurrent?: boolean;
 }
 
-export function ExperienceItem({ entry, isCurrent }: ExperienceItemProps) {
+export function ExperienceItem({ entry }: ExperienceItemProps) {
   const { company, role, period, bullets } = entry;
   return (
     <div className="lineage-entry">
       <div className="lineage-period">
         {period}
-        {isCurrent && <span className="current">Presente</span>}
       </div>
       <div className="lineage-content">
         <h4>{role}</h4>
