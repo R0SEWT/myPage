@@ -65,7 +65,7 @@ export interface ResearchEntry {
 
 export const SPECIMENS: Specimen[] = [
   {
-    code: 'SPEC·001',
+    code: 'SYS·001',
     yearRange: '2025 — 2026',
     domain: 'Sistemas',
     status: 'Publicado',
@@ -85,7 +85,7 @@ export const SPECIMENS: Specimen[] = [
     url: 'https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps',
   },
   {
-    code: 'SPEC·002',
+    code: 'SYS·002',
     yearRange: '2024 — 2025',
     domain: 'Retrieval',
     status: 'Restringido',
@@ -104,7 +104,7 @@ export const SPECIMENS: Specimen[] = [
     metric: 'Doc + chunk retrieval',
   },
   {
-    code: 'SPEC·003',
+    code: 'SYS·003',
     yearRange: '2024',
     domain: 'Investigación',
     status: 'Demo activa',
@@ -124,7 +124,7 @@ export const SPECIMENS: Specimen[] = [
     url: 'https://gallstone.rosewt.dev/',
   },
   {
-    code: 'SPEC·004',
+    code: 'SYS·004',
     yearRange: '2024 — 2025',
     domain: 'Investigación',
     status: 'Publicado',

@@ -5,6 +5,11 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -153,6 +158,17 @@ body::after {
 
 .archive-bar-nav a:hover {
   color: var(--ink);
+  border-bottom: 1px solid var(--accent-2);
+}
+
+.archive-bar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
 }
 
 /* ----------------------------------------------------------------
@@ -1139,10 +1155,60 @@ body::after {
   .variant-toggle-label { top: 96px; right: 12px; }
 }
 
+@media (max-width: 768px) {
+  .archive-bar { padding: 12px 16px; }
+  .archive-bar-caption { display: none; }
+  .archive-bar-toggle { display: block; }
+  .archive-bar-nav {
+    display: none;
+    position: fixed;
+    top: 43px;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--line-bright);
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 20px;
+    z-index: 49;
+  }
+  .archive-bar.open .archive-bar-nav {
+    display: flex;
+    animation: nav-slide 0.3s var(--ease-out);
+  }
+  .archive-bar-nav a { font-size: 12px; }
+}
+
+@keyframes nav-slide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
 @media (max-width: 600px) {
   .lineage-entry { grid-template-columns: 1fr; gap: 8px; }
   .research-metrics { grid-template-columns: 1fr; gap: 16px; }
   .colofon-meta { flex-direction: column; gap: 12px; }
+  .hero-folio { flex-direction: column; gap: 8px; }
+  .hero-folio-sep { display: none; }
+  .hero-anchor { font-size: 14px; letter-spacing: 0.15em; }
+  .hero-meta { grid-template-columns: 1fr; row-gap: 4px; }
+  .hero-meta dt { border-bottom: none; padding-bottom: 0; margin-top: 12px; }
+  .hero-cta-rail { flex-direction: column; }
+  .hero-cta-rail .btn { width: 100%; justify-content: center; }
+  .ficha-portador { padding: 20px; }
+}
+
+/* ----------------------------------------------------------------
+   SCROLL REVEAL
+   ---------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
 }
 
 /* ================================================================
@@ -1290,6 +1356,7 @@ body::after {
 .btn-primary:hover {
   border-color: var(--ink);
   color: var(--ink);
+  background: var(--bg-raised);
 }
 
 .btn-accent {

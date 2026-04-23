@@ -8,7 +8,7 @@ function statusClass(s: SpecimenStatus) {
 }
 
 const SIGILS: Record<string, ReactElement> = {
-  'SPEC·001': (
+  'SYS·001': (
     <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: 'var(--accent-2)' }}>
       <circle cx="40" cy="40" r="36" />
       <circle cx="40" cy="40" r="24" />
@@ -23,7 +23,7 @@ const SIGILS: Record<string, ReactElement> = {
       <line x1="8" y1="40" x2="40" y2="8" />
     </svg>
   ),
-  'SPEC·002': (
+  'SYS·002': (
     <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: 'var(--accent-2)' }}>
       <circle cx="40" cy="40" r="36" />
       <rect x="20" y="20" width="40" height="40" strokeWidth="0.7" />
@@ -34,7 +34,7 @@ const SIGILS: Record<string, ReactElement> = {
       <circle cx="40" cy="40" r="3" fill="currentColor" />
     </svg>
   ),
-  'SPEC·003': (
+  'SYS·003': (
     <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: 'var(--accent-2)' }}>
       <circle cx="40" cy="40" r="36" />
       <circle cx="40" cy="18" r="3" />
@@ -52,7 +52,7 @@ const SIGILS: Record<string, ReactElement> = {
       <line x1="56" y1="43" x2="64" y2="57" />
     </svg>
   ),
-  'SPEC·004': (
+  'SYS·004': (
     <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: 'var(--accent-2)' }}>
       <circle cx="40" cy="40" r="36" />
       <path d="M 12 40 Q 20 20 28 40 Q 36 60 44 40 Q 52 20 60 40 Q 68 60 68 40" strokeWidth="1.2" />
@@ -68,7 +68,7 @@ interface SpecimenCardProps {
 
 export function SpecimenCard({ specimen }: SpecimenCardProps) {
   const { code, yearRange, status, title, subtitle, summary, tags, venue, stack, metric, url } = specimen;
-  const sigil = SIGILS[code] ?? SIGILS['SPEC·001'];
+  const sigil = SIGILS[code] ?? SIGILS['SYS·001'];
 
   const inner = (
     <>

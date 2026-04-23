@@ -2,7 +2,7 @@ import { EDUCATION, CERTIFICATIONS, ACTIVITIES } from '../data/constants';
 
 export function Credentials() {
   return (
-    <section className="credentials" id="credentials">
+    <section className="credentials" id="credentials" data-reveal>
       <div className="credentials-header">
         <span className="credentials-label">· Credenciales y marcas de origen ·</span>
         <h2 className="credentials-title">Formación <em>y certificaciones</em></h2>

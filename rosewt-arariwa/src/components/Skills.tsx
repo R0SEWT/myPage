@@ -2,7 +2,7 @@ import { SKILLS } from '../data/constants';
 
 export function Skills() {
   return (
-    <section className="skills" id="skills">
+    <section className="skills" id="skills" data-reveal>
       <div className="skills-header">
         <span className="skills-label">· Archivo de habilidades ·</span>
         <h2 className="skills-title">Stack <em>operativo</em></h2>
