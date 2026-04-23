@@ -1,0 +1,12 @@
+[project]
+name = "arariwa-diagrams"
+version = "0.1.0"
+description = "Mingrammer diagrams for the portfolio repository documentation."
+requires-python = ">=3.12"
+dependencies = [
+  "diagrams>=0.24.1",
+]
+
+[tool.uv]
+# Keep the virtualenv local to this folder.
+managed = true

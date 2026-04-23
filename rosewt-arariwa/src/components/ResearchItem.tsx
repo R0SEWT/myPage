@@ -1,35 +1,44 @@
 import type { ResearchEntry } from '../data/constants';
-import { Tag } from './atoms/Tag';
 
 interface ResearchItemProps {
   entry: ResearchEntry;
 }
 
 export function ResearchItem({ entry }: ResearchItemProps) {
-  const { title, venue, year, status, url, bullets } = entry;
+  const { title, titleEm, venue, bullets, metrics, url } = entry;
   return (
-    <article className="research-item">
+    <div className="research-inner">
       <div>
-        <h3 className="research-title">{title}</h3>
-        <p className="research-venue">{venue}</p>
-        <ul className="lineage-bullets" style={{ marginBottom: 'var(--space-4)' }}>
-          {bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-        <a
-          href={url}
-          className="research-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Repositorio →
-        </a>
+        <div className="research-label">
+          Fragmento de Research
+          <span className="research-label-sub">· Papers · Talks</span>
+        </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-2)' }}>
-        <span className="meta-value">{year}</span>
-        <Tag label={status} variant="active" />
+      <div className="research-body">
+        <h2>
+          {title}
+          {titleEm && <em>{titleEm}</em>}
+        </h2>
+        <p className="venue">{venue}</p>
+        {bullets.map((b) => (
+          <p key={b}>{b}</p>
+        ))}
+        {metrics.length > 0 && (
+          <div className="research-metrics">
+            {metrics.map((m) => (
+              <div key={m.label} className="research-metric">
+                <span className="val">{m.val}</span>
+                {m.label}
+              </div>
+            ))}
+          </div>
+        )}
+        <p style={{ marginTop: '24px' }}>
+          <a href={url} className="research-link" target="_blank" rel="noopener noreferrer">
+            Repositorio →
+          </a>
+        </p>
       </div>
-    </article>
+    </div>
   );
 }

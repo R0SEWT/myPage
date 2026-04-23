@@ -5,6 +5,11 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -153,6 +158,17 @@ body::after {
 
 .archive-bar-nav a:hover {
   color: var(--ink);
+  border-bottom: 1px solid var(--accent-2);
+}
+
+.archive-bar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
 }
 
 /* ----------------------------------------------------------------
@@ -170,13 +186,21 @@ body::after {
 
 .hero-sigil {
   position: absolute;
-  top: 40px;
-  right: -80px;
-  width: 560px;
-  height: 560px;
+  bottom: -80px;
+  right: -60px;
+  width: 520px;
+  height: 520px;
+  color: var(--accent-2);
   opacity: var(--sigil-opacity);
   pointer-events: none;
   animation: rotate-slow 180s linear infinite;
+  z-index: 1;
+  display: flex;
+}
+
+.hero-sigil svg {
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes rotate-slow {
@@ -185,21 +209,82 @@ body::after {
 
 .hero-folio {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-folio);
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ink-faded);
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
 }
 
 .hero-folio-sep {
-  width: 40px;
+  width: 32px;
   height: 1px;
   background: var(--line-bright);
   flex-shrink: 0;
+}
+
+/* Ancla técnica — hook principal, primer read del recruiter.
+   Brass sobre doble línea: lee como frontispicio editorial. */
+.hero-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 40px;
+  padding: 10px 0 14px;
+  border-top: 1px solid var(--accent-2);
+  border-bottom: 1px solid var(--line-bright);
+}
+
+.hero-anchor-sigil {
+  flex-shrink: 0;
+  color: var(--accent-2);
+}
+
+/* Stack rail — keywords tech debajo del subtítulo */
+.hero-stack-rail {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 40px;
+  max-width: 620px;
+  line-height: 1.8;
+}
+
+.hero-stack-rail .sep {
+  color: var(--ink-faded);
+  margin: 0 4px;
+}
+
+/* Señal de disponibilidad */
+.dot-live {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  margin-right: 8px;
+  vertical-align: middle;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 25%, transparent);
+}
+
+/* CTA rail del hero — 3 acciones mono */
+.hero-cta-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
+  max-width: 620px;
 }
 
 .hero h1 {
@@ -221,48 +306,66 @@ body::after {
   font-family: var(--font-display);
   font-size: 22px;
   font-style: italic;
-  color: var(--ink-dim);
-  line-height: 1.4;
+  color: var(--ink);
+  line-height: 1.45;
   max-width: 580px;
   margin-bottom: 48px;
 }
 
+/* Ficha archivística: dt en mono brass 11px como label,
+   dd en EB Garamond 15px como contenido real legible. */
 .hero-meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--ink-faded);
   display: grid;
-  grid-template-columns: 140px 1fr;
-  row-gap: 10px;
-  max-width: 580px;
+  grid-template-columns: 150px 1fr;
+  column-gap: 24px;
+  row-gap: 14px;
+  max-width: 620px;
+  padding-top: 8px;
 }
 
 .hero-meta dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-folio);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-faded);
+  color: var(--accent-2);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  align-self: end;
 }
 
 .hero-meta dd {
-  color: var(--ink-dim);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0;
+  align-self: center;
 }
 
 .hero-meta dd a {
   color: var(--accent-2);
   text-decoration: none;
   border-bottom: 1px dotted var(--accent-2);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
-/* Ficha del portador (aside hero) */
+.hero-meta dd a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* Ficha del portador (aside hero) — certificado alquímico */
 .ficha-portador {
   background: var(--bg-card);
   border: 1px solid var(--line-bright);
   padding: 28px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-folio);
   letter-spacing: 0.1em;
   color: var(--ink-dim);
   position: relative;
+  z-index: 2;
 }
 
 .ficha-portador::before {
@@ -272,7 +375,16 @@ body::after {
   left: -1px;
   right: -1px;
   height: 4px;
-  background: var(--accent);
+  background: var(--accent-2);
+}
+
+.ficha-ouroboros {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: var(--accent-2);
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .ficha-label {
@@ -281,6 +393,7 @@ body::after {
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
+  padding-right: 44px;
 }
 
 .ficha-row {
@@ -293,17 +406,68 @@ body::after {
   color: var(--ink);
 }
 
-.ficha-quote {
-  margin-top: 24px;
-  padding-top: 20px;
+.ficha-header {
+  margin-bottom: 16px;
+}
+
+.ficha-name {
+  font-size: 13px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+.ficha-code {
+  color: var(--ink-faded);
+}
+
+.ficha-role {
+  color: var(--accent-2);
+  margin-top: 2px;
+}
+
+.ficha-section-label {
+  text-transform: uppercase;
+  color: var(--accent-2);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-top: 12px;
   border-top: 1px solid var(--line);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-style: italic;
-  line-height: 1.5;
+}
+
+.ficha-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ficha-list li {
+  padding: 3px 0;
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.ficha-list li::before {
+  content: '–';
+  margin-right: 8px;
+  color: var(--ink-faded);
+}
+
+.ficha-detail {
   color: var(--ink-dim);
-  letter-spacing: 0;
-  text-transform: none;
+  font-size: 11px;
+  padding: 2px 0 0 12px;
+}
+
+.ficha-status {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.05em;
 }
 
 /* ----------------------------------------------------------------
@@ -323,9 +487,9 @@ body::after {
 }
 
 .section-sigil {
-  width: 64px;
-  height: 64px;
+  color: var(--accent);
   opacity: 0.7;
+  flex-shrink: 0;
 }
 
 /* ----------------------------------------------------------------
@@ -360,12 +524,36 @@ body::after {
   margin-top: 28px;
   font-size: 20px;
   font-style: normal;
-  color: var(--ink-dim);
+  color: var(--ink);
 }
 
 .thesis-emphasis {
   color: var(--accent-2);
   font-style: normal;
+}
+
+.thesis-epigraph {
+  margin: 32px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  text-align: center;
+  max-width: 560px;
+}
+
+.thesis-epigraph cite {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-folio);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-2);
 }
 
 /* ----------------------------------------------------------------
@@ -491,7 +679,7 @@ body::after {
 
 .specimen-body p {
   font-size: 16px;
-  color: var(--ink-dim);
+  color: var(--ink);
   line-height: 1.65;
   margin-bottom: 20px;
   max-width: 58ch;
@@ -556,6 +744,223 @@ body::after {
   font-size: 22px;
   font-family: var(--font-display);
   letter-spacing: 0;
+}
+
+.specimen-link {
+  grid-column: 3;
+  justify-self: start;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-2);
+  padding-bottom: 3px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.specimen-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ----------------------------------------------------------------
+   SKILLS — Archivo de habilidades
+   ---------------------------------------------------------------- */
+.skills {
+  padding: 80px 0;
+}
+
+.skills-header {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.skills-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.skills-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.skills-title em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+.skills-group-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.skills-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skills-items li {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------------
+   CREDENTIALS — Formación, certificaciones, marcas
+   ---------------------------------------------------------------- */
+.credentials {
+  padding: 80px 0 120px;
+}
+
+.credentials-header {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.credentials-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.credentials-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.credentials-title em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+
+.credentials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+}
+
+.credentials-col-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.credentials-education {
+  margin-bottom: 8px;
+}
+
+.credentials-degree {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.credentials-institution {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-dim);
+  margin-bottom: 4px;
+}
+
+.credentials-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+
+.credentials-certs,
+.credentials-activities {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.credentials-certs li,
+.credentials-activities li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.credentials-cert-label,
+.credentials-activity-label {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.credentials-cert-issuer,
+.credentials-activity-detail {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  flex-shrink: 0;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .credentials-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; gap: 24px; }
+  .credentials-certs li,
+  .credentials-activities li { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .credentials-cert-issuer,
+  .credentials-activity-detail { text-align: left; }
 }
 
 /* ----------------------------------------------------------------
@@ -636,7 +1041,7 @@ body::after {
 
 .lineage-content p {
   font-size: 15px;
-  color: var(--ink-dim);
+  color: var(--ink);
   margin-bottom: 10px;
   line-height: 1.65;
 }
@@ -711,7 +1116,7 @@ body::after {
 
 .research-body p {
   font-size: 17px;
-  color: var(--ink-dim);
+  color: var(--ink);
   line-height: 1.65;
   margin-bottom: 18px;
   max-width: 65ch;
@@ -813,23 +1218,66 @@ body::after {
   .variant-toggle-label { top: 96px; right: 12px; }
 }
 
+@media (max-width: 768px) {
+  .archive-bar { padding: 12px 16px; }
+  .archive-bar-caption { display: none; }
+  .archive-bar-toggle { display: block; }
+  .archive-bar-nav {
+    display: none;
+    position: fixed;
+    top: 43px;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--line-bright);
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 20px;
+    z-index: 49;
+  }
+  .archive-bar.open .archive-bar-nav {
+    display: flex;
+    animation: nav-slide 0.3s var(--ease-out);
+  }
+  .archive-bar-nav a { font-size: 12px; }
+}
+
+@keyframes nav-slide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
 @media (max-width: 600px) {
   .lineage-entry { grid-template-columns: 1fr; gap: 8px; }
   .research-metrics { grid-template-columns: 1fr; gap: 16px; }
   .colofon-meta { flex-direction: column; gap: 12px; }
+  .hero-folio { flex-direction: column; gap: 8px; }
+  .hero-folio-sep { display: none; }
+  .hero-anchor { font-size: 14px; letter-spacing: 0.15em; }
+  .hero-meta { grid-template-columns: 1fr; row-gap: 4px; }
+  .hero-meta dt { border-bottom: none; padding-bottom: 0; margin-top: 12px; }
+  .hero-cta-rail { flex-direction: column; }
+  .hero-cta-rail .btn { width: 100%; justify-content: center; }
+  .ficha-portador { padding: 20px; }
+}
+
+/* ----------------------------------------------------------------
+   SCROLL REVEAL — JS adds .js-reveal to <html>, so content stays
+   visible when JS is disabled or fails.
+   ---------------------------------------------------------------- */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.js-reveal [data-reveal].revealed {
+  opacity: 1;
+  transform: none;
 }
 
 /* ================================================================
    COMPONENT CSS — matches React component class names
    ================================================================ */
-
-/* fix: .hero no debe ser grid (hero-inner lo maneja internamente) */
-.hero {
-  display: block;
-  min-height: 90vh;
-  padding: 80px 0 120px;
-  position: relative;
-}
 
 /* ----------------------------------------------------------------
    GRID WRAP — contenedor principal
@@ -972,6 +1420,7 @@ body::after {
 .btn-primary:hover {
   border-color: var(--ink);
   color: var(--ink);
+  background: var(--bg-raised);
 }
 
 .btn-accent {
