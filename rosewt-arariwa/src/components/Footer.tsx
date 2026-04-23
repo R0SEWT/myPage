@@ -16,7 +16,7 @@ export function Footer() {
       </p>
       <div className="colofon-meta">
         <span>Lima · Perú · 2026</span>
-        <span>Banco de Germoplasma Digital</span>
+        <span>Applied ML Engineer</span>
         <span>v 0.2 · {SITE_CONFIG.domain}</span>
       </div>
     </section>

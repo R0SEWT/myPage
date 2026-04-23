@@ -10,6 +10,7 @@ import { ExperienceItem } from './components/ExperienceItem';
 import { Credentials } from './components/Credentials';
 import { ResearchItem } from './components/ResearchItem';
 import { Footer } from './components/Footer';
+import { AlchemySigil } from './components/atoms/AlchemySigil';
 
 export default function App() {
   return (
@@ -23,11 +24,7 @@ export default function App() {
         {/* Divisor */}
         <div className="section-divider">
           <div className="section-divider-line" />
-          <svg className="section-sigil" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: 'var(--accent)' }}>
-            <circle cx="32" cy="32" r="30" />
-            <path d="M 32 16 L 40 16 L 40 24 L 48 24 L 48 40 L 40 40 L 40 48 L 24 48 L 24 40 L 16 40 L 16 24 L 24 24 L 24 16 Z" />
-            <circle cx="32" cy="32" r="3" fill="currentColor" />
-          </svg>
+          <AlchemySigil variant="chakana-mini" size={64} className="section-sigil" />
           <div className="section-divider-line" />
         </div>
 
@@ -35,20 +32,20 @@ export default function App() {
         <section className="thesis" id="thesis">
           <div className="thesis-label">· Tesis del archivo ·</div>
           <p>
-            Los Papa Arariwa preservaron durante seis mil años la biodiversidad de la papa mediante un sistema de conocimiento codificado en{' '}
-            <span className="thesis-emphasis">textiles, rituales y prácticas agrícolas</span>. Eran ingenieros antes del término.
+            Trabajo sobre sistemas donde las decisiones importan: cómo se procesan los datos,{' '}
+            <span className="thesis-emphasis">qué se optimiza</span> y{' '}
+            <span className="thesis-emphasis">qué se sacrifica</span>.
           </p>
           <p>
-            Este portafolio es un banco de germoplasma digital: cada sistema que construyo es un espécimen catalogado —
-            con su procedencia, sus restricciones, su linaje y su resultado. La ley de equivalencia es real: no hay modelo sin intercambio.
+            Este portafolio no muestra solo resultados, sino las elecciones que los hacen posibles.
           </p>
         </section>
 
         {/* Catálogo */}
         <section className="catalog" id="catalogo">
           <div className="catalog-header">
-            <h2 className="catalog-title">Catálogo de <em>especímenes</em></h2>
-            <span className="catalog-meta">{String(SPECIMENS.length).padStart(2, '0')} especímenes catalogados · retrieval · docAI · cv · pipelines</span>
+            <h2 className="catalog-title">Catálogo de <em>sistemas</em></h2>
+            <span className="catalog-meta">{String(SPECIMENS.length).padStart(2, '0')} sistemas · retrieval · docAI · cv · pipelines</span>
           </div>
           <div className="specimen-grid">
             {SPECIMENS.map((s) => (

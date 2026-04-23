@@ -15,7 +15,7 @@ export function Header({ specimenCount }: HeaderProps) {
     <header className="archive-bar">
       <div className="archive-bar-left">
         <span className="archive-code">CIP · ARV — R.V. / 2026</span>
-        <span>Banco de Germoplasma Digital · {String(specimenCount).padStart(2, '0')} especímenes</span>
+        <span>Catálogo de sistemas aplicados · {String(specimenCount).padStart(2, '0')}</span>
       </div>
       <nav className="archive-bar-nav">
         {NAV.map(({ href, label }) => (
