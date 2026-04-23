@@ -339,13 +339,13 @@ body::after {
   border-bottom-color: var(--ink);
 }
 
-/* Ficha del portador (aside hero) */
+/* Ficha del portador (aside hero) — certificado alquímico */
 .ficha-portador {
   background: var(--bg-card);
   border: 1px solid var(--line-bright);
   padding: 28px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-folio);
   letter-spacing: 0.1em;
   color: var(--ink-dim);
   position: relative;
@@ -359,7 +359,16 @@ body::after {
   left: -1px;
   right: -1px;
   height: 4px;
-  background: var(--accent);
+  background: var(--accent-2);
+}
+
+.ficha-ouroboros {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: var(--accent-2);
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .ficha-label {
@@ -368,6 +377,7 @@ body::after {
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
+  padding-right: 44px;
 }
 
 .ficha-row {
@@ -381,7 +391,7 @@ body::after {
 }
 
 .ficha-quote {
-  margin-top: 24px;
+  margin: 24px 0 0;
   padding-top: 20px;
   border-top: 1px solid var(--line);
   font-family: var(--font-display);
@@ -391,6 +401,18 @@ body::after {
   color: var(--ink-dim);
   letter-spacing: 0;
   text-transform: none;
+}
+
+.ficha-attribution {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-folio);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  text-align: right;
 }
 
 /* ----------------------------------------------------------------
@@ -410,9 +432,9 @@ body::after {
 }
 
 .section-sigil {
-  width: 64px;
-  height: 64px;
+  color: var(--accent);
   opacity: 0.7;
+  flex-shrink: 0;
 }
 
 /* ----------------------------------------------------------------

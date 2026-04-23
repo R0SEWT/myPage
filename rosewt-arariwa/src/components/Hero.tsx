@@ -74,17 +74,23 @@ export function Hero() {
       </div>
 
       <aside className="ficha-portador">
+        <AlchemySigil
+          variant="ouroboros"
+          size={40}
+          strokeWidth={1}
+          className="ficha-ouroboros"
+        />
         <div className="ficha-label">Ficha del portador</div>
         <div className="ficha-row"><span>Código</span><span>ARV·R.V·26</span></div>
         <div className="ficha-row"><span>Procedencia</span><span>Lima, Perú</span></div>
         <div className="ficha-row"><span>Linaje</span><span>UPC · CIP</span></div>
         <div className="ficha-row"><span>Dominios</span><span>Retrieval · DocAI · Pipelines</span></div>
         <div className="ficha-row"><span>Estado</span><span style={{ color: 'var(--success)' }}>Activo</span></div>
-        <div className="ficha-row"><span>Publicaciones</span><span>2 · conferencia</span></div>
-        <div className="ficha-row"><span>Sistemas</span><span>4 · catalogados</span></div>
-        <div className="ficha-quote">
-          "Los Papa Arariwa fueron los primeros agricultores científicos del continente. Trabajo desde esa línea."
-        </div>
+        <div className="ficha-row"><span>Publicaciones</span><span>WAILAMP · SIMBIG · Springer CCIS</span></div>
+        <blockquote className="ficha-quote">
+          "Los humanos no pueden obtener nada sin dar algo a cambio. Para obtener, algo de igual valor debe perderse. Esa es la primera ley de la alquimia."
+          <cite className="ficha-attribution">— Edward Elric</cite>
+        </blockquote>
       </aside>
     </section>
   );
