@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1c1714"/>
+
+  <!-- Chakana mark, centered background -->
+  <g transform="translate(600, 315)" opacity="0.06" fill="none" stroke="#d4b06e" stroke-width="1.5">
+    <circle r="260"/>
+    <path d="M 0 -120 L 60 -120 L 60 -60 L 120 -60 L 120 60 L 60 60 L 60 120 L -60 120 L -60 60 L -120 60 L -120 -60 L -60 -60 L -60 -120 Z"/>
+    <circle r="24" fill="#8b2635" stroke="none"/>
+  </g>
+
+  <!-- Top rule -->
+  <line x1="80" y1="80" x2="1120" y2="80" stroke="#d4b06e" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Folio label -->
+  <text x="80" y="60" font-family="'JetBrains Mono', monospace" font-size="13" letter-spacing="2" fill="#a59379">ROSEWT.DEV · PORTFOLIO</text>
+
+  <!-- Name -->
+  <text x="80" y="260" font-family="'Cormorant Garamond', serif" font-weight="300" font-size="96" fill="#ede4d4">Rody</text>
+  <text x="80" y="350" font-family="'Cormorant Garamond', serif" font-weight="300" font-size="96" fill="#ede4d4">Vilchez</text>
+
+  <!-- Title -->
+  <text x="84" y="410" font-family="'JetBrains Mono', monospace" font-size="20" letter-spacing="3" fill="#d4b06e">APPLIED ML ENGINEER</text>
+
+  <!-- Scope -->
+  <text x="84" y="460" font-family="'EB Garamond', serif" font-size="22" fill="#a59379">RAG Systems · Document Intelligence · Data Pipelines</text>
+
+  <!-- Affiliation -->
+  <text x="84" y="500" font-family="'EB Garamond', serif" font-size="18" fill="#a59379" opacity="0.7">CIP (CGIAR) · Lima, Perú</text>
+
+  <!-- Bottom rule -->
+  <line x1="80" y1="560" x2="1120" y2="560" stroke="#d4b06e" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Domain -->
+  <text x="1120" y="590" font-family="'JetBrains Mono', monospace" font-size="14" letter-spacing="1" fill="#d4b06e" text-anchor="end">rosewt.dev</text>
+</svg>
