@@ -80,8 +80,8 @@ export default function App() {
               <h2 className="lineage-title">Linaje<br />y <em>filiación</em></h2>
             </div>
             <div>
-              {EXPERIENCE.map((e, i) => (
-                <ExperienceItem key={e.company} entry={e} isCurrent={i === 0} />
+              {EXPERIENCE.map((e) => (
+                <ExperienceItem key={e.company} entry={e} />
               ))}
             </div>
           </div>
