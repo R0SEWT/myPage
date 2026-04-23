@@ -80,17 +80,46 @@ export function Hero() {
           strokeWidth={1}
           className="ficha-ouroboros"
         />
-        <div className="ficha-label">Ficha del portador</div>
-        <div className="ficha-row"><span>Código</span><span>R.V·26</span></div>
-        <div className="ficha-row"><span>Procedencia</span><span>Lima, Perú</span></div>
-        <div className="ficha-row"><span>Linaje</span><span>UPC · CIP</span></div>
-        <div className="ficha-row"><span>Dominios</span><span>Retrieval · DocAI · Pipelines</span></div>
-        <div className="ficha-row"><span>Estado</span><span style={{ color: 'var(--success)' }}>Activo</span></div>
-        <div className="ficha-row"><span>Publicaciones</span><span>WAILAMP · SIMBIG · Springer CCIS</span></div>
-        <blockquote className="ficha-quote">
-          "Los humanos no pueden obtener nada sin dar algo a cambio. Para obtener, algo de igual valor debe perderse. Esa es la primera ley de la alquimia."
-          <cite className="ficha-attribution">— Edward Elric</cite>
-        </blockquote>
+        <div className="ficha-label">Operator Profile</div>
+
+        <div className="ficha-header">
+          <div className="ficha-name">Rody Vilchez <span className="ficha-code">(R.V·26)</span></div>
+          <div className="ficha-role">Applied ML Engineer</div>
+        </div>
+
+        <div className="ficha-section-label">Scope</div>
+        <ul className="ficha-list">
+          <li>Retrieval systems (RAG)</li>
+          <li>Document Intelligence (noisy corpora)</li>
+          <li>Data pipelines (multilingual)</li>
+        </ul>
+
+        <div className="ficha-section-label">Current System</div>
+        <div className="ficha-row"><span>CIP · CGIAR</span></div>
+        <div className="ficha-detail">→ GraphRAG over OCR-noisy corpora</div>
+
+        <div className="ficha-section-label">Capabilities</div>
+        <ul className="ficha-list">
+          <li>Robust parsing (multi-layout PDFs)</li>
+          <li>Embedding pipelines (batched + validated)</li>
+          <li>Agent workflows (Copilot + HITL)</li>
+        </ul>
+
+        <div className="ficha-section-label">Constraints handled</div>
+        <ul className="ficha-list">
+          <li>Multilingual (ES/EN/FR/PT/ZH)</li>
+          <li>OCR noise + layout drift</li>
+          <li>Partial labels / missing structure</li>
+        </ul>
+
+        <div className="ficha-section-label">Signals</div>
+        <div className="ficha-row"><span>SALA 2026</span><span>poster</span></div>
+        <div className="ficha-row"><span>CCIS · Springer</span><span>accepted</span></div>
+
+        <div className="ficha-status">
+          <span className="dot-live" aria-hidden="true" />
+          Active · Open to Applied ML roles
+        </div>
       </aside>
     </section>
   );

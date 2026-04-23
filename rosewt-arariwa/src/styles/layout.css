@@ -406,29 +406,68 @@ body::after {
   color: var(--ink);
 }
 
-.ficha-quote {
-  margin: 24px 0 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--ink-dim);
-  letter-spacing: 0;
-  text-transform: none;
+.ficha-header {
+  margin-bottom: 16px;
 }
 
-.ficha-attribution {
-  display: block;
-  margin-top: 10px;
-  font-family: var(--font-mono);
-  font-size: var(--fs-folio);
-  font-style: normal;
-  letter-spacing: 0.18em;
+.ficha-name {
+  font-size: 13px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+.ficha-code {
+  color: var(--ink-faded);
+}
+
+.ficha-role {
+  color: var(--accent-2);
+  margin-top: 2px;
+}
+
+.ficha-section-label {
   text-transform: uppercase;
   color: var(--accent-2);
-  text-align: right;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.ficha-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ficha-list li {
+  padding: 3px 0;
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.ficha-list li::before {
+  content: '–';
+  margin-right: 8px;
+  color: var(--ink-faded);
+}
+
+.ficha-detail {
+  color: var(--ink-dim);
+  font-size: 11px;
+  padding: 2px 0 0 12px;
+}
+
+.ficha-status {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.05em;
 }
 
 /* ----------------------------------------------------------------
@@ -491,6 +530,30 @@ body::after {
 .thesis-emphasis {
   color: var(--accent-2);
   font-style: normal;
+}
+
+.thesis-epigraph {
+  margin: 32px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  text-align: center;
+  max-width: 560px;
+}
+
+.thesis-epigraph cite {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-folio);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-2);
 }
 
 /* ----------------------------------------------------------------

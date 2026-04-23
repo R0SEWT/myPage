@@ -42,6 +42,10 @@ export default function App() {
           <p>
             Este portafolio no muestra solo resultados, sino las elecciones que los hacen posibles.
           </p>
+          <blockquote className="thesis-epigraph">
+            "Los humanos no pueden obtener nada sin dar algo a cambio. Para obtener, algo de igual valor debe perderse."
+            <cite>— Edward Elric</cite>
+          </blockquote>
         </section>
 
         {/* Catálogo */}
@@ -57,8 +61,16 @@ export default function App() {
           </div>
         </section>
 
-        {/* Skills */}
-        <Skills />
+      </div>
+
+      {/* Research — full bleed */}
+      {RESEARCH.map((r) => (
+        <section key={r.title} className="research" id="research" data-reveal>
+          <ResearchItem entry={r} />
+        </section>
+      ))}
+
+      <div className="container">
 
         {/* Linaje */}
         <section className="lineage" id="lineage" data-reveal>
@@ -78,16 +90,9 @@ export default function App() {
         {/* Credentials */}
         <Credentials />
 
-      </div>
+        {/* Skills */}
+        <Skills />
 
-      {/* Research — full bleed */}
-      {RESEARCH.map((r) => (
-        <section key={r.title} className="research" id="research" data-reveal>
-          <ResearchItem entry={r} />
-        </section>
-      ))}
-
-      <div className="container">
         <Footer />
       </div>
     </>
