@@ -6,6 +6,8 @@
 **/__pycache__/
 *.pyc
 **/.DS_Store
+# Playwright MCP run artifacts (screenshots, snapshots, console logs)
+**/.playwright-mcp/
 # Local LaTeX build artifacts for the CV
 cv/*.aux
 cv/*.fdb_latexmk
