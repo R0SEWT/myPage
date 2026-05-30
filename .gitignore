@@ -18,3 +18,8 @@ cv/*.pdf
 cv/*.synctex.gz
 cv/*.toc
 cv/*.xdv
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
