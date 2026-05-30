@@ -62,7 +62,9 @@ npm run lint       # ESLint
 
 **Design system**: `docs/design/` contains the full Arariwa brand reference — colors, typography, spacing, component previews, and a portfolio UI kit. Use these as the canonical visual reference when building or modifying UI.
 
-**Deployment**: Netlify. Config in `netlify.toml`. Domain: `rosewt.dev`.
+**Deployment**: Netlify, from the `main` branch (production). Pushing to `dev` does not deploy. A single root `netlify.toml` carries security headers, asset cache, and `NODE_VERSION=20`. Domain: `rosewt.dev`. See `docs/adr/ADR-0005-deploy-canonical-and-mcp-tooling.md`.
+
+**MCP tooling**: `.mcp.json` (project-level) declares two servers — **Playwright** (`--headless --isolated`, required so the browser never opens a window that clashes with Wayland/Hyprland) for visual checks, and **Context7** for up-to-date library docs. Editing `.mcp.json` requires restarting Claude Code to reconnect.
 
 ## Editorial Governance
 
@@ -71,51 +73,10 @@ npm run lint       # ESLint
 - Public surfaces must not contradict either file.
 - See `agents.md` for the full policy and update protocol.
 
-## Beads Issue Tracker
-
-This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands. Issue prefix is `rv-` (e.g. `rv-1`).
-
-### Quick Reference
-
-```bash
-bd ready                # Find available work (no blockers)
-bd create "title" -t task   # Create an issue (types: task, bug, feature, epic, chore)
-bd show <id>            # View issue details
-bd update <id> --claim  # Claim work (sets in_progress)
-bd close <id>           # Complete work
-bd dep add <blocker> <blocked>  # Add a dependency
-```
-
-### Rules
-
-- Use `bd` for ALL task tracking — do NOT use TodoWrite, TaskCreate, or markdown TODO lists.
-- Use `bd remember "…"` for persistent project knowledge (gotchas, conventions, decisions) — do NOT use MEMORY.md files.
-- `.beads/issues.jsonl` is the git-tracked source of truth; `.beads/*.db` is local and gitignored (rebuilt from JSONL).
-- This build uses the plain JSONL backend — there is no `bd dolt`. Sync is ordinary git.
-
-## Session Completion
-
-When ending a work session, complete these steps. Work is NOT complete until `git push` succeeds.
-
-1. **File issues for remaining work** — `bd create` for anything needing follow-up.
-2. **Run quality gates** (if code changed) — from `rosewt-arariwa/`: `npm run lint && npm run build`.
-3. **Update issue status** — close finished work, update in-progress items.
-4. **Commit + push** (MANDATORY):
-   ```bash
-   git add .beads/issues.jsonl   # plus your other changes
-   git pull --rebase
-   git push
-   git status                    # MUST show "up to date with origin"
-   ```
-5. **Verify** — all changes committed AND pushed.
-
-CRITICAL: never stop before pushing — that strands work locally. If push fails, resolve and retry until it succeeds.
-
-
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:ca08a54f -->
 ## Beads Issue Tracker
 
-This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands.
+This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands. Issue prefix is `rv-`; backend is Dolt (embedded).
 
 ### Quick Reference
 
@@ -139,7 +100,7 @@ bd close <id>         # Complete work
 **MANDATORY WORKFLOW:**
 
 1. **File issues for remaining work** - Create issues for anything that needs follow-up
-2. **Run quality gates** (if code changed) - Tests, linters, builds
+2. **Run quality gates** (if code changed) - from `rosewt-arariwa/`: `npm run lint && npm run build`
 3. **Update issue status** - Close finished work, update in-progress items
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
