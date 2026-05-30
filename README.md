@@ -1,45 +1,50 @@
 # Portafolio Personal – Rody Vilchez
 
-Un portafolio moderno y responsivo construido con **Astro**, **TypeScript** y **Tailwind CSS**, enfocado en mostrar proyectos de **Data Science**, **Machine Learning** y **QA**.
+Sitio personal y CV de Rody Vilchez (**Applied ML Engineer**), enfocado en
+sistemas de IA aplicada: retrieval (RAG), document intelligence y data pipelines.
+Desplegado en **Netlify** sobre el dominio [`rosewt.dev`](https://rosewt.dev).
 
-## Características
-
-- **Performance**: Optimizado con Astro  
-- **Diseño moderno**: Glassmorphism y micro-interacciones  
-- **Dark/Light mode**: Soporte completo de temas  
-- **Responsive**: Funciona en cualquier dispositivo  
-- **Accesible**: Mejores prácticas de accesibilidad  
-- **SEO optimizado**: Open Graph + JSON-LD  
-- **Animaciones fluidas**: Scroll reveal y efectos hover  
-- **Gestión de contenido**: Colecciones para proyectos  
+El código de la aplicación vive en [`rosewt-arariwa/`](./rosewt-arariwa).
 
 ## Stack Técnico
 
-- **Framework**: [Astro](https://astro.build)  
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)  
-- **Lenguaje**: TypeScript  
-- **Componentes**: Astro + React (hidratación selectiva)  
-- **Contenido**: Markdown/MDX  
-- **Íconos**: Heroicons  
-- **Deployment**: Netlify  
+- **Framework**: [React 19](https://react.dev) (SPA)
+- **Build**: [Vite 8](https://vite.dev)
+- **Lenguaje**: TypeScript
+- **Styling**: CSS propio con el sistema de diseño **Arariwa**
+  (`src/styles/arariwa.css` tokens, `src/styles/layout.css` layout) — sin Tailwind
+- **Contenido**: centralizado en `src/data/constants.ts`
+- **SEO**: Open Graph + Twitter Cards + JSON-LD (Person, SoftwareSourceCode, ScholarlyArticle)
+- **Deployment**: [Netlify](https://www.netlify.com/) (config en `netlify.toml` raíz)
 
 ## Desarrollo Local
 
-```bash
-# Instalar dependencias
-npm install
-
-# Ejecutar en desarrollo
-npm run dev
-
-# Construir para producción
-npm run build
-```
-
-El sitio se despliega automáticamente en [Netlify](https://www.netlify.com/).
-
-Para comprobar el estilo de código:
+Todos los comandos desde `rosewt-arariwa/`:
 
 ```bash
-npm run lint
+npm install      # Instalar dependencias
+npm run dev      # Servidor de desarrollo (Vite)
+npm run build    # Build de producción (tsc -b && vite build)
+npm run preview  # Previsualizar el build
+npm run lint     # ESLint
 ```
+
+## CV (PDF)
+
+Los CV en PDF se generan desde LaTeX (`cv/main.en.tex`, `cv/main.es.tex`) y se
+copian a `rosewt-arariwa/public/`:
+
+```bash
+rosewt-arariwa/scripts/build-cv.sh   # requiere pdflatex o tectonic
+```
+
+## Gobernanza editorial
+
+La narrativa profesional y el contenido son trazables:
+
+- `cv/master.md` — fuente de verdad narrativa
+- `evidence/claims.md` — trazabilidad de claims
+- `agents.md` — política canónica para agentes y reglas editoriales
+
+El despliegue es automático en Netlify a partir de `main`. CI
+(`.github/workflows/ci.yml`) corre `lint` + `build` en cada push y PR.
