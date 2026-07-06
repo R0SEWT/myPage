@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+const { project } = Astro.props;
+const { title, tagline, result, status, stack, links, media, mediaAlt } = project.data;
+const { Content } = await render(project);
+const jsonLd = links.github ? [{
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: title,
+  description: tagline,
+  author: { '@type': 'Person', name: 'Rody Vilchez', url: 'https://rosewt.dev' },
+  codeRepository: links.github,
+  ...(links.demo ? { url: links.demo } : {}),
+}] : [];
+---
+<BaseLayout title={`${title} — Rody Vilchez`} description={tagline} jsonLd={jsonLd}>
+  <Header />
+  <main class="container case-study">
+    <p><a href="/#projects">← All systems</a></p>
+    <h1>{title} <span class="tag mono">{status}</span></h1>
+    <p class="lede">{tagline}</p>
+    <p class="result">▸ {result}</p>
+    {media && <img src={media} alt={mediaAlt ?? title} class="case-hero" />}
+    <p class="mono stack">{stack.join(' · ')}</p>
+    <p class="links">
+      {links.github && <a href={links.github}>GitHub</a>}
+      {links.demo && <a href={links.demo}>Live demo</a>}
+    </p>
+    <article class="prose"><Content /></article>
+  </main>
+  <Footer />
+</BaseLayout>
