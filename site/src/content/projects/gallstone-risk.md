@@ -7,6 +7,8 @@ stack: ["XGBoost", "SHAP", "Optuna", "FastAPI"]
 links:
   github: "https://github.com/R0SEWT/gallstone-risk-rural-peru-ml"
   demo: "https://gallstone.rosewt.dev/"
+media: "/assets/projects/gallstone-architecture.png"
+mediaAlt: "Runtime architecture: Next.js frontend on Vercel calling a FastAPI model service on Hugging Face Spaces"
 order: 4
 ---
 
