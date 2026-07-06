@@ -1,0 +1,20 @@
+---
+import { RESEARCH, SKILLS } from '../data/profile';
+---
+<div class="research">
+  <h2>Research</h2>
+  {RESEARCH.map((item) => (
+    <article class="research-item">
+      <h3>{item.title}</h3>
+      <p class="mono venue">{item.venue}</p>
+      <p>{item.summary}</p>
+      {item.links.github && <p class="links"><a href={item.links.github}>GitHub</a></p>}
+    </article>
+  ))}
+  <h2>Skills</h2>
+  <div class="skills">
+    {SKILLS.map((s) => (
+      <p class="skill-row"><span class="mono skill-group">{s.group}</span> {s.items}</p>
+    ))}
+  </div>
+</div>

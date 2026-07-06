@@ -1,0 +1,14 @@
+---
+import { PROFILE } from '../data/profile';
+---
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/" class="mono brand">rosewt.dev</a>
+    <nav aria-label="Main">
+      <a href="/#projects" data-spy="projects">Projects</a>
+      <a href="/#experience" data-spy="experience">Experience</a>
+      <a href="/#contact" data-spy="contact">Contact</a>
+      <a href={PROFILE.links.cvEn} class="cv-btn">Download CV</a>
+    </nav>
+  </div>
+</header>

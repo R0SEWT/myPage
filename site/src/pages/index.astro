@@ -1,6 +1,60 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import Experience from '../components/Experience.astro';
+import Research from '../components/Research.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Rody Vilchez',
+  url: 'https://rosewt.dev',
+  jobTitle: 'Applied ML Engineer',
+  description: 'Applied ML Engineer specializing in RAG systems, document intelligence, and data pipelines. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.',
+  worksFor: { '@type': 'Organization', name: 'International Potato Center (CIP, CGIAR)', url: 'https://cipotato.org' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Peruana de Ciencias Aplicadas (UPC)' },
+  sameAs: ['https://github.com/R0SEWT', 'https://www.linkedin.com/in/r0sewt/'],
+  knowsAbout: ['Machine Learning', 'RAG Systems', 'Document Intelligence', 'Data Pipelines', 'Semantic Search', 'GraphRAG', 'NLP', 'PyTorch', 'LlamaIndex'],
+  knowsLanguage: ['es', 'en'],
+  address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
+};
 ---
-<BaseLayout title="Rody Vilchez — Applied ML Engineer" description="Applied ML Engineer: RAG systems, document intelligence, data pipelines under real constraints.">
-  <main class="container"><h1>tokens OK</h1></main>
+<BaseLayout
+  title="Rody Vilchez — Applied ML Engineer"
+  description="Applied ML Engineer: RAG systems, document intelligence, and data pipelines under real constraints. CIP (CGIAR), Lima."
+  jsonLd={[personJsonLd]}
+>
+  <Header />
+  <main>
+    <Hero />
+    <section id="projects" class="section container">
+      <h2>Systems</h2>
+      {projects.map((p) => <ProjectRow project={p} />)}
+    </section>
+    <section id="experience" class="section container">
+      <div class="two-col">
+        <Experience />
+        <Research />
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script>
+    const links = document.querySelectorAll('nav a[data-spy]');
+    const sections = ['projects', 'experience', 'contact']
+      .map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const spy = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        links.forEach((l) => l.classList.toggle('active', l.getAttribute('data-spy') === e.target.id));
+      }
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach((s) => spy.observe(s));
+  </script>
 </BaseLayout>

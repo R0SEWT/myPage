@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { title, tagline, result, status, stack, links, media, mediaAlt } = project.data;
+const href = `/projects/${project.id}/`;
+---
+<article class="project-row">
+  {media
+    ? <a href={href} class="thumb"><img src={media} alt={mediaAlt ?? title} loading="lazy" /></a>
+    : <a href={href} class="thumb placeholder" aria-hidden="true"></a>}
+  <div class="project-body">
+    <h3><a href={href}>{title}</a> <span class="tag mono">{status}</span></h3>
+    <p>{tagline}</p>
+    <p class="result">▸ {result}</p>
+    <p class="mono stack">{stack.join(' · ')}</p>
+    <p class="links">
+      {links.github && <a href={links.github}>GitHub</a>}
+      {links.demo && <a href={links.demo}>Demo</a>}
+      <a href={href}>Case study →</a>
+    </p>
+  </div>
+</article>
