@@ -70,6 +70,22 @@ GitHub: https://github.com/R0SEWT/gallstone-risk-rural-peru-ml
 - Evaluated the trade-off between predictive performance and operational viability, showing controlled degradation as the feature space is reduced
 - Designed a human-in-the-loop inspection interface for individual predictions and feature sensitivity analysis with SHAP
 
+## Potato-ACHIS — Domain Adaptation for Andean Crop Disease
+PyTorch · timm · Hydra  
+GitHub: https://github.com/R0SEWT/potato-achis
+
+- Designed a multi-source domain feature adaptation network (MDFAN) to address domain shift between public datasets and Andean field conditions
+- Implemented Andean field augmentations simulating highland capture conditions, and open-set OOD rejection for unknown disease classes
+- Built on a typed, tested Python stack (uv, ruff, mypy, pytest) with Hydra configs and interchangeable timm backbones
+
+## Lumi — Caregiver Copilot with Deterministic Safety Boundaries
+FastAPI · Azure OpenAI · Docker  
+GitHub: https://github.com/R0SEWT/dermatomicos-Bago
+
+- Designed a caregiver copilot where LLM output is constrained by deterministic medical-safety rules rather than trusted directly
+- Structured the service with ports/adapters (hexagonal) separation between product, domain, safety, and model adapters, with CI and tests
+- Packaged the service for Docker-based deployment to Azure App Service via Azure Container Registry
+
 ---
 
 # Research
