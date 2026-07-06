@@ -1,0 +1,19 @@
+:root {
+  /* Variant C — cold minimal, Andean crimson signature */
+  --bg: #0c0c0d;
+  --surface: #131315;
+  --border: #232326;
+  --text: #ededef;
+  --text-dim: #9b9ba1;
+  --accent: #b5303a;        /* Andean crimson */
+  --accent-soft: #d4555e;   /* AA-safe on --bg for small text */
+  --ok: #3fb950;            /* availability dot */
+
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 1rem;
+  --space-4: 1.5rem;  --space-5: 2.5rem; --space-6: 4rem;
+
+  --max-width: 72rem;
+}
