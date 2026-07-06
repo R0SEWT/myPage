@@ -14,11 +14,13 @@ export const PROFILE = {
   },
 };
 
+export const EDUCATION = 'B.Sc. Computer Science, UPC — expected 2026-2';
+
 export const QUICK_FACTS = [
   { label: 'Now', value: 'AI / Data Intern — CIP (CGIAR), Lima' },
   { label: 'Focus', value: 'RAG · Document Intelligence · Data Pipelines' },
   { label: 'Publication', value: 'Imitator — Springer CCIS (2026, accepted)' },
-  { label: 'Education', value: 'B.Sc. Computer Science, UPC — expected 2026-2' },
+  { label: 'Education', value: EDUCATION },
 ];
 
 export interface Job { company: string; role: string; period: string; location: string; bullets: string[] }

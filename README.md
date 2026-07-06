@@ -13,7 +13,7 @@ El código de la aplicación vive en [`site/`](./site).
 - **Styling**: CSS propio con el sistema de diseño **Arariwa**
   (`src/styles/tokens.css` tokens, `src/styles/global.css` layout) — sin Tailwind
 - **Contenido**: `src/data/profile.ts` + content collection en `src/content/projects/` (Markdown)
-- **SEO**: Open Graph + Twitter Cards + JSON-LD (Person, SoftwareSourceCode, ScholarlyArticle)
+- **SEO**: Open Graph + Twitter Cards + JSON-LD (Person, SoftwareSourceCode)
 - **Deployment**: [Netlify](https://www.netlify.com/) (config en `netlify.toml` raíz)
 
 ## Desarrollo Local
