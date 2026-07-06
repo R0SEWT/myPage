@@ -1,0 +1,16 @@
+---
+import { PROFILE, CERTIFICATIONS, ACTIVITIES } from '../data/profile';
+---
+<footer id="contact" class="section container">
+  <h2>Contact</h2>
+  <p class="contact-links">
+    <a href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a> ·
+    <a href={PROFILE.links.github}>GitHub</a> ·
+    <a href={PROFILE.links.linkedin}>LinkedIn</a>
+  </p>
+  <ul class="dim-list">
+    {CERTIFICATIONS.map((c) => <li>{c}</li>)}
+    {ACTIVITIES.map((a) => <li>{a}</li>)}
+    <li>B.Sc. Computer Science — UPC, expected 2026-2</li>
+  </ul>
+</footer>
