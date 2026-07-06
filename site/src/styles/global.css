@@ -130,6 +130,12 @@ h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; }
 .dim-list li { padding-block: var(--space-1); border-top: 1px solid var(--border); }
 .dim-list li:first-child { border-top: none; }
 
+/* ---- Case studies ---- */
+.case-study { max-width: 46rem; padding-block: var(--space-6); }
+.prose h2 { color: var(--text-dim); font-size: 1rem; font-weight: normal; margin: var(--space-5) 0 var(--space-2); text-transform: uppercase; letter-spacing: 0.05em; }
+.prose p, .prose li { color: var(--text); }
+.case-hero { border: 1px solid var(--border); border-radius: 6px; margin-block: var(--space-4); }
+
 /* ---- Responsive ---- */
 @media (max-width: 52rem) {
   .two-col { grid-template-columns: 1fr; gap: var(--space-5); }
