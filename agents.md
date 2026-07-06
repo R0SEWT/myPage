@@ -31,7 +31,7 @@ Workflow rules:
 | Claim traceability & public support links | `evidence/claims.md` |
 | Private evidence index | `.cv-vault/INDEX.md` |
 | PDF rendering | `cv/main.tex` (derived from `cv/master.md`) |
-| Website copy | `rosewt-astro/src/lib/constants.ts` + MDX project files (derived from `cv/master.md`) |
+| Website copy | `site/src/data/profile.ts` + Markdown project files in `site/src/content/projects/` (derived from `cv/master.md`) |
 
 No public content should be invented outside `cv/master.md`.
 Claims should be treated as verified through `evidence/claims.md`, and private backing documents live in `.cv-vault/`.

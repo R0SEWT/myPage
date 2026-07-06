@@ -15,21 +15,30 @@ These layers are complementary, not competing: `bd` tracks granular issues and o
 
 ## Project Structure
 
-All source code lives under `rosewt-arariwa/`. Commands must be run from that directory.
-`rosewt-astro/` is deprecated and deleted — do not reference it.
+All source code lives under `site/`. Commands must be run from that directory.
+Prior React/Vite and Astro-prototype implementations have been fully removed — do not reference their old paths.
 Design system assets and UI kit reference files live in `docs/design/`.
 
 ```
-rosewt-arariwa/
+site/
   src/
-    components/       # React components: Header, Hero, Footer, sections, atoms
+    components/       # Astro components: Header, Hero, Footer, ProjectRow, sections
+    content/
+      projects/       # Project detail content (Markdown, content collection)
+    content.config.ts # Content collection schema
     data/
-      constants.ts    # All site data: experience, publications, contact, etc.
+      profile.ts      # Site data: experience, publications, contact, etc.
+    layouts/
+      BaseLayout.astro
+    pages/
+      index.astro
+      projects/[slug].astro
+      404.astro
     styles/
-      arariwa.css     # Design tokens (colors, type, spacing)
-      layout.css      # Layout and component styles
+      tokens.css      # Design tokens (colors, type, spacing)
+      global.css      # Layout and component styles
   public/
-    assets/           # SVG brand assets (wordmark, seals, patterns)
+    assets/projects/  # Project media assets
     CV.en.pdf
     CV.es.pdf
 
@@ -43,22 +52,22 @@ docs/design/          # Arariwa design system reference (not deployed)
 
 ## Commands
 
-All commands from `rosewt-arariwa/`:
+All commands from `site/`:
 
 ```bash
-npm run dev        # Start dev server (Vite)
-npm run build      # Production build (tsc + vite build)
+npm run dev        # Start dev server (Astro)
+npm run build      # Production build (static output to dist/)
 npm run preview    # Preview production build
-npm run lint       # ESLint
+npm run check      # Astro/TypeScript diagnostics (no separate lint script)
 ```
 
 ## Architecture
 
-**React + Vite**: SPA built with React and TypeScript. Vite handles bundling and dev server.
+**Astro (static output)**: Multi-page site built with Astro and TypeScript. No client-side framework runtime; islands are plain `<script>` tags where needed (e.g. scroll-spy nav).
 
-**Site data in one place**: All text content (experience, publications, contact info, tech stack) is exported from `src/data/constants.ts`. Components consume these constants rather than hardcoding strings.
+**Content collections**: Project case studies live as Markdown files in `src/content/projects/`, validated against the schema in `src/content.config.ts`. Other site data (experience, publications, contact info, tech stack) is exported from `src/data/profile.ts`. Components consume these rather than hardcoding strings.
 
-**Styling**: Custom CSS using the Arariwa design system (`arariwa.css` for tokens, `layout.css` for structure). No Tailwind.
+**Styling**: Plain CSS using the Arariwa design system (`tokens.css` for design tokens, `global.css` for layout/components). No Tailwind, no CSS-in-JS.
 
 **Design system**: `docs/design/` contains the full Arariwa brand reference — colors, typography, spacing, component previews, and a portfolio UI kit. Use these as the canonical visual reference when building or modifying UI.
 
@@ -100,7 +109,7 @@ bd close <id>         # Complete work
 **MANDATORY WORKFLOW:**
 
 1. **File issues for remaining work** - Create issues for anything that needs follow-up
-2. **Run quality gates** (if code changed) - from `rosewt-arariwa/`: `npm run lint && npm run build`
+2. **Run quality gates** (if code changed) - from `site/`: `npm run build && npm run check`
 3. **Update issue status** - Close finished work, update in-progress items
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
