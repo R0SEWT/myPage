@@ -92,14 +92,14 @@ Support references use one of these prefixes:
   - `public_url`: `https://rosewt.dev/`
 
 ### sys-potato-achis-001
-- `surface`: `web`
+- `surface`: `both`
 - `publicable`: `yes`
 - `claim`: Built potato-achis, a multi-source domain feature adaptation network (MDFAN) for Andean potato disease classification, with Andean field augmentations, open-set OOD rejection, and timm backbones (MobileNetV3/ResNet50), on a modern Python stack (uv, ruff, mypy, pytest, Hydra).
 - `supports`:
   - `repo`: `https://github.com/R0SEWT/potato-achis`
 
 ### sys-lumi-001
-- `surface`: `web`
+- `surface`: `both`
 - `publicable`: `yes`
 - `claim`: Built Lumi, a caregiver copilot that wraps LLM-generated proposals in deterministic medical-safety boundaries — a FastAPI service with Azure OpenAI, ports/adapters (hexagonal) architecture, and CI with tests, packaged for Docker-based deployment to Azure App Service.
 - `supports`:
