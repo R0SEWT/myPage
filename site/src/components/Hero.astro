@@ -1,17 +1,28 @@
 ---
 import { PROFILE, QUICK_FACTS } from '../data/profile';
+const headlineWords = PROFILE.headline.split(' ');
+const headlineLead = headlineWords.slice(0, -1).join(' ');
+const headlineTail = headlineWords.at(-1);
 ---
 <section class="hero container">
-  <p class="badge"><span class="dot" aria-hidden="true"></span>{PROFILE.availability}</p>
-  <h1>{PROFILE.name} — <span class="accent">{PROFILE.headline}.</span></h1>
-  <p class="mono role">{PROFILE.role}</p>
-  <p class="lede">{PROFILE.summary}</p>
-  <p class="ctas">
-    <a href="#projects" class="cta-primary">View projects</a>
-    <a href={PROFILE.links.cvEn}>CV EN</a> · <a href={PROFILE.links.cvEs}>CV ES</a> ·
-    <a href={PROFILE.links.github}>GitHub</a> · <a href={PROFILE.links.linkedin}>LinkedIn</a>
-  </p>
-  <dl class="quick-facts">
-    {QUICK_FACTS.map((f) => (<div><dt class="mono">{f.label}</dt><dd>{f.value}</dd></div>))}
-  </dl>
+  <div class="hero-copy">
+    <p class="hero-folio mono"><span>ARV / 2026</span><span>Applied systems archive</span></p>
+    <p class="badge"><span class="dot" aria-hidden="true"></span>{PROFILE.availability}</p>
+    <h1>{PROFILE.name}<span>{headlineLead}</span><span>{headlineTail}</span></h1>
+    <p class="mono role">{PROFILE.role}</p>
+    <p class="lede">{PROFILE.summary}</p>
+    <p class="ctas">
+      <a href="#projects" class="cta-primary">View systems</a>
+      <a href={PROFILE.links.cvEn}>CV EN</a>
+      <a href={PROFILE.links.cvEs}>CV ES</a>
+      <a href={PROFILE.links.github}>GitHub</a>
+      <a href={PROFILE.links.linkedin}>LinkedIn</a>
+    </p>
+  </div>
+  <aside class="hero-card" aria-label="Profile snapshot">
+    <img src="/assets/brand/seal-systems.svg" alt="" class="hero-seal" aria-hidden="true" />
+    <dl class="quick-facts">
+      {QUICK_FACTS.map((f) => (<div><dt class="mono">{f.label}</dt><dd>{f.value}</dd></div>))}
+    </dl>
+  </aside>
 </section>

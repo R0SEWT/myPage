@@ -33,9 +33,15 @@ const personJsonLd = {
   <Header />
   <main>
     <Hero />
-    <section id="projects" class="section container">
-      <h2>Systems</h2>
-      {projects.map((p) => <ProjectRow project={p} />)}
+    <section id="projects" class="section container systems-section">
+      <div class="section-head">
+        <img src="/assets/brand/seal-retrieval.svg" alt="" aria-hidden="true" />
+        <div>
+          <p class="mono eyebrow">Selected systems</p>
+          <h2>Built under constraints</h2>
+        </div>
+      </div>
+      {projects.map((p, index) => <ProjectRow project={p} index={index} />)}
     </section>
     <section id="experience" class="section container">
       <div class="two-col">

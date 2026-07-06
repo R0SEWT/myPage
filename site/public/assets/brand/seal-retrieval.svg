@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="currentColor" stroke-width="1">
+  <title>Arariwa seal — Retrieval (red de vecindades)</title>
+  
+  <circle cx="100" cy="100" r="96" stroke-width="0.6"></circle>
+  <circle cx="100" cy="100" r="88"></circle>
+  <circle cx="100" cy="100" r="72" stroke-width="0.5"></circle>
+  
+  <path d="M 100 20 L 180 100 L 100 180 L 20 100 Z" stroke-width="0.4"></path>
+  
+  <path d="M 100 62 L 112 62 L 112 74 L 124 74 L 124 86 L 138 86 L 138 114 L 124 114 L 124 126 L 112 126 L 112 138 L 88 138 L 88 126 L 76 126 L 76 114 L 62 114 L 62 86 L 76 86 L 76 74 L 88 74 L 88 62 Z" stroke-width="1.1"></path>
+  
+  <circle cx="100" cy="100" r="6"></circle>
+  <circle cx="100" cy="100" r="2" fill="currentColor"></circle>
+  <g stroke-width="0.7">
+    <circle cx="100" cy="38" r="2.5" fill="currentColor"></circle>
+    <circle cx="162" cy="100" r="2.5" fill="currentColor"></circle>
+    <circle cx="100" cy="162" r="2.5" fill="currentColor"></circle>
+    <circle cx="38" cy="100" r="2.5" fill="currentColor"></circle>
+    <line x1="100" y1="38" x2="162" y2="100" stroke-width="0.4"></line>
+    <line x1="162" y1="100" x2="100" y2="162" stroke-width="0.4"></line>
+    <line x1="100" y1="162" x2="38" y2="100" stroke-width="0.4"></line>
+    <line x1="38" y1="100" x2="100" y2="38" stroke-width="0.4"></line>
+  </g>
+  
+  <g stroke-width="0.5">
+    <line x1="100" y1="4" x2="100" y2="14"></line>
+    <line x1="196" y1="100" x2="186" y2="100"></line>
+    <line x1="100" y1="196" x2="100" y2="186"></line>
+    <line x1="4" y1="100" x2="14" y2="100"></line>
+  </g>
+</svg>

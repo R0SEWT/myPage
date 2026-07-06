@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="currentColor" stroke-width="1">
+  <title>Arariwa seal — Research / DocAI (pliegues del folio)</title>
+  
+  <circle cx="100" cy="100" r="96" stroke-width="0.6"></circle>
+  <circle cx="100" cy="100" r="88"></circle>
+  <circle cx="100" cy="100" r="72" stroke-width="0.5"></circle>
+  
+  <path d="M 100 20 L 180 100 L 100 180 L 20 100 Z" stroke-width="0.4"></path>
+  
+  <path d="M 100 62 L 112 62 L 112 74 L 124 74 L 124 86 L 138 86 L 138 114 L 124 114 L 124 126 L 112 126 L 112 138 L 88 138 L 88 126 L 76 126 L 76 114 L 62 114 L 62 86 L 76 86 L 76 74 L 88 74 L 88 62 Z" stroke-width="1.1"></path>
+  
+  <g stroke-width="0.7">
+    <line x1="74" y1="94" x2="126" y2="94"></line>
+    <line x1="74" y1="100" x2="126" y2="100"></line>
+    <line x1="74" y1="106" x2="126" y2="106"></line>
+  </g>
+  
+  <circle cx="100" cy="100" r="4" fill="currentColor"></circle>
+  
+  <g stroke-width="0.8">
+    <path d="M 100 40 L 106 52 L 94 52 Z"></path>
+    <path d="M 160 100 L 148 106 L 148 94 Z"></path>
+    <path d="M 100 160 L 94 148 L 106 148 Z"></path>
+    <path d="M 40 100 L 52 94 L 52 106 Z"></path>
+  </g>
+</svg>

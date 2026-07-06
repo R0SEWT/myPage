@@ -1,15 +1,21 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-interface Props { project: CollectionEntry<'projects'> }
-const { project } = Astro.props;
+interface Props { project: CollectionEntry<'projects'>; index: number }
+const { project, index } = Astro.props;
 const { title, tagline, result, status, stack, links, media, mediaAlt } = project.data;
 const href = `/projects/${project.id}/`;
 ---
 <article class="project-row">
-  {media
-    ? <a href={href} class="thumb"><img src={media} alt={mediaAlt ?? title} loading="lazy" /></a>
-    : <a href={href} class="thumb placeholder" aria-hidden="true"></a>}
+  <a href={href} class={media ? 'thumb' : 'thumb placeholder'} aria-label={`Open ${title} case study`}>
+    {media
+      ? <img src={media} alt={mediaAlt ?? title} loading="lazy" />
+      : <>
+          <span class="mono thumb-code">{String(index + 1).padStart(2, '0')}</span>
+          <img src="/assets/brand/seal-systems.svg" alt="" aria-hidden="true" />
+        </>}
+  </a>
   <div class="project-body">
+    <p class="mono project-kicker">System {String(index + 1).padStart(2, '0')}</p>
     <h3><a href={href}>{title}</a> <span class="tag mono">{status}</span></h3>
     <p>{tagline}</p>
     <p class="result">▸ {result}</p>
