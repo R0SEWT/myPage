@@ -6,7 +6,7 @@ const { title, tagline, result, status, stack, links, media, mediaAlt } = projec
 const href = `/projects/${project.id}/`;
 ---
 <article class="project-row">
-  <a href={href} class={media ? 'thumb' : 'thumb placeholder'} aria-label={`Open ${title} case study`}>
+  <a href={href} class={`${media ? 'thumb' : 'thumb placeholder'} system-${index + 1}`} aria-label={`Open ${title} case study`}>
     {media
       ? <img src={media} alt={mediaAlt ?? title} loading="lazy" />
       : <>
