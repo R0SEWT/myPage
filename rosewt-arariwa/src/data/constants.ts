@@ -136,6 +136,10 @@ export const EXPERIENCE: ExperienceEntry[] = [
       'Implementé enriquecimiento estructurado de metadatos con LLMs: validación de esquema, batching y manejo de rate-limit para mejorar la calidad de retrieval.',
       'Co-construí un agente de soporte IT en Copilot Studio desplegado en Teams, con resolución nivel-0 y escalamiento a ticketing.',
       'Diseñé el flujo de escalamiento: pre-llenado del ticket desde contexto conversacional con revisión human-in-the-loop vía Adaptive Cards.',
+      'Rediseñé el agente de soporte IT como sistema multiagente hub-and-spoke, particionando fuentes de conocimiento por dominio para evitar el límite de retrieval de la orquestación generativa de Copilot Studio.',
+      'Diseñé un framework de evaluación de tres capas agnóstico de modelo: runner determinista con análisis de matriz de confusión de ruteo, LLM-as-judge con contrato de modelo intercambiable, y tests con personas que detectan delegación silenciosa entre agentes.',
+      'Extendí la plataforma de un único bot de soporte IT a una flota de agentes en Copilot Studio (IT, servicios administrativos, SOPs), sobre un submódulo versionado con upgrade de pin explícito y una plantilla que scaffoldea gobernanza y tests.',
+      'Construí un pipeline con arquitectura medallion (bronze/silver/gold) y dashboard analítico sobre tickets históricos de soporte IT, segmentando usuarios con clustering no supervisado y prototipando clasificación de tickets vía LLM con revisión human-in-the-loop.',
     ],
   },
   {
@@ -176,11 +180,15 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     label: 'Data / Backend',
-    items: ['Pandas', 'FastAPI', 'Flask', 'REST APIs', 'MongoDB', 'PostgreSQL', 'ETL'],
+    items: ['Pandas', 'FastAPI', 'Flask', 'REST APIs', 'MongoDB', 'PostgreSQL', 'DuckDB', 'ETL'],
   },
   {
     label: 'Infrastructure',
-    items: ['Docker', 'Git', 'Linux', 'Jenkins', 'CI/CD'],
+    items: ['Docker', 'Git', 'Linux', 'Jenkins', 'GitHub Actions', 'Node.js', 'CI/CD'],
+  },
+  {
+    label: 'Agent Platforms',
+    items: ['Copilot Studio', 'Power Automate', 'Dataverse', 'Adaptive Cards', 'Microsoft Teams', 'multi-agent orchestration', 'LLM-as-judge evaluation'],
   },
 ];
 

@@ -3,12 +3,16 @@
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\ifdefined\XeTeXrevision\else
+  \usepackage[utf8]{inputenc}
+\fi
 \usepackage{lmodern}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
-\input{glyphtounicode}
-\pdfgentounicode=1
+\ifdefined\XeTeXrevision\else
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
 
 \makeatletter
 % Allow \input files to resolve when LaTeX runs from repo root or cv/.
@@ -53,6 +57,10 @@ Diseño sistemas de IA aplicada para condiciones no ideales: retrieval, intelige
   \item Implementé enriquecimiento de metadata con structured output basado en LLM (validación de esquema, batching, backoff frente a rate limits) para mejorar recuperación sobre documentos heterogéneos
   \item Diseñé y construí en conjunto un agente de soporte TI en Copilot Studio desplegado en Teams, cubriendo resolución de consultas nivel 0 (resolución sobre documentación técnica interna) y escalamiento a ticketing
   \item Diseñé el flujo de escalamiento: cuando el agente detecta que no puede resolver o el usuario lo pide explícitamente, genera un prellenado del ticket (structured output) a partir del contexto conversacional, con revisión human-in-the-loop vía Adaptive Cards antes del envío
+  \item Rediseñé el agente de soporte TI, pasando de un diseño monolítico a un sistema multiagente hub-and-spoke, particionando las fuentes de conocimiento por dominio para mantenerse bajo el umbral de retrieval de la orquestación generativa de Copilot Studio y restaurar recuperación directa y sin filtrar por dominio
+  \item Diseñé un framework de evaluación de tres capas, agnóstico de modelo, para agentes conversacionales: un runner determinista YAML-driven con análisis de matriz de confusión de ruteo, un scorer LLM-as-judge construido detrás de un contrato de modelo intercambiable (validado al migrar de proveedor de juez sin cambios en los consumidores), y tests de exploración con personas que detectan delegación silenciosa entre el agente padre y los hijos
+  \item Extendí la plataforma interna de agentes de un único bot de soporte TI a una flota de agentes en Copilot Studio que abarca soporte TI, servicios administrativos corporativos y consultas sobre SOPs, construida sobre un submódulo de plataforma versionado con una ruta de upgrade de pin explícito y una plantilla de bootstrap que scaffoldea gobernanza, tests y tracking de issues para cada agente nuevo
+  \item Construí un pipeline con arquitectura medallion (bronze/silver/gold) y un dashboard analítico sobre tickets históricos de soporte TI, segmentando usuarios mediante clustering no supervisado sobre embeddings y prototipando un reranker few-shot para clasificación de tickets basada en LLM con revisión human-in-the-loop
 \end{itemize}
 
 \vspace{2pt}
@@ -84,8 +92,9 @@ Asociación KP (voluntariado, 95h, 2022--2023)
 \begin{tabular}{@{} l l @{} }
   \textbf{ML / AI Systems} & PyTorch, scikit-learn, Optuna, evaluación de modelos, pipelines multimodales \\
   \textbf{Retrieval / Document AI} & embeddings, Qdrant, LlamaIndex, chunking, parsing, procesamiento documental \\
-  \textbf{Data / Backend} & Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL \\
-  \textbf{Infraestructura} & Docker, Git, Linux, Jenkins, CI/CD \\
+  \textbf{Data / Backend} & Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, DuckDB, ETL \\
+  \textbf{Infraestructura} & Docker, Git, Linux, Jenkins, GitHub Actions, Node.js, CI/CD \\
+  \textbf{Plataformas de Agentes} & Copilot Studio, Power Automate, Dataverse, Adaptive Cards, Microsoft Teams, orquestación multiagente, evaluación LLM-as-judge \\
 \end{tabular}
 
 \vspace{4pt}
