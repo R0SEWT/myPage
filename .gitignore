@@ -8,6 +8,8 @@
 **/.DS_Store
 # Playwright MCP run artifacts (screenshots, snapshots, console logs)
 **/.playwright-mcp/
+# SuperDesign temporary component templates
+.superdesign/tmp/
 # Local LaTeX build artifacts for the CV
 cv/*.aux
 cv/*.fdb_latexmk
