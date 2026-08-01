@@ -88,7 +88,12 @@ export const home = {
     es: 'Construyo sistemas de machine learning para condiciones no ideales: datos incompletos, objetivos ambiguos y restricciones institucionales.',
     en: 'I build machine learning systems for non-ideal conditions: incomplete data, ambiguous objectives and institutional constraints.',
   },
-  chips: ['Retrieval', 'Agent systems', 'Evaluation', 'Urban ML'],
+  chips: [
+    { es: 'Recuperación', en: 'Retrieval' },
+    { es: 'Sistemas de agentes', en: 'Agent systems' },
+    { es: 'Evaluación', en: 'Evaluation' },
+    { es: 'ML urbano', en: 'Urban ML' },
+  ],
   name: 'Rody Vilchez',
   role: 'Applied ML Engineer',
   org: 'AI Intern · CIP–CGIAR',
@@ -133,19 +138,40 @@ export const approach = {
 
 export const systems = {
   lead: {
-    eyebrow: 'Production system · CIP–CGIAR',
-    title: 'CIP — Institutional AI Agent System',
-    lede: 'Designed and implemented a production multi-agent system for institutional IT support.',
-    note: 'Backed by a data-grounded evaluation platform spanning regression, response quality and agentic testing.',
+    eyebrow: { es: 'Sistema en producción · CIP–CGIAR', en: 'Production system · CIP–CGIAR' },
+    title: {
+      es: 'CIP — Sistema institucional de agentes de IA',
+      en: 'CIP — Institutional AI Agent System',
+    },
+    lede: {
+      es: 'Diseñé e implementé un sistema multiagente en producción para soporte TI institucional.',
+      en: 'Designed and implemented a production multi-agent system for institutional IT support.',
+    },
+    note: {
+      es: 'Sostenido por una plataforma de evaluación anclada en datos que abarca regresión, calidad de respuesta y pruebas agénticas.',
+      en: 'Backed by a data-grounded evaluation platform spanning regression, response quality and agentic testing.',
+    },
   },
   prototype: {
-    eyebrow: 'Working prototype · El Comercio',
-    title: 'Wachi — Risk-Aware Pedestrian Routing',
-    desc: 'Designed and built a geospatial prototype that re-ranks pedestrian routes by distance and estimated exposure derived from spatiotemporal patterns in reported incidents.',
-    meta: 'H3 · Temporal decay · Post-hoc route reranking',
+    eyebrow: { es: 'Prototipo funcional · El Comercio', en: 'Working prototype · El Comercio' },
+    title: {
+      es: 'Wachi — Ruteo peatonal consciente del riesgo',
+      en: 'Wachi — Risk-Aware Pedestrian Routing',
+    },
+    desc: {
+      es: 'Diseñé y construí un prototipo geoespacial que reordena rutas peatonales por distancia y exposición estimada, derivada de patrones espaciotemporales en incidentes reportados.',
+      en: 'Designed and built a geospatial prototype that re-ranks pedestrian routes by distance and estimated exposure derived from spatiotemporal patterns in reported incidents.',
+    },
+    meta: {
+      es: 'H3 · Decaimiento temporal · Reordenamiento posterior de rutas',
+      en: 'H3 · Temporal decay · Post-hoc route reranking',
+    },
     video: '/assets/deck/wachi-loop.webm',
-    videoLabel: 'Wachi pedestrian route reranking loop',
-    caption: 'Prototype capture',
+    videoLabel: {
+      es: 'Loop del reordenamiento de rutas peatonales de Wachi',
+      en: 'Wachi pedestrian route reranking loop',
+    },
+    caption: { es: 'Captura del prototipo', en: 'Prototype capture' },
   },
 };
 
@@ -153,20 +179,41 @@ export const systems = {
 
 export const research = {
   program: {
-    eyebrow: 'Research program · Urban ML',
-    title: 'Infelix — Learning under Imperfect Observation',
-    desc: 'Investigating what crime-prediction systems learn when the record itself is shaped by who reports, what gets geocoded, and which city you train on.',
-    meta: 'Placebo-controlled · 20-seed robustness analysis',
+    eyebrow: { es: 'Programa de investigación · ML urbano', en: 'Research program · Urban ML' },
+    title: {
+      es: 'Infelix — Aprendizaje bajo observación imperfecta',
+      en: 'Infelix — Learning under Imperfect Observation',
+    },
+    desc: {
+      es: 'Investigo qué aprenden los sistemas de predicción de crimen cuando el registro mismo está moldeado por quién denuncia, qué llega a geocodificarse y en qué ciudad se entrena.',
+      en: 'Investigating what crime-prediction systems learn when the record itself is shaped by who reports, what gets geocoded, and which city you train on.',
+    },
+    meta: {
+      es: 'Controlado con placebo · Análisis de robustez con 20 semillas',
+      en: 'Placebo-controlled · 20-seed robustness analysis',
+    },
   },
   publication: {
-    eyebrow: 'Published research · Springer CCIS 2895 · 2026',
-    title: 'Imitator — Multimodal Sign Language Model',
-    desc: 'Co-authored a gloss-free multimodal architecture aligning 2D keypoint sequences with pretrained language-model embeddings across Peruvian and Argentinian sign-language datasets.',
+    eyebrow: {
+      es: 'Investigación publicada · Springer CCIS 2895 · 2026',
+      en: 'Published research · Springer CCIS 2895 · 2026',
+    },
+    title: {
+      es: 'Imitator — Modelo multimodal de lengua de señas',
+      en: 'Imitator — Multimodal Sign Language Model',
+    },
+    desc: {
+      es: 'Coautoría de una arquitectura multimodal sin glosa que alinea secuencias de keypoints 2D con embeddings de un modelo de lenguaje preentrenado, sobre corpus de lengua de señas peruana y argentina.',
+      en: 'Co-authored a gloss-free multimodal architecture aligning 2D keypoint sequences with pretrained language-model embeddings across Peruvian and Argentinian sign-language datasets.',
+    },
     doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
+    /** An identifier, not copy — the same in both languages. */
     doiLabel: 'DOI 10.1007/978-3-032-20322-9_23 ↗',
     cover: '/assets/deck/imitator-ccis-2895.png',
-    coverAlt:
-      'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
+    coverAlt: {
+      es: 'Information Management and Big Data — actas de SIMBig 2025, volumen Springer CCIS 2895',
+      en: 'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
+    },
   },
 };
 
@@ -174,12 +221,13 @@ export const research = {
 
 export interface OpenSourceRow {
   mark: string;
+  /** Project marks carry their own name; the same alt serves both languages. */
   markAlt: string;
   /** beads ships a square app mark; the others are transparent wordmarks. */
   rounded?: boolean;
   name: string;
-  desc: string;
-  contribution: string;
+  desc: Bi;
+  contribution: Bi;
   /** A row becomes an anchor once an approved evidence URL exists for it. */
   href?: string;
 }
@@ -189,30 +237,51 @@ export const openSource: OpenSourceRow[] = [
     mark: '/assets/deck/os-copilot-studio.png',
     markAlt: 'Microsoft Copilot Studio',
     name: 'Microsoft Copilot Studio',
-    desc: 'Official VS Code extension for enterprise agent development',
-    contribution: 'Knowledge sources · Child-agent sync · Prerelease validation',
+    desc: {
+      es: 'Extensión oficial de VS Code para desarrollo de agentes empresariales',
+      en: 'Official VS Code extension for enterprise agent development',
+    },
+    contribution: {
+      es: 'Fuentes de conocimiento · Sincronización de agentes hijo · Validación de prerelease',
+      en: 'Knowledge sources · Child-agent sync · Prerelease validation',
+    },
   },
   {
     mark: '/assets/deck/os-gemini-cli.png',
     markAlt: 'Gemini CLI',
     name: 'Gemini CLI',
-    desc: 'Open-source coding agent for the terminal',
-    contribution: 'UI schema fix · Test coverage',
+    desc: {
+      es: 'Agente de codificación open source para la terminal',
+      en: 'Open-source coding agent for the terminal',
+    },
+    contribution: {
+      es: 'Corrección del esquema de UI · Cobertura de tests',
+      en: 'UI schema fix · Test coverage',
+    },
   },
   {
     mark: '/assets/deck/os-sklearn-mark.png',
     markAlt: 'scikit-learn-contrib',
     name: 'scikit-learn',
-    desc: 'Open-source machine-learning library',
-    contribution: 'HDBSCAN documentation',
+    desc: {
+      es: 'Librería open source de machine learning',
+      en: 'Open-source machine-learning library',
+    },
+    contribution: { es: 'Documentación de HDBSCAN', en: 'HDBSCAN documentation' },
   },
   {
     mark: '/assets/deck/os-beads-mark.png',
     markAlt: 'beads / bd',
     rounded: true,
     name: 'beads (bd)',
-    desc: 'Git-backed issue tracking for coding agents',
-    contribution: 'Prefix routing · Write-through regression test',
+    desc: {
+      es: 'Issue tracking respaldado por Git para agentes de código',
+      en: 'Git-backed issue tracking for coding agents',
+    },
+    contribution: {
+      es: 'Enrutamiento por prefijo · Test de regresión write-through',
+      en: 'Prefix routing · Write-through regression test',
+    },
   },
 ];
 
@@ -221,9 +290,10 @@ export const openSource: OpenSourceRow[] = [
 export interface CareerRow {
   when: Bi;
   current: boolean;
+  /** Job and degree titles stay as awarded, in both languages. */
   role: string;
   org: string;
-  desc: string;
+  desc: Bi;
 }
 
 export const career: CareerRow[] = [
@@ -232,21 +302,30 @@ export const career: CareerRow[] = [
     current: true,
     role: 'AI Intern',
     org: 'CIP · CGIAR',
-    desc: 'Building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
+    desc: {
+      es: 'Construyo sistemas de IA institucional multilingüe que abarcan recuperación de conocimiento, flujos de trabajo con agentes y evaluación anclada en evidencia.',
+      en: 'Building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
+    },
   },
   {
     when: { es: 'Dic 2024 —<br />Oct 2025', en: 'Dec 2024 —<br />Oct 2025' },
     current: false,
     role: 'QA Trainee',
     org: 'VISMA LATAM',
-    desc: 'Developed an LLM agent that generates E2E tests from specifications, integrating Cypress suites into Jenkins with DOM-aware generation.',
+    desc: {
+      es: 'Desarrollé un agente LLM que genera tests E2E a partir de especificaciones, integrando suites de Cypress en Jenkins con generación consciente del DOM.',
+      en: 'Developed an LLM agent that generates E2E tests from specifications, integrating Cypress suites into Jenkins with DOM-aware generation.',
+    },
   },
   {
     when: { es: 'Previsto fines de 2026', en: 'Expected late 2026' },
     current: false,
     role: 'B.Sc. Computer Science',
     org: 'UPC · LIMA',
-    desc: '2nd place · DataFest BCP × ESAN 2025 · SALA 2026 full scholarship',
+    desc: {
+      es: '2.º puesto · DataFest BCP × ESAN 2025 · Beca completa SALA 2026',
+      en: '2nd place · DataFest BCP × ESAN 2025 · SALA 2026 full scholarship',
+    },
   },
 ];
 
@@ -255,5 +334,8 @@ export const career: CareerRow[] = [
 export const contact = {
   status: { es: 'Abierto a nuevos roles', en: 'Open to new roles' },
   title: { es: 'Hablemos.', en: "Let's talk." },
-  note: 'Open to applied ML, AI systems and research engineering roles.',
+  note: {
+    es: 'Abierto a roles de applied ML, sistemas de IA e ingeniería de investigación.',
+    en: 'Open to applied ML, AI systems and research engineering roles.',
+  },
 };

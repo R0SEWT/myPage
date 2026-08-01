@@ -14,7 +14,7 @@ const s = SCREENS[0];
     <div class="id-blurb">
       <T t={home.blurb} as="p" />
       <div class="chips">
-        {home.chips.map((c) => <span class="chip">{c}</span>)}
+        {home.chips.map((c) => <T t={c} class="chip" />)}
       </div>
     </div>
 

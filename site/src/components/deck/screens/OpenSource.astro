@@ -1,6 +1,7 @@
 ---
 import { SCREENS, openSource } from '../../../data/deck';
 import SecHead from '../SecHead.astro';
+import T from '../T.astro';
 
 const s = SCREENS[4];
 ---
@@ -31,9 +32,9 @@ const s = SCREENS[4];
             {/* The arrow is an affordance, so it only shows where a row navigates. */}
             {row.href && <span class="os-arrow" aria-hidden="true">↗</span>}
           </div>
-          <div class="os-desc">{row.desc}</div>
+          <T t={row.desc} as="div" class="os-desc" />
         </div>
-        <div class="os-contribution">{row.contribution}</div>
+        <T t={row.contribution} as="div" class="os-contribution" />
       </Tag>
     );
   })}

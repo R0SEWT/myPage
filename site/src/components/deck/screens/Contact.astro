@@ -20,7 +20,7 @@ const s = SCREENS[6];
 
   <a class="ct-mail" href={`mailto:${links.email}`}>{links.email}</a>
 
-  <p class="ct-note">{contact.note}</p>
+  <T t={contact.note} as="p" class="ct-note" />
 
   <div class="ct-links">
     <a href={links.cvEs} target="_blank" rel="noopener">CV ES ↗</a>
