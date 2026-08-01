@@ -1,0 +1,32 @@
+---
+import { SCREENS, research } from '../../../data/deck';
+import T from '../T.astro';
+
+const s = SCREENS[3];
+---
+<section
+  class="screen screen--research"
+  data-num={s.num}
+  data-es={s.label.es}
+  data-en={s.label.en}
+  hidden
+>
+  <div class="res-eyebrow">{research.eyebrow}</div>
+  <h2 class="res-title">{research.title}</h2>
+  <T t={research.lede} as="p" class="res-lede" />
+
+  <div class="metrics">
+    {research.metrics.map((m) => (
+      <div>
+        <div class={m.accent ? 'metric-val metric-val--accent' : 'metric-val'}>{m.value}</div>
+        <T t={m.label} as="div" class="metric-label" />
+      </div>
+    ))}
+  </div>
+
+  <p style="margin:32px 0 0">
+    <a class="res-link" href={research.repo} target="_blank" rel="noopener noreferrer">
+      <T t={research.repoLabel} />
+    </a>
+  </p>
+</section>

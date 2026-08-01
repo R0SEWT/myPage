@@ -1,0 +1,37 @@
+---
+import { SCREENS, systems } from '../../../data/deck';
+import T from '../T.astro';
+
+const s = SCREENS[2];
+const count = String(systems.length).padStart(3, '0');
+---
+<section
+  class="screen screen--systems"
+  data-num={s.num}
+  data-es={s.label.es}
+  data-en={s.label.en}
+  hidden
+>
+  <div class="sec-head">
+    <T t={s.label} />
+    <b>{count}</b>
+  </div>
+
+  {systems.map((row) => {
+    const inner = (
+      <>
+        <span class="row-num">{row.num}</span>
+        <span class="row-title">{row.title}</span>
+        <T t={row.desc} class="row-desc" />
+        <span class="row-meta">
+          <T t={row.meta} /><br />{row.year}{row.href ? ' ↗' : ''}
+        </span>
+      </>
+    );
+    return row.href ? (
+      <a class="row" href={row.href} target="_blank" rel="noopener noreferrer">{inner}</a>
+    ) : (
+      <div class="row">{inner}</div>
+    );
+  })}
+</section>

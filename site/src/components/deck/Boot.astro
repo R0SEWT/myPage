@@ -1,0 +1,17 @@
+---
+import { chrome } from '../../data/deck';
+import T from './T.astro';
+---
+<div class="boot" id="boot">
+  <div class="boot-rain" aria-hidden="true"></div>
+  <div class="boot-id">
+    <b>{chrome.callsign}</b><span>{chrome.bootSystem}</span>
+  </div>
+  <div class="boot-foot">
+    <div class="boot-pct" id="boot-pct">000</div>
+    <div class="boot-meter">
+      <div class="boot-track"><div class="boot-bar" id="boot-bar"></div></div>
+      <T t={chrome.bootLabel} as="div" class="boot-label" />
+    </div>
+  </div>
+</div>

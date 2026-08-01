@@ -1,0 +1,22 @@
+---
+import { chrome } from '../../data/deck';
+import T from './T.astro';
+---
+<div class="stats" id="stats" hidden aria-hidden="true">
+  <div class="stat">
+    <div class="stat-val" id="stat-particles">—</div>
+    <T t={chrome.stats.particles} as="div" class="stat-label" />
+  </div>
+  <div class="stat">
+    <div class="stat-val" id="stat-fps">60</div>
+    <T t={chrome.stats.fps} as="div" class="stat-label" />
+  </div>
+  <div class="stat">
+    <div class="stat-val" id="stat-screen-val">00 / 06</div>
+    <div class="stat-label" id="stat-screen-label">Identidad</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">Lima</div>
+    <div class="stat-label">{chrome.stats.place}</div>
+  </div>
+</div>

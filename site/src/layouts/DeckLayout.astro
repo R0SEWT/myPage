@@ -1,0 +1,58 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/vesper.css';
+
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: object[];
+}
+
+const { title, description, jsonLd = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<html lang="es" data-lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Rody Vilchez" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="help" type="text/markdown" href="/llms.txt" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://rosewt.dev/og-image.png" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:site_name" content="Rody Vilchez" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://rosewt.dev/og-image.png" />
+    {jsonLd.map((obj) => (
+      <script type="application/ld+json" set:html={JSON.stringify(obj)} />
+    ))}
+    <noscript>
+      <style>
+        /* Without JS the boot overlay never clears and the deck never advances,
+           so drop the chrome and let every screen stack into one scroll. */
+        #boot,
+        #stats,
+        #more { display: none !important; }
+        .pane { display: block; }
+        .screen[hidden] { display: block !important; }
+        .screen { animation: none; margin: 0 0 96px; }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
