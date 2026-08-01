@@ -1,0 +1,29 @@
+---
+import { SCREENS, contact, links } from '../../../data/deck';
+import T from '../T.astro';
+
+const s = SCREENS[6];
+---
+<section
+  class="screen screen--contact"
+  data-num={s.num}
+  data-es={s.label.es}
+  data-en={s.label.en}
+  hidden
+>
+  <div class="ct-status">
+    <span class="dot" aria-hidden="true"></span><T t={contact.status} />
+  </div>
+
+  <T t={contact.title} as="h2" class="ct-title" />
+
+  <a class="ct-mail" href={`mailto:${links.email}`}>{links.email}</a>
+
+  <div class="ct-links">
+    <a href={links.cvEs} target="_blank" rel="noopener">CV ES ↗</a>
+    <a href={links.cvEn} target="_blank" rel="noopener">CV EN ↗</a>
+    <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
+    <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+    <span class="ct-place">{contact.place}</span>
+  </div>
+</section>

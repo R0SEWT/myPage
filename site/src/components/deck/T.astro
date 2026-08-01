@@ -1,0 +1,19 @@
+---
+/**
+ * Bilingual text. Renders both variants; CSS shows the one matching
+ * `data-lang` on <html>, so switching language costs one attribute write.
+ * Copy is authored in src/data/deck.ts and may carry inline markup.
+ */
+import type { Bi } from '../../data/deck';
+
+interface Props {
+  t: Bi;
+  as?: string;
+  class?: string;
+}
+
+// NB: do not write `Astro.props as Props` here — that cast panics
+// @astrojs/compiler's GetPropsType during `astro check`.
+const { t, as: Tag = 'span', class: cls } = Astro.props;
+---
+<Tag class={cls} data-l="es" set:html={t.es} /><Tag class={cls} data-l="en" set:html={t.en} />

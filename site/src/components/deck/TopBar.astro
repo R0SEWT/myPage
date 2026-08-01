@@ -1,0 +1,30 @@
+---
+import { SCREENS, NAV_COUNT, CONTACT_INDEX, chrome } from '../../data/deck';
+import T from './T.astro';
+
+const nav = SCREENS.slice(0, NAV_COUNT);
+---
+<header class="topbar">
+  <div class="tb-id">
+    <b>{chrome.callsign}</b><span id="sys-num">SYS.00</span>
+  </div>
+
+  <nav class="pill" aria-label="Secciones">
+    <span class="pill-brand"><i aria-hidden="true">✳</i>{chrome.brand}</span>
+    {nav.map((s, i) => (
+      <button type="button" class="pill-btn" data-go={i} aria-current={i === 0 ? 'true' : 'false'}>
+        <T t={s.label} />
+      </button>
+    ))}
+    <button type="button" class="pill-cta" data-go={CONTACT_INDEX}>
+      <T t={chrome.contact} />
+    </button>
+  </nav>
+
+  <div class="tb-meta">
+    <span class="tb-status">
+      <span class="dot" aria-hidden="true"></span><T t={chrome.status} />
+    </span>
+    <button type="button" class="lang-btn" id="lang-btn" aria-label="Switch to English">EN</button>
+  </div>
+</header>
