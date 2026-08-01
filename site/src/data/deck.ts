@@ -64,7 +64,7 @@ export const chrome = {
 };
 
 export const links = {
-  email: 'rody.vilchez00@gmail.com',
+  email: 'rody@rosewt.dev',
   github: 'https://github.com/R0SEWT',
   linkedin: 'https://www.linkedin.com/in/r0sewt/',
   cvEs: '/CV.es.pdf',

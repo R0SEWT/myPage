@@ -2,7 +2,7 @@
 
 Name: Rody Vilchez  
 Location: Lima, Peru  
-Email: rody.vilchez00@gmail.com  
+Email: rody@rosewt.dev  
 Phone: +51 987 082 126
 
 Links:
