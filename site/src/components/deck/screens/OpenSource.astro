@@ -1,0 +1,40 @@
+---
+import { SCREENS, openSource } from '../../../data/deck';
+import SecHead from '../SecHead.astro';
+
+const s = SCREENS[4];
+---
+<section
+  class="screen screen--os"
+  data-num={s.num}
+  data-es={s.label.es}
+  data-en={s.label.en}
+  hidden
+>
+  <SecHead label={s.label} index={4} />
+
+  {openSource.map((row) => {
+    const Tag = row.href ? 'a' : 'div';
+    const attrs = row.href
+      ? { href: row.href, target: '_blank', rel: 'noopener noreferrer' }
+      : {};
+    return (
+      <Tag class="os-row" {...attrs}>
+        <img
+          class={row.rounded ? 'os-mark os-mark--rounded' : 'os-mark'}
+          src={row.mark}
+          alt={row.markAlt}
+        />
+        <div>
+          <div class="os-name">
+            {row.name}
+            {/* The arrow is an affordance, so it only shows where a row navigates. */}
+            {row.href && <span class="os-arrow" aria-hidden="true">↗</span>}
+          </div>
+          <div class="os-desc">{row.desc}</div>
+        </div>
+        <div class="os-contribution">{row.contribution}</div>
+      </Tag>
+    );
+  })}
+</section>

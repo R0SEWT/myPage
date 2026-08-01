@@ -1,26 +1,27 @@
 ---
-import { SCREENS, identity, links } from '../../../data/deck';
+import { SCREENS, home, links } from '../../../data/deck';
 import T from '../T.astro';
 
 const s = SCREENS[0];
 ---
 <section class="screen" data-num={s.num} data-es={s.label.es} data-en={s.label.en}>
   <h1 class="id-row">
-    <T t={identity.wordLeft} class="id-word" />
-    <T t={identity.wordRight} class="id-word id-word--right" />
+    <T t={home.wordLeft} class="id-word" />
+    <T t={home.wordRight} class="id-word id-word--right" />
   </h1>
 
   <div class="id-foot">
     <div class="id-blurb">
-      <T t={identity.blurb} as="p" />
+      <T t={home.blurb} as="p" />
       <div class="chips">
-        {identity.chips.map((c) => <span class="chip">{c}</span>)}
+        {home.chips.map((c) => <span class="chip">{c}</span>)}
       </div>
     </div>
 
     <div class="id-card">
-      <div><b>{identity.name}</b></div>
-      <div>{identity.role}</div>
+      <div><b>{home.name}</b></div>
+      <div>{home.role}</div>
+      <div>{home.org}</div>
       <div class="id-links">
         <a href={`mailto:${links.email}`}>Email ↗</a>
         <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>

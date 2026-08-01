@@ -1,9 +1,9 @@
 ---
 import { SCREENS, systems } from '../../../data/deck';
-import T from '../T.astro';
+import SecHead from '../SecHead.astro';
 
 const s = SCREENS[2];
-const count = String(systems.length).padStart(3, '0');
+const { lead, prototype } = systems;
 ---
 <section
   class="screen screen--systems"
@@ -12,26 +12,34 @@ const count = String(systems.length).padStart(3, '0');
   data-en={s.label.en}
   hidden
 >
-  <div class="sec-head">
-    <T t={s.label} />
-    <b>{count}</b>
+  <SecHead label={s.label} index={2} />
+
+  <div class="lead">
+    <div class="eyebrow eyebrow--live">{lead.eyebrow}</div>
+    <h3 class="lead-title">{lead.title}</h3>
+    <p class="lead-lede">{lead.lede}</p>
+    <p class="lead-note">{lead.note}</p>
   </div>
 
-  {systems.map((row) => {
-    const inner = (
-      <>
-        <span class="row-num">{row.num}</span>
-        <span class="row-title">{row.title}</span>
-        <T t={row.desc} class="row-desc" />
-        <span class="row-meta">
-          <T t={row.meta} /><br />{row.year}{row.href ? ' ↗' : ''}
-        </span>
-      </>
-    );
-    return row.href ? (
-      <a class="row" href={row.href} target="_blank" rel="noopener noreferrer">{inner}</a>
-    ) : (
-      <div class="row">{inner}</div>
-    );
-  })}
+  <div class="media-row">
+    <div>
+      <div class="eyebrow">{prototype.eyebrow}</div>
+      <h3 class="media-title">{prototype.title}</h3>
+      <p class="media-desc">{prototype.desc}</p>
+      <div class="media-meta">{prototype.meta}</div>
+    </div>
+
+    <div class="media-frame">
+      <video
+        src={prototype.video}
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label={prototype.videoLabel}
+      ></video>
+      <div class="media-caption">{prototype.caption}</div>
+    </div>
+  </div>
 </section>

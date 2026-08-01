@@ -1,8 +1,9 @@
 ---
 import { SCREENS, research } from '../../../data/deck';
-import T from '../T.astro';
+import SecHead from '../SecHead.astro';
 
 const s = SCREENS[3];
+const { program, publication } = research;
 ---
 <section
   class="screen screen--research"
@@ -11,22 +12,28 @@ const s = SCREENS[3];
   data-en={s.label.en}
   hidden
 >
-  <div class="res-eyebrow">{research.eyebrow}</div>
-  <h2 class="res-title">{research.title}</h2>
-  <T t={research.lede} as="p" class="res-lede" />
+  <SecHead label={s.label} index={3} />
 
-  <div class="metrics">
-    {research.metrics.map((m) => (
-      <div>
-        <div class={m.accent ? 'metric-val metric-val--accent' : 'metric-val'}>{m.value}</div>
-        <T t={m.label} as="div" class="metric-label" />
-      </div>
-    ))}
+  <div class="lead">
+    <div class="eyebrow eyebrow--live">{program.eyebrow}</div>
+    <h3 class="lead-title lead-title--wide">{program.title}</h3>
+    <p class="lead-desc">{program.desc}</p>
+    <div class="media-meta">{program.meta}</div>
   </div>
 
-  <p style="margin:32px 0 0">
-    <a class="res-link" href={research.repo} target="_blank" rel="noopener noreferrer">
-      <T t={research.repoLabel} />
+  <div class="pub-row">
+    <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
+      <img src={publication.cover} alt={publication.coverAlt} width="283" height="366" />
     </a>
-  </p>
+
+    <div>
+      <div class="eyebrow">{publication.eyebrow}</div>
+      <h3 class="media-title">{publication.title}</h3>
+      <p class="media-desc">{publication.desc}</p>
+    </div>
+
+    <a class="pub-doi" href={publication.doi} target="_blank" rel="noopener noreferrer">
+      {publication.doiLabel}
+    </a>
+  </div>
 </section>

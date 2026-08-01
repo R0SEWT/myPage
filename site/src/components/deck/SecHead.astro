@@ -1,0 +1,20 @@
+---
+/**
+ * Section header: bilingual label on the left, the screen's ordinal on the
+ * right ("001" … "006"). Screen 00 (Home) has no header.
+ */
+import type { Bi } from '../../data/deck';
+import T from './T.astro';
+
+interface Props {
+  label: Bi;
+  index: number;
+}
+
+const { label, index } = Astro.props;
+const num = String(index).padStart(3, '0');
+---
+<div class="sec-head">
+  <span><T t={label} /></span>
+  <b>{num}</b>
+</div>
