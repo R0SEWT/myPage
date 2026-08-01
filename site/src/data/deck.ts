@@ -238,11 +238,11 @@ export const openSource: OpenSourceRow[] = [
     markAlt: 'Microsoft Copilot Studio',
     name: 'Microsoft Copilot Studio',
     desc: {
-      es: 'Extensión oficial de VS Code para desarrollo de agentes empresariales',
+      es: 'Extensión oficial de VS Code para desarrollar agentes empresariales',
       en: 'Official VS Code extension for enterprise agent development',
     },
     contribution: {
-      es: 'Fuentes de conocimiento · Sincronización de agentes hijo · Validación de prerelease',
+      es: 'Fuentes de conocimiento · Sincronización de subagentes · Validación de prelanzamiento',
       en: 'Knowledge sources · Child-agent sync · Prerelease validation',
     },
   },
@@ -251,11 +251,11 @@ export const openSource: OpenSourceRow[] = [
     markAlt: 'Gemini CLI',
     name: 'Gemini CLI',
     desc: {
-      es: 'Agente de codificación open source para la terminal',
+      es: 'Agente de código abierto para programar desde la terminal',
       en: 'Open-source coding agent for the terminal',
     },
     contribution: {
-      es: 'Corrección del esquema de UI · Cobertura de tests',
+      es: 'Corrección de esquema UI · Cobertura de pruebas',
       en: 'UI schema fix · Test coverage',
     },
   },
@@ -264,7 +264,7 @@ export const openSource: OpenSourceRow[] = [
     markAlt: 'scikit-learn-contrib',
     name: 'scikit-learn',
     desc: {
-      es: 'Librería open source de machine learning',
+      es: 'Biblioteca de machine learning de código abierto',
       en: 'Open-source machine-learning library',
     },
     contribution: { es: 'Documentación de HDBSCAN', en: 'HDBSCAN documentation' },
@@ -275,11 +275,11 @@ export const openSource: OpenSourceRow[] = [
     rounded: true,
     name: 'beads (bd)',
     desc: {
-      es: 'Issue tracking respaldado por Git para agentes de código',
+      es: 'Gestor de tareas basado en Git para agentes de programación',
       en: 'Git-backed issue tracking for coding agents',
     },
     contribution: {
-      es: 'Enrutamiento por prefijo · Test de regresión write-through',
+      es: 'Enrutamiento por prefijos · Prueba de regresión write-through',
       en: 'Prefix routing · Write-through regression test',
     },
   },
@@ -290,8 +290,11 @@ export const openSource: OpenSourceRow[] = [
 export interface CareerRow {
   when: Bi;
   current: boolean;
-  /** Job and degree titles stay as awarded, in both languages. */
-  role: string;
+  /**
+   * Job titles stay as held, so both variants read the same. The degree is
+   * named in the reader's language.
+   */
+  role: Bi;
   org: string;
   desc: Bi;
 }
@@ -300,27 +303,27 @@ export const career: CareerRow[] = [
   {
     when: { es: 'Oct 2025 —<br />Presente', en: 'Oct 2025 —<br />Present' },
     current: true,
-    role: 'AI Intern',
+    role: { es: 'AI Intern', en: 'AI Intern' },
     org: 'CIP · CGIAR',
     desc: {
-      es: 'Construyo sistemas de IA institucional multilingüe que abarcan recuperación de conocimiento, flujos de trabajo con agentes y evaluación anclada en evidencia.',
+      es: 'Construyo sistemas institucionales de IA multilingüe que integran recuperación de conocimiento, flujos de agentes y evaluación basada en evidencia.',
       en: 'Building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
     },
   },
   {
     when: { es: 'Dic 2024 —<br />Oct 2025', en: 'Dec 2024 —<br />Oct 2025' },
     current: false,
-    role: 'QA Trainee',
+    role: { es: 'QA Trainee', en: 'QA Trainee' },
     org: 'VISMA LATAM',
     desc: {
-      es: 'Desarrollé un agente LLM que genera tests E2E a partir de especificaciones, integrando suites de Cypress en Jenkins con generación consciente del DOM.',
+      es: 'Desarrollé un agente basado en LLM que genera pruebas E2E desde especificaciones e integra suites de Cypress en Jenkins con generación guiada por el DOM.',
       en: 'Developed an LLM agent that generates E2E tests from specifications, integrating Cypress suites into Jenkins with DOM-aware generation.',
     },
   },
   {
     when: { es: 'Previsto fines de 2026', en: 'Expected late 2026' },
     current: false,
-    role: 'B.Sc. Computer Science',
+    role: { es: 'Ciencias de la Computación', en: 'B.Sc. Computer Science' },
     org: 'UPC · LIMA',
     desc: {
       es: '2.º puesto · DataFest BCP × ESAN 2025 · Beca completa SALA 2026',
@@ -332,10 +335,10 @@ export const career: CareerRow[] = [
 /* ------------------------------------------------------------- 06 contact */
 
 export const contact = {
-  status: { es: 'Abierto a nuevos roles', en: 'Open to new roles' },
+  status: { es: 'Abierto a nuevas oportunidades', en: 'Open to new roles' },
   title: { es: 'Hablemos.', en: "Let's talk." },
   note: {
-    es: 'Abierto a roles de applied ML, sistemas de IA e ingeniería de investigación.',
+    es: 'Disponible para roles en ML aplicado, sistemas de IA y research engineering.',
     en: 'Open to applied ML, AI systems and research engineering roles.',
   },
 };
