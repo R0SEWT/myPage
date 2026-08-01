@@ -1,26 +1,27 @@
 ---
-import { SCREENS, lineage } from '../../../data/deck';
+import { SCREENS, career } from '../../../data/deck';
 import T from '../T.astro';
+import SecHead from '../SecHead.astro';
 
-const s = SCREENS[4];
+const s = SCREENS[5];
 ---
 <section
-  class="screen screen--lineage"
+  class="screen screen--career"
   data-num={s.num}
   data-es={s.label.es}
   data-en={s.label.en}
   hidden
 >
-  <div class="sec-head"><T t={s.label} /></div>
+  <SecHead label={s.label} index={5} />
 
-  {lineage.map((row) => (
+  {career.map((row) => (
     <div class="lin-row">
       <T t={row.when} class={row.current ? 'lin-when lin-when--now' : 'lin-when'} />
       <span>
         <span class="lin-role">{row.role}</span>
         <span class="lin-org">{row.org}</span>
       </span>
-      <T t={row.desc} class="lin-desc" />
+      <span class="lin-desc">{row.desc}</span>
     </div>
   ))}
 </section>

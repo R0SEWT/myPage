@@ -1,9 +1,14 @@
 /**
- * Content for the Vesper deck (home).
+ * Content for the Vesper deck (home) — v3.
  *
- * Every user-facing string is bilingual. Both variants are rendered into the
- * DOM and CSS shows one of them based on `data-lang` on <html>, so the language
- * toggle costs one attribute write and no re-render.
+ * Bilingual strings are `Bi`; both variants are rendered into the DOM and CSS
+ * shows one of them based on `data-lang` on <html>, so the language toggle
+ * costs one attribute write and no re-render.
+ *
+ * Some copy in the design source is authored in English only (the system and
+ * research write-ups, the contribution summaries). Those stay plain strings
+ * rather than being machine-translated into a `Bi` — see agents.md on
+ * editorial provenance.
  *
  * Strings may contain inline markup (<br>, <span class="hl">) — they are
  * authored here, not user input, and are injected with set:html.
@@ -21,12 +26,12 @@ export interface Screen {
 
 /** Screen order drives the nav, the SYS.NN readout and the particle shape index. */
 export const SCREENS: Screen[] = [
-  { num: '00', label: { es: 'Identidad', en: 'Identity' } },
-  { num: '01', label: { es: 'Doctrina', en: 'Doctrine' } },
+  { num: '00', label: { es: 'Home', en: 'Home' } },
+  { num: '01', label: { es: 'Enfoque', en: 'Approach' } },
   { num: '02', label: { es: 'Sistemas', en: 'Systems' } },
-  { num: '03', label: { es: 'Research', en: 'Research' } },
-  { num: '04', label: { es: 'Linaje', en: 'Lineage' } },
-  { num: '05', label: { es: 'Stack', en: 'Stack' } },
+  { num: '03', label: { es: 'Investigación', en: 'Research' } },
+  { num: '04', label: { es: 'Open Source', en: 'Open Source' } },
+  { num: '05', label: { es: 'Trayectoria', en: 'Career' } },
   { num: '06', label: { es: 'Contacto', en: 'Contact' } },
 ];
 
@@ -58,20 +63,6 @@ export const chrome = {
   },
 };
 
-/* ---------------------------------------------------------------- 00 */
-
-export const identity = {
-  wordLeft: { es: 'SISTEMAS', en: 'SYSTEMS' },
-  wordRight: { es: 'REALES', en: 'IN USE' },
-  blurb: {
-    es: 'Modelos que sobreviven al contacto con lo real —<br />retrieval, doc AI y evaluación en producción.',
-    en: 'Models that survive contact with the real —<br />retrieval, doc AI and evaluation in production.',
-  },
-  chips: ['Retrieval', 'Doc AI', 'Agents', 'Evaluation'],
-  name: 'Rody Vilchez',
-  role: 'Applied ML Engineer · Lima',
-};
-
 export const links = {
   email: 'rody.vilchez00@gmail.com',
   github: 'https://github.com/R0SEWT',
@@ -80,157 +71,181 @@ export const links = {
   cvEn: '/CV.en.pdf',
 };
 
-/* ---------------------------------------------------------------- 01 */
+/* ---------------------------------------------------------------- 00 home */
 
-export const doctrine = {
-  eyebrow: { es: 'Ley de equivalencia', en: 'Law of equivalence' },
+export const home = {
+  wordLeft: { es: 'SISTEMAS', en: 'SYSTEMS' },
+  wordRight: { es: 'REALES', en: 'IN USE' },
+  blurb: {
+    es: 'Construyo sistemas de machine learning para condiciones no ideales: datos incompletos, objetivos ambiguos y restricciones institucionales.',
+    en: 'I build machine learning systems for non-ideal conditions: incomplete data, ambiguous objectives and institutional constraints.',
+  },
+  chips: ['Retrieval', 'Agent systems', 'Evaluation', 'Urban ML'],
+  name: 'Rody Vilchez',
+  role: 'Applied ML Engineer',
+  org: 'AI Intern · CIP–CGIAR',
+};
+
+/* ------------------------------------------------------------ 01 approach */
+
+export const approach = {
   lede: {
-    es: 'Todo modelo optimiza algo y sacrifica otra cosa. Mi trabajo es <span class="hl">nombrar el intercambio.</span>',
-    en: 'Every model optimizes something and sacrifices something else. My job is <span class="hl">naming the trade.</span>',
+    es: 'Todo modelo optimiza algo y sacrifica otra cosa. Mi trabajo es <span class="hl">hacer explícito ese intercambio.</span>',
+    en: 'Every model optimizes something and sacrifices something else. My job is <span class="hl">making that trade explicit.</span>',
   },
   notes: [
     {
       num: '[ 01 ]',
+      title: { es: 'Validar el objetivo', en: 'Validate the target' },
       body: {
-        es: 'Primero el costo: latencia, cobertura, error tolerable. Un sistema sin presupuesto declarado no es un sistema, es una demo.',
-        en: "Cost first: latency, coverage, tolerable error. A system with no declared budget isn't a system, it's a demo.",
+        es: 'Entender qué representa realmente la variable observada.',
+        en: 'Understand what the observed variable actually represents.',
       },
     },
     {
       num: '[ 02 ]',
+      title: { es: 'Evaluar consecuencias', en: 'Evaluate consequences' },
       body: {
-        es: 'Después la evidencia: métrica que un evaluador externo pueda reproducir sin acceso a mi laptop.',
-        en: 'Then evidence: a metric an outside evaluator can reproduce without access to my laptop.',
+        es: 'Estudiar cómo falla el modelo y qué decisiones dependen de sus resultados.',
+        en: 'Study how the model fails and which decisions depend on its outputs.',
+      },
+    },
+    {
+      num: '[ 03 ]',
+      title: { es: 'Dejar evidencia', en: 'Leave evidence' },
+      body: {
+        es: 'Hacer reproducibles los experimentos y trazables las decisiones técnicas.',
+        en: 'Make experiments reproducible and technical decisions traceable.',
       },
     },
   ],
-  quote: {
-    es: '«Para obtener, algo de igual valor debe perderse.»',
-    en: '"To obtain, something of equal value must be lost."',
-  },
-  cite: 'Edward Elric',
 };
 
-/* ---------------------------------------------------------------- 02 */
+/* ------------------------------------------------------------- 02 systems */
 
-export interface SystemRow {
-  num: string;
-  title: string;
-  desc: Bi;
-  meta: Bi;
-  year: string;
+export const systems = {
+  lead: {
+    eyebrow: 'Production system · CIP–CGIAR',
+    title: 'CIP — Institutional AI Agent System',
+    lede: 'Designed and implemented a production multi-agent system for institutional IT support.',
+    note: 'Backed by a data-grounded evaluation platform spanning regression, response quality and agentic testing.',
+  },
+  prototype: {
+    eyebrow: 'Working prototype · El Comercio',
+    title: 'Wachi — Risk-Aware Pedestrian Routing',
+    desc: 'Designed and built a geospatial prototype that re-ranks pedestrian routes by distance and estimated exposure derived from spatiotemporal patterns in reported incidents.',
+    meta: 'H3 · Temporal decay · Post-hoc route reranking',
+    video: '/assets/deck/wachi-loop.webm',
+    videoLabel: 'Wachi pedestrian route reranking loop',
+    caption: 'Prototype capture',
+  },
+};
+
+/* ------------------------------------------------------------ 03 research */
+
+export const research = {
+  program: {
+    eyebrow: 'Research program · Urban ML',
+    title: 'Infelix — Learning under Imperfect Observation',
+    desc: 'Investigating what crime-prediction systems learn when the record itself is shaped by who reports, what gets geocoded, and which city you train on.',
+    meta: 'Placebo-controlled · 20-seed robustness analysis',
+  },
+  publication: {
+    eyebrow: 'Published research · Springer CCIS 2895 · 2026',
+    title: 'Imitator — Multimodal Sign Language Model',
+    desc: 'Co-authored a gloss-free multimodal architecture aligning 2D keypoint sequences with pretrained language-model embeddings across Peruvian and Argentinian sign-language datasets.',
+    doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
+    doiLabel: 'DOI 10.1007/978-3-032-20322-9_23 ↗',
+    cover: '/assets/deck/imitator-ccis-2895.png',
+    coverAlt:
+      'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
+  },
+};
+
+/* --------------------------------------------------------- 04 open source */
+
+export interface OpenSourceRow {
+  mark: string;
+  markAlt: string;
+  /** beads ships a square app mark; the others are transparent wordmarks. */
+  rounded?: boolean;
+  name: string;
+  desc: string;
+  contribution: string;
+  /** A row becomes an anchor once an approved evidence URL exists for it. */
   href?: string;
 }
 
-export const systems: SystemRow[] = [
+export const openSource: OpenSourceRow[] = [
   {
-    num: '001',
-    title: 'GENO-MAP',
-    desc: {
-      es: 'Invariantes de grafos kNN para validar mapas de diversidad, sin correspondencia entre mapas.',
-      en: 'kNN graph invariants to validate diversity maps, with no map-to-map correspondence.',
-    },
-    meta: { es: 'SALA 2026', en: 'SALA 2026' },
-    year: '2025—26',
-    href: 'https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps',
+    mark: '/assets/deck/os-copilot-studio.png',
+    markAlt: 'Microsoft Copilot Studio',
+    name: 'Microsoft Copilot Studio',
+    desc: 'Official VS Code extension for enterprise agent development',
+    contribution: 'Knowledge sources · Child-agent sync · Prerelease validation',
   },
   {
-    num: '002',
-    title: 'ArbitrIA',
-    desc: {
-      es: 'Retrieval legal sobre PDFs multicolumna: indexación a nivel documento y chunk.',
-      en: 'Legal retrieval over multi-column PDFs: document- and chunk-level indexing.',
-    },
-    meta: { es: 'Interno', en: 'Internal' },
-    year: '2024—25',
+    mark: '/assets/deck/os-gemini-cli.png',
+    markAlt: 'Gemini CLI',
+    name: 'Gemini CLI',
+    desc: 'Open-source coding agent for the terminal',
+    contribution: 'UI schema fix · Test coverage',
   },
   {
-    num: '003',
-    title: 'Gallstone Risk',
-    desc: {
-      es: 'Tamizaje bajo restricciones de observabilidad: AUC conservado con menos features.',
-      en: 'Screening under observability constraints: AUC preserved on fewer features.',
-    },
-    meta: { es: 'Demo', en: 'Demo' },
-    year: '2024',
-    href: 'https://gallstone.rosewt.dev/',
+    mark: '/assets/deck/os-sklearn-mark.png',
+    markAlt: 'scikit-learn-contrib',
+    name: 'scikit-learn',
+    desc: 'Open-source machine-learning library',
+    contribution: 'HDBSCAN documentation',
+  },
+  {
+    mark: '/assets/deck/os-beads-mark.png',
+    markAlt: 'beads / bd',
+    rounded: true,
+    name: 'beads (bd)',
+    desc: 'Git-backed issue tracking for coding agents',
+    contribution: 'Prefix routing · Write-through regression test',
   },
 ];
 
-/* ---------------------------------------------------------------- 03 */
+/* -------------------------------------------------------------- 05 career */
 
-export const research = {
-  eyebrow: 'Research — Springer CCIS 2026',
-  title: 'Imitator',
-  lede: {
-    es: '<span class="hl">Sin gloss:</span> traducción de lengua de señas como alineamiento latente en un LLM.',
-    en: '<span class="hl">Gloss-free:</span> sign language translation as latent alignment inside an LLM.',
-  },
-  metrics: [
-    { value: '8×10⁻⁴', accent: false, label: { es: 'MSE + cosine', en: 'MSE + cosine' } },
-    { value: '0', accent: true, label: { es: 'Retraining del LLM', en: 'LLM retraining' } },
-    { value: '2', accent: false, label: { es: 'WAILAMP · SIMBIG 2025', en: 'WAILAMP · SIMBIG 2025' } },
-  ],
-  repo: 'https://github.com/nakato156/Multimodal-Sign-Language-Model',
-  repoLabel: { es: 'Repositorio ↗', en: 'Repository ↗' },
-};
-
-/* ---------------------------------------------------------------- 04 */
-
-export interface LineageRow {
+export interface CareerRow {
   when: Bi;
   current: boolean;
   role: string;
   org: string;
-  desc: Bi;
+  desc: string;
 }
 
-export const lineage: LineageRow[] = [
+export const career: CareerRow[] = [
   {
     when: { es: 'Oct 2025 —<br />Presente', en: 'Oct 2025 —<br />Present' },
     current: true,
-    role: 'AI / Data Intern',
+    role: 'AI Intern',
     org: 'CIP · CGIAR',
-    desc: {
-      es: 'GraphRAG sobre corpus ES/EN/FR/PT/ZH con OCR ruidoso · flota de agentes hub-and-spoke · evaluación en tres capas.',
-      en: 'GraphRAG over ES/EN/FR/PT/ZH corpora with noisy OCR · hub-and-spoke agent fleet · three-layer evaluation.',
-    },
+    desc: 'Building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
   },
   {
     when: { es: 'Dic 2024 —<br />Oct 2025', en: 'Dec 2024 —<br />Oct 2025' },
     current: false,
     role: 'QA Trainee',
-    org: 'Visma LATAM',
-    desc: {
-      es: 'Agente LLM que genera tests e2e desde especificaciones · suites Cypress en Jenkins · generadores DOM-aware.',
-      en: 'LLM agent generating e2e tests from specs · Cypress suites on Jenkins · DOM-aware generators.',
-    },
+    org: 'VISMA LATAM',
+    desc: 'Developed an LLM agent that generates E2E tests from specifications, integrating Cypress suites into Jenkins with DOM-aware generation.',
   },
   {
-    when: { es: '2026-2', en: '2026-2' },
+    when: { es: 'Previsto fines de 2026', en: 'Expected late 2026' },
     current: false,
     role: 'B.Sc. Computer Science',
-    org: 'UPC · Lima',
-    desc: {
-      es: '2.º DataFest — BCP × ESAN 2025 · beca completa SALA 2026',
-      en: '2nd DataFest — BCP × ESAN 2025 · full grant SALA 2026',
-    },
+    org: 'UPC · LIMA',
+    desc: '2nd place · DataFest BCP × ESAN 2025 · SALA 2026 full scholarship',
   },
 ];
 
-/* ---------------------------------------------------------------- 05 */
-
-export const stack = [
-  { title: 'ML', items: ['PyTorch', 'scikit-learn', 'Optuna', 'Evaluation'] },
-  { title: 'Retrieval', items: ['Qdrant', 'LlamaIndex', 'Embeddings', 'Chunking'] },
-  { title: 'Data', items: ['FastAPI', 'PostgreSQL', 'DuckDB', 'Pandas'] },
-  { title: 'Agents', items: ['Copilot Studio', 'Orchestration', 'LLM-as-judge', 'Docker · CI'] },
-];
-
-/* ---------------------------------------------------------------- 06 */
+/* ------------------------------------------------------------- 06 contact */
 
 export const contact = {
-  status: { es: 'Abierto a roles Applied ML', en: 'Open to Applied ML roles' },
+  status: { es: 'Abierto a nuevos roles', en: 'Open to new roles' },
   title: { es: 'Hablemos.', en: "Let's talk." },
-  place: 'Lima · Perú',
+  note: 'Open to applied ML, AI systems and research engineering roles.',
 };
