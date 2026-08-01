@@ -54,7 +54,10 @@ export function initDeck() {
 
   /* --------------------------------------------------------------- field */
 
-  const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 900;
+  // 1125 rather than 900: the deck renders at a 125% root, so it hits the
+  // narrow layout at a proportionally wider window. Keep in step with the
+  // breakpoints in vesper.css.
+  const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1125;
   const field = stage
     ? createField(stage, { count: coarse ? DENSITY.lite : DENSITY.full, reduced })
     : null;
