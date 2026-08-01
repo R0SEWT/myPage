@@ -18,7 +18,7 @@ const s = SCREENS[5];
     <div class="lin-row">
       <T t={row.when} class={row.current ? 'lin-when lin-when--now' : 'lin-when'} />
       <span>
-        <span class="lin-role">{row.role}</span>
+        <T t={row.role} class="lin-role" />
         <span class="lin-org">{row.org}</span>
       </span>
       <T t={row.desc} class="lin-desc" />
