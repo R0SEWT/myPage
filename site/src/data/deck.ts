@@ -148,14 +148,14 @@ export const systems = {
       en: 'Designed and implemented a production multi-agent system for institutional IT support.',
     },
     note: {
-      es: 'Sostenido por una plataforma de evaluación anclada en datos que abarca regresión, calidad de respuesta y pruebas agénticas.',
+      es: 'Respaldado por una plataforma de evaluación basada en datos para regresión, calidad de respuesta y pruebas de comportamiento agéntico.',
       en: 'Backed by a data-grounded evaluation platform spanning regression, response quality and agentic testing.',
     },
   },
   prototype: {
     eyebrow: { es: 'Prototipo funcional · El Comercio', en: 'Working prototype · El Comercio' },
     title: {
-      es: 'Wachi — Ruteo peatonal consciente del riesgo',
+      es: 'Wachi — Ruteo peatonal sensible al riesgo',
       en: 'Wachi — Risk-Aware Pedestrian Routing',
     },
     desc: {
@@ -163,7 +163,7 @@ export const systems = {
       en: 'Designed and built a geospatial prototype that re-ranks pedestrian routes by distance and estimated exposure derived from spatiotemporal patterns in reported incidents.',
     },
     meta: {
-      es: 'H3 · Decaimiento temporal · Reordenamiento posterior de rutas',
+      es: 'H3 · Decaimiento temporal · Reordenamiento post hoc de rutas',
       en: 'H3 · Temporal decay · Post-hoc route reranking',
     },
     video: '/assets/deck/wachi-loop.webm',
@@ -185,11 +185,11 @@ export const research = {
       en: 'Infelix — Learning under Imperfect Observation',
     },
     desc: {
-      es: 'Investigo qué aprenden los sistemas de predicción de crimen cuando el registro mismo está moldeado por quién denuncia, qué llega a geocodificarse y en qué ciudad se entrena.',
+      es: 'Investigo qué aprenden los sistemas de predicción delictiva cuando los registros están condicionados por quién denuncia, qué logra geocodificarse y en qué ciudad se entrenan.',
       en: 'Investigating what crime-prediction systems learn when the record itself is shaped by who reports, what gets geocoded, and which city you train on.',
     },
     meta: {
-      es: 'Controlado con placebo · Análisis de robustez con 20 semillas',
+      es: 'Control con placebo · Análisis de robustez en 20 semillas',
       en: 'Placebo-controlled · 20-seed robustness analysis',
     },
   },
@@ -199,11 +199,11 @@ export const research = {
       en: 'Published research · Springer CCIS 2895 · 2026',
     },
     title: {
-      es: 'Imitator — Modelo multimodal de lengua de señas',
+      es: 'Imitator — Modelo multimodal para lenguas de señas',
       en: 'Imitator — Multimodal Sign Language Model',
     },
     desc: {
-      es: 'Coautoría de una arquitectura multimodal sin glosa que alinea secuencias de keypoints 2D con embeddings de un modelo de lenguaje preentrenado, sobre corpus de lengua de señas peruana y argentina.',
+      es: 'Coautor de una arquitectura multimodal sin glosas que alinea secuencias de keypoints 2D con embeddings de modelos de lenguaje preentrenados, evaluada en corpus de lenguas de señas peruana y argentina.',
       en: 'Co-authored a gloss-free multimodal architecture aligning 2D keypoint sequences with pretrained language-model embeddings across Peruvian and Argentinian sign-language datasets.',
     },
     doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
