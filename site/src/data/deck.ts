@@ -30,7 +30,7 @@ export const SCREENS: Screen[] = [
   { num: '01', label: { es: 'Enfoque', en: 'Approach' } },
   { num: '02', label: { es: 'Sistemas', en: 'Systems' } },
   { num: '03', label: { es: 'Investigación', en: 'Research' } },
-  { num: '04', label: { es: 'Open Source', en: 'Open Source' } },
+  { num: '04', label: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' } },
   { num: '05', label: { es: 'Trayectoria', en: 'Career' } },
   { num: '06', label: { es: 'Contacto', en: 'Contact' } },
 ];
