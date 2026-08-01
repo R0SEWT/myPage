@@ -58,7 +58,15 @@ export const chrome = {
   more: { es: 'Sigue', en: 'More' },
   stats: {
     particles: { es: 'Partículas vivas', en: 'Live particles' },
-    fps: { es: 'Cuadros por seg', en: 'Frames per sec' },
+    /**
+     * Deliberately not a frame counter. The field is machine-dependent, and a
+     * stat bar that publishes 34 fps advertises a performance problem rather
+     * than the fact that the scene is being drawn live. If the deploy is ever
+     * shown to hold ~60 on representative hardware, `field.fps()` is still
+     * there to wire back up.
+     */
+    render: 'Realtime',
+    renderLabel: { es: 'Render WebGL', en: 'WebGL render' },
     place: 'UTC−5 · Perú',
   },
 };

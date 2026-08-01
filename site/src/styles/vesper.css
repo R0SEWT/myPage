@@ -105,17 +105,6 @@ a:hover {
 
 /* --------------------------------------------------------------- keyframes */
 
-@keyframes v3-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @keyframes v3-blink {
   0%,
   100% {
@@ -134,17 +123,6 @@ a:hover {
   to {
     mask-position: 0 320px;
     -webkit-mask-position: 0 320px;
-  }
-}
-
-@keyframes v3-sheet {
-  from {
-    opacity: 0;
-    transform: translateY(26px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: none;
   }
 }
 
@@ -467,11 +445,16 @@ a:hover {
   pointer-events: none;
 }
 
+/* Screens share one grid cell so the outgoing and incoming ones can overlap
+   for the length of a crossfade. `safe center` centres a short screen but
+   falls back to top-aligned once a screen is taller than the pane, which is
+   what keeps the overflow reachable by scrolling. */
 .pane {
   position: absolute;
   inset: var(--v-pane-y) var(--v-pane-x);
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: safe center;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
@@ -484,20 +467,24 @@ a:hover {
 }
 
 .screen {
+  grid-area: 1 / 1;
   width: 100%;
-  margin: auto 0;
   pointer-events: auto;
-  animation: v3-in 0.8s ease both;
 }
 
 .screen[hidden] {
   display: none;
 }
 
+/* The opacity of the crossfade is driven from deck.ts via the Web Animations
+   API; this only makes the outgoing screen inert while it is still painted. */
+.screen.is-out {
+  pointer-events: none;
+}
+
 .screen--sheet {
   max-width: 1180px;
-  margin: auto;
-  animation: v3-sheet 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  justify-self: center;
 }
 
 .screen--systems {
@@ -1283,11 +1270,6 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   .boot-rain,
   .dot {
-    animation: none;
-  }
-
-  .screen,
-  .screen--sheet {
     animation: none;
   }
 
