@@ -21,7 +21,7 @@ const s = SCREENS[5];
         <span class="lin-role">{row.role}</span>
         <span class="lin-org">{row.org}</span>
       </span>
-      <span class="lin-desc">{row.desc}</span>
+      <T t={row.desc} class="lin-desc" />
     </div>
   ))}
 </section>

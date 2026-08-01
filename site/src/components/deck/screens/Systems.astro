@@ -1,6 +1,7 @@
 ---
 import { SCREENS, systems } from '../../../data/deck';
 import SecHead from '../SecHead.astro';
+import T from '../T.astro';
 
 const s = SCREENS[2];
 const { lead, prototype } = systems;
@@ -15,18 +16,18 @@ const { lead, prototype } = systems;
   <SecHead label={s.label} index={2} />
 
   <div class="lead">
-    <div class="eyebrow eyebrow--live">{lead.eyebrow}</div>
-    <h3 class="lead-title">{lead.title}</h3>
-    <p class="lead-lede">{lead.lede}</p>
-    <p class="lead-note">{lead.note}</p>
+    <T t={lead.eyebrow} as="div" class="eyebrow eyebrow--live" />
+    <T t={lead.title} as="h3" class="lead-title" />
+    <T t={lead.lede} as="p" class="lead-lede" />
+    <T t={lead.note} as="p" class="lead-note" />
   </div>
 
   <div class="media-row">
     <div>
-      <div class="eyebrow">{prototype.eyebrow}</div>
-      <h3 class="media-title">{prototype.title}</h3>
-      <p class="media-desc">{prototype.desc}</p>
-      <div class="media-meta">{prototype.meta}</div>
+      <T t={prototype.eyebrow} as="div" class="eyebrow" />
+      <T t={prototype.title} as="h3" class="media-title" />
+      <T t={prototype.desc} as="p" class="media-desc" />
+      <T t={prototype.meta} as="div" class="media-meta" />
     </div>
 
     <div class="media-frame">
@@ -37,9 +38,12 @@ const { lead, prototype } = systems;
         muted
         playsinline
         preload="metadata"
-        aria-label={prototype.videoLabel}
+        aria-label={prototype.videoLabel.es}
+        data-i18n="aria-label"
+        data-es={prototype.videoLabel.es}
+        data-en={prototype.videoLabel.en}
       ></video>
-      <div class="media-caption">{prototype.caption}</div>
+      <T t={prototype.caption} as="div" class="media-caption" />
     </div>
   </div>
 </section>

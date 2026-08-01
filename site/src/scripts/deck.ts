@@ -152,10 +152,23 @@ export function initDeck() {
 
   /* ----------------------------------------------------------- languages */
 
+  /**
+   * Copy switches in CSS, but an attribute cannot — alt text and aria-labels
+   * have to be written. Each such element carries the attribute name in
+   * `data-i18n` and both variants in `data-es` / `data-en`.
+   */
+  const i18nAttrs = Array.from(document.querySelectorAll<HTMLElement>('[data-i18n]'));
+
   function setLang(next: 'es' | 'en') {
     lang = next;
     document.documentElement.dataset.lang = next;
     document.documentElement.lang = next;
+
+    i18nAttrs.forEach((el) => {
+      const attr = el.dataset.i18n;
+      const value = next === 'en' ? el.dataset.en : el.dataset.es;
+      if (attr && value) el.setAttribute(attr, value);
+    });
     if (langBtn) {
       langBtn.textContent = next === 'en' ? 'ES' : 'EN';
       langBtn.setAttribute(
