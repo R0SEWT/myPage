@@ -41,14 +41,30 @@
   --v-sans: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --v-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
-  --v-pane-y: 96px;
-  --v-pane-x: 46px;
+  --v-pane-y: 6rem;
+  --v-pane-x: 2.875rem;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/**
+ * The deck is drawn at 125% of the browser's base size.
+ *
+ * This is not "everything bigger": the lengths on the type scale and the
+ * layout rhythm are in rem and follow this, while the display type is sized in
+ * vw and does not. That asymmetry is the point — it is exactly what a browser
+ * at 125% zoom produces, and it is the proportion the deck was tuned against.
+ * One knob: change this percentage and the whole scale moves with it.
+ *
+ * A percentage rather than a px value so a reader who has raised their
+ * browser's default font size still gets 125% of *their* size.
+ */
+html {
+  font-size: 125%;
 }
 
 html,
@@ -82,7 +98,7 @@ a:hover {
 
 :focus-visible {
   outline: 1px solid var(--v-green);
-  outline-offset: 3px;
+  outline-offset: 0.1875rem;
 }
 
 .mono {
@@ -205,7 +221,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 26px 30px;
+  padding: 1.625rem 1.875rem;
   transition: opacity 0.4s ease;
 }
 
@@ -230,10 +246,10 @@ a:hover {
 
 .boot-id {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: baseline;
   font-family: var(--v-mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -250,11 +266,11 @@ a:hover {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 34px;
+  gap: 2.125rem;
 }
 
 .boot-pct {
-  font-size: clamp(96px, 19vw, 260px);
+  font-size: clamp(6rem, 19vw, 16.25rem);
   font-weight: 200;
   line-height: 0.8;
   letter-spacing: -0.05em;
@@ -263,7 +279,7 @@ a:hover {
 
 .boot-meter {
   flex: 1;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
 }
 
 .boot-track {
@@ -278,9 +294,9 @@ a:hover {
 }
 
 .boot-label {
-  margin-top: 12px;
+  margin-top: 0.75rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--v-dim-4);
@@ -297,19 +313,19 @@ a:hover {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  padding: 20px 26px;
+  gap: 1rem;
+  padding: 1.25rem 1.625rem;
   pointer-events: none;
 }
 
 .tb-id {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--v-dim-4);
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .tb-id b {
@@ -321,8 +337,8 @@ a:hover {
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 6px 6px 14px;
+  gap: 0.25rem;
+  padding: 0.375rem 0.375rem 0.375rem 0.875rem;
   border: 1px solid var(--v-line-14);
   border-radius: 999px;
   background: rgba(6, 9, 9, 0.72);
@@ -332,11 +348,11 @@ a:hover {
 .pill-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-right: 12px;
-  margin-right: 6px;
+  gap: 0.5rem;
+  padding-right: 0.75rem;
+  margin-right: 0.375rem;
   border-right: 1px solid var(--v-line-12);
-  font-size: 13px;
+  font-size: 0.8125rem;
   letter-spacing: -0.01em;
   white-space: nowrap;
   flex: 0 0 auto;
@@ -344,7 +360,7 @@ a:hover {
 
 .pill-brand i {
   color: var(--v-green);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1;
   font-style: normal;
 }
@@ -352,13 +368,13 @@ a:hover {
 .pill-btn {
   background: transparent;
   border: none;
-  padding: 7px 11px;
+  padding: 0.4375rem 0.6875rem;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
   flex: 0 0 auto;
   font-family: var(--v-sans);
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   letter-spacing: -0.005em;
   color: var(--v-dim-3);
   transition: color 0.25s, background 0.25s;
@@ -374,16 +390,16 @@ a:hover {
 }
 
 .pill-cta {
-  margin-left: 8px;
+  margin-left: 0.5rem;
   background: transparent;
   border: 1px solid var(--v-line-22);
   border-radius: 999px;
-  padding: 7px 15px;
+  padding: 0.4375rem 0.9375rem;
   cursor: pointer;
   white-space: nowrap;
   flex: 0 0 auto;
   font-family: var(--v-sans);
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   color: var(--v-ink);
   transition: border-color 0.25s, color 0.25s;
 }
@@ -397,9 +413,9 @@ a:hover {
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -408,12 +424,12 @@ a:hover {
 .tb-status {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 0.4375rem;
 }
 
 .dot {
-  width: 5px;
-  height: 5px;
+  width: 0.3125rem;
+  height: 0.3125rem;
   border-radius: 50%;
   background: var(--v-green);
   animation: v3-blink 2.6s ease-in-out infinite;
@@ -426,7 +442,7 @@ a:hover {
   padding: 0;
   cursor: pointer;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   color: var(--v-dim-3);
   transition: color 0.25s;
@@ -483,27 +499,27 @@ a:hover {
 }
 
 .screen--sheet {
-  max-width: 1180px;
+  max-width: 73.75rem;
   justify-self: center;
 }
 
 .screen--systems {
-  max-width: 1200px;
-  padding-bottom: 34px;
+  max-width: 75rem;
+  padding-bottom: 2.125rem;
 }
 
 .screen--research {
-  max-width: 1120px;
-  padding-bottom: 34px;
+  max-width: 70rem;
+  padding-bottom: 2.125rem;
 }
 
 .screen--os,
 .screen--career {
-  max-width: 1120px;
+  max-width: 70rem;
 }
 
 .screen--contact {
-  max-width: 1080px;
+  max-width: 67.5rem;
 }
 
 /* Shared section header */
@@ -512,11 +528,11 @@ a:hover {
   justify-content: space-between;
   align-items: baseline;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-  padding-bottom: 16px;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--v-line-16);
 }
 
@@ -531,11 +547,11 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 2.5rem;
 }
 
 .id-word {
-  font-size: clamp(46px, 8.6vw, 142px);
+  font-size: clamp(2.875rem, 8.6vw, 8.875rem);
   font-weight: 200;
   line-height: 0.86;
   letter-spacing: -0.045em;
@@ -550,8 +566,8 @@ a:hover {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 60px;
-  margin-top: min(13vh, 170px);
+  gap: 3.75rem;
+  margin-top: min(13vh, 10.625rem);
 }
 
 .id-blurb {
@@ -559,8 +575,8 @@ a:hover {
 }
 
 .id-blurb p {
-  margin: 0 0 22px;
-  font-size: 14px;
+  margin: 0 0 1.375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   letter-spacing: -0.005em;
   color: var(--v-dim-1);
@@ -569,16 +585,16 @@ a:hover {
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 0.4375rem;
 }
 
 .chip {
-  padding: 6px 11px;
+  padding: 0.375rem 0.6875rem;
   border: 1px solid var(--v-line-16);
   border-radius: 2px;
   white-space: nowrap;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--v-dim-2);
@@ -586,9 +602,9 @@ a:hover {
 
 .id-card {
   text-align: right;
-  padding-right: 104px;
+  padding-right: 6.5rem;
   font-family: var(--v-mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.9;
   letter-spacing: 0.06em;
   color: var(--v-dim-3);
@@ -609,12 +625,12 @@ a:hover {
 
 .id-links {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 /* ------------------------------------------------------------ 01 approach */
@@ -622,8 +638,8 @@ a:hover {
 .sheet {
   background: var(--v-sheet);
   color: var(--v-sheet-ink);
-  padding: clamp(30px, 3.6vw, 54px);
-  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.75);
+  padding: clamp(1.875rem, 3.6vw, 3.375rem);
+  box-shadow: 0 3.125rem 7.5rem rgba(0, 0, 0, 0.75);
 }
 
 /* The sheet inverts the deck, so its header drops the light hairline and
@@ -632,7 +648,7 @@ a:hover {
   color: var(--v-sheet-dim);
   padding-bottom: 0;
   border-bottom: none;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 .sheet .sec-head b {
@@ -640,7 +656,7 @@ a:hover {
 }
 
 .sheet-lede {
-  font-size: clamp(27px, 3.6vw, 52px);
+  font-size: clamp(1.6875rem, 3.6vw, 3.25rem);
   font-weight: 200;
   line-height: 1.08;
   letter-spacing: -0.035em;
@@ -651,30 +667,30 @@ a:hover {
 .sheet-notes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(22px, 3.4vw, 56px);
-  margin-top: clamp(26px, 3.4vw, 46px);
-  padding-top: 26px;
+  gap: clamp(1.375rem, 3.4vw, 3.5rem);
+  margin-top: clamp(1.625rem, 3.4vw, 2.875rem);
+  padding-top: 1.625rem;
   border-top: 1px solid rgba(10, 12, 12, 0.14);
 }
 
 .note-num {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   color: var(--v-sheet-dim);
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .note-title {
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   letter-spacing: -0.015em;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .note-body {
   margin: 0;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.65;
   color: var(--v-sheet-body);
 }
@@ -686,11 +702,11 @@ a:hover {
 
 .eyebrow {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .eyebrow--live {
@@ -698,29 +714,29 @@ a:hover {
 }
 
 .lead {
-  padding: 26px 0 24px;
+  padding: 1.625rem 0 1.5rem;
   border-bottom: 1px solid var(--v-line-10);
 }
 
 .lead-title {
-  font-size: clamp(28px, 3.5vw, 54px);
+  font-size: clamp(1.75rem, 3.5vw, 3.375rem);
   font-weight: 200;
   line-height: 1.02;
   letter-spacing: -0.035em;
-  margin: 0 0 16px;
+  margin: 0 0 1rem;
 }
 
 .lead-title--wide {
-  font-size: clamp(30px, 3.8vw, 58px);
+  font-size: clamp(1.875rem, 3.8vw, 3.625rem);
   letter-spacing: -0.04em;
-  margin-bottom: 14px;
+  margin-bottom: 0.875rem;
   max-width: 26ch;
 }
 
 .lead-lede {
   margin: 0;
   max-width: 46ch;
-  font-size: clamp(17px, 1.9vw, 24px);
+  font-size: clamp(1.0625rem, 1.9vw, 1.5rem);
   font-weight: 200;
   line-height: 1.3;
   letter-spacing: -0.02em;
@@ -728,9 +744,9 @@ a:hover {
 }
 
 .lead-note {
-  margin: 14px 0 0;
+  margin: 0.875rem 0 0;
   max-width: 58ch;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.65;
   color: var(--v-dim-2);
 }
@@ -738,39 +754,39 @@ a:hover {
 .lead-desc {
   margin: 0;
   max-width: 60ch;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.65;
   color: var(--v-dim-1);
 }
 
 .media-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 286px;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1fr) 17.875rem;
+  gap: 2.5rem;
   align-items: center;
-  padding-top: 22px;
+  padding-top: 1.375rem;
 }
 
 .media-title {
-  font-size: clamp(20px, 2.2vw, 30px);
+  font-size: clamp(1.25rem, 2.2vw, 1.875rem);
   font-weight: 200;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  margin: 0 0 12px;
+  margin: 0 0 0.75rem;
 }
 
 .media-desc {
   margin: 0;
   max-width: 60ch;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.65;
   color: var(--v-dim-2);
 }
 
 .media-meta {
-  margin-top: 14px;
+  margin-top: 0.875rem;
   font-family: var(--v-mono);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--v-dim-2);
@@ -792,22 +808,22 @@ a:hover {
 
 .media-caption {
   position: absolute;
-  left: 8px;
-  bottom: 7px;
+  left: 0.5rem;
+  bottom: 0.4375rem;
   font-family: var(--v-mono);
-  font-size: 8.5px;
+  font-size: 0.53125rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-2);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.9);
 }
 
 .pub-row {
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr) auto;
-  gap: 26px 30px;
+  grid-template-columns: 4.875rem minmax(0, 1fr) auto;
+  gap: 1.625rem 1.875rem;
   align-items: start;
-  padding-top: 22px;
+  padding-top: 1.375rem;
 }
 
 .pub-cover {
@@ -827,7 +843,7 @@ a:hover {
 }
 
 .pub-row .media-title {
-  font-size: clamp(19px, 2vw, 27px);
+  font-size: clamp(1.1875rem, 2vw, 1.6875rem);
 }
 
 .pub-row .media-desc {
@@ -836,13 +852,13 @@ a:hover {
 
 .pub-doi {
   font-family: var(--v-mono);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--v-dim-2);
   border-bottom: 1px solid var(--v-line-24);
-  padding-bottom: 4px;
+  padding-bottom: 0.25rem;
   transition: color 0.25s, border-color 0.25s;
 }
 
@@ -855,11 +871,11 @@ a:hover {
 
 .os-row {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr) auto;
-  gap: 36px 18px;
+  grid-template-columns: 3.625rem minmax(0, 1fr) auto;
+  gap: 2.25rem 1.125rem;
   align-items: center;
-  padding: 22px 6px;
-  margin: 0 -6px;
+  padding: 1.375rem 0.375rem;
+  margin: 0 -0.375rem;
   border-bottom: 1px solid var(--v-line-10);
   color: var(--v-ink);
   transition: padding-left 0.25s ease, border-color 0.25s;
@@ -870,15 +886,15 @@ a:hover {
 }
 
 .os-row:hover {
-  padding-left: 16px;
+  padding-left: 1rem;
   border-color: rgba(59, 224, 166, 0.5);
 }
 
 .os-mark {
   display: block;
-  height: 30px;
+  height: 1.875rem;
   width: auto;
-  max-width: 58px;
+  max-width: 3.625rem;
   object-fit: contain;
   object-position: left center;
   opacity: 0.9;
@@ -891,8 +907,8 @@ a:hover {
 .os-name {
   display: flex;
   align-items: baseline;
-  gap: 13px;
-  font-size: clamp(21px, 2.2vw, 29px);
+  gap: 0.8125rem;
+  font-size: clamp(1.3125rem, 2.2vw, 1.8125rem);
   font-weight: 200;
   line-height: 1.1;
   letter-spacing: -0.025em;
@@ -905,15 +921,15 @@ a:hover {
 }
 
 .os-desc {
-  margin-top: 8px;
-  font-size: 13px;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   color: var(--v-dim-2);
 }
 
 .os-contribution {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-align: right;
@@ -925,10 +941,10 @@ a:hover {
 
 .lin-row {
   display: grid;
-  grid-template-columns: 128px minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: 28px;
+  grid-template-columns: 8rem minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 1.75rem;
   align-items: baseline;
-  padding: 28px 0;
+  padding: 1.75rem 0;
   border-bottom: 1px solid var(--v-line-10);
 }
 
@@ -938,7 +954,7 @@ a:hover {
 
 .lin-when {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -950,7 +966,7 @@ a:hover {
 
 .lin-role {
   display: block;
-  font-size: clamp(24px, 2.7vw, 38px);
+  font-size: clamp(1.5rem, 2.7vw, 2.375rem);
   font-weight: 200;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -958,16 +974,16 @@ a:hover {
 
 .lin-org {
   display: block;
-  margin-top: 8px;
+  margin-top: 0.5rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--v-dim-3);
 }
 
 .lin-desc {
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.65;
   color: var(--v-dim-1);
 }
@@ -977,14 +993,14 @@ a:hover {
 .ct-status {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 0.6875rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-  margin-bottom: 28px;
-  padding-bottom: 16px;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--v-line-16);
 }
 
@@ -995,47 +1011,47 @@ a:hover {
 }
 
 .ct-status .dot {
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   animation-duration: 2.4s;
 }
 
 .ct-title {
-  font-size: clamp(58px, 9.4vw, 158px);
+  font-size: clamp(3.625rem, 9.4vw, 9.875rem);
   font-weight: 200;
   line-height: 0.9;
   letter-spacing: -0.05em;
-  margin: 0 0 32px;
+  margin: 0 0 2rem;
 }
 
 .ct-mail {
-  font-size: clamp(22px, 3vw, 42px);
+  font-size: clamp(1.375rem, 3vw, 2.625rem);
   font-weight: 200;
   letter-spacing: -0.025em;
   line-height: 1;
   border-bottom: 1px solid var(--v-green);
-  padding-bottom: 6px;
+  padding-bottom: 0.375rem;
   display: inline-block;
   overflow-wrap: anywhere;
 }
 
 .ct-note {
-  margin: 26px 0 0;
+  margin: 1.625rem 0 0;
   max-width: 52ch;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.6;
   color: var(--v-dim-1);
 }
 
 .ct-links {
   display: flex;
-  gap: 26px;
+  gap: 1.625rem;
   flex-wrap: wrap;
-  margin-top: 38px;
-  padding-top: 20px;
+  margin-top: 2.375rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--v-line-12);
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -1045,21 +1061,21 @@ a:hover {
 
 .more {
   position: absolute;
-  bottom: 96px;
+  bottom: 6rem;
   right: var(--v-pane-x);
   z-index: 58;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   white-space: nowrap;
   background: rgba(6, 9, 9, 0.7);
   backdrop-filter: blur(12px);
   border: 1px solid var(--v-line-16);
   border-radius: 999px;
-  padding: 8px 14px;
+  padding: 0.5rem 0.875rem;
   cursor: pointer;
   font-family: var(--v-mono);
-  font-size: 9px;
+  font-size: 0.5625rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--v-ink);
@@ -1092,7 +1108,7 @@ a:hover {
 
 .stat {
   flex: 1;
-  padding: 14px 26px;
+  padding: 0.875rem 1.625rem;
   border-left: 1px solid var(--v-line-08);
   min-width: 0;
 }
@@ -1102,7 +1118,7 @@ a:hover {
 }
 
 .stat-val {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 200;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -1110,9 +1126,9 @@ a:hover {
 }
 
 .stat-label {
-  margin-top: 4px;
+  margin-top: 0.25rem;
   font-family: var(--v-mono);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -1123,13 +1139,16 @@ a:hover {
 
 /* ------------------------------------------------------------- responsive */
 
-@media (max-width: 1100px) {
+/* Breakpoints scale with the 125% root: the layout has to fold at the same
+   physical window width it folded at before, and the viewport is still
+   measured in unscaled CSS pixels. 1100 * 1.25, 900 * 1.25. */
+@media (max-width: 1375px) {
   .id-card {
     padding-right: 0;
   }
 
   .lin-row {
-    grid-template-columns: 104px minmax(0, 1fr);
+    grid-template-columns: 6.5rem minmax(0, 1fr);
   }
 
   .lin-desc {
@@ -1139,13 +1158,13 @@ a:hover {
   /* The 286px media well and the right-hand contribution column are the first
      things to give: the copy beside them drops under 40ch otherwise. */
   .media-row {
-    grid-template-columns: minmax(0, 1fr) 240px;
-    gap: 28px;
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    gap: 1.75rem;
   }
 
   .os-row {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 12px 18px;
+    grid-template-columns: 3.625rem minmax(0, 1fr);
+    gap: 0.75rem 1.125rem;
   }
 
   .os-contribution {
@@ -1155,7 +1174,7 @@ a:hover {
   }
 
   .pub-row {
-    grid-template-columns: 78px minmax(0, 1fr);
+    grid-template-columns: 4.875rem minmax(0, 1fr);
   }
 
   .pub-doi {
@@ -1165,14 +1184,14 @@ a:hover {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1125px) {
   :root {
-    --v-pane-y: 84px;
-    --v-pane-x: 22px;
+    --v-pane-y: 5.25rem;
+    --v-pane-x: 1.375rem;
   }
 
   .topbar {
-    padding: 14px 16px;
+    padding: 0.875rem 1rem;
     flex-wrap: wrap;
   }
 
@@ -1206,8 +1225,8 @@ a:hover {
   .id-foot {
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
-    margin-top: 40px;
+    gap: 2rem;
+    margin-top: 2.5rem;
   }
 
   .id-card {
@@ -1220,29 +1239,29 @@ a:hover {
 
   .sheet-notes {
     grid-template-columns: minmax(0, 1fr);
-    gap: 22px;
+    gap: 1.375rem;
   }
 
   .media-row {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .os-row {
-    grid-template-columns: 40px minmax(0, 1fr);
-    gap: 10px 14px;
-    padding: 18px 6px;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.625rem 0.875rem;
+    padding: 1.125rem 0.375rem;
   }
 
   .os-mark {
-    height: 24px;
-    max-width: 40px;
+    height: 1.5rem;
+    max-width: 2.5rem;
   }
 
   .lin-row {
     grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-    padding: 22px 0;
+    gap: 0.625rem;
+    padding: 1.375rem 0;
   }
 
   .lin-desc {
@@ -1250,8 +1269,8 @@ a:hover {
   }
 
   .more {
-    bottom: 88px;
-    right: 16px;
+    bottom: 5.5rem;
+    right: 1rem;
   }
 
   .stats {
@@ -1260,7 +1279,7 @@ a:hover {
   }
 
   .stat {
-    padding: 10px 16px;
+    padding: 0.625rem 1rem;
     flex: 0 0 auto;
   }
 }
