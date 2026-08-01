@@ -33,6 +33,10 @@ Lima, Peru | Oct 2025 – Present
 - Implemented LLM-based structured metadata enrichment with schema validation, batching, and rate-limit backoff to improve retrieval quality over heterogeneous documents
 - Co-built an IT support agent in Copilot Studio deployed in Teams, covering level-0 resolution over internal technical documentation and escalation to ticketing
 - Designed the escalation flow: when the agent cannot solve a case or the user explicitly requests it, it pre-fills the ticket from conversational context via structured output, with human-in-the-loop review through Adaptive Cards before submission
+- Re-architected the IT support agent from a monolithic design into a hub-and-spoke multi-agent system, partitioning mixed knowledge sources by domain to stay under Copilot Studio's generative-orchestration retrieval threshold and restore direct, unfiltered per-domain retrieval
+- Designed a three-layer, model-agnostic evaluation framework for conversational agents: a YAML-driven deterministic runner with routing-confusion analysis, an LLM-as-judge scorer built behind a swappable-model contract (proven by migrating judge providers with no downstream changes), and persona-driven exploration tests that catch silent delegation between parent and child agents
+- Extended the internal agent platform from a single IT support bot into a fleet of Copilot Studio agents spanning IT support, corporate administrative services, and SOP guidance, built on a versioned platform submodule with an explicit-pin upgrade path and a bootstrap template that scaffolds governance, tests, and issue tracking for each new agent
+- Built a medallion-architecture (bronze/silver/gold) pipeline and analytics dashboard over historical IT support tickets, segmenting users via unsupervised clustering over embeddings and prototyping a few-shot reranker for LLM-based ticket classification with human-in-the-loop review
 
 ## QA Trainee — Visma LATAM
 Lima, Peru | Dec 2024 – Oct 2025
@@ -116,10 +120,13 @@ PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines
 Embeddings, Qdrant, LlamaIndex, chunking, parsing, document processing
 
 ## Data / Backend
-Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL
+Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, DuckDB, ETL
 
 ## Infrastructure
-Docker, Git, Linux, Jenkins, CI/CD
+Docker, Git, Linux, Jenkins, GitHub Actions, Node.js, CI/CD
+
+## Agent Platforms
+Copilot Studio, Power Automate, Dataverse, Adaptive Cards, Microsoft Teams, multi-agent orchestration, LLM-as-judge evaluation
 
 ## Languages
 Spanish (native), English (intermediate)

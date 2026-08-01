@@ -3,12 +3,16 @@
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\ifdefined\XeTeXrevision\else
+  \usepackage[utf8]{inputenc}
+\fi
 \usepackage{lmodern}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
-\input{glyphtounicode}
-\pdfgentounicode=1
+\ifdefined\XeTeXrevision\else
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
 
 \makeatletter
 % Allow \input files to resolve when LaTeX runs from repo root or cv/.
@@ -54,6 +58,10 @@ I design applied AI systems for non-ideal conditions: retrieval, document intell
   \item Implemented LLM-based structured metadata enrichment with schema validation, batching and rate-limit backoff to improve retrieval quality over heterogeneous documents
   \item Co-built an IT support agent in Copilot Studio deployed in Teams for level-0 resolution over internal technical documentation and escalation to ticketing
   \item Designed the escalation flow: when the agent cannot solve a case or the user explicitly requests it, it pre-fills the ticket from conversational context via structured output, with human-in-the-loop review through Adaptive Cards before submission
+  \item Re-architected the IT support agent from a monolithic design into a hub-and-spoke multi-agent system, partitioning mixed knowledge sources by domain to stay under Copilot Studio's generative-orchestration retrieval threshold and restore direct, unfiltered per-domain retrieval
+  \item Designed a three-layer, model-agnostic evaluation framework for conversational agents: a YAML-driven deterministic runner with routing-confusion analysis, an LLM-as-judge scorer built behind a swappable-model contract (proven by migrating judge providers with no downstream changes), and persona-driven exploration tests that catch silent delegation between parent and child agents
+  \item Extended the internal agent platform from a single IT support bot into a fleet of Copilot Studio agents spanning IT support, corporate administrative services, and SOP guidance, built on a versioned platform submodule with an explicit-pin upgrade path and a bootstrap template that scaffolds governance, tests, and issue tracking for each new agent
+  \item Built a medallion-architecture (bronze/silver/gold) pipeline and analytics dashboard over historical IT support tickets, segmenting users via unsupervised clustering over embeddings and prototyping a few-shot reranker for LLM-based ticket classification with human-in-the-loop review
 \end{itemize}
 
 \vspace{2pt}
@@ -79,8 +87,9 @@ I design applied AI systems for non-ideal conditions: retrieval, document intell
 \begin{tabular}{@{} l l @{}}
   \textbf{ML / AI Systems} & PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines \\
   \textbf{Retrieval / Document AI} & embeddings, Qdrant, LlamaIndex, chunking, parsing, document processing \\
-  \textbf{Data / Backend} & Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL \\
-  \textbf{Infrastructure} & Docker, Git, Linux, Jenkins, CI/CD \\
+  \textbf{Data / Backend} & Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, DuckDB, ETL \\
+  \textbf{Infrastructure} & Docker, Git, Linux, Jenkins, GitHub Actions, Node.js, CI/CD \\
+  \textbf{Agent Platforms} & Copilot Studio, Power Automate, Dataverse, Adaptive Cards, Microsoft Teams, multi-agent orchestration, LLM-as-judge evaluation \\
 \end{tabular}
 
 \vspace{4pt}
