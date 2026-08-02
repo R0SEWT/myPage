@@ -12,14 +12,16 @@
 .superdesign/tmp/
 # Local LaTeX build artifacts for the CV
 cv/*.aux
-cv/*.fdb_latexmk
-cv/*.fls
-cv/*.log
-cv/*.out
-cv/*.pdf
-cv/*.synctex.gz
-cv/*.toc
-cv/*.xdv
+cv/**/*.aux
+cv/**/*.fdb_latexmk
+cv/**/*.fls
+cv/**/*.log
+cv/**/*.out
+cv/**/*.synctex.gz
+cv/**/*.toc
+cv/**/*.xdv
+# Build output. The published pair is committed at site/public/CV.*.pdf.
+cv/**/*.pdf
 
 # Beads / Dolt files (added by bd init)
 .dolt/
