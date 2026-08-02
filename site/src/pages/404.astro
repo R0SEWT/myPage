@@ -1,14 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
-<BaseLayout title="Page not found — Rody Vilchez" description="The page you are looking for does not exist.">
-  <Header />
-  <main class="container case-study">
-    <h1>Page not found</h1>
-    <p class="lede">The page you're looking for doesn't exist.</p>
-    <p><a href="/">← Back home</a></p>
+<BaseLayout title="404 — Rody Vilchez" description="The page you are looking for does not exist." robots="noindex, follow">
+  <main class="not-found">
+    <p class="not-found__eyebrow">ERROR / 404</p>
+    <h1>Signal lost.</h1>
+    <p>The requested system does not exist at this address.</p>
+    <a href="/">← Return to the deck</a>
   </main>
-  <Footer />
 </BaseLayout>
+
+<style>
+  .not-found { min-height: 100svh; display: grid; align-content: center; gap: 1.25rem; width: min(76rem, calc(100% - 3rem)); margin: auto; }
+  .not-found::before { content: ''; position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 72% 35%, rgba(92, 48, 255, .22), transparent 34%), radial-gradient(circle at 30% 65%, rgba(82, 255, 165, .12), transparent 28%), #000; }
+  .not-found__eyebrow { color: #72ffae; font: 500 .75rem/1 'JetBrains Mono Variable', monospace; letter-spacing: .18em; }
+  h1 { margin: 0; color: #f5f5f5; font: 500 clamp(4.5rem, 14vw, 11rem)/.82 'Inter Variable', sans-serif; letter-spacing: -.07em; }
+  p { max-width: 35rem; color: #8b8b92; font-family: 'JetBrains Mono Variable', monospace; }
+  a { width: fit-content; margin-top: 1rem; color: #d8d8dc; font-family: 'JetBrains Mono Variable', monospace; border-bottom: 1px solid #72ffae; }
+</style>

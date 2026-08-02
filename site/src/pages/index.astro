@@ -13,43 +13,30 @@ import Contact from '../components/deck/screens/Contact.astro';
 import { chrome } from '../data/deck';
 import T from '../components/deck/T.astro';
 
-const personJsonLd = {
+const profilePageJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Rody Vilchez',
+  '@type': 'ProfilePage',
   url: 'https://rosewt.dev',
-  jobTitle: 'Applied ML Engineer',
-  description:
-    'Applied ML Engineer specializing in RAG systems, document intelligence, and data pipelines. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'International Potato Center (CIP, CGIAR)',
-    url: 'https://cipotato.org',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Rody Vilchez',
+    jobTitle: 'Applied ML Engineer',
+    email: 'mailto:rody@rosewt.dev',
+    sameAs: ['https://github.com/R0SEWT', 'https://www.linkedin.com/in/r0sewt/'],
+    address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
+    worksFor: {
+      '@type': 'OrganizationRole',
+      roleName: 'AI Intern',
+      worksFor: { '@type': 'Organization', name: 'CIP–CGIAR' },
+    },
+    knowsAbout: ['Retrieval', 'Agent systems', 'Evaluation', 'Urban ML'],
   },
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: 'Universidad Peruana de Ciencias Aplicadas (UPC)',
-  },
-  sameAs: ['https://github.com/R0SEWT', 'https://www.linkedin.com/in/r0sewt/'],
-  knowsAbout: [
-    'Machine Learning',
-    'RAG Systems',
-    'Document Intelligence',
-    'Data Pipelines',
-    'Semantic Search',
-    'GraphRAG',
-    'NLP',
-    'PyTorch',
-    'LlamaIndex',
-  ],
-  knowsLanguage: ['es', 'en'],
-  address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
 };
 ---
 <DeckLayout
   title="Rody Vilchez — Applied ML Engineer"
   description="Applied ML Engineer: sistemas de retrieval, document intelligence y pipelines de datos bajo restricciones reales. CIP (CGIAR), Lima."
-  jsonLd={[personJsonLd]}
+  jsonLd={[profilePageJsonLd]}
 >
   <div class="deck">
     <div class="aurora" aria-hidden="true"></div>
