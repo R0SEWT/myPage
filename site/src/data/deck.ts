@@ -1,9 +1,14 @@
 /**
- * Content for the Vesper deck (home).
+ * Content for the Vesper deck (home) — v3.
  *
- * Every user-facing string is bilingual. Both variants are rendered into the
- * DOM and CSS shows one of them based on `data-lang` on <html>, so the language
- * toggle costs one attribute write and no re-render.
+ * Bilingual strings are `Bi`; both variants are rendered into the DOM and CSS
+ * shows one of them based on `data-lang` on <html>, so the language toggle
+ * costs one attribute write and no re-render.
+ *
+ * Some copy in the design source is authored in English only (the system and
+ * research write-ups, the contribution summaries). Those stay plain strings
+ * rather than being machine-translated into a `Bi` — see agents.md on
+ * editorial provenance.
  *
  * Strings may contain inline markup (<br>, <span class="hl">) — they are
  * authored here, not user input, and are injected with set:html.
@@ -17,16 +22,27 @@ export interface Bi {
 export interface Screen {
   num: string;
   label: Bi;
+  /**
+   * Section heading, when it should read longer than the nav label. The nav
+   * pill, the heading and the stats readout all draw on `label`, and the pill
+   * works to a shared width budget across six items — so a heading that wants
+   * more words gets its own string rather than widening the nav.
+   */
+  heading?: Bi;
 }
 
 /** Screen order drives the nav, the SYS.NN readout and the particle shape index. */
 export const SCREENS: Screen[] = [
-  { num: '00', label: { es: 'Identidad', en: 'Identity' } },
-  { num: '01', label: { es: 'Doctrina', en: 'Doctrine' } },
+  { num: '00', label: { es: 'Home', en: 'Home' } },
+  { num: '01', label: { es: 'Enfoque', en: 'Approach' } },
   { num: '02', label: { es: 'Sistemas', en: 'Systems' } },
-  { num: '03', label: { es: 'Research', en: 'Research' } },
-  { num: '04', label: { es: 'Linaje', en: 'Lineage' } },
-  { num: '05', label: { es: 'Stack', en: 'Stack' } },
+  { num: '03', label: { es: 'Investigación', en: 'Research' } },
+  {
+    num: '04',
+    label: { es: 'Open Source', en: 'Open Source' },
+    heading: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' },
+  },
+  { num: '05', label: { es: 'Trayectoria', en: 'Career' } },
   { num: '06', label: { es: 'Contacto', en: 'Contact' } },
 ];
 
@@ -53,184 +69,296 @@ export const chrome = {
   more: { es: 'Sigue', en: 'More' },
   stats: {
     particles: { es: 'Partículas vivas', en: 'Live particles' },
-    fps: { es: 'Cuadros por seg', en: 'Frames per sec' },
+    /**
+     * Deliberately not a frame counter. The field is machine-dependent, and a
+     * stat bar that publishes 34 fps advertises a performance problem rather
+     * than the fact that the scene is being drawn live. If the deploy is ever
+     * shown to hold ~60 on representative hardware, `field.fps()` is still
+     * there to wire back up.
+     */
+    render: 'Realtime',
+    renderLabel: { es: 'Render WebGL', en: 'WebGL render' },
     place: 'UTC−5 · Perú',
   },
 };
 
-/* ---------------------------------------------------------------- 00 */
-
-export const identity = {
-  wordLeft: { es: 'SISTEMAS', en: 'SYSTEMS' },
-  wordRight: { es: 'REALES', en: 'IN USE' },
-  blurb: {
-    es: 'Modelos que sobreviven al contacto con lo real —<br />retrieval, doc AI y evaluación en producción.',
-    en: 'Models that survive contact with the real —<br />retrieval, doc AI and evaluation in production.',
-  },
-  chips: ['Retrieval', 'Doc AI', 'Agents', 'Evaluation'],
-  name: 'Rody Vilchez',
-  role: 'Applied ML Engineer · Lima',
-};
-
 export const links = {
-  email: 'rody.vilchez00@gmail.com',
+  email: 'rody@rosewt.dev',
   github: 'https://github.com/R0SEWT',
   linkedin: 'https://www.linkedin.com/in/r0sewt/',
   cvEs: '/CV.es.pdf',
   cvEn: '/CV.en.pdf',
 };
 
-/* ---------------------------------------------------------------- 01 */
+/* ---------------------------------------------------------------- 00 home */
 
-export const doctrine = {
-  eyebrow: { es: 'Ley de equivalencia', en: 'Law of equivalence' },
+export const home = {
+  wordLeft: { es: 'SISTEMAS', en: 'SYSTEMS' },
+  wordRight: { es: 'REALES', en: 'IN USE' },
+  blurb: {
+    es: 'Construyo sistemas de machine learning para condiciones no ideales: datos incompletos, objetivos ambiguos y restricciones institucionales.',
+    en: 'I build machine learning systems for non-ideal conditions: incomplete data, ambiguous objectives and institutional constraints.',
+  },
+  chips: [
+    { es: 'Recuperación', en: 'Retrieval' },
+    { es: 'Sistemas de agentes', en: 'Agent systems' },
+    { es: 'Evaluación', en: 'Evaluation' },
+    { es: 'ML urbano', en: 'Urban ML' },
+  ],
+  name: 'Rody Vilchez',
+  role: 'Applied ML Engineer',
+  org: 'AI Intern · CIP–CGIAR',
+};
+
+/* ------------------------------------------------------------ 01 approach */
+
+export const approach = {
   lede: {
-    es: 'Todo modelo optimiza algo y sacrifica otra cosa. Mi trabajo es <span class="hl">nombrar el intercambio.</span>',
-    en: 'Every model optimizes something and sacrifices something else. My job is <span class="hl">naming the trade.</span>',
+    es: 'Todo modelo optimiza algo y sacrifica otra cosa. Mi trabajo es <span class="hl">hacer explícito ese intercambio.</span>',
+    en: 'Every model optimizes something and sacrifices something else. My job is <span class="hl">making that trade explicit.</span>',
   },
   notes: [
     {
       num: '[ 01 ]',
+      title: { es: 'Validar el objetivo', en: 'Validate the target' },
       body: {
-        es: 'Primero el costo: latencia, cobertura, error tolerable. Un sistema sin presupuesto declarado no es un sistema, es una demo.',
-        en: "Cost first: latency, coverage, tolerable error. A system with no declared budget isn't a system, it's a demo.",
+        es: 'Entender qué representa realmente la variable observada.',
+        en: 'Understand what the observed variable actually represents.',
       },
     },
     {
       num: '[ 02 ]',
+      title: { es: 'Evaluar consecuencias', en: 'Evaluate consequences' },
       body: {
-        es: 'Después la evidencia: métrica que un evaluador externo pueda reproducir sin acceso a mi laptop.',
-        en: 'Then evidence: a metric an outside evaluator can reproduce without access to my laptop.',
+        es: 'Estudiar cómo falla el modelo y qué decisiones dependen de sus resultados.',
+        en: 'Study how the model fails and which decisions depend on its outputs.',
+      },
+    },
+    {
+      num: '[ 03 ]',
+      title: { es: 'Dejar evidencia', en: 'Leave evidence' },
+      body: {
+        es: 'Hacer reproducibles los experimentos y trazables las decisiones técnicas.',
+        en: 'Make experiments reproducible and technical decisions traceable.',
       },
     },
   ],
-  quote: {
-    es: '«Para obtener, algo de igual valor debe perderse.»',
-    en: '"To obtain, something of equal value must be lost."',
-  },
-  cite: 'Edward Elric',
 };
 
-/* ---------------------------------------------------------------- 02 */
+/* ------------------------------------------------------------- 02 systems */
 
-export interface SystemRow {
-  num: string;
-  title: string;
+export const systems = {
+  lead: {
+    eyebrow: { es: 'Sistema en producción · CIP–CGIAR', en: 'Production system · CIP–CGIAR' },
+    title: {
+      es: 'CIP — Sistema institucional de agentes de IA',
+      en: 'CIP — Institutional AI Agent System',
+    },
+    lede: {
+      es: 'Diseñé e implementé un sistema multiagente en producción para soporte TI institucional.',
+      en: 'Designed and implemented a production multi-agent system for institutional IT support.',
+    },
+    note: {
+      es: 'Respaldado por una plataforma de evaluación basada en datos para regresión, calidad de respuesta y pruebas de comportamiento agéntico.',
+      en: 'Backed by a data-grounded evaluation platform spanning regression, response quality and agentic testing.',
+    },
+  },
+  prototype: {
+    eyebrow: { es: 'Prototipo funcional · El Comercio', en: 'Working prototype · El Comercio' },
+    title: {
+      es: 'Wachi — Ruteo peatonal sensible al riesgo',
+      en: 'Wachi — Risk-Aware Pedestrian Routing',
+    },
+    desc: {
+      es: 'Diseñé y construí un prototipo geoespacial que reordena rutas peatonales por distancia y exposición estimada, derivada de patrones espaciotemporales en incidentes reportados.',
+      en: 'Designed and built a geospatial prototype that re-ranks pedestrian routes by distance and estimated exposure derived from spatiotemporal patterns in reported incidents.',
+    },
+    meta: {
+      es: 'H3 · Decaimiento temporal · Reordenamiento post hoc de rutas',
+      en: 'H3 · Temporal decay · Post-hoc route reranking',
+    },
+    video: '/assets/deck/wachi-loop.webm',
+    videoLabel: {
+      es: 'Loop del reordenamiento de rutas peatonales de Wachi',
+      en: 'Wachi pedestrian route reranking loop',
+    },
+    caption: { es: 'Captura del prototipo', en: 'Prototype capture' },
+  },
+};
+
+/* ------------------------------------------------------------ 03 research */
+
+export const research = {
+  program: {
+    eyebrow: {
+      es: 'Investigación de tesis · UPC · 2025–2026',
+      en: 'BSc thesis research · UPC · 2025–2026',
+    },
+    title: {
+      es: 'Infelix — Riesgo delictivo latente bajo sesgo de medición',
+      en: 'Infelix — Latent Crime Risk under Measurement Bias',
+    },
+    desc: {
+      es: 'Investigo qué aprenden los sistemas de predicción delictiva cuando los registros están condicionados por quién denuncia, qué logra geocodificarse y en qué ciudad se entrenan.',
+      en: 'Investigating what crime-prediction systems learn when the record itself is shaped by who reports, what gets geocoded, and which city you train on.',
+    },
+    /**
+     * Anchors, not method hygiene. The line used to read "placebo-controlled ·
+     * 20-seed robustness analysis", which tells a reviewer the work was careful
+     * but tells a reader nothing about what it is. These three come verbatim
+     * from the CV, so the two surfaces state the same facts.
+     */
+    meta: {
+      es: '43 distritos de Lima–Callao · Panel H3 de 11 fuentes · Transferencia a 3 ciudades',
+      en: '43 districts across Lima–Callao · H3 panel of 11 sources · Transfer to 3 cities',
+    },
+  },
+  publication: {
+    eyebrow: {
+      es: 'Investigación publicada · Springer CCIS 2895 · 2026',
+      en: 'Published research · Springer CCIS 2895 · 2026',
+    },
+    title: {
+      es: 'Imitator — Modelo multimodal para lenguas de señas',
+      en: 'Imitator — Multimodal Sign Language Model',
+    },
+    desc: {
+      es: 'Coautor de una arquitectura multimodal sin glosas que alinea secuencias de keypoints 2D con embeddings de modelos de lenguaje preentrenados, evaluada en corpus de lenguas de señas peruana y argentina.',
+      en: 'Co-authored a gloss-free multimodal architecture aligning 2D keypoint sequences with pretrained language-model embeddings across Peruvian and Argentinian sign-language datasets.',
+    },
+    doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
+    /** An identifier, not copy — the same in both languages. */
+    doiLabel: 'DOI 10.1007/978-3-032-20322-9_23 ↗',
+    cover: '/assets/deck/imitator-ccis-2895.png',
+    coverAlt: {
+      es: 'Information Management and Big Data — actas de SIMBig 2025, volumen Springer CCIS 2895',
+      en: 'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
+    },
+  },
+};
+
+/* --------------------------------------------------------- 04 open source */
+
+export interface OpenSourceRow {
+  mark: string;
+  /** Project marks carry their own name; the same alt serves both languages. */
+  markAlt: string;
+  /** beads ships a square app mark; the others are transparent wordmarks. */
+  rounded?: boolean;
+  name: string;
   desc: Bi;
-  meta: Bi;
-  year: string;
+  contribution: Bi;
+  /** A row becomes an anchor once an approved evidence URL exists for it. */
   href?: string;
 }
 
-export const systems: SystemRow[] = [
+export const openSource: OpenSourceRow[] = [
   {
-    num: '001',
-    title: 'GENO-MAP',
+    mark: '/assets/deck/os-copilot-studio.png',
+    markAlt: 'Microsoft Copilot Studio',
+    name: 'Microsoft Copilot Studio',
     desc: {
-      es: 'Invariantes de grafos kNN para validar mapas de diversidad, sin correspondencia entre mapas.',
-      en: 'kNN graph invariants to validate diversity maps, with no map-to-map correspondence.',
+      es: 'Extensión oficial de VS Code para desarrollar agentes empresariales',
+      en: 'Official VS Code extension for enterprise agent development',
     },
-    meta: { es: 'SALA 2026', en: 'SALA 2026' },
-    year: '2025—26',
-    href: 'https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps',
+    contribution: {
+      es: 'Fuentes de conocimiento · Sincronización de subagentes · Validación de prelanzamiento',
+      en: 'Knowledge sources · Child-agent sync · Prerelease validation',
+    },
   },
   {
-    num: '002',
-    title: 'ArbitrIA',
+    mark: '/assets/deck/os-gemini-cli.png',
+    markAlt: 'Gemini CLI',
+    name: 'Gemini CLI',
     desc: {
-      es: 'Retrieval legal sobre PDFs multicolumna: indexación a nivel documento y chunk.',
-      en: 'Legal retrieval over multi-column PDFs: document- and chunk-level indexing.',
+      es: 'Agente de código abierto para programar desde la terminal',
+      en: 'Open-source coding agent for the terminal',
     },
-    meta: { es: 'Interno', en: 'Internal' },
-    year: '2024—25',
+    contribution: {
+      es: 'Corrección de esquema UI · Cobertura de pruebas',
+      en: 'UI schema fix · Test coverage',
+    },
   },
   {
-    num: '003',
-    title: 'Gallstone Risk',
+    mark: '/assets/deck/os-sklearn-mark.png',
+    markAlt: 'scikit-learn-contrib',
+    name: 'scikit-learn',
     desc: {
-      es: 'Tamizaje bajo restricciones de observabilidad: AUC conservado con menos features.',
-      en: 'Screening under observability constraints: AUC preserved on fewer features.',
+      es: 'Biblioteca de machine learning de código abierto',
+      en: 'Open-source machine-learning library',
     },
-    meta: { es: 'Demo', en: 'Demo' },
-    year: '2024',
-    href: 'https://gallstone.rosewt.dev/',
+    contribution: { es: 'Documentación de HDBSCAN', en: 'HDBSCAN documentation' },
+  },
+  {
+    mark: '/assets/deck/os-beads-mark.png',
+    markAlt: 'beads / bd',
+    rounded: true,
+    name: 'beads (bd)',
+    desc: {
+      es: 'Gestor de tareas basado en Git para agentes de programación',
+      en: 'Git-backed issue tracking for coding agents',
+    },
+    contribution: {
+      es: 'Enrutamiento por prefijos · Prueba de regresión write-through',
+      en: 'Prefix routing · Write-through regression test',
+    },
   },
 ];
 
-/* ---------------------------------------------------------------- 03 */
+/* -------------------------------------------------------------- 05 career */
 
-export const research = {
-  eyebrow: 'Research — Springer CCIS 2026',
-  title: 'Imitator',
-  lede: {
-    es: '<span class="hl">Sin gloss:</span> traducción de lengua de señas como alineamiento latente en un LLM.',
-    en: '<span class="hl">Gloss-free:</span> sign language translation as latent alignment inside an LLM.',
-  },
-  metrics: [
-    { value: '8×10⁻⁴', accent: false, label: { es: 'MSE + cosine', en: 'MSE + cosine' } },
-    { value: '0', accent: true, label: { es: 'Retraining del LLM', en: 'LLM retraining' } },
-    { value: '2', accent: false, label: { es: 'WAILAMP · SIMBIG 2025', en: 'WAILAMP · SIMBIG 2025' } },
-  ],
-  repo: 'https://github.com/nakato156/Multimodal-Sign-Language-Model',
-  repoLabel: { es: 'Repositorio ↗', en: 'Repository ↗' },
-};
-
-/* ---------------------------------------------------------------- 04 */
-
-export interface LineageRow {
+export interface CareerRow {
   when: Bi;
   current: boolean;
-  role: string;
+  /**
+   * Job titles stay as held, so both variants read the same. The degree is
+   * named in the reader's language.
+   */
+  role: Bi;
   org: string;
   desc: Bi;
 }
 
-export const lineage: LineageRow[] = [
+export const career: CareerRow[] = [
   {
     when: { es: 'Oct 2025 —<br />Presente', en: 'Oct 2025 —<br />Present' },
     current: true,
-    role: 'AI / Data Intern',
+    role: { es: 'AI Intern', en: 'AI Intern' },
     org: 'CIP · CGIAR',
     desc: {
-      es: 'GraphRAG sobre corpus ES/EN/FR/PT/ZH con OCR ruidoso · flota de agentes hub-and-spoke · evaluación en tres capas.',
-      en: 'GraphRAG over ES/EN/FR/PT/ZH corpora with noisy OCR · hub-and-spoke agent fleet · three-layer evaluation.',
+      es: 'Construyo sistemas institucionales de IA multilingüe que integran recuperación de conocimiento, flujos de agentes y evaluación basada en evidencia.',
+      en: 'Building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
     },
   },
   {
     when: { es: 'Dic 2024 —<br />Oct 2025', en: 'Dec 2024 —<br />Oct 2025' },
     current: false,
-    role: 'QA Trainee',
-    org: 'Visma LATAM',
+    role: { es: 'QA Trainee', en: 'QA Trainee' },
+    org: 'VISMA LATAM',
     desc: {
-      es: 'Agente LLM que genera tests e2e desde especificaciones · suites Cypress en Jenkins · generadores DOM-aware.',
-      en: 'LLM agent generating e2e tests from specs · Cypress suites on Jenkins · DOM-aware generators.',
+      es: 'Desarrollé un agente basado en LLM que genera pruebas E2E desde especificaciones e integra suites de Cypress en Jenkins con generación guiada por el DOM.',
+      en: 'Developed an LLM agent that generates E2E tests from specifications, integrating Cypress suites into Jenkins with DOM-aware generation.',
     },
   },
   {
-    when: { es: '2026-2', en: '2026-2' },
+    when: { es: 'Previsto fines de 2026', en: 'Expected late 2026' },
     current: false,
-    role: 'B.Sc. Computer Science',
-    org: 'UPC · Lima',
+    role: { es: 'Ciencias de la Computación', en: 'B.Sc. Computer Science' },
+    org: 'UPC · LIMA',
     desc: {
-      es: '2.º DataFest — BCP × ESAN 2025 · beca completa SALA 2026',
-      en: '2nd DataFest — BCP × ESAN 2025 · full grant SALA 2026',
+      es: '2.º puesto · DataFest BCP × ESAN 2025 · Beca completa SALA 2026',
+      en: '2nd place · DataFest BCP × ESAN 2025 · SALA 2026 full scholarship',
     },
   },
 ];
 
-/* ---------------------------------------------------------------- 05 */
-
-export const stack = [
-  { title: 'ML', items: ['PyTorch', 'scikit-learn', 'Optuna', 'Evaluation'] },
-  { title: 'Retrieval', items: ['Qdrant', 'LlamaIndex', 'Embeddings', 'Chunking'] },
-  { title: 'Data', items: ['FastAPI', 'PostgreSQL', 'DuckDB', 'Pandas'] },
-  { title: 'Agents', items: ['Copilot Studio', 'Orchestration', 'LLM-as-judge', 'Docker · CI'] },
-];
-
-/* ---------------------------------------------------------------- 06 */
+/* ------------------------------------------------------------- 06 contact */
 
 export const contact = {
-  status: { es: 'Abierto a roles Applied ML', en: 'Open to Applied ML roles' },
+  status: { es: 'Abierto a nuevas oportunidades', en: 'Open to new roles' },
   title: { es: 'Hablemos.', en: "Let's talk." },
-  place: 'Lima · Perú',
+  note: {
+    es: 'Disponible para roles en ML aplicado, sistemas de IA y research engineering.',
+    en: 'Open to applied ML, AI systems and research engineering roles.',
+  },
 };

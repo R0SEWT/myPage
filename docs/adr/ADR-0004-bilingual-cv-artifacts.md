@@ -1,7 +1,10 @@
 # ADR-0004: Bilingual CV artifacts (EN/ES)
 
 ## Status
-Accepted
+Superseded by ADR-0007. The decision to publish two PDFs stands; the pipeline
+described below does not. `cv/master.md`, `cv/main*.tex` and
+`scripts/build-cv.sh` are all retired, and Spanish is no longer a derived
+translation.
 
 ## Context
 The repository publishes a CV PDF via the website and maintains a canonical narrative in `cv/master.md` with a separate evidence layer in `evidence/claims.md`.

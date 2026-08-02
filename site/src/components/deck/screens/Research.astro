@@ -1,8 +1,10 @@
 ---
 import { SCREENS, research } from '../../../data/deck';
+import SecHead from '../SecHead.astro';
 import T from '../T.astro';
 
 const s = SCREENS[3];
+const { program, publication } = research;
 ---
 <section
   class="screen screen--research"
@@ -11,22 +13,36 @@ const s = SCREENS[3];
   data-en={s.label.en}
   hidden
 >
-  <div class="res-eyebrow">{research.eyebrow}</div>
-  <h2 class="res-title">{research.title}</h2>
-  <T t={research.lede} as="p" class="res-lede" />
+  <SecHead label={s.label} index={3} />
 
-  <div class="metrics">
-    {research.metrics.map((m) => (
-      <div>
-        <div class={m.accent ? 'metric-val metric-val--accent' : 'metric-val'}>{m.value}</div>
-        <T t={m.label} as="div" class="metric-label" />
-      </div>
-    ))}
+  <div class="lead">
+    <T t={program.eyebrow} as="div" class="eyebrow eyebrow--live" />
+    <T t={program.title} as="h3" class="lead-title lead-title--wide" />
+    <T t={program.desc} as="p" class="lead-desc" />
+    <T t={program.meta} as="div" class="media-meta" />
   </div>
 
-  <p style="margin:32px 0 0">
-    <a class="res-link" href={research.repo} target="_blank" rel="noopener noreferrer">
-      <T t={research.repoLabel} />
+  <div class="pub-row">
+    <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
+      <img
+        src={publication.cover}
+        alt={publication.coverAlt.es}
+        data-i18n="alt"
+        data-es={publication.coverAlt.es}
+        data-en={publication.coverAlt.en}
+        width="283"
+        height="366"
+      />
     </a>
-  </p>
+
+    <div>
+      <T t={publication.eyebrow} as="div" class="eyebrow" />
+      <T t={publication.title} as="h3" class="media-title" />
+      <T t={publication.desc} as="p" class="media-desc" />
+    </div>
+
+    <a class="pub-doi" href={publication.doi} target="_blank" rel="noopener noreferrer">
+      {publication.doiLabel}
+    </a>
+  </div>
 </section>

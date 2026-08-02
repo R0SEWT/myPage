@@ -1,0 +1,29 @@
+---
+import { SCREENS, approach } from '../../../data/deck';
+import T from '../T.astro';
+import SecHead from '../SecHead.astro';
+
+const s = SCREENS[1];
+---
+<section
+  class="screen screen--sheet"
+  data-num={s.num}
+  data-es={s.label.es}
+  data-en={s.label.en}
+  hidden
+>
+  <div class="sheet">
+    <SecHead label={s.label} index={1} />
+    <T t={approach.lede} as="p" class="sheet-lede" />
+
+    <div class="sheet-notes">
+      {approach.notes.map((n) => (
+        <div>
+          <div class="note-num">{n.num}</div>
+          <T t={n.title} as="div" class="note-title" />
+          <T t={n.body} as="p" class="note-body" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

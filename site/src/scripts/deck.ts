@@ -13,6 +13,8 @@ import { DENSITY } from '../data/deck';
 const BOOT_MS = 1900;
 const WHEEL_LOCK_MS = 700;
 const SWIPE_PX = 48;
+/** Content crossfade. Must match --v-fade in vesper.css. */
+const FADE_MS = 200;
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -42,7 +44,6 @@ export function initDeck() {
   const more = $<HTMLButtonElement>('#more');
   const stats = $<HTMLElement>('#stats');
   const statParticles = $<HTMLElement>('#stat-particles');
-  const statFps = $<HTMLElement>('#stat-fps');
   const statScreenVal = $<HTMLElement>('#stat-screen-val');
   const statScreenLabel = $<HTMLElement>('#stat-screen-label');
   const navBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-go]'));
@@ -53,7 +54,10 @@ export function initDeck() {
 
   /* --------------------------------------------------------------- field */
 
-  const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 900;
+  // 1125 rather than 900: the deck renders at a 125% root, so it hits the
+  // narrow layout at a proportionally wider window. Keep in step with the
+  // breakpoints in vesper.css.
+  const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1125;
   const field = stage
     ? createField(stage, { count: coarse ? DENSITY.lite : DENSITY.full, reduced })
     : null;
@@ -65,20 +69,8 @@ export function initDeck() {
 
   /* -------------------------------------------------------------- screen */
 
-  function paint() {
-    screens.forEach((el, i) => {
-      const active = i === screen;
-      if (active && el.hidden) {
-        el.hidden = false;
-        // Replay the entry animation on every activation.
-        el.style.animation = 'none';
-        void el.offsetWidth;
-        el.style.animation = '';
-      } else if (!active) {
-        el.hidden = true;
-      }
-    });
-
+  /** Chrome that reads off the current screen. Never animates. */
+  function paintChrome() {
     navBtns.forEach((b) => {
       const i = Number(b.dataset.go);
       b.setAttribute('aria-current', String(i === screen));
@@ -88,17 +80,61 @@ export function initDeck() {
     if (sysNum) sysNum.textContent = `SYS.${l.num}`;
     if (statScreenVal) statScreenVal.textContent = `${l.num} / ${labels[LAST].num}`;
     if (statScreenLabel) statScreenLabel.textContent = lang === 'en' ? l.en : l.es;
+  }
 
-    field?.setShape(screen);
-    if (pane) pane.scrollTop = 0;
-    measure();
+  /**
+   * Swap screens with a crossfade.
+   *
+   * Screens share a grid cell, so the outgoing one keeps its place while it
+   * fades and the incoming one fades up over it — no gap where the pane is
+   * empty, and nothing outside the pane moves.
+   */
+  let fades: Animation[] = [];
+
+  function settle(el: HTMLElement) {
+    el.classList.remove('is-out');
+    el.hidden = true;
   }
 
   function go(next: number) {
     const clamped = Math.max(0, Math.min(LAST, next));
     if (clamped === screen) return;
+
+    const from = screens[screen];
+    const to = screens[clamped];
     screen = clamped;
-    paint();
+
+    // A second press mid-fade must not strand the screen it interrupted.
+    fades.forEach((a) => a.cancel());
+    fades = [];
+    screens.forEach((el) => {
+      if (el !== from && el !== to) settle(el);
+    });
+
+    to.hidden = false;
+    to.classList.remove('is-out');
+    from.classList.add('is-out');
+    if (pane) pane.scrollTop = 0;
+
+    // Driven with the Web Animations API rather than a CSS transition: the
+    // incoming screen comes off `display: none`, and a transition started in
+    // the same task as the un-hide is not reliably picked up.
+    if (reduced || typeof to.animate !== 'function') {
+      settle(from);
+    } else {
+      const opts: KeyframeAnimationOptions = { duration: FADE_MS, easing: 'ease' };
+      const out = from.animate([{ opacity: 1 }, { opacity: 0 }], { ...opts, fill: 'forwards' });
+      fades = [to.animate([{ opacity: 0 }, { opacity: 1 }], opts), out];
+      out.onfinish = () => {
+        out.cancel();
+        settle(from);
+        measure();
+      };
+    }
+
+    paintChrome();
+    field?.setShape(screen);
+    measure();
   }
 
   /* ------------------------------------------------------- overflow hint */
@@ -116,10 +152,23 @@ export function initDeck() {
 
   /* ----------------------------------------------------------- languages */
 
+  /**
+   * Copy switches in CSS, but an attribute cannot — alt text and aria-labels
+   * have to be written. Each such element carries the attribute name in
+   * `data-i18n` and both variants in `data-es` / `data-en`.
+   */
+  const i18nAttrs = Array.from(document.querySelectorAll<HTMLElement>('[data-i18n]'));
+
   function setLang(next: 'es' | 'en') {
     lang = next;
     document.documentElement.dataset.lang = next;
     document.documentElement.lang = next;
+
+    i18nAttrs.forEach((el) => {
+      const attr = el.dataset.i18n;
+      const value = next === 'en' ? el.dataset.en : el.dataset.es;
+      if (attr && value) el.setAttribute(attr, value);
+    });
     if (langBtn) {
       langBtn.textContent = next === 'en' ? 'ES' : 'EN';
       langBtn.setAttribute(
@@ -233,14 +282,10 @@ export function initDeck() {
   window.addEventListener('resize', measure);
   pane?.addEventListener('scroll', measure, { passive: true });
 
-  if (statFps && field) {
-    window.setInterval(() => {
-      statFps.textContent = String(field.fps());
-    }, 700);
-  }
-
   /* ---------------------------------------------------------------- init */
 
   setLang(lang);
-  paint();
+  paintChrome();
+  field?.setShape(0);
+  measure();
 }

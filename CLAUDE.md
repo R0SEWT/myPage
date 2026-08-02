@@ -6,7 +6,7 @@ Canonical repo policy, editorial rules, and evidence handling live in `agents.md
 ## Canonical Pointers
 
 - `agents.md` wins if there is any conflict.
-- Use `cv/master.md` for narrative content and `evidence/claims.md` for factual traceability.
+- Use the current CV bundle under `cv/` for narrative content and `evidence/claims.md` for factual traceability — see `docs/adr/ADR-0007-cv-latex-as-narrative-source.md`.
 - Do not inspect `.cv-vault/` unless the user explicitly asks for private evidence.
 - Use `docs/adr/` for accepted durable decisions and `docs/plans/` for active multi-step work.
 - Use **`bd` (beads)** for issue/task tracking and persistent knowledge — see "Beads Issue Tracker" below.
@@ -77,10 +77,10 @@ npm run check      # Astro/TypeScript diagnostics (no separate lint script)
 
 ## Editorial Governance
 
-- `cv/master.md` is the narrative source of truth.
-- `evidence/claims.md` is the claim traceability layer.
-- Public surfaces must not contradict either file.
-- See `agents.md` for the full policy and update protocol.
+- The narrative source of truth is the highest-numbered `cv/Rody_Vilchez_CV_v<N>_bundle/`. Its Spanish and English `.tex` are peers — neither is a translation of the other, and they must not disagree on any fact.
+- `evidence/claims.md` is the claim traceability layer, and the arbiter when the two editions diverge.
+- Public surfaces must not contradict either.
+- See `agents.md` for the full policy and update protocol, and ADR-0007 for why the source moved out of `cv/master.md`.
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:ca08a54f -->
 ## Beads Issue Tracker

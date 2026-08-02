@@ -46,9 +46,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         #boot,
         #stats,
         #more { display: none !important; }
+        /* Undo the stacked grid: with no JS to drive the crossfade, every
+           screen is shown at full opacity in one long scroll. */
         .pane { display: block; }
         .screen[hidden] { display: block !important; }
-        .screen { animation: none; margin: 0 0 96px; }
+        .screen { opacity: 1; margin: 0 0 96px; }
       </style>
     </noscript>
   </head>

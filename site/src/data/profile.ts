@@ -5,7 +5,7 @@ export const PROFILE = {
   summary:
     'I design applied AI systems for non-ideal conditions: retrieval, document intelligence, and data pipelines over noisy multilingual corpora. Currently at the International Potato Center (CIP, CGIAR), building document processing and question answering workflows for agricultural research.',
   availability: 'Open to Applied ML roles · Lima / remote',
-  email: 'rody.vilchez00@gmail.com',
+  email: 'rody@rosewt.dev',
   links: {
     github: 'https://github.com/R0SEWT',
     linkedin: 'https://www.linkedin.com/in/r0sewt/',
