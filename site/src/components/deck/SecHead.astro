@@ -8,13 +8,15 @@ import T from './T.astro';
 
 interface Props {
   label: Bi;
+  /** Overrides `label` when the heading reads longer than the nav pill. */
+  heading?: Bi;
   index: number;
 }
 
-const { label, index } = Astro.props;
+const { label, heading, index } = Astro.props;
 const num = String(index).padStart(3, '0');
 ---
 <div class="sec-head">
-  <span><T t={label} /></span>
+  <span><T t={heading ?? label} /></span>
   <b>{num}</b>
 </div>
