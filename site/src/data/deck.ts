@@ -22,6 +22,13 @@ export interface Bi {
 export interface Screen {
   num: string;
   label: Bi;
+  /**
+   * Section heading, when it should read longer than the nav label. The nav
+   * pill, the heading and the stats readout all draw on `label`, and the pill
+   * works to a shared width budget across six items — so a heading that wants
+   * more words gets its own string rather than widening the nav.
+   */
+  heading?: Bi;
 }
 
 /** Screen order drives the nav, the SYS.NN readout and the particle shape index. */
@@ -30,7 +37,11 @@ export const SCREENS: Screen[] = [
   { num: '01', label: { es: 'Enfoque', en: 'Approach' } },
   { num: '02', label: { es: 'Sistemas', en: 'Systems' } },
   { num: '03', label: { es: 'Investigación', en: 'Research' } },
-  { num: '04', label: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' } },
+  {
+    num: '04',
+    label: { es: 'Open Source', en: 'Open Source' },
+    heading: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' },
+  },
   { num: '05', label: { es: 'Trayectoria', en: 'Career' } },
   { num: '06', label: { es: 'Contacto', en: 'Contact' } },
 ];
