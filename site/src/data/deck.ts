@@ -190,18 +190,27 @@ export const systems = {
 
 export const research = {
   program: {
-    eyebrow: { es: 'Programa de investigación · ML urbano', en: 'Research program · Urban ML' },
+    eyebrow: {
+      es: 'Investigación de tesis · UPC · 2025–2026',
+      en: 'BSc thesis research · UPC · 2025–2026',
+    },
     title: {
-      es: 'Infelix — Aprendizaje bajo observación imperfecta',
-      en: 'Infelix — Learning under Imperfect Observation',
+      es: 'Infelix — Riesgo delictivo latente bajo sesgo de medición',
+      en: 'Infelix — Latent Crime Risk under Measurement Bias',
     },
     desc: {
       es: 'Investigo qué aprenden los sistemas de predicción delictiva cuando los registros están condicionados por quién denuncia, qué logra geocodificarse y en qué ciudad se entrenan.',
       en: 'Investigating what crime-prediction systems learn when the record itself is shaped by who reports, what gets geocoded, and which city you train on.',
     },
+    /**
+     * Anchors, not method hygiene. The line used to read "placebo-controlled ·
+     * 20-seed robustness analysis", which tells a reviewer the work was careful
+     * but tells a reader nothing about what it is. These three come verbatim
+     * from the CV, so the two surfaces state the same facts.
+     */
     meta: {
-      es: 'Control con placebo · Análisis de robustez en 20 semillas',
-      en: 'Placebo-controlled · 20-seed robustness analysis',
+      es: '43 distritos de Lima–Callao · Panel H3 de 11 fuentes · Transferencia a 3 ciudades',
+      en: '43 districts across Lima–Callao · H3 panel of 11 sources · Transfer to 3 cities',
     },
   },
   publication: {
