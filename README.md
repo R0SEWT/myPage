@@ -30,15 +30,17 @@ npm run check    # Diagnóstico de Astro/TypeScript (no hay script de lint separ
 
 ## CV (PDF)
 
-Los CV en PDF se generan desde LaTeX (`cv/main.en.tex`, `cv/main.es.tex`) y se
-copian a `site/public/`.
+Los CV se escriben en LaTeX dentro del bundle vigente en `cv/`
+(`Rody_Vilchez_CV_v<N>_bundle/`), en dos ediciones que son pares entre sí. Los
+PDF compilados no se versionan: se copian a mano a `site/public/CV.es.pdf` y
+`CV.en.pdf`. Ver ADR-0007.
 
 ## Gobernanza editorial
 
 La narrativa profesional y el contenido son trazables:
 
-- `cv/master.md` — fuente de verdad narrativa
-- `evidence/claims.md` — trazabilidad de claims
+- `cv/Rody_Vilchez_CV_v<N>_bundle/` — fuente de verdad narrativa (ES y EN, pares)
+- `evidence/claims.md` — trazabilidad de claims, y árbitro si las dos ediciones difieren
 - `agents.md` — política canónica para agentes y reglas editoriales
 
 El despliegue es automático en Netlify a partir de `main`. CI

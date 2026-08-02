@@ -27,19 +27,25 @@ Workflow rules:
 
 | Artifact | Source |
 |---|---|
-| Professional narrative & CV content | `cv/master.md` |
+| Professional narrative & CV content | The highest-numbered `cv/Rody_Vilchez_CV_v<N>_bundle/` — see ADR-0007 |
 | Claim traceability & public support links | `evidence/claims.md` |
 | Private evidence index | `.cv-vault/INDEX.md` |
-| PDF rendering | `cv/main.tex` (derived from `cv/master.md`) |
-| Website copy | `site/src/data/profile.ts` + Markdown project files in `site/src/content/projects/` (derived from `cv/master.md`) |
+| PDF rendering | `Rody_Vilchez_CV_{ES,EN}_v<N>.tex` in that bundle, sharing `cv_style_v<N>.tex` |
+| Published PDFs | `site/public/CV.es.pdf` and `CV.en.pdf`, copied from the bundle by hand |
+| Website copy | `site/src/data/profile.ts` + Markdown project files in `site/src/content/projects/` (derived from the bundle) |
 
-No public content should be invented outside `cv/master.md`.
+Spanish and English are peers, not translations of each other. Neither derives
+from the other and they must not disagree on any fact; where they do,
+`evidence/claims.md` decides.
+
+No public content should be invented outside the CV bundle.
 Claims should be treated as verified through `evidence/claims.md`, and private backing documents live in `.cv-vault/`.
 
 ## Evidence Handling
 
 Default workflow for factual tasks:
-1. Read `cv/master.md` for narrative intent.
+1. Read the current CV bundle under `cv/` for narrative intent — the language
+   edition matching the surface you are working on.
 2. Read `evidence/claims.md` for claim IDs and support references.
 3. Inspect `.cv-vault/INDEX.md` or underlying private files only if the user explicitly asks or if the task cannot be completed otherwise.
 
@@ -96,12 +102,15 @@ All content must emphasize **systems over isolated models**.
 ## Evolution Protocol
 
 When updating factual content:
-1. Modify `cv/master.md` first
+1. Modify the CV bundle first — **both** language editions, since neither
+   derives from the other
 2. Update `evidence/claims.md` if the claim text, dates, or support references changed
 3. Update `.cv-vault/INDEX.md` if new private evidence was added
-4. Propagate to `cv/main.tex`
-5. Propagate to website (`constants.ts`, MDX files)
-6. Verify cross-consistency
+4. Recompile the bundle and copy the two PDFs to `site/public/CV.{es,en}.pdf`
+5. Propagate to website (`site/src/data/profile.ts`, `site/src/data/deck.ts`,
+   project Markdown)
+6. Verify cross-consistency — the two editions against each other, and every
+   public surface against the registry
 
 When updating process or workflow:
 1. Update or add the relevant ADR in `docs/adr/` if the decision is durable
