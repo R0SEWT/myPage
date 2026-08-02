@@ -1,9 +1,12 @@
 {
+  "id": "/",
   "name": "Rody Vilchez — Applied ML Engineer",
   "short_name": "Rody Vilchez",
-  "description": "Systems in use: applied machine learning under real constraints.",
+  "description": "Sistemas reales: machine learning bajo condiciones no ideales.",
+  "lang": "es",
   "start_url": "/",
-  "display": "standalone",
+  "scope": "/",
+  "display": "browser",
   "background_color": "#000000",
   "theme_color": "#000000",
   "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
