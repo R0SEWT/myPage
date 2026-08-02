@@ -1,9 +1,10 @@
 ---
 import { SCREENS, systems } from '../../../data/deck';
+import SecHead from '../SecHead.astro';
 import T from '../T.astro';
 
 const s = SCREENS[2];
-const count = String(systems.length).padStart(3, '0');
+const { lead, prototype } = systems;
 ---
 <section
   class="screen screen--systems"
@@ -12,26 +13,37 @@ const count = String(systems.length).padStart(3, '0');
   data-en={s.label.en}
   hidden
 >
-  <div class="sec-head">
-    <T t={s.label} />
-    <b>{count}</b>
+  <SecHead label={s.label} index={2} />
+
+  <div class="lead">
+    <T t={lead.eyebrow} as="div" class="eyebrow eyebrow--live" />
+    <T t={lead.title} as="h3" class="lead-title" />
+    <T t={lead.lede} as="p" class="lead-lede" />
+    <T t={lead.note} as="p" class="lead-note" />
   </div>
 
-  {systems.map((row) => {
-    const inner = (
-      <>
-        <span class="row-num">{row.num}</span>
-        <span class="row-title">{row.title}</span>
-        <T t={row.desc} class="row-desc" />
-        <span class="row-meta">
-          <T t={row.meta} /><br />{row.year}{row.href ? ' ↗' : ''}
-        </span>
-      </>
-    );
-    return row.href ? (
-      <a class="row" href={row.href} target="_blank" rel="noopener noreferrer">{inner}</a>
-    ) : (
-      <div class="row">{inner}</div>
-    );
-  })}
+  <div class="media-row">
+    <div>
+      <T t={prototype.eyebrow} as="div" class="eyebrow" />
+      <T t={prototype.title} as="h3" class="media-title" />
+      <T t={prototype.desc} as="p" class="media-desc" />
+      <T t={prototype.meta} as="div" class="media-meta" />
+    </div>
+
+    <div class="media-frame">
+      <video
+        src={prototype.video}
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label={prototype.videoLabel.es}
+        data-i18n="aria-label"
+        data-es={prototype.videoLabel.es}
+        data-en={prototype.videoLabel.en}
+      ></video>
+      <T t={prototype.caption} as="div" class="media-caption" />
+    </div>
+  </div>
 </section>

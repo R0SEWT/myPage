@@ -41,14 +41,30 @@
   --v-sans: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --v-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
-  --v-pane-y: 96px;
-  --v-pane-x: 46px;
+  --v-pane-y: 6rem;
+  --v-pane-x: 2.875rem;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/**
+ * The deck is drawn at 125% of the browser's base size.
+ *
+ * This is not "everything bigger": the lengths on the type scale and the
+ * layout rhythm are in rem and follow this, while the display type is sized in
+ * vw and does not. That asymmetry is the point — it is exactly what a browser
+ * at 125% zoom produces, and it is the proportion the deck was tuned against.
+ * One knob: change this percentage and the whole scale moves with it.
+ *
+ * A percentage rather than a px value so a reader who has raised their
+ * browser's default font size still gets 125% of *their* size.
+ */
+html {
+  font-size: 125%;
 }
 
 html,
@@ -82,7 +98,7 @@ a:hover {
 
 :focus-visible {
   outline: 1px solid var(--v-green);
-  outline-offset: 3px;
+  outline-offset: 0.1875rem;
 }
 
 .mono {
@@ -105,17 +121,6 @@ a:hover {
 
 /* --------------------------------------------------------------- keyframes */
 
-@keyframes v3-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @keyframes v3-blink {
   0%,
   100% {
@@ -134,17 +139,6 @@ a:hover {
   to {
     mask-position: 0 320px;
     -webkit-mask-position: 0 320px;
-  }
-}
-
-@keyframes v3-sheet {
-  from {
-    opacity: 0;
-    transform: translateY(26px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: none;
   }
 }
 
@@ -227,7 +221,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 26px 30px;
+  padding: 1.625rem 1.875rem;
   transition: opacity 0.4s ease;
 }
 
@@ -252,10 +246,10 @@ a:hover {
 
 .boot-id {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: baseline;
   font-family: var(--v-mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -272,11 +266,11 @@ a:hover {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 34px;
+  gap: 2.125rem;
 }
 
 .boot-pct {
-  font-size: clamp(96px, 19vw, 260px);
+  font-size: clamp(6rem, 19vw, 16.25rem);
   font-weight: 200;
   line-height: 0.8;
   letter-spacing: -0.05em;
@@ -285,7 +279,7 @@ a:hover {
 
 .boot-meter {
   flex: 1;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
 }
 
 .boot-track {
@@ -300,9 +294,9 @@ a:hover {
 }
 
 .boot-label {
-  margin-top: 12px;
+  margin-top: 0.75rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--v-dim-4);
@@ -319,19 +313,19 @@ a:hover {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  padding: 20px 26px;
+  gap: 1rem;
+  padding: 1.25rem 1.625rem;
   pointer-events: none;
 }
 
 .tb-id {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--v-dim-4);
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .tb-id b {
@@ -343,8 +337,8 @@ a:hover {
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 6px 6px 14px;
+  gap: 0.25rem;
+  padding: 0.375rem 0.375rem 0.375rem 0.875rem;
   border: 1px solid var(--v-line-14);
   border-radius: 999px;
   background: rgba(6, 9, 9, 0.72);
@@ -354,11 +348,11 @@ a:hover {
 .pill-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-right: 12px;
-  margin-right: 6px;
+  gap: 0.5rem;
+  padding-right: 0.75rem;
+  margin-right: 0.375rem;
   border-right: 1px solid var(--v-line-12);
-  font-size: 13px;
+  font-size: 0.8125rem;
   letter-spacing: -0.01em;
   white-space: nowrap;
   flex: 0 0 auto;
@@ -366,7 +360,7 @@ a:hover {
 
 .pill-brand i {
   color: var(--v-green);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1;
   font-style: normal;
 }
@@ -374,13 +368,13 @@ a:hover {
 .pill-btn {
   background: transparent;
   border: none;
-  padding: 7px 11px;
+  padding: 0.4375rem 0.6875rem;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
   flex: 0 0 auto;
   font-family: var(--v-sans);
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   letter-spacing: -0.005em;
   color: var(--v-dim-3);
   transition: color 0.25s, background 0.25s;
@@ -396,16 +390,16 @@ a:hover {
 }
 
 .pill-cta {
-  margin-left: 8px;
+  margin-left: 0.5rem;
   background: transparent;
   border: 1px solid var(--v-line-22);
   border-radius: 999px;
-  padding: 7px 15px;
+  padding: 0.4375rem 0.9375rem;
   cursor: pointer;
   white-space: nowrap;
   flex: 0 0 auto;
   font-family: var(--v-sans);
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   color: var(--v-ink);
   transition: border-color 0.25s, color 0.25s;
 }
@@ -419,9 +413,9 @@ a:hover {
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -430,12 +424,12 @@ a:hover {
 .tb-status {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 0.4375rem;
 }
 
 .dot {
-  width: 5px;
-  height: 5px;
+  width: 0.3125rem;
+  height: 0.3125rem;
   border-radius: 50%;
   background: var(--v-green);
   animation: v3-blink 2.6s ease-in-out infinite;
@@ -448,7 +442,7 @@ a:hover {
   padding: 0;
   cursor: pointer;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   color: var(--v-dim-3);
   transition: color 0.25s;
@@ -467,11 +461,16 @@ a:hover {
   pointer-events: none;
 }
 
+/* Screens share one grid cell so the outgoing and incoming ones can overlap
+   for the length of a crossfade. `safe center` centres a short screen but
+   falls back to top-aligned once a screen is taller than the pane, which is
+   what keeps the overflow reachable by scrolling. */
 .pane {
   position: absolute;
   inset: var(--v-pane-y) var(--v-pane-x);
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: safe center;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
@@ -484,37 +483,43 @@ a:hover {
 }
 
 .screen {
+  grid-area: 1 / 1;
   width: 100%;
-  margin: auto 0;
   pointer-events: auto;
-  animation: v3-in 0.8s ease both;
 }
 
 .screen[hidden] {
   display: none;
 }
 
+/* The opacity of the crossfade is driven from deck.ts via the Web Animations
+   API; this only makes the outgoing screen inert while it is still painted. */
+.screen.is-out {
+  pointer-events: none;
+}
+
 .screen--sheet {
-  max-width: 1180px;
-  margin: auto;
-  animation: v3-sheet 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  max-width: 73.75rem;
+  justify-self: center;
 }
 
 .screen--systems {
-  max-width: 1200px;
+  max-width: 75rem;
+  padding-bottom: 2.125rem;
 }
 
-.screen--research,
-.screen--lineage {
-  max-width: 1120px;
+.screen--research {
+  max-width: 70rem;
+  padding-bottom: 2.125rem;
 }
 
-.screen--stack {
-  max-width: 1200px;
+.screen--os,
+.screen--career {
+  max-width: 70rem;
 }
 
 .screen--contact {
-  max-width: 1080px;
+  max-width: 67.5rem;
 }
 
 /* Shared section header */
@@ -523,11 +528,11 @@ a:hover {
   justify-content: space-between;
   align-items: baseline;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-  padding-bottom: 16px;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--v-line-16);
 }
 
@@ -536,17 +541,17 @@ a:hover {
   font-weight: 400;
 }
 
-/* ------------------------------------------------------------ 00 identity */
+/* ---------------------------------------------------------------- 00 home */
 
 .id-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 2.5rem;
 }
 
 .id-word {
-  font-size: clamp(46px, 8.6vw, 142px);
+  font-size: clamp(2.875rem, 8.6vw, 8.875rem);
   font-weight: 200;
   line-height: 0.86;
   letter-spacing: -0.045em;
@@ -561,37 +566,35 @@ a:hover {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 60px;
-  margin-top: min(13vh, 170px);
+  gap: 3.75rem;
+  margin-top: min(13vh, 10.625rem);
 }
 
 .id-blurb {
-  max-width: 34ch;
+  max-width: 44ch;
 }
 
 .id-blurb p {
-  margin: 0 0 20px;
-  font-family: var(--v-mono);
-  font-size: 11px;
-  line-height: 1.85;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--v-dim-2);
+  margin: 0 0 1.375rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  color: var(--v-dim-1);
 }
 
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 0.4375rem;
 }
 
 .chip {
-  padding: 6px 11px;
+  padding: 0.375rem 0.6875rem;
   border: 1px solid var(--v-line-16);
   border-radius: 2px;
   white-space: nowrap;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--v-dim-2);
@@ -599,12 +602,16 @@ a:hover {
 
 .id-card {
   text-align: right;
-  padding-right: 104px;
+  padding-right: 6.5rem;
   font-family: var(--v-mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.9;
   letter-spacing: 0.06em;
   color: var(--v-dim-3);
+}
+
+.id-card {
+  color: var(--v-dim-2);
 }
 
 .id-card b {
@@ -613,224 +620,331 @@ a:hover {
 }
 
 .id-links {
-  display: flex;
-  gap: 16px;
-  justify-content: flex-end;
-  margin-top: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 10px;
+  color: var(--v-dim-3);
 }
 
-/* ------------------------------------------------------------ 01 doctrine */
+.id-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.625rem;
+}
+
+/* ------------------------------------------------------------ 01 approach */
 
 .sheet {
   background: var(--v-sheet);
   color: var(--v-sheet-ink);
-  padding: clamp(34px, 4.4vw, 64px);
-  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.75);
+  padding: clamp(1.875rem, 3.6vw, 3.375rem);
+  box-shadow: 0 3.125rem 7.5rem rgba(0, 0, 0, 0.75);
 }
 
-.sheet-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(30px, 5vw, 80px);
-  align-items: start;
-}
-
-.sheet-eyebrow {
-  font-family: var(--v-mono);
-  font-size: 10px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
+/* The sheet inverts the deck, so its header drops the light hairline and
+   switches to the sheet's own dim tiers. */
+.sheet .sec-head {
   color: var(--v-sheet-dim);
-  margin-bottom: 26px;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+}
+
+.sheet .sec-head b {
+  color: #b4bab7;
 }
 
 .sheet-lede {
-  font-size: clamp(30px, 4.4vw, 64px);
+  font-size: clamp(1.6875rem, 3.6vw, 3.25rem);
   font-weight: 200;
-  line-height: 1.06;
+  line-height: 1.08;
   letter-spacing: -0.035em;
   margin: 0;
+  max-width: 24ch;
 }
 
-.sheet-side {
+.sheet-notes {
   display: grid;
-  gap: 26px;
-  padding-top: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.375rem, 3.4vw, 3.5rem);
+  margin-top: clamp(1.625rem, 3.4vw, 2.875rem);
+  padding-top: 1.625rem;
+  border-top: 1px solid rgba(10, 12, 12, 0.14);
 }
 
 .note-num {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   color: var(--v-sheet-dim);
-  margin-bottom: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.note-title {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
 }
 
 .note-body {
   margin: 0;
-  font-size: 13.5px;
-  line-height: 1.72;
+  font-size: 0.8125rem;
+  line-height: 1.65;
   color: var(--v-sheet-body);
 }
 
-.quote {
-  margin: 0;
-  padding-top: 20px;
-  border-top: 1px solid rgba(10, 12, 12, 0.14);
+/* --------------------------------------------- 02 systems + 03 research */
+
+/* Both screens open with one headline block and follow it with a paired
+   row — a media frame on Systems, the proceedings cover on Research. */
+
+.eyebrow {
   font-family: var(--v-mono);
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--v-sheet-body);
-}
-
-.quote cite {
-  display: block;
-  margin-top: 8px;
-  font-style: normal;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--v-sheet-green);
-}
-
-/* ------------------------------------------------------------- 02 systems */
-
-.row {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1.05fr) minmax(0, 1.1fr) 128px;
-  gap: 26px;
-  align-items: baseline;
-  padding: 26px 18px;
-  margin: 0 -18px;
-  border-bottom: 1px solid var(--v-line-10);
-  color: var(--v-ink);
-}
-
-a.row {
-  transition: background 0.25s, color 0.25s;
-}
-
-a.row:hover {
-  background: var(--v-ink);
-  color: #000;
-}
-
-.row-num {
-  font-family: var(--v-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  opacity: 0.5;
-}
-
-.row-title {
-  font-size: clamp(26px, 3vw, 44px);
-  font-weight: 200;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.row-desc {
-  font-size: 13px;
-  line-height: 1.6;
-  opacity: 0.72;
-}
-
-.row:not(a) .row-desc {
-  opacity: 1;
-  color: var(--v-dim-2);
-}
-
-.row-meta {
-  font-family: var(--v-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-align: right;
-  opacity: 0.7;
-}
-
-.row:not(a) .row-meta {
-  opacity: 1;
-  color: var(--v-dim-4);
-}
-
-/* ------------------------------------------------------------ 03 research */
-
-.res-eyebrow {
-  font-family: var(--v-mono);
-  font-size: 10px;
-  letter-spacing: 0.26em;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-  margin-bottom: 24px;
+  margin-bottom: 0.75rem;
 }
 
-.res-title {
-  font-size: clamp(48px, 7.4vw, 116px);
-  font-weight: 200;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
-  margin: 0 0 20px;
-}
-
-.res-lede {
-  font-size: clamp(19px, 2.3vw, 32px);
-  font-weight: 200;
-  line-height: 1.24;
-  letter-spacing: -0.02em;
-  color: var(--v-dim-1);
-  max-width: 32ch;
-  margin: 0 0 44px;
-}
-
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-  padding-top: 22px;
-  border-top: 1px solid var(--v-line-16);
-}
-
-.metric-val {
-  font-size: clamp(38px, 4.4vw, 60px);
-  font-weight: 200;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.metric-val--accent {
+.eyebrow--live {
   color: var(--v-green);
 }
 
-.metric-label {
+.lead {
+  padding: 1.625rem 0 1.5rem;
+  border-bottom: 1px solid var(--v-line-10);
+}
+
+.lead-title {
+  font-size: clamp(1.75rem, 3.5vw, 3.375rem);
+  font-weight: 200;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 1rem;
+}
+
+.lead-title--wide {
+  font-size: clamp(1.875rem, 3.8vw, 3.625rem);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.875rem;
+  max-width: 26ch;
+}
+
+.lead-lede {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(1.0625rem, 1.9vw, 1.5rem);
+  font-weight: 200;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--v-ink);
+}
+
+.lead-note {
+  margin: 0.875rem 0 0;
+  max-width: 58ch;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--v-dim-2);
+}
+
+.lead-desc {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--v-dim-1);
+}
+
+.media-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17.875rem;
+  gap: 2.5rem;
+  align-items: center;
+  padding-top: 1.375rem;
+}
+
+.media-title {
+  font-size: clamp(1.25rem, 2.2vw, 1.875rem);
+  font-weight: 200;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.75rem;
+}
+
+.media-desc {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--v-dim-2);
+}
+
+.media-meta {
+  margin-top: 0.875rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.59375rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v-dim-2);
+}
+
+.media-frame {
+  position: relative;
+  border: 1px solid var(--v-line-16);
+  background: #050707;
+}
+
+.media-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.media-caption {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.4375rem;
+  font-family: var(--v-mono);
+  font-size: 0.53125rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--v-dim-2);
+  text-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.9);
+}
+
+.pub-row {
+  display: grid;
+  grid-template-columns: 4.875rem minmax(0, 1fr) auto;
+  gap: 1.625rem 1.875rem;
+  align-items: start;
+  padding-top: 1.375rem;
+}
+
+.pub-cover {
+  display: block;
+  border: 1px solid var(--v-line-16);
+  transition: border-color 0.25s;
+}
+
+.pub-cover:hover {
+  border-color: var(--v-green);
+}
+
+.pub-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pub-row .media-title {
+  font-size: clamp(1.1875rem, 2vw, 1.6875rem);
+}
+
+.pub-row .media-desc {
+  max-width: 62ch;
+}
+
+.pub-doi {
+  font-family: var(--v-mono);
+  font-size: 0.59375rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--v-dim-2);
+  border-bottom: 1px solid var(--v-line-24);
+  padding-bottom: 0.25rem;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.pub-doi:hover {
+  color: var(--v-green);
+  border-color: var(--v-green);
+}
+
+/* --------------------------------------------------------- 04 open source */
+
+.os-row {
+  display: grid;
+  grid-template-columns: 3.625rem minmax(0, 1fr) auto;
+  gap: 2.25rem 1.125rem;
+  align-items: center;
+  padding: 1.375rem 0.375rem;
+  margin: 0 -0.375rem;
+  border-bottom: 1px solid var(--v-line-10);
+  color: var(--v-ink);
+  transition: padding-left 0.25s ease, border-color 0.25s;
+}
+
+.os-row:last-child {
+  border-bottom: none;
+}
+
+.os-row:hover {
+  padding-left: 1rem;
+  border-color: rgba(59, 224, 166, 0.5);
+}
+
+.os-mark {
+  display: block;
+  height: 1.875rem;
+  width: auto;
+  max-width: 3.625rem;
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.9;
+}
+
+.os-mark--rounded {
+  border-radius: 3px;
+}
+
+.os-name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8125rem;
+  font-size: clamp(1.3125rem, 2.2vw, 1.8125rem);
+  font-weight: 200;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.os-arrow {
+  font-size: 0.44em;
+  color: var(--v-green);
+  opacity: 0.5;
+}
+
+.os-desc {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--v-dim-2);
+}
+
+.os-contribution {
+  font-family: var(--v-mono);
+  font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--v-dim-3);
-  margin-top: 8px;
+  text-align: right;
+  color: var(--v-dim-1);
+  max-width: 26ch;
 }
 
-.res-link {
-  font-family: var(--v-mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--v-line-24);
-  padding-bottom: 4px;
-}
-
-/* ------------------------------------------------------------- 04 lineage */
+/* -------------------------------------------------------------- 05 career */
 
 .lin-row {
   display: grid;
-  grid-template-columns: 128px minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: 28px;
+  grid-template-columns: 8rem minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 1.75rem;
   align-items: baseline;
-  padding: 28px 0;
+  padding: 1.75rem 0;
   border-bottom: 1px solid var(--v-line-10);
 }
 
@@ -840,7 +954,7 @@ a.row:hover {
 
 .lin-when {
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -852,7 +966,7 @@ a.row:hover {
 
 .lin-role {
   display: block;
-  font-size: clamp(24px, 2.7vw, 38px);
+  font-size: clamp(1.5rem, 2.7vw, 2.375rem);
   font-weight: 200;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -860,45 +974,18 @@ a.row:hover {
 
 .lin-org {
   display: block;
-  margin-top: 8px;
+  margin-top: 0.5rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--v-dim-3);
 }
 
 .lin-desc {
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.65;
   color: var(--v-dim-1);
-}
-
-/* --------------------------------------------------------------- 05 stack */
-
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 30px;
-  margin-top: 34px;
-}
-
-.stack-title {
-  font-size: 24px;
-  font-weight: 200;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.stack-list {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  font-family: var(--v-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--v-dim-2);
 }
 
 /* ------------------------------------------------------------- 06 contact */
@@ -906,78 +993,89 @@ a.row:hover {
 .ct-status {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 0.6875rem;
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-  margin-bottom: 28px;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--v-line-16);
+}
+
+.ct-status b {
+  margin-left: auto;
+  color: var(--v-dim-4);
+  font-weight: 400;
 }
 
 .ct-status .dot {
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   animation-duration: 2.4s;
 }
 
 .ct-title {
-  font-size: clamp(58px, 9.4vw, 158px);
+  font-size: clamp(3.625rem, 9.4vw, 9.875rem);
   font-weight: 200;
   line-height: 0.9;
   letter-spacing: -0.05em;
-  margin: 0 0 32px;
+  margin: 0 0 2rem;
 }
 
 .ct-mail {
-  font-size: clamp(22px, 3vw, 42px);
+  font-size: clamp(1.375rem, 3vw, 2.625rem);
   font-weight: 200;
   letter-spacing: -0.025em;
   line-height: 1;
   border-bottom: 1px solid var(--v-green);
-  padding-bottom: 6px;
+  padding-bottom: 0.375rem;
   display: inline-block;
   overflow-wrap: anywhere;
 }
 
+.ct-note {
+  margin: 1.625rem 0 0;
+  max-width: 52ch;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--v-dim-1);
+}
+
 .ct-links {
   display: flex;
-  gap: 26px;
+  gap: 1.625rem;
   flex-wrap: wrap;
-  margin-top: 38px;
-  padding-top: 20px;
+  margin-top: 2.375rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--v-line-12);
   font-family: var(--v-mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
-}
-
-.ct-place {
-  margin-left: auto;
-  color: var(--v-dim-4);
 }
 
 /* ------------------------------------------------------- more + stats bar */
 
 .more {
   position: absolute;
-  bottom: 96px;
+  bottom: 6rem;
   right: var(--v-pane-x);
   z-index: 58;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   white-space: nowrap;
   background: rgba(6, 9, 9, 0.7);
   backdrop-filter: blur(12px);
   border: 1px solid var(--v-line-16);
   border-radius: 999px;
-  padding: 8px 14px;
+  padding: 0.5rem 0.875rem;
   cursor: pointer;
   font-family: var(--v-mono);
-  font-size: 9px;
+  font-size: 0.5625rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--v-ink);
@@ -1010,7 +1108,7 @@ a.row:hover {
 
 .stat {
   flex: 1;
-  padding: 14px 26px;
+  padding: 0.875rem 1.625rem;
   border-left: 1px solid var(--v-line-08);
   min-width: 0;
 }
@@ -1020,7 +1118,7 @@ a.row:hover {
 }
 
 .stat-val {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 200;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -1028,9 +1126,9 @@ a.row:hover {
 }
 
 .stat-label {
-  margin-top: 4px;
+  margin-top: 0.25rem;
   font-family: var(--v-mono);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
@@ -1041,41 +1139,59 @@ a.row:hover {
 
 /* ------------------------------------------------------------- responsive */
 
-@media (max-width: 1100px) {
+/* Breakpoints scale with the 125% root: the layout has to fold at the same
+   physical window width it folded at before, and the viewport is still
+   measured in unscaled CSS pixels. 1100 * 1.25, 900 * 1.25. */
+@media (max-width: 1375px) {
   .id-card {
     padding-right: 0;
   }
 
-  .row,
   .lin-row {
-    grid-template-columns: 44px minmax(0, 1fr) 104px;
-  }
-
-  .row-desc {
-    grid-column: 2 / -1;
-  }
-
-  .lin-row {
-    grid-template-columns: 104px minmax(0, 1fr);
+    grid-template-columns: 6.5rem minmax(0, 1fr);
   }
 
   .lin-desc {
     grid-column: 2;
   }
 
-  .stack-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* The 286px media well and the right-hand contribution column are the first
+     things to give: the copy beside them drops under 40ch otherwise. */
+  .media-row {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    gap: 1.75rem;
+  }
+
+  .os-row {
+    grid-template-columns: 3.625rem minmax(0, 1fr);
+    gap: 0.75rem 1.125rem;
+  }
+
+  .os-contribution {
+    grid-column: 2;
+    text-align: left;
+    max-width: none;
+  }
+
+  .pub-row {
+    grid-template-columns: 4.875rem minmax(0, 1fr);
+  }
+
+  .pub-doi {
+    grid-column: 2;
+    justify-self: start;
+    white-space: normal;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1125px) {
   :root {
-    --v-pane-y: 84px;
-    --v-pane-x: 22px;
+    --v-pane-y: 5.25rem;
+    --v-pane-x: 1.375rem;
   }
 
   .topbar {
-    padding: 14px 16px;
+    padding: 0.875rem 1rem;
     flex-wrap: wrap;
   }
 
@@ -1109,8 +1225,8 @@ a.row:hover {
   .id-foot {
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
-    margin-top: 40px;
+    gap: 2rem;
+    margin-top: 2.5rem;
   }
 
   .id-card {
@@ -1121,37 +1237,40 @@ a.row:hover {
     justify-content: flex-start;
   }
 
-  /* The uppercase mono blurb runs right to the edge at 11px/0.08em. */
-  .id-blurb p {
-    font-size: 10px;
-    letter-spacing: 0.05em;
-  }
-
-  .sheet-grid {
+  .sheet-notes {
     grid-template-columns: minmax(0, 1fr);
+    gap: 1.375rem;
   }
 
-  .row {
-    grid-template-columns: 36px minmax(0, 1fr);
-    gap: 8px 16px;
-    padding: 20px 12px;
-    margin: 0 -12px;
-  }
-
-  .row-desc,
-  .row-meta {
-    grid-column: 2;
-    text-align: left;
-  }
-
-  .metrics {
+  .media-row {
     grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
+    gap: 1.5rem;
+  }
+
+  .os-row {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.625rem 0.875rem;
+    padding: 1.125rem 0.375rem;
+  }
+
+  .os-mark {
+    height: 1.5rem;
+    max-width: 2.5rem;
+  }
+
+  .lin-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.625rem;
+    padding: 1.375rem 0;
+  }
+
+  .lin-desc {
+    grid-column: 1;
   }
 
   .more {
-    bottom: 88px;
-    right: 16px;
+    bottom: 5.5rem;
+    right: 1rem;
   }
 
   .stats {
@@ -1160,7 +1279,7 @@ a.row:hover {
   }
 
   .stat {
-    padding: 10px 16px;
+    padding: 0.625rem 1rem;
     flex: 0 0 auto;
   }
 }
@@ -1173,15 +1292,12 @@ a.row:hover {
     animation: none;
   }
 
-  .screen,
-  .screen--sheet {
-    animation: none;
-  }
-
   .boot,
   .pill-btn,
   .pill-cta,
-  a.row,
+  .os-row,
+  .pub-cover,
+  .pub-doi,
   .more,
   .lang-btn {
     transition: none;

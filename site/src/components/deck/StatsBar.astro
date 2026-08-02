@@ -8,8 +8,8 @@ import T from './T.astro';
     <T t={chrome.stats.particles} as="div" class="stat-label" />
   </div>
   <div class="stat">
-    <div class="stat-val" id="stat-fps">60</div>
-    <T t={chrome.stats.fps} as="div" class="stat-label" />
+    <div class="stat-val">{chrome.stats.render}</div>
+    <T t={chrome.stats.renderLabel} as="div" class="stat-label" />
   </div>
   <div class="stat">
     <div class="stat-val" id="stat-screen-val">00 / 06</div>

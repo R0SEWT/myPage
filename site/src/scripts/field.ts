@@ -19,7 +19,7 @@ export interface FieldOptions {
 }
 
 export interface Field {
-  /** Morph the cloud toward the shape belonging to `index`. */
+  /** Morph the cloud toward the formation belonging to screen `index`. */
   setShape(index: number): void;
   /** Pointer position, each in [-0.5, 0.5]. */
   setPointer(x: number, y: number): void;
@@ -32,6 +32,17 @@ export interface Field {
 const GA = 2.399963;
 const MORPH_MS = 1500;
 
+/**
+ * Screen → formation. Deliberately not the identity mapping: screen 01
+ * (Approach) gets the two lobes, which read as the trade the copy names, and
+ * the denser screens get the quieter shapes.
+ */
+const SHAPES = [0, 2, 5, 4, 1, 3, 6];
+
+/** Screens from 02 on are text-dense, so the field pulls back behind them. */
+const DENSE_FROM = 2;
+const DENSE_ALPHA = 0.42;
+
 /** Deterministic per-point hash; same sequence every load. */
 function rnd(i: number, s: number): number {
   const x = Math.sin(i * 127.1 + s * 311.7 + 0.7) * 43758.5453;
@@ -41,7 +52,7 @@ function rnd(i: number, s: number): number {
 /**
  * Writes the position of point `i` for `shape` into `out`.
  *
- * 0 sphere shell · 1 spiral galaxy · 2 three lobes · 3 torus
+ * 0 sphere shell · 1 spiral galaxy · 2 two lobes · 3 torus
  * 4 double helix · 5 lattice cube · 6 ring with core
  */
 function shapeFor(i: number, n: number, shape: number, out: number[]): void {
@@ -68,13 +79,14 @@ function shapeFor(i: number, n: number, shape: number, out: number[]): void {
     y = (c - 0.5) * (0.16 + rr * 0.3);
     z = Math.sin(ang) * rr;
   } else if (shape === 2) {
-    const k = i % 3;
+    // Two lobes: one thing gained, one thing given up.
+    const k = i % 2;
     const phi = Math.acos(1 - 2 * a);
     const th = GA * i;
-    const r = 0.5 * Math.pow(b, 0.55);
-    const cx = [-1.2, 0.05, 1.18][k];
-    const cy = [0.26, -0.2, 0.3][k];
-    const cz = [0.1, 0.5, -0.3][k];
+    const r = 0.58 * Math.pow(b, 0.55);
+    const cx = [-0.92, 0.92][k];
+    const cy = [0.22, -0.22][k];
+    const cz = [0.16, -0.16][k];
     x = cx + Math.sin(phi) * Math.cos(th) * r;
     y = cy + Math.cos(phi) * r * 0.82;
     z = cz + Math.sin(phi) * Math.sin(th) * r;
@@ -325,12 +337,14 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   const proj = new Float32Array(16);
   const mv = new Float32Array(16);
 
+  let screen = 0;
   let shape = 0;
   let morphStart = performance.now();
   let mixNow = 0;
   let mx = 0;
   let my = 0;
   let px = 0;
+  let dim = 1;
   let raf = 0;
   let alive = true;
   let cw = 0;
@@ -396,8 +410,13 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     const raw = reduced ? 1 : Math.min(1, (now - morphStart) / MORPH_MS);
     mixNow = raw * raw * (3 - 2 * raw);
 
-    const target = shape === 0 ? 0 : shape === 1 ? 0.1 : 0.7;
+    // Home centres the cloud; Approach nudges it; from Systems on it slides
+    // right so the copy sits on unlit background.
+    const target = screen === 0 ? 0 : screen === 1 ? 0.08 : 1.42;
     px += (target - px) * (reduced ? 1 : 0.05);
+
+    const dimTarget = screen >= DENSE_FROM ? DENSE_ALPHA : 1;
+    dim += (dimTarget - dim) * (reduced ? 1 : 0.06);
 
     modelView(mv, my * 0.3, tsec * 0.075 + mx * 0.5, px + mx * 0.12, 3.5);
 
@@ -408,11 +427,11 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
 
     // Halo first, then the tight core on top — two passes, one buffer.
     gl!.uniform1f(uSize, 9.0);
-    gl!.uniform1f(uAlpha, 0.07);
+    gl!.uniform1f(uAlpha, 0.07 * dim);
     gl!.drawArrays(gl!.POINTS, 0, N);
 
     gl!.uniform1f(uSize, 2.2);
-    gl!.uniform1f(uAlpha, 0.8);
+    gl!.uniform1f(uAlpha, 0.8 * dim);
     gl!.drawArrays(gl!.POINTS, 0, N);
   }
 
@@ -429,8 +448,10 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   return {
     count: N,
     setShape(index: number) {
-      if (index === shape) return;
-      retarget(index);
+      screen = Math.max(0, Math.min(SHAPES.length - 1, index));
+      const next = SHAPES[screen];
+      if (next === shape) return;
+      retarget(next);
     },
     setPointer(x: number, y: number) {
       mx = x;

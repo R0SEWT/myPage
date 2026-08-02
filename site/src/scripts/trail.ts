@@ -3,7 +3,12 @@
  *
  * Sparks are emitted along the segment the cursor travelled since the last
  * pointermove, then drift, fall and fade. Drawn additively on a 2D canvas
- * above the particle field. Ported from the design source unchanged.
+ * above the particle field but below the copy.
+ *
+ * Tuned down from the design source: the trail is meant to read as the room
+ * answering the cursor, not as a thing in its own right. Additive blending
+ * over 200-weight type at ~1s of dwell put it in front of the reader, so the
+ * dwell and both alphas are cut by roughly a third.
  */
 
 interface Spark {
@@ -18,6 +23,12 @@ interface Spark {
 
 const MAX_SPARKS = 900;
 const HUES = ['59,224,166', '139,123,255'];
+
+/** Life burned per frame. 0.025 ≈ 0.67s at 60fps, down from ~1.05s. */
+const DECAY = 0.025;
+/** Peak alpha of the coloured halo and of the white core. */
+const GLOW_ALPHA = 0.35;
+const CORE_ALPHA = 0.45;
 
 export interface Trail {
   emit(x: number, y: number): void;
@@ -53,7 +64,7 @@ export function createTrail(canvas: HTMLCanvasElement): Trail | null {
 
     for (let i = sparks.length - 1; i >= 0; i--) {
       const s = sparks[i];
-      s.life -= 0.016;
+      s.life -= DECAY;
       if (s.life <= 0) {
         sparks.splice(i, 1);
         continue;
@@ -66,14 +77,14 @@ export function createTrail(canvas: HTMLCanvasElement): Trail | null {
 
       const a = s.life * s.life;
       const g = ctx!.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 6);
-      g.addColorStop(0, `rgba(${s.hue},${(0.55 * a).toFixed(3)})`);
+      g.addColorStop(0, `rgba(${s.hue},${(GLOW_ALPHA * a).toFixed(3)})`);
       g.addColorStop(1, `rgba(${s.hue},0)`);
       ctx!.fillStyle = g;
       ctx!.beginPath();
       ctx!.arc(s.x, s.y, s.r * 6, 0, 6.283);
       ctx!.fill();
 
-      ctx!.fillStyle = `rgba(255,255,255,${(0.7 * a).toFixed(3)})`;
+      ctx!.fillStyle = `rgba(255,255,255,${(CORE_ALPHA * a).toFixed(3)})`;
       ctx!.beginPath();
       ctx!.arc(s.x, s.y, s.r * 0.55, 0, 6.283);
       ctx!.fill();
