@@ -6,14 +6,36 @@ Desplegado en **Netlify** sobre el dominio [`rosewt.dev`](https://rosewt.dev).
 
 El código de la aplicación vive en [`site/`](./site).
 
+## Cómo está armado
+
+El sitio son dos cosas distintas bajo el mismo build.
+
+**La portada es un deck**, no una página que se scrollea. Siete pantallas
+(`src/components/deck/screens/`) que comparten una celda de grid y se cruzan con
+un fundido; detrás corre un campo de partículas en WebGL crudo — sin three.js —
+y una estela de puntero sobre canvas 2D. Todo el copy está en `src/data/deck.ts`.
+
+**Las cuatro fichas de proyecto** (`/projects/*`) son documentos normales, con su
+propio layout y su propio sistema visual.
+
+El **bilingüe** no re-renderiza: las dos versiones de cada string van al DOM y
+una regla de CSS sobre `data-lang` en `<html>` decide cuál se ve, así que cambiar
+de idioma cuesta escribir un atributo. Lo que CSS no puede conmutar — `alt`,
+`aria-label` — lo escribe `src/scripts/deck.ts` leyendo `data-i18n`.
+
 ## Stack Técnico
 
-- **Framework**: [Astro 5](https://astro.build) (sitio estático multi-página)
+- **Framework**: [Astro 5](https://astro.build) (`output: 'static'`), sin runtime
+  de framework en el cliente — solo los scripts del deck
 - **Lenguaje**: TypeScript
-- **Styling**: CSS propio con el sistema de diseño **Arariwa**
-  (`src/styles/tokens.css` tokens, `src/styles/global.css` layout) — sin Tailwind
-- **Contenido**: `src/data/profile.ts` + content collection en `src/content/projects/` (Markdown)
-- **SEO**: Open Graph + Twitter Cards + JSON-LD (Person, SoftwareSourceCode)
+- **Styling**: CSS propio, sin Tailwind, en **dos sistemas** que conviven:
+  - **Vesper** (`src/styles/vesper.css`) — el deck. Se dibuja a un root de 125%
+  - **Arariwa** (`src/styles/tokens.css` + `global.css`) — fichas de proyecto y 404
+- **Contenido**: `src/data/deck.ts` (deck, bilingüe), `src/data/profile.ts`
+  (fichas) y la content collection en `src/content/projects/` (Markdown)
+- **SEO**: Open Graph + Twitter Cards + JSON-LD (`ProfilePage`/`Person` en la
+  portada, `SoftwareSourceCode` en las fichas), sitemap vía `@astrojs/sitemap`,
+  `robots.txt` y `site.webmanifest`
 - **Deployment**: [Netlify](https://www.netlify.com/) (config en `netlify.toml` raíz)
 
 ## Desarrollo Local
@@ -43,5 +65,8 @@ La narrativa profesional y el contenido son trazables:
 - `evidence/claims.md` — trazabilidad de claims, y árbitro si las dos ediciones difieren
 - `agents.md` — política canónica para agentes y reglas editoriales
 
-El despliegue es automático en Netlify a partir de `main`. CI
-(`.github/workflows/ci.yml`) corre `build` + `check` en cada push y PR.
+Las decisiones durables viven en `docs/adr/`; el trabajo multi-paso en curso, en
+`docs/plans/`. El seguimiento de tareas es con **beads** (`bd`), prefijo `rv-`.
+
+El despliegue es automático en Netlify a partir de `main` — empujar a `dev` no
+despliega. CI (`.github/workflows/ci.yml`) corre `build` + `check` en cada push y PR.
