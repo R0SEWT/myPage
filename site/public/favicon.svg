@@ -1,5 +1,6 @@
+<!-- Vesper mark. Colours are vesper.css's --v-bg, --v-green and --v-violet. -->
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#050505"/>
-  <path d="M15 17h9l8 25 8-25h9L37 49H27L15 17Z" fill="#72ffae"/>
-  <circle cx="47" cy="17" r="5" fill="#6946ff"/>
+  <rect width="64" height="64" rx="12" fill="#000"/>
+  <path d="M15 17h9l8 25 8-25h9L37 49H27L15 17Z" fill="#3be0a6"/>
+  <circle cx="47" cy="17" r="5" fill="#8b7bff"/>
 </svg>
