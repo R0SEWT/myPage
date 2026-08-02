@@ -1,0 +1,89 @@
+\documentclass[10pt,a4paper]{article}
+\input{cv_style_v11.tex}
+
+\hypersetup{
+  pdftitle={Rody Vilchez - CV},
+  pdfauthor={Rody Vilchez}
+}
+
+\begin{document}
+
+\cvheader{%
+Ingeniero de ML aplicado en la intersección de sistemas agénticos, retrieval y evaluación bajo datos imperfectos. En
+CIP--CGIAR construyo plataformas multiagente en producción, GraphRAG multilingüe e infraestructura de evaluación;
+en investigación, estudio fallos de medición en urban ML y soy coautor de una arquitectura multimodal publicada en Springer CCIS.
+}{}
+
+\cvsection{Experiencia}
+
+\role{AI Intern}{International Potato Center (CIP--CGIAR)}{Lima, Perú}{Oct 2025 -- Presente}
+\begin{cvitems}
+  \item \lead{Plataforma multiagente en Microsoft Teams} Arquitecté y llevé a producción sobre Copilot Studio un sistema
+  institucional para soporte TI y servicios corporativos, con delegación entre dominios y escalamiento a tickets
+  prellenados desde el contexto conversacional, sujetos a revisión humana.
+  \item \lead{Suite de evaluación agent-based} Construí una suite donde agentes evaluadores ejecutan escenarios derivados
+  de registros operativos; combina regresión determinista, LLM-as-judge agnóstico de proveedor y simulación por perfiles
+  para atribuir fallos de ruteo, delegación y calidad de respuesta.
+  \item \lead{GraphRAG multilingüe} Construí end-to-end la capa de document intelligence que alimenta un GraphRAG
+  agrícola en cinco idiomas sobre corpus con OCR ruidoso y layouts irregulares: parsing, chunking, extracción estructurada
+  de metadatos, embeddings y almacenamiento vectorial.
+\end{cvitems}
+
+\role{QA Trainee}{Visma LATAM}{Lima, Perú}{Dic 2024 -- Oct 2025}
+\begin{cvitems}
+  \item \lead{Síntesis de pruebas con LLM} Construí un agente que transforma especificaciones funcionales en escenarios
+  E2E ejecutables.
+  \item \lead{Automatización DOM-aware} Desarrollé extracción de selectores y estado del DOM, integrando suites Cypress
+  generadas en Jenkins como cobertura de regresión para flujos críticos.
+\end{cvitems}
+
+\cvsection{Investigación y sistemas seleccionados}
+
+\project{Infelix --- Riesgo delictivo latente bajo sesgo de medición}{Investigación de tesis $\cdot$ UPC $\cdot$ 2025--2026}
+\begin{cvitems}
+  \item \lead{Modelado del delito no denunciado} Construí un modelo bayesiano sobre encuestas de victimización y un panel
+  H3 de 11 fuentes geoespaciales (Sentinel-2, VIIRS, OSM, WorldPop y Street View) para estimar riesgo delictivo en 43
+  distritos de Lima--Callao; los datos censales fueron la única fuente que mejoró consistentemente las predicciones
+  dentro de cada distrito.
+  \item \lead{Transferencia entre ciudades} Las features aprendidas en Lima igualaron modelos con un año de datos locales
+  en Arequipa y se mantuvieron competitivas en Cusco y Piura; las pruebas mostraron que la calidad del registro, no solo
+  la arquitectura, determina cuándo un sistema puede evaluarse y transferirse.
+\end{cvitems}
+
+\project{Multimodal Sign Language Model}{Springer CCIS 2895, 2026}
+\begin{cvitems}
+  \item Coautor de una arquitectura multimodal publicada, sin glosas, que usa queries latentes y cross-attention para proyectar
+  keypoints 2D al espacio de embeddings de un modelo de lenguaje preentrenado, evaluada en corpus peruanos y
+  argentinos. DOI: \href{https://doi.org/10.1007/978-3-032-20322-9_23}{10.1007/978-3-032-20322-9\_23}
+\end{cvitems}
+
+\project{Wachi --- Ruteo peatonal sensible al riesgo}{El Comercio Lab}
+\begin{cvitems}
+  \item Desarrollé un sistema geoespacial que reordena rutas peatonales por riesgo espaciotemporal en Lima mediante
+  superficies H3, decaimiento temporal y seis franjas horarias para una experiencia interactiva de periodismo de datos.
+\end{cvitems}
+
+\cvsection{Contribuciones open source}
+\begin{cvitems}
+  \item \textbf{Microsoft Copilot Studio} --- Diagnostiqué fallos de sincronización de knowledge sources en subagentes y
+  validé correcciones de prerelease en la extensión oficial de VS Code.
+  \item \textbf{Gemini CLI} --- Corregí un esquema de UI y añadí cobertura de regresión al CLI agéntico open source de Google.
+  \item \textbf{scikit-learn} --- Mejoré la documentación técnica de HDBSCAN.
+  \item \textbf{beads (bd)} --- Implementé prefix-routed write-through y el test de regresión que desbloqueó la consolidación
+  de la implementación upstream.
+\end{cvitems}
+
+\cvsection{Educación y reconocimientos}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}
+  \textbf{Ciencias de la Computación} & \textbf{Universidad Peruana de Ciencias Aplicadas (UPC)}
+\end{tabular*}\par
+\textit{Graduación prevista: fines de 2026}\par
+Segundo puesto, DataFest BCP $\times$ ESAN 2025 $\cdot$ Beca completa SALA 2026
+
+\cvsection{Foco técnico}
+\textbf{Retrieval y agentes:} LlamaIndex, Qdrant, Copilot Studio, Power Automate, orquestación multiagente\par
+\textbf{Evaluación e investigación:} Python, PyTorch, scikit-learn, LLM-as-judge, diseño experimental, robustez e incertidumbre\par
+\textbf{Datos y backend:} FastAPI, H3, DuckDB, PostgreSQL, ETL, APIs REST, Docker, GitHub Actions, Linux\par
+\textbf{Idiomas:} Español (nativo) $\cdot$ Inglés (intermedio)
+
+\end{document}
