@@ -13,43 +13,63 @@ import Contact from '../components/deck/screens/Contact.astro';
 import { chrome } from '../data/deck';
 import T from '../components/deck/T.astro';
 
-const personJsonLd = {
+/*
+ * `ProfilePage` wrapping a `Person` is the shape search engines document for a
+ * profile, so the page is the page and the person is the entity.
+ *
+ * Every claim here has to hold against `cv/master.md` and `evidence/claims.md`
+ * — see agents.md. Two consequences worth naming: the degree is `affiliation`
+ * and not `alumniOf`, because graduation is expected 2026-2 and `alumniOf`
+ * asserts a finished one; and the organization is named as the registry names
+ * it (`exp-cip-001`), with the deck's shorthand demoted to `alternateName`.
+ */
+const profilePageJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Rody Vilchez',
+  '@type': 'ProfilePage',
   url: 'https://rosewt.dev',
-  jobTitle: 'Applied ML Engineer',
-  description:
-    'Applied ML Engineer specializing in RAG systems, document intelligence, and data pipelines. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'International Potato Center (CIP, CGIAR)',
-    url: 'https://cipotato.org',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': 'https://rosewt.dev/#person',
+    name: 'Rody Vilchez',
+    url: 'https://rosewt.dev',
+    jobTitle: 'Applied ML Engineer',
+    description:
+      'Applied ML Engineer specializing in RAG systems, document intelligence, and data pipelines. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.',
+    email: 'rody@rosewt.dev',
+    sameAs: ['https://github.com/R0SEWT', 'https://www.linkedin.com/in/r0sewt/'],
+    address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
+    // A bare Organization rather than an OrganizationRole: without start and
+    // end dates the role wrapper carries nothing that `jobTitle` does not, and
+    // consumers read the plain form far more reliably.
+    worksFor: {
+      '@type': 'Organization',
+      name: 'International Potato Center (CIP, CGIAR)',
+      alternateName: 'CIP–CGIAR',
+      url: 'https://cipotato.org',
+    },
+    affiliation: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Universidad Peruana de Ciencias Aplicadas (UPC)',
+    },
+    knowsAbout: [
+      'Machine Learning',
+      'RAG Systems',
+      'Document Intelligence',
+      'Data Pipelines',
+      'Semantic Search',
+      'GraphRAG',
+      'NLP',
+      'PyTorch',
+      'LlamaIndex',
+    ],
+    knowsLanguage: ['es', 'en'],
   },
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: 'Universidad Peruana de Ciencias Aplicadas (UPC)',
-  },
-  sameAs: ['https://github.com/R0SEWT', 'https://www.linkedin.com/in/r0sewt/'],
-  knowsAbout: [
-    'Machine Learning',
-    'RAG Systems',
-    'Document Intelligence',
-    'Data Pipelines',
-    'Semantic Search',
-    'GraphRAG',
-    'NLP',
-    'PyTorch',
-    'LlamaIndex',
-  ],
-  knowsLanguage: ['es', 'en'],
-  address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
 };
 ---
 <DeckLayout
   title="Rody Vilchez — Applied ML Engineer"
   description="Applied ML Engineer: sistemas de retrieval, document intelligence y pipelines de datos bajo restricciones reales. CIP (CGIAR), Lima."
-  jsonLd={[personJsonLd]}
+  jsonLd={[profilePageJsonLd]}
 >
   <div class="deck">
     <div class="aurora" aria-hidden="true"></div>

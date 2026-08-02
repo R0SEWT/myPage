@@ -1,0 +1,13 @@
+{
+  "id": "/",
+  "name": "Rody Vilchez — Applied ML Engineer",
+  "short_name": "Rody Vilchez",
+  "description": "Sistemas reales: machine learning bajo condiciones no ideales.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
