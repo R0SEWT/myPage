@@ -10,7 +10,9 @@ Public claims, narrative content, and private evidence each have different priva
 
 ## Decision
 
-- `cv/master.md` is the narrative source of truth.
+- `cv/master.md` is the narrative source of truth. *(Amended by ADR-0007: the
+  narrative source is now the CV LaTeX bundle under `cv/`. Everything else in
+  this ADR stands.)*
 - `evidence/claims.md` is the factual traceability registry for public and internal claims.
 - `.cv-vault/INDEX.md` indexes private evidence stored locally in `.cv-vault/`.
 - `.cv-vault/` remains opt-in, ignored by Git, and should not be inspected unless the user explicitly requests it or the task requires it.

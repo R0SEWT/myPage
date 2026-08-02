@@ -1,0 +1,88 @@
+\documentclass[10pt,a4paper]{article}
+\input{cv_style_v11.tex}
+
+\hypersetup{
+  pdftitle={Rody Vilchez - Resume},
+  pdfauthor={Rody Vilchez}
+}
+
+\begin{document}
+
+\cvheader{%
+Applied ML engineer working at the intersection of agent systems, retrieval, and evaluation under imperfect data.
+At CIP--CGIAR, I build production multi-agent platforms, multilingual GraphRAG, and evaluation infrastructure;
+independently, I study measurement failure in urban ML and co-authored a multimodal architecture published in Springer CCIS.
+}{}
+
+\cvsection{Experience}
+
+\role{AI Intern}{International Potato Center (CIP--CGIAR)}{Lima, Peru}{Oct 2025 -- Present}
+\begin{cvitems}
+  \item \lead{Microsoft Teams multi-agent platform} Architected and shipped an institutional system on Copilot Studio
+  for IT support and corporate services, with cross-domain delegation and escalation to tickets prefilled from
+  conversational context and subject to human review.
+  \item \lead{Agent-based evaluation suite} Built a suite where evaluator agents execute scenarios derived from operational
+  records; it combines deterministic regression, provider-agnostic LLM-as-judge scoring, and persona-driven simulation
+  to attribute routing, delegation, and response-quality failures.
+  \item \lead{Multilingual GraphRAG} Built end-to-end the document-intelligence layer powering a five-language agricultural
+  GraphRAG over corpora with noisy OCR and irregular layouts: parsing, chunking, structured metadata extraction,
+  embeddings, and vector storage.
+\end{cvitems}
+
+\role{QA Trainee}{Visma LATAM}{Lima, Peru}{Dec 2024 -- Oct 2025}
+\begin{cvitems}
+  \item \lead{LLM-driven test synthesis} Built an agent that transforms functional specifications into executable E2E
+  scenarios.
+  \item \lead{DOM-aware automation} Engineered selector and state extraction, integrating generated Cypress suites into
+  Jenkins as regression coverage for critical workflows.
+\end{cvitems}
+
+\cvsection{Selected research and systems}
+
+\project{Infelix --- Latent Urban Crime Risk under Reporting Bias}{BSc thesis research $\cdot$ UPC $\cdot$ 2025--2026}
+\begin{cvitems}
+  \item \lead{Modeling unreported crime} Built a Bayesian model over victimization surveys and an 11-source H3 geospatial
+  panel (Sentinel-2, VIIRS, OSM, WorldPop, and Street View) to estimate crime risk across 43 Lima--Callao districts;
+  census data were the only source that consistently improved predictions within districts.
+  \item \lead{Cross-city transfer} Features learned in Lima matched models with one year of local data in Arequipa and
+  remained competitive in Cusco and Piura; stress tests showed that record quality, not only architecture, determines
+  when a system can be evaluated and transferred.
+\end{cvitems}
+
+\project{Multimodal Sign Language Model}{Springer CCIS 2895, 2026}
+\begin{cvitems}
+  \item Co-authored a published gloss-free multimodal architecture using latent queries and cross-attention to project 2D
+  keypoints into a pretrained language model's embedding space, evaluated across Peruvian and Argentinian corpora.
+  DOI: \href{https://doi.org/10.1007/978-3-032-20322-9_23}{10.1007/978-3-032-20322-9\_23}
+\end{cvitems}
+
+\project{Wachi --- Risk-Aware Pedestrian Routing}{El Comercio Lab}
+\begin{cvitems}
+  \item Built a geospatial system that re-ranks pedestrian routes by spatiotemporal risk in Lima using H3 surfaces,
+  temporal decay, and six time bands for an interactive data-journalism experience.
+\end{cvitems}
+
+\cvsection{Open-source contributions}
+\begin{cvitems}
+  \item \textbf{Microsoft Copilot Studio} --- Diagnosed knowledge-source synchronization failures in child agents and
+  validated prerelease fixes in the official VS Code extension.
+  \item \textbf{Gemini CLI} --- Corrected a UI schema and added regression coverage to Google's open-source agentic CLI.
+  \item \textbf{scikit-learn} --- Improved HDBSCAN technical documentation.
+  \item \textbf{beads (bd)} --- Implemented prefix-routed write-through and the regression test that unlocked consolidation
+  of the upstream implementation.
+\end{cvitems}
+
+\cvsection{Education and recognition}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}
+  \textbf{B.Sc. Computer Science} & \textbf{Universidad Peruana de Ciencias Aplicadas (UPC)}
+\end{tabular*}\par
+\textit{Expected late 2026}\par
+2nd place, DataFest BCP $\times$ ESAN 2025 $\cdot$ SALA 2026 full scholarship
+
+\cvsection{Technical focus}
+\textbf{Retrieval and agents:} LlamaIndex, Qdrant, Copilot Studio, Power Automate, multi-agent orchestration\par
+\textbf{Evaluation and research:} Python, PyTorch, scikit-learn, LLM-as-judge, experimental design, robustness and uncertainty\par
+\textbf{Data and backend:} FastAPI, H3, DuckDB, PostgreSQL, ETL, REST APIs, Docker, GitHub Actions, Linux\par
+\textbf{Languages:} Spanish (native) $\cdot$ English (intermediate)
+
+\end{document}
