@@ -35,6 +35,12 @@
   --v-line-22: rgba(237, 239, 238, 0.22);
   --v-line-24: rgba(237, 239, 238, 0.24);
 
+  /* Accent at rest and on approach. The CV CTA sits lit rather than neutral,
+     so its line needs a range to travel: dim green is the resting state and
+     the sweep arrives at full --v-green. */
+  --v-green-32: rgba(59, 224, 166, 0.32);
+  --v-green-58: rgba(59, 224, 166, 0.58);
+
   /* Inter Variable stands in for the source's Helvetica Neue: the deck leans on
      weight 200 throughout, which Helvetica Neue does not ship on most systems.
      Inter is self-hosted and has a true 200. */
@@ -155,15 +161,14 @@ a:hover {
   }
 }
 
+/* The terminal is already green, so the pulse is size, not colour. */
 @keyframes v3-cv-terminal {
   0%,
   100% {
     transform: scale(1);
-    background: var(--v-dim-4);
   }
   40% {
-    transform: scale(1.9);
-    background: var(--v-green);
+    transform: scale(2.1);
   }
 }
 
@@ -673,18 +678,21 @@ a:hover {
    beside the chips — that block is conceptual, and a button there turns it into
    a toolbar.
 
-   Everything the CTA says is said statically; hover only confirms it. The whole
-   effect is CSS on two pseudo-elements, so it adds no work to the WebGL field
-   drawing behind it. */
+   It rests lit: green label, green line, a terminal at each end. Everything the
+   CTA says is said statically and hover only confirms it. The whole effect is
+   CSS on two pseudo-elements and a background layer, so it adds no work to the
+   WebGL field drawing behind it. */
 .cv-dl {
   display: inline-flex;
   flex-direction: column;
-  gap: 0.4375rem;
+  /* Tuned against the 7px line box: 2px of it sits above the hairline. */
+  gap: 0.3125rem;
   /* The drawing is ~1.25rem tall; the rest buys the touch target. 2.75rem at
      the deck's 125% root is 55px, comfortably over the 44px floor. */
   min-height: 2.75rem;
   justify-content: center;
   margin-top: 0.9375rem;
+  color: var(--v-green);
   font-size: 0.6875rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -696,22 +704,34 @@ a:hover {
   gap: 0.5rem;
 }
 
-/* 3px tall so the terminal dot survives the clip that keeps the sweeping
-   segment inside the line; the hairline itself is painted mid-height. */
+/* The box has to be tall enough for the right terminal at full pulse (3px dot
+   at 2.1x = 6.3px), because `overflow: hidden` — which keeps the sweeping
+   segment inside the line — would otherwise clip the growing dot into a
+   rectangle. The hairline is painted mid-height, and `.cv-dl`'s gap is tuned
+   against this height so the optical spacing matches the row above.
+
+   Two background layers: the line, and the left terminal that marks where the
+   sweep starts. The right terminal is ::after, because it has to pulse. */
 .cv-dl-line {
   position: relative;
   overflow: hidden;
-  height: 3px;
-  background: linear-gradient(var(--v-line-16), var(--v-line-16)) 0 50% / 100% 1px no-repeat;
+  height: 7px;
+  background:
+    radial-gradient(circle, var(--v-green) 0 1.5px, transparent 1.5px) 0 50% / 3px 3px no-repeat,
+    linear-gradient(var(--v-green-32), var(--v-green-32)) 0 50% / 100% 1px no-repeat;
 }
 
+/* The only state change reduced motion keeps: the line comes up to strength.
+   The label is already green, so contrast has to live here. */
 .cv-dl:hover .cv-dl-line,
 .cv-dl:focus-visible .cv-dl-line {
-  background-image: linear-gradient(var(--v-line-24), var(--v-line-24));
+  background-image:
+    radial-gradient(circle, var(--v-green) 0 1.5px, transparent 1.5px),
+    linear-gradient(var(--v-green-58), var(--v-green-58));
 }
 
 /* The travelling segment. Parked off the left edge, so nothing lingers once
-   the pointer leaves. */
+   the pointer leaves. Full --v-green against the dim line it crosses. */
 .cv-dl-line::before {
   content: '';
   position: absolute;
@@ -733,7 +753,10 @@ a:hover {
   height: 3px;
   margin-top: -1.5px;
   border-radius: 50%;
-  background: var(--v-dim-4);
+  background: var(--v-green);
+  /* Grows inward from the line's end. A centred origin would push half the
+     pulse past the right edge, where `overflow: hidden` flattens it. */
+  transform-origin: right center;
 }
 
 .cv-dl:hover .cv-dl-line::before,
@@ -752,9 +775,9 @@ a:hover {
   animation: v3-cv-arrow 260ms ease-in-out;
 }
 
-/* Reduced motion keeps the meaning — the link still lights up green through
-   the global `a:hover`, and the hairline still gains contrast — and drops
-   every moving part. */
+/* Reduced motion keeps the meaning — the line still comes up from dim green to
+   full strength, which is the whole acknowledgement — and drops every moving
+   part. */
 @media (prefers-reduced-motion: reduce) {
   .cv-dl:hover .cv-dl-line::before,
   .cv-dl:focus-visible .cv-dl-line::before,
