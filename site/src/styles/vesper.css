@@ -673,6 +673,46 @@ a:hover {
   font-size: 0.625rem;
 }
 
+/* Email links copy the address as well as handing it to the mail client.
+   A `mailto:` on a machine with no registered handler fails silently — the
+   visitor clicks the one contact affordance and nothing at all happens, with
+   no error and no hint. The flag is the only evidence the click did anything,
+   so it is the fallback path that has to be legible, not a flourish.
+
+   Used by both the hero link and the Contact address. */
+.copy-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.copy-flag {
+  position: absolute;
+  left: 0;
+  /* Below, not above: in the hero the space above the links belongs to the CV
+     CTA, and an opaque flag there would black out the thing it sits on. */
+  top: calc(100% + 0.5rem);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--v-green-58);
+  background: #000;
+  color: var(--v-green);
+  font-family: var(--v-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+  pointer-events: none;
+}
+
+.copy-wrap.is-copied .copy-flag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* The hero's one CTA, between the identity lines and the social links: an
    action on the card rather than a fourth link. It is deliberately not placed
    beside the chips — that block is conceptual, and a button there turns it into
@@ -1455,7 +1495,10 @@ a:hover {
   .pub-cover,
   .pub-doi,
   .more,
-  .lang-btn {
+  .lang-btn,
+  /* The flag still appears — it is feedback, not decoration. Only the fade
+     and the rise are dropped. */
+  .copy-flag {
     transition: none;
   }
 }

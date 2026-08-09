@@ -98,6 +98,7 @@ export const chrome = {
   contact: { es: 'Contacto', en: 'Contact' },
   status: { es: 'Disponible', en: 'Open to roles' },
   more: { es: 'Sigue', en: 'More' },
+  copied: { es: 'Dirección copiada', en: 'Address copied' },
   stats: {
     particles: { es: 'Partículas vivas', en: 'Live particles' },
     /**
