@@ -17,11 +17,13 @@ import T from '../components/deck/T.astro';
  * `ProfilePage` wrapping a `Person` is the shape search engines document for a
  * profile, so the page is the page and the person is the entity.
  *
- * Every claim here has to hold against `cv/master.md` and `evidence/claims.md`
- * — see agents.md. Two consequences worth naming: the degree is `affiliation`
- * and not `alumniOf`, because graduation is expected 2026-2 and `alumniOf`
- * asserts a finished one; and the organization is named as the registry names
- * it (`exp-cip-001`), with the deck's shorthand demoted to `alternateName`.
+ * Every claim here has to hold against the current CV bundle under `cv/` and
+ * `evidence/claims.md` — see agents.md and ADR-0007, which moved the narrative
+ * source out of the retired `cv/master.md`. Two consequences worth naming: the
+ * degree is `affiliation` and not `alumniOf`, because graduation is expected
+ * late 2026 and `alumniOf` asserts a finished one; and the organization is
+ * named as the registry names it (`exp-cip-001`), with the deck's shorthand
+ * demoted to `alternateName`.
  */
 const profilePageJsonLd = {
   '@context': 'https://schema.org',
@@ -34,7 +36,7 @@ const profilePageJsonLd = {
     url: 'https://rosewt.dev',
     jobTitle: 'Applied ML Engineer',
     description:
-      'Applied ML Engineer specializing in RAG systems, document intelligence, and data pipelines. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.',
+      'Applied ML engineer working at the intersection of agent systems, retrieval, and evaluation under imperfect data. At CIP (CGIAR): production multi-agent platforms, multilingual GraphRAG, and evaluation infrastructure.',
     email: 'rody@rosewt.dev',
     sameAs: ['https://github.com/R0SEWT', 'https://www.linkedin.com/in/r0sewt/'],
     address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressCountry: 'PE' },
@@ -53,12 +55,12 @@ const profilePageJsonLd = {
     },
     knowsAbout: [
       'Machine Learning',
-      'RAG Systems',
-      'Document Intelligence',
-      'Data Pipelines',
-      'Semantic Search',
+      'Agent Systems',
+      'Retrieval-Augmented Generation',
       'GraphRAG',
-      'NLP',
+      'Model Evaluation',
+      'Document Intelligence',
+      'Urban Machine Learning',
       'PyTorch',
       'LlamaIndex',
     ],
@@ -68,7 +70,7 @@ const profilePageJsonLd = {
 ---
 <DeckLayout
   title="Rody Vilchez — Applied ML Engineer"
-  description="Applied ML Engineer: sistemas de retrieval, document intelligence y pipelines de datos bajo restricciones reales. CIP (CGIAR), Lima."
+  description="Ingeniero de ML aplicado: sistemas agénticos, retrieval y evaluación bajo datos imperfectos. Plataformas multiagente y GraphRAG multilingüe en CIP–CGIAR. Lima, Perú."
   jsonLd={[profilePageJsonLd]}
 >
   <div class="deck">
