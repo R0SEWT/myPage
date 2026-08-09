@@ -3,7 +3,8 @@ import { SCREENS, approach } from '../../../data/deck';
 import T from '../T.astro';
 import SecHead from '../SecHead.astro';
 
-const s = SCREENS[1];
+const i = 5;
+const s = SCREENS[i];
 ---
 <section
   class="screen screen--sheet"
@@ -13,7 +14,7 @@ const s = SCREENS[1];
   hidden
 >
   <div class="sheet">
-    <SecHead label={s.label} index={1} />
+    <SecHead label={s.label} index={i} />
     <T t={approach.lede} as="p" class="sheet-lede" />
 
     <div class="sheet-notes">

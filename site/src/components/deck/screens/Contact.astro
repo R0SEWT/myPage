@@ -1,5 +1,5 @@
 ---
-import { SCREENS, contact, links } from '../../../data/deck';
+import { SCREENS, chrome, contact, links } from '../../../data/deck';
 import T from '../T.astro';
 
 const s = SCREENS[6];
@@ -18,7 +18,10 @@ const s = SCREENS[6];
 
   <T t={contact.title} as="h2" class="ct-title" />
 
-  <a class="ct-mail" href={`mailto:${links.email}`}>{links.email}</a>
+  <span class="copy-wrap">
+    <a class="ct-mail" href={`mailto:${links.email}`} data-copy={links.email}>{links.email}</a>
+    <span class="copy-live" role="status"><T t={chrome.copied} class="copy-flag" /></span>
+  </span>
 
   <T t={contact.note} as="p" class="ct-note" />
 
