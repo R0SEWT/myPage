@@ -3,7 +3,8 @@ import { SCREENS, career } from '../../../data/deck';
 import T from '../T.astro';
 import SecHead from '../SecHead.astro';
 
-const s = SCREENS[5];
+const i = 4;
+const s = SCREENS[i];
 ---
 <section
   class="screen screen--career"
@@ -12,7 +13,7 @@ const s = SCREENS[5];
   data-en={s.label.en}
   hidden
 >
-  <SecHead label={s.label} index={5} />
+  <SecHead label={s.label} index={i} />
 
   {career.map((row) => (
     <div class="lin-row">

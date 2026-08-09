@@ -22,6 +22,29 @@ const s = SCREENS[0];
       <div><b>{home.name}</b></div>
       <div>{home.role}</div>
       <div>{home.org}</div>
+
+      {home.cv.map((c) => (
+        <a class="cv-dl" data-l={c.lang} href={c.href} download={c.file}>
+          <span class="cv-dl-row">
+            <span class="cv-dl-label">{c.label}</span>
+            <svg
+              class="cv-dl-arrow"
+              width="9"
+              height="9"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.3"
+              aria-hidden="true"
+            >
+              <line x1="6" y1="1" x2="6" y2="10" />
+              <polyline points="2.5,6.5 6,10.5 9.5,6.5" />
+            </svg>
+          </span>
+          <span class="cv-dl-line" aria-hidden="true"></span>
+        </a>
+      ))}
+
       <div class="id-links">
         <a href={`mailto:${links.email}`}>Email ↗</a>
         <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>

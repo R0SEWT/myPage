@@ -4,11 +4,11 @@ import Boot from '../components/deck/Boot.astro';
 import TopBar from '../components/deck/TopBar.astro';
 import StatsBar from '../components/deck/StatsBar.astro';
 import Home from '../components/deck/screens/Home.astro';
-import Approach from '../components/deck/screens/Approach.astro';
 import Systems from '../components/deck/screens/Systems.astro';
 import Research from '../components/deck/screens/Research.astro';
 import OpenSource from '../components/deck/screens/OpenSource.astro';
 import Career from '../components/deck/screens/Career.astro';
+import Approach from '../components/deck/screens/Approach.astro';
 import Contact from '../components/deck/screens/Contact.astro';
 import { chrome } from '../data/deck';
 import T from '../components/deck/T.astro';
@@ -84,11 +84,11 @@ const profilePageJsonLd = {
     <main class="panes">
       <div class="pane" id="pane">
         <Home />
-        <Approach />
         <Systems />
         <Research />
         <OpenSource />
         <Career />
+        <Approach />
         <Contact />
       </div>
     </main>
