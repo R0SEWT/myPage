@@ -211,6 +211,32 @@ export function initDeck() {
     if (pane) pane.scrollBy({ top: Math.round(pane.clientHeight * 0.8), behavior: 'smooth' });
   });
 
+  /**
+   * Email links copy the address alongside the navigation — the `mailto:` is
+   * deliberately left to fire, so a visitor with a mail client still gets it.
+   * The copy is for the case where the scheme has no registered handler and
+   * the click dies silently, which is most of the ways this can go wrong.
+   *
+   * `navigator.clipboard` needs a secure context; on plain http the click
+   * degrades to today's behaviour rather than showing a flag that lied.
+   */
+  document.querySelectorAll<HTMLAnchorElement>('a[data-copy]').forEach((a) => {
+    const wrap = a.closest('.copy-wrap');
+    let flagTimer = 0;
+    a.addEventListener('click', () => {
+      const value = a.dataset.copy;
+      if (!value || !wrap || !navigator.clipboard) return;
+      navigator.clipboard
+        .writeText(value)
+        .then(() => {
+          wrap.classList.add('is-copied');
+          window.clearTimeout(flagTimer);
+          flagTimer = window.setTimeout(() => wrap.classList.remove('is-copied'), 1800);
+        })
+        .catch(() => {});
+    });
+  });
+
   document.addEventListener('keydown', (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const tag = (e.target as HTMLElement | null)?.tagName;

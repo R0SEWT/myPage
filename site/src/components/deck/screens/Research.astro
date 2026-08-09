@@ -3,7 +3,8 @@ import { SCREENS, research } from '../../../data/deck';
 import SecHead from '../SecHead.astro';
 import T from '../T.astro';
 
-const s = SCREENS[3];
+const i = 2;
+const s = SCREENS[i];
 const { program, publication } = research;
 ---
 <section
@@ -13,7 +14,7 @@ const { program, publication } = research;
   data-en={s.label.en}
   hidden
 >
-  <SecHead label={s.label} index={3} />
+  <SecHead label={s.label} index={i} />
 
   <div class="lead">
     <T t={program.eyebrow} as="div" class="eyebrow eyebrow--live" />

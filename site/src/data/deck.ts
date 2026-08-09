@@ -29,21 +29,52 @@ export interface Screen {
    * more words gets its own string rather than widening the nav.
    */
   heading?: Bi;
+  /**
+   * How the particle field is composed behind this screen. These belong to the
+   * section, not to its position: the copy on each screen was written against a
+   * particular formation, brightness and cloud placement, so reordering the
+   * narrative must not reshuffle the visuals underneath it.
+   *
+   * `shape` indexes the formation table in scripts/field.ts (0 sphere shell ·
+   * 1 spiral galaxy · 2 two lobes · 3 torus · 4 double helix · 5 lattice cube ·
+   * 6 ring with core). `offset` slides the cloud right so copy sits on unlit
+   * background; `dim` is the alpha multiplier for text-dense screens.
+   */
+  field: { shape: number; offset: number; dim: number };
 }
 
-/** Screen order drives the nav, the SYS.NN readout and the particle shape index. */
+/** Text-dense screens: cloud pushed aside, field pulled back behind the copy. */
+const DENSE = { offset: 1.42, dim: 0.42 };
+
+/**
+ * Screen order drives the nav and the SYS.NN readout — the ordinals follow
+ * position. Visual direction travels with the section via `field`.
+ *
+ * The narrative runs promise → applied evidence → scientific evidence →
+ * external validation → track record → philosophy → contact: Approach sits
+ * late so it reads as a synthesis earned by the evidence before it, rather
+ * than as a claim staked ahead of it.
+ */
 export const SCREENS: Screen[] = [
-  { num: '00', label: { es: 'Home', en: 'Home' } },
-  { num: '01', label: { es: 'Enfoque', en: 'Approach' } },
-  { num: '02', label: { es: 'Sistemas', en: 'Systems' } },
-  { num: '03', label: { es: 'Investigación', en: 'Research' } },
+  { num: '00', label: { es: 'Home', en: 'Home' }, field: { shape: 0, offset: 0, dim: 1 } },
+  { num: '01', label: { es: 'Sistemas', en: 'Systems' }, field: { shape: 5, ...DENSE } },
+  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 4, ...DENSE } },
   {
-    num: '04',
+    num: '03',
     label: { es: 'Open Source', en: 'Open Source' },
     heading: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' },
+    field: { shape: 1, ...DENSE },
   },
-  { num: '05', label: { es: 'Trayectoria', en: 'Career' } },
-  { num: '06', label: { es: 'Contacto', en: 'Contact' } },
+  { num: '04', label: { es: 'Trayectoria', en: 'Career' }, field: { shape: 3, ...DENSE } },
+  {
+    num: '05',
+    label: { es: 'Enfoque', en: 'Approach' },
+    // Two lobes — one thing gained, one thing given up — because that is what
+    // the copy on this screen names. The sheet is the one inverted screen, so
+    // it keeps the bright, near-centred cloud it was composed against.
+    field: { shape: 2, offset: 0.08, dim: 1 },
+  },
+  { num: '06', label: { es: 'Contacto', en: 'Contact' }, field: { shape: 6, ...DENSE } },
 ];
 
 /** Nav shows the first six; Contact is the outlined CTA. */
@@ -67,6 +98,7 @@ export const chrome = {
   contact: { es: 'Contacto', en: 'Contact' },
   status: { es: 'Disponible', en: 'Open to roles' },
   more: { es: 'Sigue', en: 'More' },
+  copied: { es: 'Dirección copiada', en: 'Address copied' },
   stats: {
     particles: { es: 'Partículas vivas', en: 'Live particles' },
     /**
@@ -108,44 +140,22 @@ export const home = {
   name: 'Rody Vilchez',
   role: 'Applied ML Engineer',
   org: 'AI Intern · CIP–CGIAR',
-};
-
-/* ------------------------------------------------------------ 01 approach */
-
-export const approach = {
-  lede: {
-    es: 'Todo modelo optimiza algo y sacrifica otra cosa. Mi trabajo es <span class="hl">hacer explícito ese intercambio.</span>',
-    en: 'Every model optimizes something and sacrifices something else. My job is <span class="hl">making that trade explicit.</span>',
-  },
-  notes: [
-    {
-      num: '[ 01 ]',
-      title: { es: 'Validar el objetivo', en: 'Validate the target' },
-      body: {
-        es: 'Entender qué representa realmente la variable observada.',
-        en: 'Understand what the observed variable actually represents.',
-      },
-    },
-    {
-      num: '[ 02 ]',
-      title: { es: 'Evaluar consecuencias', en: 'Evaluate consequences' },
-      body: {
-        es: 'Estudiar cómo falla el modelo y qué decisiones dependen de sus resultados.',
-        en: 'Study how the model fails and which decisions depend on its outputs.',
-      },
-    },
-    {
-      num: '[ 03 ]',
-      title: { es: 'Dejar evidencia', en: 'Leave evidence' },
-      body: {
-        es: 'Hacer reproducibles los experimentos y trazables las decisiones técnicas.',
-        en: 'Make experiments reproducible and technical decisions traceable.',
-      },
-    },
+  /**
+   * The hero's one CTA. Both editions are rendered and CSS picks by `data-lang`,
+   * the same way `T` works — the language toggle writes one attribute and does
+   * not re-render, so the href cannot be branched at build time.
+   *
+   * `file` becomes the `download` attribute: the label says DESCARGAR/DOWNLOAD
+   * and the arrow points down, so this downloads rather than opening a tab.
+   * Paths keep the exact casing of `public/` — Netlify serves case-sensitively.
+   */
+  cv: [
+    { lang: 'es', href: links.cvEs, file: 'Rody-Vilchez-CV-es.pdf', label: 'Descargar CV' },
+    { lang: 'en', href: links.cvEn, file: 'Rody-Vilchez-CV-en.pdf', label: 'Download CV' },
   ],
 };
 
-/* ------------------------------------------------------------- 02 systems */
+/* ------------------------------------------------------------- 01 systems */
 
 export const systems = {
   lead: {
@@ -186,7 +196,7 @@ export const systems = {
   },
 };
 
-/* ------------------------------------------------------------ 03 research */
+/* ------------------------------------------------------------ 02 research */
 
 export const research = {
   program: {
@@ -237,7 +247,7 @@ export const research = {
   },
 };
 
-/* --------------------------------------------------------- 04 open source */
+/* --------------------------------------------------------- 03 open source */
 
 export interface OpenSourceRow {
   mark: string;
@@ -305,7 +315,7 @@ export const openSource: OpenSourceRow[] = [
   },
 ];
 
-/* -------------------------------------------------------------- 05 career */
+/* -------------------------------------------------------------- 04 career */
 
 export interface CareerRow {
   when: Bi;
@@ -351,6 +361,41 @@ export const career: CareerRow[] = [
     },
   },
 ];
+
+/* ------------------------------------------------------------ 05 approach */
+
+export const approach = {
+  lede: {
+    es: 'Todo modelo optimiza algo y sacrifica otra cosa. Mi trabajo es <span class="hl">hacer explícito ese intercambio.</span>',
+    en: 'Every model optimizes something and sacrifices something else. My job is <span class="hl">making that trade explicit.</span>',
+  },
+  notes: [
+    {
+      num: '[ 01 ]',
+      title: { es: 'Validar el objetivo', en: 'Validate the target' },
+      body: {
+        es: 'Entender qué representa realmente la variable observada.',
+        en: 'Understand what the observed variable actually represents.',
+      },
+    },
+    {
+      num: '[ 02 ]',
+      title: { es: 'Evaluar consecuencias', en: 'Evaluate consequences' },
+      body: {
+        es: 'Estudiar cómo falla el modelo y qué decisiones dependen de sus resultados.',
+        en: 'Study how the model fails and which decisions depend on its outputs.',
+      },
+    },
+    {
+      num: '[ 03 ]',
+      title: { es: 'Dejar evidencia', en: 'Leave evidence' },
+      body: {
+        es: 'Hacer reproducibles los experimentos y trazables las decisiones técnicas.',
+        en: 'Make experiments reproducible and technical decisions traceable.',
+      },
+    },
+  ],
+};
 
 /* ------------------------------------------------------------- 06 contact */
 

@@ -35,6 +35,12 @@
   --v-line-22: rgba(237, 239, 238, 0.22);
   --v-line-24: rgba(237, 239, 238, 0.24);
 
+  /* Accent at rest and on approach. The CV CTA sits lit rather than neutral,
+     so its line needs a range to travel: dim green is the resting state and
+     the sweep arrives at full --v-green. */
+  --v-green-32: rgba(59, 224, 166, 0.32);
+  --v-green-58: rgba(59, 224, 166, 0.58);
+
   /* Inter Variable stands in for the source's Helvetica Neue: the deck leans on
      weight 200 throughout, which Helvetica Neue does not ship on most systems.
      Inter is self-hosted and has a true 200. */
@@ -139,6 +145,40 @@ a:hover {
   to {
     mask-position: 0 320px;
     -webkit-mask-position: 0 320px;
+  }
+}
+
+/* CV download CTA. Three one-shot gestures, no loops: the segment crosses the
+   line, the terminal acknowledges it, the arrow dips. `264%` is the segment's
+   own width (38% of the line) travelled across the full line, which carries it
+   clear of the right edge. */
+@keyframes v3-cv-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(264%);
+  }
+}
+
+/* The terminal is already green, so the pulse is size, not colour. */
+@keyframes v3-cv-terminal {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(2.1);
+  }
+}
+
+@keyframes v3-cv-arrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(2px);
   }
 }
 
@@ -633,69 +673,163 @@ a:hover {
   font-size: 0.625rem;
 }
 
-/* ------------------------------------------------------------ 01 approach */
+/* Email links copy the address as well as handing it to the mail client.
+   A `mailto:` on a machine with no registered handler fails silently — the
+   visitor clicks the one contact affordance and nothing at all happens, with
+   no error and no hint. The flag is the only evidence the click did anything,
+   so it is the fallback path that has to be legible, not a flourish.
 
-.sheet {
-  background: var(--v-sheet);
-  color: var(--v-sheet-ink);
-  padding: clamp(1.875rem, 3.6vw, 3.375rem);
-  box-shadow: 0 3.125rem 7.5rem rgba(0, 0, 0, 0.75);
+   Used by both the hero link and the Contact address. */
+.copy-wrap {
+  position: relative;
+  display: inline-block;
 }
 
-/* The sheet inverts the deck, so its header drops the light hairline and
-   switches to the sheet's own dim tiers. */
-.sheet .sec-head {
-  color: var(--v-sheet-dim);
-  padding-bottom: 0;
-  border-bottom: none;
-  margin-bottom: 1.5rem;
-}
-
-.sheet .sec-head b {
-  color: #b4bab7;
-}
-
-.sheet-lede {
-  font-size: clamp(1.6875rem, 3.6vw, 3.25rem);
-  font-weight: 200;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  margin: 0;
-  max-width: 24ch;
-}
-
-.sheet-notes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.375rem, 3.4vw, 3.5rem);
-  margin-top: clamp(1.625rem, 3.4vw, 2.875rem);
-  padding-top: 1.625rem;
-  border-top: 1px solid rgba(10, 12, 12, 0.14);
-}
-
-.note-num {
+.copy-flag {
+  position: absolute;
+  left: 0;
+  /* Below, not above: in the hero the space above the links belongs to the CV
+     CTA, and an opaque flag there would black out the thing it sits on. */
+  top: calc(100% + 0.5rem);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--v-green-58);
+  background: #000;
+  color: var(--v-green);
   font-family: var(--v-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.2em;
-  color: var(--v-sheet-dim);
-  margin-bottom: 0.75rem;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+  pointer-events: none;
 }
 
-.note-title {
-  font-size: 1.0625rem;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  margin-bottom: 0.5rem;
+.copy-wrap.is-copied .copy-flag {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.note-body {
-  margin: 0;
-  font-size: 0.8125rem;
-  line-height: 1.65;
-  color: var(--v-sheet-body);
+/* The hero's one CTA, between the identity lines and the social links: an
+   action on the card rather than a fourth link. It is deliberately not placed
+   beside the chips — that block is conceptual, and a button there turns it into
+   a toolbar.
+
+   It rests lit: green label, green line, a terminal at each end. Everything the
+   CTA says is said statically and hover only confirms it. The whole effect is
+   CSS on two pseudo-elements and a background layer, so it adds no work to the
+   WebGL field drawing behind it. */
+.cv-dl {
+  display: inline-flex;
+  flex-direction: column;
+  /* Tuned against the 7px line box: 2px of it sits above the hairline. */
+  gap: 0.3125rem;
+  /* The drawing is ~1.25rem tall; the rest buys the touch target. 2.75rem at
+     the deck's 125% root is 55px, comfortably over the 44px floor. */
+  min-height: 2.75rem;
+  justify-content: center;
+  margin-top: 0.9375rem;
+  color: var(--v-green);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-/* --------------------------------------------- 02 systems + 03 research */
+.cv-dl-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* The box has to be tall enough for the right terminal at full pulse (3px dot
+   at 2.1x = 6.3px), because `overflow: hidden` — which keeps the sweeping
+   segment inside the line — would otherwise clip the growing dot into a
+   rectangle. The hairline is painted mid-height, and `.cv-dl`'s gap is tuned
+   against this height so the optical spacing matches the row above.
+
+   Two background layers: the line, and the left terminal that marks where the
+   sweep starts. The right terminal is ::after, because it has to pulse. */
+.cv-dl-line {
+  position: relative;
+  overflow: hidden;
+  height: 7px;
+  background:
+    radial-gradient(circle, var(--v-green) 0 1.5px, transparent 1.5px) 0 50% / 3px 3px no-repeat,
+    linear-gradient(var(--v-green-32), var(--v-green-32)) 0 50% / 100% 1px no-repeat;
+}
+
+/* The only state change reduced motion keeps: the line comes up to strength.
+   The label is already green, so contrast has to live here. */
+.cv-dl:hover .cv-dl-line,
+.cv-dl:focus-visible .cv-dl-line {
+  background-image:
+    radial-gradient(circle, var(--v-green) 0 1.5px, transparent 1.5px),
+    linear-gradient(var(--v-green-58), var(--v-green-58));
+}
+
+/* The travelling segment. Parked off the left edge, so nothing lingers once
+   the pointer leaves. Full --v-green against the dim line it crosses. */
+.cv-dl-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  margin-top: -0.5px;
+  background: var(--v-green);
+  transform: translateX(-100%);
+}
+
+.cv-dl-line::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 50%;
+  background: var(--v-green);
+  /* Grows inward from the line's end. A centred origin would push half the
+     pulse past the right edge, where `overflow: hidden` flattens it. */
+  transform-origin: right center;
+}
+
+.cv-dl:hover .cv-dl-line::before,
+.cv-dl:focus-visible .cv-dl-line::before {
+  animation: v3-cv-sweep 260ms linear;
+}
+
+/* Fires as the segment lands, once. */
+.cv-dl:hover .cv-dl-line::after,
+.cv-dl:focus-visible .cv-dl-line::after {
+  animation: v3-cv-terminal 300ms ease-out 260ms;
+}
+
+.cv-dl:hover .cv-dl-arrow,
+.cv-dl:focus-visible .cv-dl-arrow {
+  animation: v3-cv-arrow 260ms ease-in-out;
+}
+
+/* Reduced motion keeps the meaning — the line still comes up from dim green to
+   full strength, which is the whole acknowledgement — and drops every moving
+   part. */
+@media (prefers-reduced-motion: reduce) {
+  .cv-dl:hover .cv-dl-line::before,
+  .cv-dl:focus-visible .cv-dl-line::before,
+  .cv-dl:hover .cv-dl-line::after,
+  .cv-dl:focus-visible .cv-dl-line::after,
+  .cv-dl:hover .cv-dl-arrow,
+  .cv-dl:focus-visible .cv-dl-arrow {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------- 01 systems + 02 research */
 
 /* Both screens open with one headline block and follow it with a paired
    row — a media frame on Systems, the proceedings cover on Research. */
@@ -867,7 +1001,7 @@ a:hover {
   border-color: var(--v-green);
 }
 
-/* --------------------------------------------------------- 04 open source */
+/* --------------------------------------------------------- 03 open source */
 
 .os-row {
   display: grid;
@@ -937,7 +1071,7 @@ a:hover {
   max-width: 26ch;
 }
 
-/* -------------------------------------------------------------- 05 career */
+/* -------------------------------------------------------------- 04 career */
 
 .lin-row {
   display: grid;
@@ -986,6 +1120,68 @@ a:hover {
   font-size: 0.8125rem;
   line-height: 1.65;
   color: var(--v-dim-1);
+}
+
+/* ------------------------------------------------------------ 05 approach */
+
+.sheet {
+  background: var(--v-sheet);
+  color: var(--v-sheet-ink);
+  padding: clamp(1.875rem, 3.6vw, 3.375rem);
+  box-shadow: 0 3.125rem 7.5rem rgba(0, 0, 0, 0.75);
+}
+
+/* The sheet inverts the deck, so its header drops the light hairline and
+   switches to the sheet's own dim tiers. */
+.sheet .sec-head {
+  color: var(--v-sheet-dim);
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+}
+
+.sheet .sec-head b {
+  color: #b4bab7;
+}
+
+.sheet-lede {
+  font-size: clamp(1.6875rem, 3.6vw, 3.25rem);
+  font-weight: 200;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin: 0;
+  max-width: 24ch;
+}
+
+.sheet-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.375rem, 3.4vw, 3.5rem);
+  margin-top: clamp(1.625rem, 3.4vw, 2.875rem);
+  padding-top: 1.625rem;
+  border-top: 1px solid rgba(10, 12, 12, 0.14);
+}
+
+.note-num {
+  font-family: var(--v-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  color: var(--v-sheet-dim);
+  margin-bottom: 0.75rem;
+}
+
+.note-title {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+
+.note-body {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--v-sheet-body);
 }
 
 /* ------------------------------------------------------------- 06 contact */
@@ -1299,7 +1495,10 @@ a:hover {
   .pub-cover,
   .pub-doi,
   .more,
-  .lang-btn {
+  .lang-btn,
+  /* The flag still appears — it is feedback, not decoration. Only the fade
+     and the rise are dropped. */
+  .copy-flag {
     transition: none;
   }
 }

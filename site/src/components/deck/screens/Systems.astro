@@ -3,7 +3,8 @@ import { SCREENS, systems } from '../../../data/deck';
 import SecHead from '../SecHead.astro';
 import T from '../T.astro';
 
-const s = SCREENS[2];
+const i = 1;
+const s = SCREENS[i];
 const { lead, prototype } = systems;
 ---
 <section
@@ -13,7 +14,7 @@ const { lead, prototype } = systems;
   data-en={s.label.en}
   hidden
 >
-  <SecHead label={s.label} index={2} />
+  <SecHead label={s.label} index={i} />
 
   <div class="lead">
     <T t={lead.eyebrow} as="div" class="eyebrow eyebrow--live" />
