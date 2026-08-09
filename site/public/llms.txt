@@ -36,7 +36,6 @@ Applied Machine Learning Engineer, RAG Systems Engineer, Document AI Engineer, G
 - LinkedIn: [r0sewt](https://www.linkedin.com/in/r0sewt/)
 - CV (English): [CV.en.pdf](https://rosewt.dev/CV.en.pdf)
 - CV (Spanish): [CV.es.pdf](https://rosewt.dev/CV.es.pdf)
-- Full profile for LLMs: [llms-full.txt](https://rosewt.dev/llms-full.txt)
 
 ## Experience — CIP (CGIAR)
 
