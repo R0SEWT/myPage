@@ -3,7 +3,8 @@ import { SCREENS, openSource } from '../../../data/deck';
 import SecHead from '../SecHead.astro';
 import T from '../T.astro';
 
-const s = SCREENS[4];
+const i = 3;
+const s = SCREENS[i];
 ---
 <section
   class="screen screen--os"
@@ -12,7 +13,7 @@ const s = SCREENS[4];
   data-en={s.label.en}
   hidden
 >
-  <SecHead label={s.label} heading={s.heading} index={4} />
+  <SecHead label={s.label} heading={s.heading} index={i} />
 
   {openSource.map((row) => {
     const Tag = row.href ? 'a' : 'div';

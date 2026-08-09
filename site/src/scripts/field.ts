@@ -11,6 +11,8 @@
  * ported unchanged.
  */
 
+import { SCREENS } from '../data/deck';
+
 export interface FieldOptions {
   /** Number of points. */
   count: number;
@@ -33,15 +35,12 @@ const GA = 2.399963;
 const MORPH_MS = 1500;
 
 /**
- * Screen → formation. Deliberately not the identity mapping: screen 01
- * (Approach) gets the two lobes, which read as the trade the copy names, and
- * the denser screens get the quieter shapes.
+ * How each screen composes the field — formation, cloud placement and
+ * brightness. This is authored per section in data/deck.ts, not derived from
+ * the screen's position, so reordering the narrative moves each screen's
+ * visual treatment along with it. See `Screen.field` there.
  */
-const SHAPES = [0, 2, 5, 4, 1, 3, 6];
-
-/** Screens from 02 on are text-dense, so the field pulls back behind them. */
-const DENSE_FROM = 2;
-const DENSE_ALPHA = 0.42;
+const COMPOSITION = SCREENS.map((s) => s.field);
 
 /** Deterministic per-point hash; same sequence every load. */
 function rnd(i: number, s: number): number {
@@ -410,13 +409,11 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     const raw = reduced ? 1 : Math.min(1, (now - morphStart) / MORPH_MS);
     mixNow = raw * raw * (3 - 2 * raw);
 
-    // Home centres the cloud; Approach nudges it; from Systems on it slides
-    // right so the copy sits on unlit background.
-    const target = screen === 0 ? 0 : screen === 1 ? 0.08 : 1.42;
-    px += (target - px) * (reduced ? 1 : 0.05);
-
-    const dimTarget = screen >= DENSE_FROM ? DENSE_ALPHA : 1;
-    dim += (dimTarget - dim) * (reduced ? 1 : 0.06);
+    // Home centres the cloud; Approach nudges it; the text-dense screens slide
+    // it right so the copy sits on unlit background.
+    const comp = COMPOSITION[screen];
+    px += (comp.offset - px) * (reduced ? 1 : 0.05);
+    dim += (comp.dim - dim) * (reduced ? 1 : 0.06);
 
     modelView(mv, my * 0.3, tsec * 0.075 + mx * 0.5, px + mx * 0.12, 3.5);
 
@@ -448,8 +445,8 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   return {
     count: N,
     setShape(index: number) {
-      screen = Math.max(0, Math.min(SHAPES.length - 1, index));
-      const next = SHAPES[screen];
+      screen = Math.max(0, Math.min(COMPOSITION.length - 1, index));
+      const next = COMPOSITION[screen].shape;
       if (next === shape) return;
       retarget(next);
     },
