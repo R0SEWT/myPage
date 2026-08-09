@@ -1,5 +1,7 @@
 # Portafolio Personal – Rody Vilchez
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8a756732-967b-4fbd-b4f4-c37d446bdf6a/deploy-status)](https://app.netlify.com/projects/rosewt/deploys)
+
 Sitio personal y CV de Rody Vilchez (**Applied ML Engineer**), enfocado en
 sistemas de IA aplicada: retrieval (RAG), document intelligence y data pipelines.
 Desplegado en **Netlify** sobre el dominio [`rosewt.dev`](https://rosewt.dev).
