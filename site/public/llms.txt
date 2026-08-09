@@ -1,33 +1,33 @@
 # Rody Vilchez
 
-> Applied Machine Learning Engineer specializing in RAG systems, document intelligence, and data pipelines.
-> Currently at the International Potato Center (CIP, CGIAR), Lima, Peru.
-> B.Sc. Computer Science at Universidad Peruana de Ciencias Aplicadas (UPC), expected 2026.
+> Applied ML engineer working at the intersection of agent systems, retrieval, and evaluation under imperfect data.
+> AI Intern at the International Potato Center (CIP, CGIAR), Lima, Peru.
+> B.Sc. Computer Science at Universidad Peruana de Ciencias Aplicadas (UPC), expected late 2026.
 
 ## Summary
 
-Rody Vilchez is an Applied ML Engineer who designs AI systems for non-ideal conditions. He builds retrieval-augmented generation (RAG) systems, document intelligence pipelines, and data processing workflows over noisy multilingual corpora. His work focuses on evaluation, robustness, and model behavior under real-world constraints. Currently at CIP (CGIAR), building document processing and question answering workflows for agricultural research.
+Rody Vilchez is an Applied ML Engineer who designs machine learning systems for non-ideal conditions: incomplete data, ambiguous objectives, and institutional constraints. At CIP (CGIAR) he builds production multi-agent platforms, multilingual GraphRAG, and evaluation infrastructure. Independently he studies measurement failure in urban ML, and co-authored a multimodal architecture published in Springer CCIS.
 
 ## Core Expertise
 
-- Retrieval systems (RAG systems, semantic search, vector search, retrieval-augmented generation)
-- Document intelligence (document AI, PDF parsing, OCR pipelines, layout analysis)
-- Data pipelines (ETL pipelines, data processing workflows, multilingual ingestion)
-- ML evaluation (model robustness, graph-based metrics, representation analysis)
-- LLM integration (agent workflows, structured output, metadata enrichment)
+- Agent systems (multi-agent orchestration, cross-domain delegation, human-in-the-loop escalation)
+- Retrieval (RAG systems, GraphRAG, semantic search, vector search, dual-level indexing)
+- Evaluation (LLM-as-judge, deterministic regression, persona-driven simulation, robustness and uncertainty)
+- Urban ML (geospatial modeling, H3 panels, measurement and reporting bias, cross-city transfer)
+- Document intelligence (document AI, PDF parsing, OCR pipelines, layout analysis, structured metadata extraction)
 
 ## Capabilities
 
-- Builds production-grade RAG systems over noisy multilingual corpora
-- Designs document processing pipelines under OCR noise and layout irregularity
-- Evaluates representation robustness using graph-based invariant metrics
-- Implements LLM-based metadata enrichment with schema validation and rate-limit handling
-- Builds end-to-end agent workflows with human-in-the-loop escalation
+- Architects and ships production multi-agent platforms with delegation and human review
+- Builds evaluation suites that attribute routing, delegation, and response-quality failures
+- Builds document-intelligence layers for multilingual GraphRAG over noisy OCR and irregular layouts
+- Models latent risk from biased records, and tests when a system can be transferred between cities
 - Designs ML systems for resource-constrained deployment (rural health, limited infrastructure)
+- Contributes fixes and regression coverage to agent tooling and ML libraries
 
 ## Keywords
 
-Applied Machine Learning Engineer, RAG Systems Engineer, Document AI Engineer, GraphRAG systems, multilingual retrieval systems, document intelligence, semantic search, vector search, retrieval-augmented generation, OCR pipelines, PDF parsing, LLM pipelines, embedding pipelines, data engineering, ML systems engineer, NLP engineer, applied AI, Lima Peru
+Applied Machine Learning Engineer, agent systems engineer, multi-agent orchestration, RAG systems, GraphRAG, retrieval-augmented generation, LLM evaluation, LLM-as-judge, document intelligence, semantic search, vector search, OCR pipelines, PDF parsing, urban machine learning, geospatial ML, H3, measurement bias, ML systems engineer, applied AI, Lima Peru
 
 ## Links
 
@@ -39,15 +39,14 @@ Applied Machine Learning Engineer, RAG Systems Engineer, Document AI Engineer, G
 
 ## Experience — CIP (CGIAR)
 
-Role: AI / Data Intern
+Role: AI Intern
 Organization: International Potato Center (CIP, CGIAR)
 Location: Lima, Peru
 Period: Oct 2025 – Present
 
-- Designed document processing pipelines for an internal GraphRAG workflow over multilingual corpora (Spanish, English, French, Portuguese, Chinese) with noisy OCR, irregular layout, and partial classification
-- Implemented LLM-based structured metadata enrichment with schema validation, batching, and rate-limit backoff to improve retrieval quality
-- Co-built an IT support agent in Copilot Studio deployed in Teams with level-0 resolution and escalation to ticketing
-- Designed human-in-the-loop escalation flow with structured output and Adaptive Cards
+- Architected and shipped a Microsoft Teams multi-agent platform on Copilot Studio for IT support and corporate services, with cross-domain delegation and escalation to tickets prefilled from conversational context and subject to human review
+- Built an agent-based evaluation suite where evaluator agents execute scenarios derived from operational records, combining deterministic regression, provider-agnostic LLM-as-judge scoring, and persona-driven simulation to attribute routing, delegation, and response-quality failures
+- Built end-to-end the document-intelligence layer powering a five-language agricultural GraphRAG over corpora with noisy OCR and irregular layouts: parsing, chunking, structured metadata extraction, embeddings, and vector storage
 
 ## Experience — Visma LATAM
 
@@ -56,17 +55,32 @@ Organization: Visma LATAM
 Location: Lima, Peru
 Period: Dec 2024 – Oct 2025
 
-- Built an LLM-based agent that generates automated end-to-end tests from specifications
-- Developed Cypress regression suites integrated into Jenkins for critical integration flows
-- Built DOM-aware test generators that extracted selectors and runtime state from live applications
+- Built an LLM-driven agent that transforms functional specifications into executable end-to-end scenarios
+- Engineered DOM-aware selector and state extraction, integrating generated Cypress suites into Jenkins as regression coverage for critical workflows
 
-## System — GENO-MAP
+## Research — Infelix
 
-Full name: GENO-MAP — Correspondence-Free Diagnostics for High-Dimensional Data
-Stack: Python, scikit-learn, PCA, UMAP, kNN Graphs
-GitHub: https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps
+Full name: Infelix — Latent Urban Crime Risk under Reporting Bias
+Context: B.Sc. thesis research · UPC · 2025–2026
 
-Rody Vilchez designed a correspondence-free validation framework based on kNN graph invariants to evaluate neighborhood structure in high-dimensional representations. Demonstrated that neighborhood structure remains robust under severe perturbations, with continuous degradation and no phase transitions. Poster at SALA 2026.
+Rody Vilchez built a Bayesian model over victimization surveys and an 11-source H3 geospatial panel (Sentinel-2, VIIRS, OSM, WorldPop, Street View) to estimate crime risk across 43 Lima–Callao districts; census data were the only source that consistently improved predictions within districts. Features learned in Lima matched models with one year of local data in Arequipa and remained competitive in Cusco and Piura. Stress tests showed that record quality, not only architecture, determines when a system can be evaluated and transferred.
+
+## Research — Imitator
+
+Full name: Imitator — Multimodal Sign Language Model
+Venue: Published in Springer CCIS 2895 (2026); presented at WAILAMP 2025 and SIMBIG 2025
+DOI: https://doi.org/10.1007/978-3-032-20322-9_23
+GitHub: https://github.com/nakato156/Multimodal-Sign-Language-Model
+
+Rody Vilchez co-authored a published gloss-free multimodal architecture using latent queries and cross-attention to project 2D keypoints into a pretrained language model's embedding space, evaluated across Peruvian and Argentinian corpora. Reformulates sign language translation as alignment in an LLM latent space, decoupling temporal input length from output length.
+
+## System — Wachi
+
+Full name: Wachi — Risk-Aware Pedestrian Routing
+Context: El Comercio Lab
+Stack: H3, geospatial pipelines
+
+Rody Vilchez built a geospatial system that re-ranks pedestrian routes by spatiotemporal risk in Lima using H3 surfaces, temporal decay, and six time bands, for an interactive data-journalism experience.
 
 ## System — ArbitrIA
 
@@ -74,40 +88,63 @@ Full name: ArbitrIA — Legal Retrieval System for Peruvian Arbitration
 Stack: LlamaIndex, FastAPI, PostgreSQL, Docker
 Status: Restricted / Proprietary
 
-Rody Vilchez designed a retrieval system (RAG system) for Peruvian arbitration documents combining document-level and chunk-level indexing for improved precision on complex legal queries. Built robust PDF parsing pipelines for heterogeneous documents with multi-column layouts, embedded tables, and inconsistent headers.
+Rody Vilchez designed a retrieval system for Peruvian arbitration documents. Finer chunking improved local precision but hurt global retrieval; the trade-off was measured and solved with dual document-level and chunk-level indexing. Includes robust PDF parsing for heterogeneous documents with multi-column layouts, embedded tables, and inconsistent headers.
 
 ## System — Gallstone Risk
 
-Full name: Gallstone Risk — ML for Resource-Constrained Screening
-Stack: XGBoost, SHAP, Optuna, Python
+Full name: Gallstone Risk — ML Screening under Observability Constraints
+Stack: XGBoost, SHAP, Optuna, FastAPI
 Demo: https://gallstone.rosewt.dev/
 GitHub: https://github.com/R0SEWT/gallstone-risk-rural-peru-ml
 
-Rody Vilchez reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in rural field settings. Evaluated the performance-viability trade-off with human-in-the-loop SHAP inspection interface.
+Rody Vilchez reframed gallstone prediction as a decision system under observability constraints, removing dependence on clinical variables unavailable in rural field settings. Performance degradation was measured rather than assumed as clinical features were removed, with a human-in-the-loop SHAP inspection interface.
 
-## Research — Imitator
+## System — Potato-ACHIS
 
-Full name: Imitator — Multimodal Sign Language Translation
-Venue: Presented at WAILAMP 2025 and SIMBIG 2025; forthcoming in Springer CCIS (2026)
-GitHub: https://github.com/nakato156/Multimodal-Sign-Language-Model
+Full name: Potato-ACHIS — Multi-Source Domain Adaptation for Andean Potato Disease Classification
+Stack: PyTorch, timm, Hydra, uv
+GitHub: https://github.com/R0SEWT/potato-achis
 
-Rody Vilchez co-authored a system that reformulates sign language translation as alignment in an LLM latent space, avoiding gloss as intermediate representation. Architecture uses latent queries and cross-attention to project keypoint sequences into token-aligned embeddings, decoupling temporal input length from output length.
+Rody Vilchez trains on public plant-disease datasets while targeting Andean field conditions, combining MDFAN multi-source domain adaptation, highland-specific augmentations, and open-set out-of-distribution rejection.
 
-## Skills — ML / AI Systems
+## System — Lumi
 
-PyTorch, scikit-learn, Optuna, model evaluation, multimodal pipelines, XGBoost, SHAP
+Full name: Lumi — Caregiver Copilot with Deterministic Safety Boundaries
+Stack: FastAPI, Azure OpenAI, Docker, Azure App Service
+GitHub: https://github.com/R0SEWT/dermatomicos-Bago
 
-## Skills — Retrieval / Document AI
+Rody Vilchez built a caregiver copilot in which LLM output is never trusted directly: deterministic medical-safety rules gate every proposal before it reaches the caregiver.
 
-Embeddings, Qdrant, LlamaIndex, chunking strategies, PDF parsing, document processing, OCR pipelines, vector databases
+## System — GENO-MAP
 
-## Skills — Data / Backend
+Full name: GENO-MAP — Correspondence-Free Diagnostics for High-Dimensional Data
+Stack: Python, scikit-learn, PCA, UMAP, kNN graphs
+GitHub: https://github.com/R0SEWT/GENO-MAP_Correspondence-Free-Diagnostics-for-Sweet-Potato-Diversity-Maps
 
-Pandas, FastAPI, Flask, REST APIs, MongoDB, PostgreSQL, ETL pipelines
+Rody Vilchez designed a correspondence-free validation framework based on kNN graph invariants to evaluate neighborhood structure in high-dimensional representations. Neighborhood structure remained robust under severe perturbations, with continuous degradation and no phase transitions. Poster at SALA 2026.
+
+## Open Source Contributions
+
+- Microsoft Copilot Studio — Diagnosed knowledge-source synchronization failures in child agents and validated prerelease fixes in the official VS Code extension
+- Gemini CLI — Corrected a UI schema and added regression coverage to Google's open-source agentic CLI
+- scikit-learn — Improved HDBSCAN technical documentation
+- beads (bd) — Implemented prefix-routed write-through and the regression test that unlocked consolidation of the upstream implementation
+
+## Skills — Retrieval and Agents
+
+LlamaIndex, Qdrant, Copilot Studio, Power Automate, multi-agent orchestration, embeddings, chunking strategies, vector databases
+
+## Skills — Evaluation and Research
+
+Python, PyTorch, scikit-learn, LLM-as-judge, experimental design, robustness and uncertainty, SHAP, Optuna
+
+## Skills — Data and Backend
+
+FastAPI, H3, DuckDB, PostgreSQL, ETL, REST APIs, Pandas
 
 ## Skills — Infrastructure
 
-Docker, Git, Linux, Jenkins, CI/CD
+Docker, GitHub Actions, Git, Linux, Jenkins, CI/CD
 
 ## Skills — Languages
 
@@ -115,7 +152,7 @@ Spanish (native), English (intermediate)
 
 ## Education
 
-B.Sc. Computer Science — Universidad Peruana de Ciencias Aplicadas (UPC), expected 2026-2
+B.Sc. Computer Science — Universidad Peruana de Ciencias Aplicadas (UPC), expected late 2026
 
 ## Certifications
 
@@ -128,4 +165,4 @@ B.Sc. Computer Science — Universidad Peruana de Ciencias Aplicadas (UPC), expe
 ## Activities
 
 - 2nd place · DataFest — BCP × ESAN (2025)
-- Full grant recipient · SALA — Summit of AI in LatAm (2026)
+- Full scholarship · SALA — Summit of AI in LatAm (2026)
