@@ -10,7 +10,6 @@ import { createField } from './field';
 import { createTrail } from './trail';
 import { DENSITY } from '../data/deck';
 
-const BOOT_MS = 1900;
 const WHEEL_LOCK_MS = 700;
 const SWIPE_PX = 48;
 /** Content crossfade. Must match --v-fade in vesper.css. */
@@ -34,23 +33,24 @@ export function initDeck() {
   const LAST = screens.length - 1;
 
   const pane = $<HTMLElement>('#pane');
-  const boot = $<HTMLElement>('#boot');
-  const bootPct = $<HTMLElement>('#boot-pct');
-  const bootBar = $<HTMLElement>('#boot-bar');
   const stage = $<HTMLElement>('#stage');
   const trailCanvas = $<HTMLCanvasElement>('#trail');
   const sysNum = $<HTMLElement>('#sys-num');
   const langBtn = $<HTMLButtonElement>('#lang-btn');
   const more = $<HTMLButtonElement>('#more');
-  const stats = $<HTMLElement>('#stats');
   const statParticles = $<HTMLElement>('#stat-particles');
   const statScreenVal = $<HTMLElement>('#stat-screen-val');
   const statScreenLabel = $<HTMLElement>('#stat-screen-label');
   const navBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-go]'));
 
+  const telemetryHud = $<HTMLElement>('#telemetry-hud');
+  const hudPhase = $<HTMLElement>('#hud-phase');
+  const hudPct = $<HTMLElement>('#hud-pct');
+  const hudBar = $<HTMLElement>('#hud-bar');
+
   let screen = 0;
   let lang: 'es' | 'en' = (document.documentElement.dataset.lang as 'es' | 'en') || 'es';
-  let booted = false;
+  let booted = true;
 
   /* --------------------------------------------------------------- field */
 
@@ -59,7 +59,13 @@ export function initDeck() {
   // breakpoints in vesper.css.
   const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1125;
   const field = stage
-    ? createField(stage, { count: coarse ? DENSITY.lite : DENSITY.full, reduced })
+    ? createField(stage, {
+        count: coarse ? DENSITY.lite : DENSITY.full,
+        reduced,
+        onFirstFrame: () => {
+          stage.classList.add('is-ready');
+        },
+      })
     : null;
   const trail = trailCanvas && !reduced && !coarse ? createTrail(trailCanvas) : null;
 
@@ -178,30 +184,68 @@ export function initDeck() {
     }
     const l = labels[screen];
     if (statScreenLabel) statScreenLabel.textContent = next === 'en' ? l.en : l.es;
+    if (telemetryDone && hudPhase) {
+      hudPhase.textContent = next === 'en' ? 'SYS.00 Online · 90k particles' : 'SYS.00 Online · 90k partículas';
+    }
     measure();
   }
 
-  /* ---------------------------------------------------------------- boot */
+  /* ------------------------------------------------------------ telemetry */
 
-  function finishBoot() {
-    booted = true;
-    if (boot) boot.hidden = true;
-    if (stats) stats.hidden = false;
+  const telemetryPhases = {
+    es: [
+      { max: 30, text: 'Inicializando shaders...' },
+      { max: 70, text: 'Montando tensores [90k]...' },
+      { max: 99, text: 'Calibrando campo GPU...' },
+      { max: 100, text: 'SYS.00 Online · 90k partículas' },
+    ],
+    en: [
+      { max: 30, text: 'Initializing shaders...' },
+      { max: 70, text: 'Allocating tensors [90k]...' },
+      { max: 99, text: 'Calibrating GPU field...' },
+      { max: 100, text: 'SYS.00 Online · 90k particles' },
+    ],
+  };
+
+  let telemetryDone = false;
+  function markTelemetryOnline() {
+    if (telemetryDone) return;
+    telemetryDone = true;
+    if (hudPct) hudPct.textContent = '100%';
+    if (hudBar) hudBar.style.width = '100%';
+    const onlineText = lang === 'en' ? 'SYS.00 Online · 90k particles' : 'SYS.00 Online · 90k partículas';
+    if (hudPhase) hudPhase.textContent = onlineText;
+    if (telemetryHud) telemetryHud.classList.add('is-online');
+    if (stage) stage.classList.add('is-ready');
     measure();
   }
 
   const bootStart = performance.now();
-  const bootDur = reduced ? 400 : BOOT_MS;
-  const bootTimer = window.setInterval(() => {
-    const p = Math.min(100, ((performance.now() - bootStart) / bootDur) * 100);
-    const r = Math.round(p);
-    if (bootPct) bootPct.textContent = String(r).padStart(3, '0');
-    if (bootBar) bootBar.style.width = `${r}%`;
-    if (p >= 100) {
-      window.clearInterval(bootTimer);
-      window.setTimeout(finishBoot, 300);
+  const TELEMETRY_MS = reduced ? 300 : 950;
+
+  function tickTelemetry(now: number) {
+    if (telemetryDone) return;
+    const elapsed = now - bootStart;
+    const raw = Math.min(1, elapsed / TELEMETRY_MS);
+    // Harrison et al. (2007) - Accelerating power curve
+    const eased = Math.pow(raw, 1.75);
+    const p = Math.round(eased * 100);
+
+    if (hudPct) hudPct.textContent = `${String(p).padStart(2, '0')}%`;
+    if (hudBar) hudBar.style.width = `${p}%`;
+
+    const activeList = telemetryPhases[lang];
+    const current = activeList.find((item) => p <= item.max) || activeList[activeList.length - 1];
+    if (hudPhase && current) hudPhase.textContent = current.text;
+
+    if (raw < 1) {
+      requestAnimationFrame(tickTelemetry);
+    } else {
+      markTelemetryOnline();
     }
-  }, 60);
+  }
+
+  requestAnimationFrame(tickTelemetry);
 
   /* -------------------------------------------------------------- events */
 
