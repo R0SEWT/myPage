@@ -215,6 +215,13 @@ a:hover {
   width: 100%;
   height: 100%;
   display: block;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stage.is-ready canvas,
+.stage canvas.is-ready {
+  opacity: 1;
 }
 
 .trail {
@@ -251,95 +258,116 @@ a:hover {
   background: radial-gradient(125% 85% at 50% 50%, transparent 26%, rgba(0, 0, 0, 0.72) 100%);
 }
 
-/* -------------------------------------------------------------------- boot */
+/* ----------------------------------------------------------- telemetry HUD */
 
-.boot {
-  position: absolute;
-  inset: 0;
-  z-index: 95;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.625rem 1.875rem;
-  transition: opacity 0.4s ease;
-}
-
-.boot[hidden] {
-  display: none;
-}
-
-.boot-rain {
-  position: absolute;
-  inset: -45% -35%;
-  pointer-events: none;
-  opacity: 0.45;
-  transform: rotate(19deg);
-  background:
-    repeating-linear-gradient(90deg, rgba(237, 239, 238, 0.42) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(90deg, rgba(59, 224, 166, 0.4) 0 1px, transparent 1px 79px),
-    repeating-linear-gradient(90deg, rgba(139, 123, 255, 0.34) 0 1px, transparent 1px 123px);
-  mask-image: repeating-linear-gradient(180deg, #000 0 44px, transparent 44px 320px);
-  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 44px, transparent 44px 320px);
-  animation: v3-rain 1.3s linear infinite;
-}
-
-.boot-id {
-  display: flex;
-  gap: 0.75rem;
-  align-items: baseline;
+.telemetry-hud {
+  margin-top: 1.25rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--v-line-12);
   font-family: var(--v-mono);
-  font-size: 0.6875rem;
+  font-size: 0.5625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--v-dim-4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem;
 }
 
-.boot-id b {
+.hud-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4375rem;
+  flex-wrap: wrap;
+}
+
+.hud-dot {
+  width: 0.3125rem;
+  height: 0.3125rem;
+  border-radius: 50%;
+  background: var(--v-dim-4);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  flex: 0 0 auto;
+}
+
+.telemetry-hud.is-online .hud-dot {
+  background: var(--v-green);
+  box-shadow: 0 0 6px var(--v-green);
+  animation: v3-blink 2.6s ease-in-out infinite;
+}
+
+.hud-sys {
+  color: var(--v-dim-2);
   font-weight: 500;
 }
 
-.boot-id span {
+.hud-sep {
   color: var(--v-dim-4);
 }
 
-.boot-foot {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2.125rem;
+.hud-field {
+  color: var(--v-dim-3);
 }
 
-.boot-pct {
-  font-size: clamp(6rem, 19vw, 16.25rem);
-  font-weight: 200;
-  line-height: 0.8;
-  letter-spacing: -0.05em;
+.hud-phase {
+  color: var(--v-dim-2);
+}
+
+.hud-pct {
+  color: var(--v-green);
   font-variant-numeric: tabular-nums;
+  font-weight: 500;
 }
 
-.boot-meter {
-  flex: 1;
-  padding-bottom: 1.25rem;
+.hud-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(237, 239, 238, 0.08);
+  overflow: hidden;
+  position: relative;
+  border-radius: 1px;
+  transition: opacity 0.4s ease, height 0.4s ease;
 }
 
-.boot-track {
-  height: 1px;
-  background: rgba(237, 239, 238, 0.12);
-}
-
-.boot-bar {
-  height: 1px;
-  width: 0;
+.hud-bar {
+  width: 0%;
+  height: 100%;
   background: var(--v-green);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(59, 224, 166, 0.4);
+  transition: width 0.08s linear;
 }
 
-.boot-label {
-  margin-top: 0.75rem;
-  font-family: var(--v-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--v-dim-4);
+/* Reverse optical flow animation (Harrison, Yeo & Hudson 2010 - CHI) */
+.hud-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.35) 0 3px,
+    transparent 3px 6px
+  );
+  background-size: 12px 12px;
+  animation: hud-flow-reverse 0.4s linear infinite;
+}
+
+@keyframes hud-flow-reverse {
+  from { background-position: 12px 0; }
+  to { background-position: 0 0; }
+}
+
+.telemetry-hud.is-online .hud-track {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.telemetry-hud.is-online .hud-pct {
+  display: none;
 }
 
 /* ------------------------------------------------------------------ topbar */
@@ -671,6 +699,70 @@ a:hover {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.625rem;
+}
+
+/* Recruiter actions on Hero */
+.id-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+}
+
+.id-cv-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.btn-recruiter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.6875rem;
+  border: 1px solid var(--v-line-16);
+  border-radius: 3px;
+  background: rgba(6, 9, 9, 0.7);
+  backdrop-filter: blur(8px);
+  color: var(--v-ink);
+  font-family: var(--v-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.btn-recruiter:hover {
+  border-color: var(--v-green-58);
+  color: var(--v-green);
+  background: rgba(59, 224, 166, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-recruiter:focus-visible {
+  outline: 2px solid var(--v-green);
+  outline-offset: 2px;
+}
+
+.btn-recruiter--action {
+  justify-content: center;
+  border-color: var(--v-line-20);
+  background: rgba(14, 18, 18, 0.85);
+  color: var(--v-dim-1);
+}
+
+.btn-recruiter--action:hover {
+  border-color: var(--v-green);
+  color: var(--v-green);
+}
+
+.btn-icon {
+  color: var(--v-green);
+  font-size: 0.6875rem;
+  line-height: 1;
 }
 
 /* Email links copy the address as well as handing it to the mail client.
@@ -1380,6 +1472,12 @@ a:hover {
   }
 }
 
+@media (max-width: 1280px) {
+  .tb-meta .tb-status {
+    display: none;
+  }
+}
+
 @media (max-width: 1125px) {
   :root {
     --v-pane-y: 5.25rem;
@@ -1388,16 +1486,30 @@ a:hover {
 
   .topbar {
     padding: 0.875rem 1rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.625rem;
   }
 
-  .tb-id,
+  .tb-id {
+    display: flex;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .tb-meta {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
   .tb-meta .tb-status {
     display: none;
   }
 
   .pill {
-    order: 2;
+    grid-row: 2;
+    grid-column: 1 / -1;
     width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
@@ -1427,8 +1539,12 @@ a:hover {
 
   .id-card {
     text-align: left;
+    padding-right: 0;
+    width: 100%;
   }
 
+  .id-cv-row,
+  .hud-status,
   .id-links {
     justify-content: flex-start;
   }

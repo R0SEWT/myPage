@@ -1,0 +1,26 @@
+---
+/**
+ * Telemetry HUD - Non-blocking system initialization readout.
+ *
+ * Implements progressive enhancement: the page content, hero, and CV actions
+ * are fully rendered and interactive immediately. This HUD displays live WebGL
+ * compilation telemetry using Harrison et al. (2010) reverse optical flow
+ * before smoothly transitioning to online status.
+ */
+import T from './T.astro';
+---
+<div class="telemetry-hud" id="telemetry-hud" aria-live="polite">
+  <div class="hud-status">
+    <span class="hud-dot" id="hud-dot" aria-hidden="true"></span>
+    <span class="hud-sys">SYS.00</span>
+    <span class="hud-sep" aria-hidden="true">·</span>
+    <span class="hud-field">GPU FIELD</span>
+    <span class="hud-phase" id="hud-phase">
+      <T t={{ es: 'Inicializando shaders...', en: 'Initializing shaders...' }} />
+    </span>
+    <span class="hud-pct" id="hud-pct">00%</span>
+  </div>
+  <div class="hud-track" id="hud-track" aria-hidden="true">
+    <div class="hud-bar" id="hud-bar"></div>
+  </div>
+</div>
