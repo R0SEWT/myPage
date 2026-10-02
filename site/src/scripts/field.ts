@@ -18,6 +18,8 @@ export interface FieldOptions {
   count: number;
   /** Skip idle rotation and animate morphs instantly. */
   reduced?: boolean;
+  /** Callback fired as soon as the first WebGL frame is submitted. */
+  onFirstFrame?: () => void;
 }
 
 export interface Field {
@@ -346,6 +348,7 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   let dim = 1;
   let raf = 0;
   let alive = true;
+  let firstFrameRendered = false;
   let cw = 0;
   let ch = 0;
 
@@ -430,6 +433,13 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     gl!.uniform1f(uSize, 2.2);
     gl!.uniform1f(uAlpha, 0.8 * dim);
     gl!.drawArrays(gl!.POINTS, 0, N);
+
+    if (!firstFrameRendered) {
+      firstFrameRendered = true;
+      canvas.classList.add('is-ready');
+      host.classList.add('is-ready');
+      opts.onFirstFrame?.();
+    }
   }
 
   const onLost = (e: Event) => {
