@@ -125,6 +125,10 @@ export const links = {
 /* ---------------------------------------------------------------- 00 home */
 
 export const home = {
+  kicker: {
+    es: 'Applied ML · Sistemas Institucionales de IA',
+    en: 'Applied ML · Institutional AI Systems',
+  },
   wordLeft: { es: 'SISTEMAS', en: 'SYSTEMS' },
   wordRight: { es: 'REALES', en: 'IN USE' },
   blurb: {

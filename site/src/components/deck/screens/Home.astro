@@ -6,6 +6,11 @@ import TelemetryHud from '../TelemetryHud.astro';
 const s = SCREENS[0];
 ---
 <section class="screen" data-num={s.num} data-es={s.label.es} data-en={s.label.en}>
+  <div class="id-kicker">
+    <span class="kicker-dot" aria-hidden="true"></span>
+    <T t={home.kicker} />
+  </div>
+
   <h1 class="id-row">
     <T t={home.wordLeft} class="id-word" />
     <T t={home.wordRight} class="id-word id-word--right" />
@@ -15,7 +20,11 @@ const s = SCREENS[0];
     <div class="id-blurb">
       <T t={home.blurb} as="p" />
       <div class="chips">
-        {home.chips.map((c) => <T t={c} class="chip" />)}
+        {home.chips.map((c) => (
+          <button type="button" class="chip" data-go="1" aria-label="Ver sistemas">
+            <T t={c} />
+          </button>
+        ))}
       </div>
     </div>
 
