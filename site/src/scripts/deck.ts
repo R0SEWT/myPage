@@ -185,7 +185,7 @@ export function initDeck() {
     const l = labels[screen];
     if (statScreenLabel) statScreenLabel.textContent = next === 'en' ? l.en : l.es;
     if (telemetryDone && hudPhase) {
-      hudPhase.textContent = next === 'en' ? 'SYS.00 Online · 90k particles' : 'SYS.00 Online · 90k partículas';
+      hudPhase.textContent = next === 'en' ? 'Online · 90k particles' : 'Online · 90k partículas';
     }
     measure();
   }
@@ -194,16 +194,16 @@ export function initDeck() {
 
   const telemetryPhases = {
     es: [
-      { max: 30, text: 'Inicializando shaders...' },
-      { max: 70, text: 'Montando tensores [90k]...' },
-      { max: 99, text: 'Calibrando campo GPU...' },
-      { max: 100, text: 'SYS.00 Online · 90k partículas' },
+      { max: 35, text: 'Compilando shaders' },
+      { max: 75, text: 'Montando campo GPU' },
+      { max: 99, text: 'Calibrando tensores' },
+      { max: 100, text: 'Online · 90k partículas' },
     ],
     en: [
-      { max: 30, text: 'Initializing shaders...' },
-      { max: 70, text: 'Allocating tensors [90k]...' },
-      { max: 99, text: 'Calibrating GPU field...' },
-      { max: 100, text: 'SYS.00 Online · 90k particles' },
+      { max: 35, text: 'Compiling shaders' },
+      { max: 75, text: 'Mounting GPU field' },
+      { max: 99, text: 'Calibrating tensors' },
+      { max: 100, text: 'Online · 90k particles' },
     ],
   };
 
@@ -213,7 +213,7 @@ export function initDeck() {
     telemetryDone = true;
     if (hudPct) hudPct.textContent = '100%';
     if (hudBar) hudBar.style.width = '100%';
-    const onlineText = lang === 'en' ? 'SYS.00 Online · 90k particles' : 'SYS.00 Online · 90k partículas';
+    const onlineText = lang === 'en' ? 'Online · 90k particles' : 'Online · 90k partículas';
     if (hudPhase) hudPhase.textContent = onlineText;
     if (telemetryHud) telemetryHud.classList.add('is-online');
     if (stage) stage.classList.add('is-ready');
@@ -223,10 +223,11 @@ export function initDeck() {
   const bootStart = performance.now();
   const TELEMETRY_MS = reduced ? 300 : 950;
 
-  function tickTelemetry(now: number) {
+  function tickTelemetry(now?: number) {
     if (telemetryDone) return;
-    const elapsed = now - bootStart;
-    const raw = Math.min(1, elapsed / TELEMETRY_MS);
+    const currentTimestamp = typeof now === 'number' && !isNaN(now) ? now : performance.now();
+    const elapsed = currentTimestamp - bootStart;
+    const raw = Math.min(1, Math.max(0, elapsed / TELEMETRY_MS));
     // Harrison et al. (2007) - Accelerating power curve
     const eased = Math.pow(raw, 1.75);
     const p = Math.round(eased * 100);
