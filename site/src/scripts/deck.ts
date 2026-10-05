@@ -27,7 +27,8 @@ const FADE_MS = 280;
 /** How far a screen travels while it fades, in px. Direction follows the nav order. */
 const SHIFT_PX = 22;
 
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const reduced = motionQuery.matches;
 
 function $<T extends Element = HTMLElement>(sel: string): T | null {
   return document.querySelector<T>(sel);
@@ -231,7 +232,7 @@ export function initDeck() {
   function syncVideos() {
     videos.forEach((v) => {
       const onScreen = v.closest('.screen') === screens[screen];
-      if (onScreen && !reduced && !userPaused.has(v)) v.play().catch(() => {});
+      if (onScreen && !motionQuery.matches && !userPaused.has(v)) v.play().catch(() => {});
       else v.pause();
       paintToggle(v);
     });
@@ -240,13 +241,17 @@ export function initDeck() {
   function paintToggle(v: HTMLVideoElement) {
     const btn = v.parentElement?.querySelector<HTMLButtonElement>('[data-video-toggle]');
     if (!btn) return;
-    const paused = v.paused || userPaused.has(v) || reduced;
+    const paused = v.paused || userPaused.has(v) || motionQuery.matches;
     btn.classList.toggle('is-paused', paused);
     btn.setAttribute(
       'aria-label',
       paused ? (lang === 'en' ? 'Play video' : 'Reproducir video') : lang === 'en' ? 'Pause video' : 'Pausar video',
     );
   }
+
+  // The video is the one motion source a reader can be stuck watching, so it
+  // follows the preference live; the field and trail settle it at load.
+  motionQuery.addEventListener('change', syncVideos);
 
   videos.forEach((v) => {
     v.addEventListener('play', () => paintToggle(v));

@@ -2,9 +2,9 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 const URL = process.env.URL || 'http://localhost:4321/'; const TAG = process.env.TAG || 'after';
-const VP = process.env.VP === 'mob' ? { width: 390, height: 844 } : process.env.VP === 'land' ? { width: 844, height: 390 } : { width: 1440, height: 900 };
+const VP = process.env.VP === 'mob' ? { width: 390, height: 844 } : process.env.VP === 'land' ? { width: 844, height: 390 } : process.env.VP === 'tab' ? { width: 1024, height: 768 } : { width: 1440, height: 900 };
 const b = await chromium.launch({ executablePath: process.env.CHROMIUM, args: ['--use-gl=swiftshader', '--ignore-gpu-blocklist'] });
-const p = await b.newPage({ viewport: VP, isMobile: process.env.VP === 'mob' || process.env.VP === 'land', hasTouch: process.env.VP === 'mob' || process.env.VP === 'land' });
+const p = await b.newPage({ viewport: VP, isMobile: ['mob','land','tab'].includes(process.env.VP), hasTouch: ['mob','land','tab'].includes(process.env.VP) });
 await p.goto(URL); await p.waitForTimeout(1500);
 const AOI = {
   ...(process.env.FOCUS ? { focus: '.screen:not([hidden]) :is(' + process.env.FOCUS + ')' } : {}),

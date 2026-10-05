@@ -2108,16 +2108,6 @@ body.is-doc {
     justify-content: flex-start;
   }
 
-  .approach-notes {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.375rem;
-  }
-
-  .media-row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-  }
-
   .os-row {
     grid-template-columns: 2.5rem minmax(0, 1fr);
     gap: 0.625rem 0.875rem;
@@ -2159,6 +2149,24 @@ body.is-doc {
     bottom: 0.875rem;
     right: 50%;
     transform: translateX(50%);
+  }
+}
+
+/* Content stacks only on narrow screens. It used to stack at the nav's
+   1125px breakpoint, so a 1024px tablet got the phone layout: the Wachi
+   video at full width under the text (Systems overflowed 571px) and the
+   three Approach notes in one column. Career rows stay stacked up to 1125px:
+   on a 1024px tablet the two-column row cut role attention 0.075 -> 0.058
+   for 10px less overflow (UEyes readout). */
+@media (max-width: 860px) {
+  .approach-notes {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.375rem;
+  }
+
+  .media-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
   }
 }
 
