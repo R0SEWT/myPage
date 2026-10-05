@@ -36,3 +36,12 @@ generated language documents in the future requires revisiting canonical and
 - Fourteen ES/EN section routes that render the same deck document.
 - SPA redirects or aliases for states that are not Astro pages.
 - `hreflang` annotations pointing to client-side states rather than documents.
+
+## Addendum (2026-10-05): screen fragments
+
+The deck writes the current screen into the URL fragment (`/#research`) with
+`history.replaceState` and opens on the screen a fragment names, so a screen
+can be shared. This is consistent with the decision above: a fragment is not a
+separate document, is never requested from the server, and does not receive a
+canonical, alias, redirect or sitemap entry. `replaceState` (not `pushState`)
+keeps Back leaving the site instead of rewinding the deck.

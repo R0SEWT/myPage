@@ -70,9 +70,11 @@ export const SCREENS: Screen[] = [
     num: '05',
     label: { es: 'Enfoque', en: 'Approach' },
     // Two lobes — one thing gained, one thing given up — because that is what
-    // the copy on this screen names. The sheet is the one inverted screen, so
-    // it keeps the bright, near-centred cloud it was composed against.
-    field: { shape: 2, offset: 0.08, dim: 1 },
+    // the copy on this screen names. The screen used to be an inverted white
+    // sheet; it now sits in the deck's own dark like the others, so the cloud
+    // is pushed aside and pulled back like on every text-dense screen, a touch
+    // brighter because the copy here is large and short.
+    field: { shape: 2, offset: 1.3, dim: 0.55 },
   },
   { num: '06', label: { es: 'Contacto', en: 'Contact' }, field: { shape: 6, ...DENSE } },
 ];
