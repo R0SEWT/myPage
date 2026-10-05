@@ -617,7 +617,7 @@ a:hover {
 }
 
 .sec-head b {
-  color: var(--v-dim-4);
+  color: var(--v-dim-3);
   font-weight: 400;
 }
 
@@ -1241,7 +1241,8 @@ a:hover {
 .os-contribution,
 .lin-desc,
 .approach-notes,
-.pub-doi {
+.pub-doi,
+.sec-head b {
   text-shadow: 0 0 0.75rem #000, 0 0 0.25rem #000, 0 0 0.125rem #000;
 }
 
@@ -1275,7 +1276,7 @@ a:hover {
 .lin-role {
   display: block;
   font-size: clamp(1.5rem, 2.7vw, 2.375rem);
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.05;
   letter-spacing: -0.03em;
 }
@@ -1414,25 +1415,49 @@ a:hover {
 }
 
 .ct-note {
-  margin: 1.625rem 0 0;
+  margin: 2rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--v-line-12);
   max-width: 52ch;
   font-size: 0.875rem;
   line-height: 1.6;
   color: var(--v-dim-1);
 }
 
+.ct-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1.75rem;
+}
+
+.ct-actions .btn-recruiter {
+  font-size: 0.6875rem;
+  padding: 0.625rem 1.125rem;
+  border-color: var(--v-green-32);
+}
+
+.ct-actions .btn-icon {
+  color: var(--v-green);
+}
+
 .ct-links {
   display: flex;
   gap: 1.625rem;
   flex-wrap: wrap;
-  margin-top: 2.375rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--v-line-12);
+  margin-left: 1rem;
   font-family: var(--v-mono);
   font-size: 0.625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--v-dim-3);
+}
+
+/* Secondary, but still a target: >=24px tall (WCAG 2.2, 2.5.8). */
+.ct-links a {
+  display: inline-block;
+  padding: 0.3125rem 0;
 }
 
 /* ------------------------------------------------------- more + stats bar */
