@@ -1996,6 +1996,46 @@ body.is-doc {
     display: none;
   }
 
+  /* The pill scrolls sideways on phones and showed 2 of 7 sections with no
+     sign there were more. The brand goes (the callsign above already names
+     the site), and each edge fades only while there is more to scroll to
+     on that side — deck.ts sets data-more on scroll and resize. */
+  .pill-brand {
+    display: none;
+  }
+
+  /* Sticky overlays rather than a mask: a mask would also fade the pill's
+     own rounded border, which then reads as broken rather than as more. */
+  .pill::before,
+  .pill::after {
+    content: '';
+    position: sticky;
+    z-index: 1;
+    flex: 0 0 2.25rem;
+    align-self: stretch;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .pill::before {
+    left: 0;
+    order: -1;
+    margin-right: -2.25rem;
+    background: linear-gradient(90deg, rgb(6, 9, 9), transparent);
+  }
+
+  .pill::after {
+    right: 0;
+    margin-left: -2.25rem;
+    background: linear-gradient(270deg, rgb(6, 9, 9), transparent);
+  }
+
+  .pill:is([data-more='left'], [data-more='both'])::before,
+  .pill:is([data-more='right'], [data-more='both'])::after {
+    opacity: 1;
+  }
+
   .id-kicker {
     font-size: 0.5625rem;
     letter-spacing: 0.14em;
