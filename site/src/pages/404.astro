@@ -1,34 +1,52 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import DeckLayout from '../layouts/DeckLayout.astro';
 ---
-<BaseLayout title="404 — Rody Vilchez" description="The page you are looking for does not exist." robots="noindex, follow">
+<DeckLayout title="404 — Rody Vilchez" description="The page you are looking for does not exist." robots="noindex, follow" lang="en" doc>
+  <div class="doc-backdrop" aria-hidden="true"></div>
   <main class="not-found">
-    <p class="not-found__eyebrow">ERROR / 404</p>
+    <p class="doc-eyebrow">Error / 404</p>
     <h1>Signal lost.</h1>
     <p>The requested system does not exist at this address.</p>
     <a href="/">← Return to the deck</a>
   </main>
-</BaseLayout>
+</DeckLayout>
 
 <style>
-  /*
-   * The error page belongs to the deck, not to the case studies: its only exit
-   * is back to `/`. It borrows the Vesper palette by value rather than by
-   * token, because `vesper.css` is loaded by DeckLayout and this page runs on
-   * BaseLayout. The hexes are the ones vesper.css declares — --v-green,
-   * --v-violet, --v-ink and the --v-dim ramp. Fonts do come from tokens.css,
-   * whose stacks are already identical.
-   */
-  .not-found { min-height: 100svh; display: grid; align-content: center; gap: 1.25rem; width: min(76rem, calc(100% - 3rem)); margin: auto; }
-  .not-found::before { content: ''; position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 72% 35%, rgba(139, 123, 255, .22), transparent 34%), radial-gradient(circle at 30% 65%, rgba(59, 224, 166, .12), transparent 28%), #000; }
-  .not-found__eyebrow { color: #3be0a6; font: 500 .75rem/1 var(--font-mono); letter-spacing: .18em; }
-  /*
-   * `line-height: .82` sets a line box shorter than the font's own bounding
-   * box, so the ink overruns the box below by ~0.1724em — at the top of the
-   * clamp that is 30px, and the descender of a "g" crosses the paragraph. The
-   * padding is in `em` so it tracks the clamp instead of a single width.
-   */
-  h1 { margin: 0; padding-bottom: .19em; color: #edefee; font: 500 clamp(4.5rem, 14vw, 11rem)/.82 var(--font-sans); letter-spacing: -.07em; }
-  p { max-width: 35rem; color: #9ba3a1; font-family: var(--font-mono); }
-  a { width: fit-content; margin-top: 1rem; color: #b9c0be; font-family: var(--font-mono); border-bottom: 1px solid #3be0a6; }
+  /* Now on the deck's own layout, so it reads the Vesper tokens instead of
+     copying their hex values. */
+  .not-found {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: 1.25rem;
+    width: min(60rem, calc(100% - 2.75rem));
+    margin: auto;
+  }
+  /* `line-height: .82` sets a line box shorter than the ink; the em padding
+     keeps the descender of the "g" off the paragraph at every clamp size. */
+  h1 {
+    margin: 0;
+    padding-bottom: 0.19em;
+    color: var(--v-ink);
+    font: 500 clamp(3.6rem, 11vw, 8.8rem) / 0.82 var(--v-sans);
+    letter-spacing: -0.07em;
+  }
+  p:not(.doc-eyebrow) {
+    max-width: 28rem;
+    margin: 0;
+    color: var(--v-dim-1);
+    font-family: var(--v-mono);
+    font-size: 0.75rem;
+  }
+  a {
+    width: fit-content;
+    margin-top: 0.75rem;
+    padding: 0.3125rem 0;
+    color: var(--v-ink);
+    font-family: var(--v-mono);
+    font-size: 0.75rem;
+    border-bottom: 1px solid var(--v-green);
+  }
 </style>

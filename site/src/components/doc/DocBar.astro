@@ -1,0 +1,17 @@
+---
+/**
+ * Top bar for the documents that sit outside the deck (case studies, 404):
+ * the deck's callsign and the two ways out a reader needs — back to the deck,
+ * and the CV.
+ */
+import { links } from '../../data/deck';
+---
+<header class="doc-bar">
+  <a href="/" class="doc-callsign"><b>R.VILCHEZ</b><span>rosewt.dev</span></a>
+  <nav aria-label="Main" class="doc-nav">
+    <a href="/" class="doc-back">← Deck</a>
+    <a class="btn-recruiter" href={links.cvEn} download="Rody-Vilchez-CV-en.pdf">
+      <span class="btn-icon" aria-hidden="true">↓</span><span>CV</span>
+    </a>
+  </nav>
+</header>
