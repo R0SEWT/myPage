@@ -127,3 +127,7 @@ When updating process or workflow:
 ## Priority
 
 Correctness > consistency > aesthetics
+
+## AI Use
+
+This repository is developed with generative AI assistance (Claude Code). The author reviews all content and decisions.
