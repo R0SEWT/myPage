@@ -10,7 +10,7 @@ names = 'Home Sistemas Investigación OpenSource Trayectoria Enfoque Contacto'.s
 def L(a): a = a / 255; a = np.where(a <= .04045, a / 12.92, ((a + .055) / 1.055) ** 2.4); return a @ [.2126, .7152, .0722]
 out = {}
 for tag in (sys.argv[1].split(',') if len(sys.argv)>1 else ['before','after']):
-  for vp in ['desk', 'mob']:
+  for vp in (sys.argv[2].split(',') if len(sys.argv)>2 else ['desk', 'mob']):
     aoi = json.load(open(f'shots/{tag}-{vp}-aoi.json'))
     for s in range(7):
         im = Image.open(f'shots/{tag}-{vp}-sal-{s}.png').convert('RGB'); W, H = im.size
@@ -26,7 +26,7 @@ for tag in (sys.argv[1].split(',') if len(sys.argv)>1 else ['before','after']):
         masks['cloud'] = (L(bg) > 0.012) & ~anytext   # visibly lit field, not under copy
         # exclusive attribution, priority order
         taken = np.zeros((H, W), bool); row = {}
-        for k in ['claim', 'cta', 'evidence', 'chrome', 'cloud']:
+        for k in (['focus'] if 'focus' in masks else []) + ['claim', 'cta', 'evidence', 'chrome', 'cloud']:
             m = masks[k] & ~taken; taken |= m
             mass = sal[m].sum(); area = m.mean()
             row[k] = (round(float(mass), 3), round(float(mass / area), 2) if area > 0 else None)
