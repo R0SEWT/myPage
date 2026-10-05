@@ -114,6 +114,19 @@ export function initDeck() {
     }
   }
 
+  /** Mark which edges of the scrolling nav pill hide more sections. */
+  function paintPillEdges() {
+    if (!pillNav) return;
+    const max = pillNav.scrollWidth - pillNav.clientWidth;
+    if (max <= 1) {
+      delete pillNav.dataset.more;
+      return;
+    }
+    const left = pillNav.scrollLeft > 2;
+    const right = pillNav.scrollLeft < max - 2;
+    pillNav.dataset.more = left && right ? 'both' : left ? 'left' : 'right';
+  }
+
   /** Visible state changed without a page load, so say it to assistive tech. */
   function announce() {
     if (!announcer) return;
@@ -509,6 +522,8 @@ export function initDeck() {
   });
 
   window.addEventListener('resize', measure);
+  window.addEventListener('resize', paintPillEdges);
+  pillNav?.addEventListener('scroll', paintPillEdges, { passive: true });
   pane?.addEventListener('scroll', measure, { passive: true });
 
   /* ---------------------------------------------------------------- init */
@@ -528,6 +543,7 @@ export function initDeck() {
 
   fromHash();
   setLang(lang);
+  paintPillEdges();
   syncVideos();
   paintChrome();
   field?.setShape(screen);
