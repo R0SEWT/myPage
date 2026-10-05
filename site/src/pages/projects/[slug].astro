@@ -1,8 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import DocBar from '../../components/doc/DocBar.astro';
+import DocFooter from '../../components/doc/DocFooter.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -21,20 +21,23 @@ const jsonLd = links.github ? [{
   ...(links.demo ? { url: links.demo } : {}),
 }] : [];
 ---
-<BaseLayout title={`${title} — Rody Vilchez`} description={tagline} jsonLd={jsonLd}>
-  <Header />
-  <main class="container case-study">
-    <p><a href="/">← All systems</a></p>
-    <h1>{title} <span class="tag mono">{status}</span></h1>
-    <p class="lede">{tagline}</p>
-    <p class="result">▸ {result}</p>
-    {media && <img src={media} alt={mediaAlt ?? title} class="case-hero" />}
-    <p class="mono stack">{stack.join(' · ')}</p>
-    <p class="links">
-      {links.github && <a href={links.github}>GitHub</a>}
-      {links.demo && <a href={links.demo}>Live demo</a>}
-    </p>
-    <article class="prose"><Content /></article>
+<DeckLayout title={`${title} — Rody Vilchez`} description={tagline} jsonLd={jsonLd} lang="en" doc>
+  <div class="doc-backdrop" aria-hidden="true"></div>
+  <DocBar />
+  <main class="doc case-study">
+    <p class="doc-eyebrow"><span>Case study</span><span class="doc-status">{status}</span></p>
+    <h1>{title}</h1>
+    <p class="doc-lede">{tagline}</p>
+    <p class="doc-result">{result}</p>
+    {media && <img src={media} alt={mediaAlt ?? title} class="doc-media" />}
+    <p class="doc-stack">{stack.join(' · ')}</p>
+    {(links.github || links.demo) && (
+      <p class="doc-links">
+        {links.github && <a class="btn-recruiter" href={links.github}>GitHub ↗</a>}
+        {links.demo && <a class="btn-recruiter" href={links.demo}>Live demo ↗</a>}
+      </p>
+    )}
+    <article class="doc-prose"><Content /></article>
   </main>
-  <Footer />
-</BaseLayout>
+  <DocFooter />
+</DeckLayout>

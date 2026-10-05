@@ -8,13 +8,25 @@ interface Props {
   description: string;
   jsonLd?: object[];
   robots?: string;
+  /** Document language. The deck is bilingual and starts in Spanish; the case
+   *  studies and the 404 are English-only documents. */
+  lang?: 'es' | 'en';
+  /** A scrolling document (case study, 404) rather than the fixed deck. */
+  doc?: boolean;
 }
 
-const { title, description, jsonLd = [], robots = 'index, follow, max-snippet:-1, max-image-preview:large' } = Astro.props;
+const {
+  title,
+  description,
+  jsonLd = [],
+  robots = 'index, follow, max-snippet:-1, max-image-preview:large',
+  lang = 'es',
+  doc = false,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL('/og-image.png', Astro.site);
 ---
-<html lang="es" data-lang="es">
+<html lang={lang} data-lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -40,8 +52,8 @@ const socialImage = new URL('/og-image.png', Astro.site);
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Rody Vilchez, Applied ML Engineer — Sistemas reales" />
-    <meta property="og:locale" content="es_PE" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_PE'} />
+    <meta property="og:locale:alternate" content={lang === 'en' ? 'es_PE' : 'en_US'} />
     <meta property="og:site_name" content="Rody Vilchez" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -66,7 +78,7 @@ const socialImage = new URL('/og-image.png', Astro.site);
       </style>
     </noscript>
   </head>
-  <body>
+  <body class={doc ? 'is-doc' : undefined}>
     <slot />
   </body>
 </html>
