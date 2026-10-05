@@ -1225,7 +1225,12 @@ a:hover {
   border-bottom: none;
 }
 
-.os-row:hover {
+/* Only rows that navigate move on hover. Every row used to slide and light
+   its rule, but none has a link yet (rv-ak6), so the motion promised a
+   click that did nothing — a false affordance. When a row gets an href it
+   renders as <a> and picks this up. */
+a.os-row:hover,
+a.os-row:focus-visible {
   padding-left: 1rem;
   border-color: rgba(59, 224, 166, 0.5);
 }
