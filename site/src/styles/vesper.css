@@ -2041,17 +2041,21 @@ body.is-doc {
     transition: opacity 0.2s;
   }
 
+  /* Sticky insets stop at the pill's padding, so each overlay is pulled
+     out over it; otherwise a sliver of the clipped label shows through. */
   .pill::before {
     left: 0;
     order: -1;
     margin-right: -2.25rem;
-    background: linear-gradient(90deg, rgb(6, 9, 9), transparent);
+    transform: translateX(-0.875rem);
+    background: linear-gradient(90deg, rgb(6, 9, 9) 0.875rem, transparent);
   }
 
   .pill::after {
     right: 0;
     margin-left: -2.25rem;
-    background: linear-gradient(270deg, rgb(6, 9, 9), transparent);
+    transform: translateX(0.375rem);
+    background: linear-gradient(270deg, rgb(6, 9, 9) 0.375rem, transparent);
   }
 
   .pill:is([data-more='left'], [data-more='both'])::before,
