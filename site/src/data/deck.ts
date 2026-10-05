@@ -101,6 +101,7 @@ export const chrome = {
   skip: { es: 'Saltar al contenido', en: 'Skip to content' },
   status: { es: 'Disponible', en: 'Open to roles' },
   more: { es: 'Sigue', en: 'More' },
+  next: { es: 'Siguiente', en: 'Next' },
   copied: { es: 'Dirección copiada', en: 'Address copied' },
   stats: {
     particles: { es: 'Partículas vivas', en: 'Live particles' },

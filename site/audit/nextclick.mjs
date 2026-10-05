@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args:['--use-gl=swiftshader'] });
+const p = await (await b.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true})).newPage(); await p.goto('http://localhost:4321/#career'); await p.waitForTimeout(900);
+const cur = () => p.evaluate(() => [...document.querySelectorAll('.screen')].findIndex(s => !s.hidden && !s.classList.contains('is-out')));
+await p.evaluate(() => { const n = document.querySelector('#pane'); n.scrollTop = n.scrollHeight; }); await p.waitForTimeout(500);
+const lbl = await p.textContent('#more'); await p.click('#more'); await p.waitForTimeout(800);
+console.log('on Career end, button =', lbl.trim().replace(/\s+/g,' '), '→ screen', await cur(), await p.url());
+await p.click('#lang-btn'); await p.evaluate(() => { const n = document.querySelector('#pane'); n.scrollTop = n.scrollHeight; }); await p.waitForTimeout(500);
+console.log('EN label:', (await p.textContent('#more')).trim().replace(/\s+/g,' '), '| hidden on Contact?', await p.evaluate(()=>{document.querySelector('[data-go="6"]').click(); return new Promise(r=>setTimeout(()=>r(document.querySelector('#more').hidden),900));}));
+await b.close();
