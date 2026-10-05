@@ -1,7 +1,7 @@
 // P1b: physically-timed trackpad flick (60 Hz, exponential decay ~1.3 s), dispatched in-page
 // so Playwright round-trips don't stretch the inertial tail.
 import { chromium } from 'playwright';
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const b = await chromium.launch({ executablePath: process.env.CHROMIUM });
 for (const [tag, url] of [['before',process.env.BASE||'http://localhost:4322/'],['after',process.env.URL||'http://localhost:4321/']]) {
   const p = await b.newPage({ viewport:{width:1440,height:900} });
   await p.goto(url); await p.waitForTimeout(800);
