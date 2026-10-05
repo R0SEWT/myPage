@@ -2168,7 +2168,6 @@ body.is-doc {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
-
 }
 
 /* Short laptop windows (1366x768 less browser chrome lands near 650px).

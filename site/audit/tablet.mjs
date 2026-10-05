@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 const URL = process.env.URL || 'http://localhost:4321/';
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args:['--use-gl=swiftshader'] });
+const b = await chromium.launch({ executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium', args:['--use-gl=swiftshader'] });
 for (const [w,h] of [[768,1024],[820,1180],[1024,768],[1180,820]]) {
   const p = await (await b.newContext({viewport:{width:w,height:h},isMobile:true,hasTouch:true})).newPage(); await p.goto(URL); await p.waitForTimeout(800);
   const res = [];
