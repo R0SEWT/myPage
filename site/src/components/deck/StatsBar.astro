@@ -17,6 +17,6 @@ import T from './T.astro';
   </div>
   <div class="stat">
     <div class="stat-val">Lima</div>
-    <div class="stat-label">{chrome.stats.place}</div>
+    <T t={chrome.stats.place} as="div" class="stat-label" />
   </div>
 </div>
