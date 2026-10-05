@@ -98,6 +98,7 @@ export const chrome = {
   bootLabel: { es: 'Inicializando entorno', en: 'Initializing environment' },
   brand: 'Rody V.',
   contact: { es: 'Contacto', en: 'Contact' },
+  skip: { es: 'Saltar al contenido', en: 'Skip to content' },
   status: { es: 'Disponible', en: 'Open to roles' },
   more: { es: 'Sigue', en: 'More' },
   copied: { es: 'Dirección copiada', en: 'Address copied' },
