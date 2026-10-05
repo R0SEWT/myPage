@@ -14,11 +14,21 @@
   --v-violet: #8b7bff;
   --v-blue: #4678f6;
 
-  /* Dim tiers, brightest to faintest */
-  --v-dim-1: #b9c0be;
-  --v-dim-2: #9ba3a1;
-  --v-dim-3: #7c8482;
-  --v-dim-4: #4b514f;
+  /* Dim tiers, brightest to faintest. Set by APCA Lc against the field as it
+     actually renders behind copy (95th-percentile luminance, see
+     site/audit/contrast.mjs), not against pure black: light-on-dark is where
+     WCAG 2 ratios overstate legibility, and the deck sets its type light.
+       dim-1  Lc ~78  body copy (Bronze: >=75 for running text)
+       dim-2  Lc ~68  secondary content: meta lines, org names, captions
+       dim-3  Lc ~62  labels, inactive nav, eyebrows (Bronze: >=60)
+       dim-4  Lc ~42  decorative ordinals only (aria-hidden); still >=4.5:1
+                      WCAG AA where the cloud passes behind them
+     Hierarchy below dim-1 is carried by form — mono, caps, tracking, size —
+     more than by lightness, so the tiers can sit close together. */
+  --v-dim-1: #cdd3d1;
+  --v-dim-2: #bcc2c0;
+  --v-dim-3: #b1b7b5;
+  --v-dim-4: #898f8d;
 
 
   --v-line-08: rgba(237, 239, 238, 0.08);
@@ -1034,7 +1044,7 @@ a:hover {
   max-width: 58ch;
   font-size: 0.8125rem;
   line-height: 1.65;
-  color: var(--v-dim-2);
+  color: var(--v-dim-1);
 }
 
 .lead-desc {
@@ -1066,7 +1076,7 @@ a:hover {
   max-width: 60ch;
   font-size: 0.8125rem;
   line-height: 1.65;
-  color: var(--v-dim-2);
+  color: var(--v-dim-1);
 }
 
 .media-meta {
@@ -1210,7 +1220,7 @@ a:hover {
   margin-top: 0.5rem;
   font-size: 0.8125rem;
   line-height: 1.55;
-  color: var(--v-dim-2);
+  color: var(--v-dim-1);
 }
 
 /* What was contributed is the claim on this screen, so it is set to be read:

@@ -72,9 +72,8 @@ export const SCREENS: Screen[] = [
     // Two lobes — one thing gained, one thing given up — because that is what
     // the copy on this screen names. The screen used to be an inverted white
     // sheet; it now sits in the deck's own dark like the others, so the cloud
-    // is pushed aside and pulled back like on every text-dense screen, a touch
-    // brighter because the copy here is large and short.
-    field: { shape: 2, offset: 1.3, dim: 0.55 },
+    // is pushed aside and pulled back like on every text-dense screen.
+    field: { shape: 2, ...DENSE },
   },
   { num: '06', label: { es: 'Contacto', en: 'Contact' }, field: { shape: 6, ...DENSE } },
 ];
