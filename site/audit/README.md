@@ -46,3 +46,13 @@ and an official train/test split, but not the UMSI++ weights. So:
 Free-viewing saliency is bottom-up: it predicts the first glances, not a
 recruiter searching for "the CV". Use it to check that claims and actions
 sit where the eye already lands, not as a findability test.
+
+## Before/after for PRs
+
+```bash
+URL=http://localhost:4322/ OUT=/tmp/before node audit/capture.mjs   # base build
+URL=http://localhost:4321/ OUT=/tmp/after  node audit/capture.mjs   # this branch
+python audit/compare.py /tmp/before /tmp/after ../docs/audit/<pr-slug>
+```
+
+`docs/audit/` is not deployed; PR bodies link the JPEGs by commit SHA.
