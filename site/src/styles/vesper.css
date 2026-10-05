@@ -555,8 +555,12 @@ a:hover {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
-  mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
+  /* Fade at both edges. The top one used to be a hard cut: scrolled copy
+     sliced against the nav pill, 3px above it on phones. The padding keeps
+     the resting first line clear of the fade. */
+  padding-top: 0.875rem;
+  mask-image: linear-gradient(180deg, transparent 0, #000 0.875rem, #000 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 0.875rem, #000 90%, transparent 100%);
 }
 
 /* The pane is focusable so a keyboard can scroll a long screen (WCAG
@@ -1635,6 +1639,50 @@ a:hover {
     grid-column: 2;
     justify-self: start;
     white-space: normal;
+  }
+}
+
+/* Narrow: the cover keeps the title company, but the description takes the
+   full width. Beside an 80px cover it ran ~20 characters a line over ten
+   lines, well under the 45-75 range readable copy wants. */
+@media (max-width: 1125px) {
+  .pub-row {
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    grid-template-areas:
+      'cover eye'
+      'cover title'
+      'desc  desc'
+      'doi   doi';
+    gap: 0.5rem 1rem;
+    align-items: start;
+  }
+
+  .pub-row > div {
+    display: contents;
+  }
+
+  .pub-cover {
+    grid-area: cover;
+  }
+
+  .pub-row .eyebrow {
+    grid-area: eye;
+  }
+
+  .pub-row .media-title {
+    grid-area: title;
+    margin-top: 0;
+  }
+
+  .pub-row .media-desc {
+    grid-area: desc;
+    margin-top: 0.5rem;
+  }
+
+  .pub-doi {
+    grid-area: doi;
+    justify-self: start;
+    margin-top: 0.25rem;
   }
 }
 
