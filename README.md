@@ -28,11 +28,11 @@ de idioma cuesta escribir un atributo. Lo que CSS no puede conmutar — `alt`,
 - **Framework**: [Astro 5](https://astro.build) (`output: 'static'`), sin runtime
   de framework en el cliente — solo los scripts del deck
 - **Lenguaje**: TypeScript
-- **Styling**: CSS propio, sin Tailwind, en **dos sistemas** que conviven:
-  - **Vesper** (`src/styles/vesper.css`) — el deck. Se dibuja a un root de 125%
-  - **Arariwa** (`src/styles/tokens.css` + `global.css`) — fichas de proyecto y 404
+- **Styling**: CSS propio, sin Tailwind: **Vesper** (`src/styles/vesper.css`)
+  para el deck, las fichas de proyecto y la 404. Se dibuja a un root de 125%
 - **Contenido**: `src/data/deck.ts` (deck, bilingüe), `src/data/profile.ts`
-  (fichas) y la content collection en `src/content/projects/` (Markdown)
+  (pie de las fichas) y la content collection en `src/content/projects/` (Markdown)
+- **Auditoría HCD**: `site/audit/` (personas, contraste, saliencia, axe); ver #67
 - **SEO**: Open Graph + Twitter Cards + JSON-LD (`ProfilePage`/`Person` en la
   portada, `SoftwareSourceCode` en las fichas), sitemap vía `@astrojs/sitemap`,
   `robots.txt` y `site.webmanifest`

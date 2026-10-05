@@ -22,27 +22,31 @@ Design system assets and UI kit reference files live in `docs/design/`.
 ```
 site/
   src/
-    components/       # Astro components: Header, Hero, Footer, ProjectRow, sections
+    components/
+      deck/           # Deck chrome and the seven screens (deck/screens/)
+      doc/            # DocBar, DocFooter for case studies and the 404
     content/
       projects/       # Project detail content (Markdown, content collection)
     content.config.ts # Content collection schema
     data/
-      profile.ts      # Site data: experience, publications, contact, etc.
+      deck.ts         # Deck copy (bilingual), screen order, field composition
+      profile.ts      # Case-study footer: contact, certifications, education
     layouts/
-      BaseLayout.astro
+      DeckLayout.astro  # Every page; `doc` + `lang` props for case studies / 404
     pages/
       index.astro
       projects/[slug].astro
       404.astro
+    scripts/          # deck.ts (navigation), field.ts (WebGL), trail.ts
     styles/
-      tokens.css      # Design tokens (colors, type, spacing)
-      global.css      # Layout and component styles
+      vesper.css      # Vesper design system: tokens, deck, documents
+  audit/              # HCD audit harness (not built); see audit/README.md
   public/
     assets/projects/  # Project media assets
     CV.en.pdf
     CV.es.pdf
 
-docs/design/          # Arariwa design system reference (not deployed)
+docs/design/          # Earlier Arariwa reference (not deployed, no longer in use)
   project/
     assets/           # Brand SVGs
     colors_and_type.css
@@ -65,11 +69,11 @@ npm run check      # Astro/TypeScript diagnostics (no separate lint script)
 
 **Astro (static output)**: Multi-page site built with Astro and TypeScript. No client-side framework runtime; islands are plain `<script>` tags where needed (e.g. scroll-spy nav).
 
-**Content collections**: Project case studies live as Markdown files in `src/content/projects/`, validated against the schema in `src/content.config.ts`. Other site data (experience, publications, contact info, tech stack) is exported from `src/data/profile.ts`. Components consume these rather than hardcoding strings.
+**Content collections**: Project case studies live as Markdown files in `src/content/projects/`, validated against the schema in `src/content.config.ts`. Deck copy is in `src/data/deck.ts`; the case-study footer reads `src/data/profile.ts`. Components consume these rather than hardcoding strings.
 
-**Styling**: Plain CSS using the Arariwa design system (`tokens.css` for design tokens, `global.css` for layout/components). No Tailwind, no CSS-in-JS.
+**Styling**: Plain CSS in the Vesper design system (`vesper.css`), for the deck, the case studies and the 404. No Tailwind, no CSS-in-JS. Its dim tiers are set by measured contrast over the particle field; re-run `audit/contrast.mjs` after colour or field changes.
 
-**Design system**: `docs/design/` contains the full Arariwa brand reference — colors, typography, spacing, component previews, and a portfolio UI kit. Use these as the canonical visual reference when building or modifying UI.
+**Design system**: Vesper is the live system (ported from the Claude Design source "Portafolio Vesper v3"). `docs/design/` holds the earlier Arariwa reference, kept for history; do not build new UI from it.
 
 **Deployment**: Netlify, from the `main` branch (production). Pushing to `dev` does not deploy. A single root `netlify.toml` carries security headers, asset cache, and `NODE_VERSION=20`. Domain: `rosewt.dev`. See `docs/adr/ADR-0005-deploy-canonical-and-mcp-tooling.md`.
 

@@ -1,8 +1,8 @@
 /* ============================================================================
    Vesper deck — design system for the home screen deck.
    Ported from the Claude Design source "Portafolio Vesper v3".
-   Kept separate from tokens.css/global.css, which still serve the case-study
-   and 404 pages.
+   Serves the deck, the case studies and the 404 (the earlier Arariwa sheets,
+   tokens.css and global.css, were retired with the pages that used them).
    ========================================================================== */
 
 :root {
@@ -774,7 +774,7 @@ a:hover {
   font-size: 0.625rem;
 }
 
-/* Recruiter actions on Hero */
+/* Recruiter actions (hero, contact, case-study bar) */
 .id-actions {
   display: flex;
   flex-direction: column;
