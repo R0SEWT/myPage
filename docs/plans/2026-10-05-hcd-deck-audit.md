@@ -1,6 +1,6 @@
 # HCD audit of the deck (screens 01–06, navigation)
 
-- Status: Iteration 3 done
+- Status: Iterations 1–12 merged (#64–#76); open items in beads
 - Date: 2026-10-05
 
 ## Goal
@@ -100,8 +100,47 @@ The green date is the row's entry point and pulls the first glance onto the
 role, so it stays on top visually; the DOM now reads role, org, dates, so a
 screen reader hears the heading first.
 
+## Iterations 4–12 (one PR each)
+
+| PR | Screen / area | Finding (measured) | Result |
+|---|---|---|---|
+| #65 | all, a11y | axe: `scrollable-region-focusable` ×4; WCAG 2.2.2 autoplay video, manual | axe 0; video pausable, reduced-motion aware |
+| #66 | 04 Career | lift 0.80 was an AOI artefact; role-above-date tested worse (1.49 vs 1.63) | DOM role-first, visual kept |
+| #68 | all, i18n | Contact CV labels in the wrong language; lang toggle unmarked | names follow page language; `lang` on toggle |
+| #69 | 02, mobile | publication text at ~20 ch/line; pane 3 px under the nav | 33 ch/line; 20 px + top fade |
+| #70 | case studies, 404 | other design system: off-system fonts 1, colours 4/4 | 0 / 0; UIClip similarity to deck 0.862→0.910 |
+| #71 | load | 180 KB of off-screen images on first load (62 %) | 289→109 KB, 10→5 requests |
+| #72 | code | Arariwa leftovers carrying copy that contradicted the CV | removed; 10 pages pixel-identical |
+| #73 | 03 | hover animation on rows that are not links | scoped to `a.os-row` |
+| #74 | nav, mobile | 2 of 7 sections visible, no overflow cue | 3 of 7 at 390–430 px; edge cues |
+| #75 | 03 | own contribution off the scanning path: 2.2 % attention | 8.1 % (lift 0.70→2.58) |
+| #76 | 02 | peer-reviewed publication: 3.9 % attention | 6.3 %, order unchanged |
+
+### Tried and rejected (kept here so nobody repeats them)
+
+- Career, role above the green date on mobile: role lift 1.63 → 1.49.
+- Open Source, contribution in `--v-ink` instead of `dim-1`: 0.54 → 0.55 mobile (noise). The readout does not respond to text colour at this scale.
+- Contact, smaller "Hablemos." on mobile to lift the CV buttons: 0.88 → 0.97 (noise) while the title lost 0.306 → 0.261.
+- Research, publication first: 3.9 % → 43.8 %, but the thesis fell 0.40 → 0.17. Editorial, so it is left to the author (beads `rv-6vj`).
+
+### Whole series: original (`b400940`) vs now
+
+UEyes readout, share of predicted attention (lift):
+
+| Screen | desktop before | desktop now | mobile before | mobile now |
+|---|---|---|---|---|
+| 03 Open Source, evidence incl. contributions | 0.099 (1.44) | 0.151 (2.33) | 0.202 (0.84) | 0.144 (0.68) |
+| 05 Approach, cloud vs copy | cloud 0.891 | lede 0.717 | cloud 0.837 | lede 0.559 |
+| 06 Contact, CV actions | 0.001 (0.18) | 0.007 (1.37) | 0.004 (0.23) | 0.012 (0.64) |
+| 04 Career, roles | 0.067 (2.33) | 0.072 (2.49) | 0.085 (1.43) | 0.098 (1.94) |
+
+On the original Approach screen the AOI selectors miss the old class names, so its "claim" reads near 0. The overlays show its lede was attended, but the white sheet registered as one bright region (the "cloud" row). Captures and masks for all six screens: `docs/audit/summary-2026-10/`.
+
 ## Next iterations
 
-1. Real users: 5 short remote sessions (2 recruiters, 2 ML engineers, 1 keyboard/screen-reader) — the synthetic numbers only pick what to watch.
-3. UXAgent-style LLM personas with PersonaHub seeds, scored against the task list above, for wording and findability (not for visuals).
-4. Systems (01): the CIP lead has no artefact beside it while Wachi has video; consider an architecture diagram.
+1. Real users (beads `rv-e0j`): 5 short remote sessions (2 recruiters, 2 ML engineers, 1 keyboard/screen-reader). The synthetic numbers only decide what to watch.
+2. Author decisions waiting: thesis vs publication order (`rv-6vj`), whether to link, keep or retire the case studies (`rv-7z2`), evidence URLs for Open Source (`rv-ak6`).
+3. Mobile: below-the-fold items get little first-glance attention (Open Source contribution lift 0.54, `rv-a4g`; Contact CV 0.64). Test with real users before restructuring.
+4. A compact "section N of 7" control for the mobile nav, if 3 of 7 visible proves too few.
+5. UXAgent-style LLM personas seeded from PersonaHub, scored against the task list, for wording and findability (not visuals).
+6. Systems (01): the CIP lead has no artefact beside it, while Wachi has a video (`rv-6ry`, needs evidence first).
