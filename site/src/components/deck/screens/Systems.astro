@@ -32,9 +32,12 @@ const { lead, prototype } = systems;
     </div>
 
     <div class="media-frame">
+      {/* No `autoplay`: deck.ts plays it while this screen is showing and
+          the reader has not asked for reduced motion, and the button below
+          stops it (WCAG 2.2.2: moving content that runs past 5 s needs a
+          pause). */}
       <video
         src={prototype.video}
-        autoplay
         loop
         muted
         playsinline
@@ -45,6 +48,10 @@ const { lead, prototype } = systems;
         data-en={prototype.videoLabel.en}
       ></video>
       <T t={prototype.caption} as="div" class="media-caption" />
+      <button type="button" class="media-toggle" data-video-toggle aria-label="Pausar video">
+        <span class="media-toggle-pause" aria-hidden="true">❚❚</span>
+        <span class="media-toggle-play" aria-hidden="true">▶</span>
+      </button>
     </div>
   </div>
 </section>

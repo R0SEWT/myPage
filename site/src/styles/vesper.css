@@ -559,6 +559,14 @@ a:hover {
   -webkit-mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
 }
 
+/* The pane is focusable so a keyboard can scroll a long screen (WCAG
+   2.1.1). The ring sits inside the pane and stays faint: it marks where the
+   arrow keys land, it is not a call to action. */
+.pane:focus-visible {
+  outline: 1px solid var(--v-line-22);
+  outline-offset: -1px;
+}
+
 .pane::-webkit-scrollbar {
   display: none;
 }
@@ -1100,6 +1108,38 @@ a:hover {
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+.media-toggle {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.4375rem;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 1px solid var(--v-line-22);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--v-ink);
+  font-size: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.media-toggle:hover {
+  border-color: var(--v-green);
+  color: var(--v-green);
+}
+
+.media-toggle .media-toggle-play,
+.media-toggle.is-paused .media-toggle-pause {
+  display: none;
+}
+
+.media-toggle.is-paused .media-toggle-play {
+  display: inline;
 }
 
 .media-caption {
