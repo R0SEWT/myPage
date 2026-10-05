@@ -286,6 +286,9 @@ export function initDeck() {
         'aria-label',
         next === 'en' ? 'Cambiar a español' : 'Switch to English',
       );
+      // The label is in the language it switches to (WCAG 3.1.2): mark it,
+      // or a screen reader reads "Cambiar a español" with English phonetics.
+      langBtn.setAttribute('lang', next === 'en' ? 'es' : 'en');
     }
     const l = labels[screen];
     if (statScreenLabel) statScreenLabel.textContent = next === 'en' ? l.en : l.es;

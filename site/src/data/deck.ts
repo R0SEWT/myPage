@@ -111,7 +111,7 @@ export const chrome = {
      */
     render: 'Realtime',
     renderLabel: { es: 'Render WebGL', en: 'WebGL render' },
-    place: 'UTC−5 · Perú',
+    place: { es: 'UTC−5 · Perú', en: 'UTC−5 · Peru' },
   },
 };
 
