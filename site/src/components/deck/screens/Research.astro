@@ -34,8 +34,8 @@ const { program, publication } = research;
         data-i18n="alt"
         data-es={publication.coverAlt.es}
         data-en={publication.coverAlt.en}
-        widths={[160, 240]}
-        sizes="(max-width: 1125px) 68px, 98px"
+        widths={[160, 240, 300]}
+        sizes="(max-width: 1125px) 68px, (max-width: 1375px) 120px, 140px"
         format="webp"
         loading="lazy"
         decoding="async"
@@ -43,7 +43,7 @@ const { program, publication } = research;
     </a>
 
     <div>
-      <T t={publication.eyebrow} as="div" class="eyebrow" />
+      <T t={publication.eyebrow} as="div" class="eyebrow eyebrow--live" />
       <T t={publication.title} as="h3" class="media-title" />
       <T t={publication.desc} as="p" class="media-desc" />
     </div>
