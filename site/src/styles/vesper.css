@@ -1158,9 +1158,15 @@ a:hover {
   text-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.9);
 }
 
+/* The publication is the only peer-reviewed item on the site, but the
+   attention mask had it at 3.9% of predicted attention (lift 0.21): the
+   thesis headline above took the screen. A larger cover and title and the
+   live eyebrow give it 6.3% without reordering the narrative or adding
+   overflow at 1440x900 (moving it first would give 44% but take the thesis
+   from 0.40 to 0.17 — an editorial call, left to the author). */
 .pub-row {
   display: grid;
-  grid-template-columns: 4.875rem minmax(0, 1fr) auto;
+  grid-template-columns: 6.25rem minmax(0, 1fr) auto;
   gap: 1.625rem 1.875rem;
   align-items: start;
   padding-top: 1.375rem;
@@ -1183,7 +1189,7 @@ a:hover {
 }
 
 .pub-row .media-title {
-  font-size: clamp(1.1875rem, 2vw, 1.6875rem);
+  font-size: clamp(1.3125rem, 2.4vw, 1.9375rem);
 }
 
 .pub-row .media-desc {
@@ -1888,7 +1894,7 @@ body.is-doc {
   }
 
   .pub-row {
-    grid-template-columns: 4.875rem minmax(0, 1fr);
+    grid-template-columns: 6rem minmax(0, 1fr);
   }
 
   .pub-doi {
