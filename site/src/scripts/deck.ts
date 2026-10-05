@@ -54,6 +54,7 @@ export function initDeck() {
   const sysNum = $<HTMLElement>('#sys-num');
   const langBtn = $<HTMLButtonElement>('#lang-btn');
   const more = $<HTMLButtonElement>('#more');
+  const moreLabel = $<HTMLElement>('#more-label');
   const statParticles = $<HTMLElement>('#stat-particles');
   const statScreenVal = $<HTMLElement>('#stat-screen-val');
   const statScreenLabel = $<HTMLElement>('#stat-screen-label');
@@ -270,7 +271,16 @@ export function initDeck() {
       if (!more || !pane) return;
       const overflows = pane.scrollHeight - pane.clientHeight > 8;
       const atEnd = pane.scrollTop + pane.clientHeight >= pane.scrollHeight - 8;
-      more.hidden = !(booted && overflows && !atEnd);
+      // Home has its own calls to action and Contact is the last screen.
+      const turn = (!overflows || atEnd) && screen > 0 && screen < LAST;
+      more.dataset.mode = turn ? 'next' : 'scroll';
+      if (moreLabel) {
+        const n = labels[screen + 1];
+        moreLabel.textContent = turn
+          ? `${lang === 'en' ? 'Next' : 'Siguiente'} · ${n ? (lang === 'en' ? n.en : n.es) : ''}`
+          : lang === 'en' ? 'More' : 'Sigue';
+      }
+      more.hidden = !(booted && ((overflows && !atEnd) || turn));
     }, 80);
   }
 
@@ -375,6 +385,7 @@ export function initDeck() {
   navBtns.forEach((b) => b.addEventListener('click', () => go(Number(b.dataset.go))));
   langBtn?.addEventListener('click', () => setLang(lang === 'en' ? 'es' : 'en'));
   more?.addEventListener('click', () => {
+    if (more.dataset.mode === 'next') return go(screen + 1);
     if (pane) pane.scrollBy({ top: Math.round(pane.clientHeight * 0.8), behavior: 'smooth' });
   });
 
