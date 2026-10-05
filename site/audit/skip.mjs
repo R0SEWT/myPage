@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const URL = process.env.URL || 'http://localhost:4321/';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args:['--use-gl=swiftshader'] });
+const p = await (await b.newContext({viewport:{width:1440,height:900}})).newPage(); await p.goto(URL + '#research'); await p.waitForTimeout(900);
+await p.keyboard.press('Tab'); const first = await p.evaluate(() => document.activeElement.id + ' visible=' + (document.activeElement.getBoundingClientRect().top >= 0));
+await p.screenshot({ path: process.env.OUT || 'skip.png', clip: { x: 0, y: 0, width: 720, height: 120 } });
+await p.keyboard.press('Enter'); await p.waitForTimeout(300);
+const after = await p.evaluate(() => [document.activeElement.id, location.hash, [...document.querySelectorAll('.screen')].findIndex(s => !s.hidden)]);
+console.log('first Tab →', first, '| Enter →', JSON.stringify(after));
+await b.close();
