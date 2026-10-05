@@ -1,0 +1,20 @@
+---
+/** Contact and credentials under a case study. Same content as the old
+ *  Arariwa footer, from the same source (data/profile.ts). */
+import { PROFILE, CERTIFICATIONS, ACTIVITIES, EDUCATION } from '../../data/profile';
+---
+<footer class="doc-foot">
+  <div class="doc-foot-head">
+    <h2>Contact</h2>
+    <p class="doc-foot-links">
+      <a href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>
+      <a href={PROFILE.links.github}>GitHub ↗</a>
+      <a href={PROFILE.links.linkedin}>LinkedIn ↗</a>
+    </p>
+  </div>
+  <ul class="doc-foot-list">
+    {CERTIFICATIONS.map((c) => <li>{c}</li>)}
+    {ACTIVITIES.map((a) => <li>{a}</li>)}
+    <li>{EDUCATION}</li>
+  </ul>
+</footer>
