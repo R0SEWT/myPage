@@ -17,7 +17,9 @@ for (let s = 0; s < 7; s++) {
   if (s) await p.evaluate(i => document.querySelector(`.pill [data-go="${i}"], .pill-cta[data-go="${i}"]`).click(), s);
   await p.waitForTimeout(2600);
   const boxes = await p.evaluate(AOI => Object.fromEntries(Object.entries(AOI).map(([k, sel]) => [k,
-    [...document.querySelectorAll(sel)].map(e => e.getBoundingClientRect()).filter(r => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < innerHeight)
+    // Tight box around the rendered content, not the element: a display:block
+    // heading spans the full column and would dilute its own lift.
+    [...document.querySelectorAll(sel)].map(e => { if (/^(VIDEO|IMG)$/.test(e.tagName) || e.querySelector('video,img')) return e.getBoundingClientRect(); const r = document.createRange(); r.selectNodeContents(e); return r.getBoundingClientRect(); }).filter(r => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < innerHeight)
       .map(r => [r.left, r.top, r.right, r.bottom].map(Math.round))])), AOI);
   await p.screenshot({ path: `${TAG}-${process.env.VP || 'desk'}-sal-${s}.png` });
   const h = await p.addStyleTag({ content: '*{color:transparent!important;border-color:transparent!important} img,video{visibility:hidden!important}' });

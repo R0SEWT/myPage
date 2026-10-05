@@ -1,6 +1,6 @@
 # HCD audit of the deck (screens 01–06, navigation)
 
-- Status: Iteration 2 done
+- Status: Iteration 3 done
 - Date: 2026-10-05
 
 ## Goal
@@ -78,9 +78,30 @@ more than its size.
   jump, not attention.
 - Home CTAs sit at lift ~0.5; Home is out of scope by decision.
 
+## Iteration 3: career reading order, and a measurement fix
+
+AOI boxes were element boxes, so a `display:block` heading counted the full
+column width as its area and its lift came out low. `audit/aoi.mjs` now
+uses the tight box of the rendered content (a Range), images and video
+excepted. Iteration 2's lifts were all taken with the old boxes, so their
+before/after comparisons hold; their absolute values do not.
+
+With tight boxes the Career premise of rv-ngw disappears: on mobile the
+role titles already drew more than their area (lift 1.63, not 0.80).
+Readout noise on this screen, same build twice: ±0.02.
+
+| Career, mobile | Role lift |
+|---|---|
+| main: date above role | 1.63 |
+| rejected: role above date | 1.49 |
+| kept: DOM role-first, date still drawn above | 1.62 |
+
+The green date is the row's entry point and pulls the first glance onto the
+role, so it stays on top visually; the DOM now reads role, org, dates, so a
+screen reader hears the heading first.
+
 ## Next iterations
 
 1. Real users: 5 short remote sessions (2 recruiters, 2 ML engineers, 1 keyboard/screen-reader) — the synthetic numbers only pick what to watch.
 3. UXAgent-style LLM personas with PersonaHub seeds, scored against the task list above, for wording and findability (not for visuals).
 4. Systems (01): the CIP lead has no artefact beside it while Wachi has video; consider an architecture diagram.
-5. Career on mobile: role titles still draw less than their area (lift 0.80); the date column competes.
