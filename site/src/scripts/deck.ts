@@ -200,9 +200,53 @@ export function initDeck() {
     paintChrome();
     announce();
     writeHash();
+    syncVideos();
     field?.setShape(screen);
     measure();
   }
+
+  /* --------------------------------------------------------------- video */
+
+  /**
+   * Screen video plays only while its screen is showing, never under reduced
+   * motion, and never again once the reader has paused it.
+   */
+  const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('.screen video'));
+  const userPaused = new WeakSet<HTMLVideoElement>();
+
+  function syncVideos() {
+    videos.forEach((v) => {
+      const onScreen = v.closest('.screen') === screens[screen];
+      if (onScreen && !reduced && !userPaused.has(v)) v.play().catch(() => {});
+      else v.pause();
+      paintToggle(v);
+    });
+  }
+
+  function paintToggle(v: HTMLVideoElement) {
+    const btn = v.parentElement?.querySelector<HTMLButtonElement>('[data-video-toggle]');
+    if (!btn) return;
+    const paused = v.paused || userPaused.has(v) || reduced;
+    btn.classList.toggle('is-paused', paused);
+    btn.setAttribute(
+      'aria-label',
+      paused ? (lang === 'en' ? 'Play video' : 'Reproducir video') : lang === 'en' ? 'Pause video' : 'Pausar video',
+    );
+  }
+
+  videos.forEach((v) => {
+    v.addEventListener('play', () => paintToggle(v));
+    v.addEventListener('pause', () => paintToggle(v));
+    v.parentElement?.querySelector('[data-video-toggle]')?.addEventListener('click', () => {
+      if (v.paused) {
+        userPaused.delete(v);
+        v.play().catch(() => {});
+      } else {
+        userPaused.add(v);
+        v.pause();
+      }
+    });
+  });
 
   /* ------------------------------------------------------- overflow hint */
 
@@ -245,6 +289,7 @@ export function initDeck() {
     }
     const l = labels[screen];
     if (statScreenLabel) statScreenLabel.textContent = next === 'en' ? l.en : l.es;
+    videos.forEach(paintToggle);
     if (telemetryDone && hudPhase) {
       hudPhase.textContent = next === 'en' ? 'Online · 90k particles' : 'Online · 90k partículas';
     }
@@ -480,6 +525,7 @@ export function initDeck() {
 
   fromHash();
   setLang(lang);
+  syncVideos();
   paintChrome();
   field?.setShape(screen);
   measure();
