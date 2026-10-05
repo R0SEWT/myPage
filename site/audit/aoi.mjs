@@ -7,6 +7,7 @@ const b = await chromium.launch({ executablePath: process.env.CHROMIUM, args: ['
 const p = await b.newPage({ viewport: VP, isMobile: process.env.VP === 'mob', hasTouch: process.env.VP === 'mob' });
 await p.goto(URL); await p.waitForTimeout(1500);
 const AOI = {
+  ...(process.env.FOCUS ? { focus: '.screen:not([hidden]) :is(' + process.env.FOCUS + ')' } : {}),
   claim: '.screen:not([hidden]) :is(.id-row,.id-name,.id-role,.lead-title,.media-title,.os-name,.lin-role,.approach-lede,.ct-title,.ct-mail,.note-title)',
   evidence: '.screen:not([hidden]) :is(.id-blurb p,.lead-lede,.lead-note,.lead-desc,.media-desc,.media-meta,.media-frame,.pub-cover,.os-desc,.os-contribution,.lin-desc,.lin-when,.note-body,.ct-note,.os-mark)',
   cta: '.screen:not([hidden]) :is(.btn-recruiter,.chip,.ct-links a,.id-links a,.pub-doi)',

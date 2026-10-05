@@ -1209,12 +1209,16 @@ a:hover {
 
 /* --------------------------------------------------------- 03 open source */
 
+/* Contribution sits under the description at every width. In a right-hand
+   column it was off the left-edge scanning path: the UEyes readout gave it
+   2.4% of predicted attention (lift 0.74) while the other projects' names
+   took the screen. What was contributed is the claim here. */
 .os-row {
   display: grid;
-  grid-template-columns: 3.625rem minmax(0, 1fr) 17rem;
-  gap: 2.25rem 1.125rem;
+  grid-template-columns: 3.625rem minmax(0, 1fr);
+  gap: 0.5rem 1.125rem;
   align-items: center;
-  padding: 1.375rem 0.375rem;
+  padding: 1rem 0.375rem;
   margin: 0 -0.375rem;
   border-bottom: 1px solid var(--v-line-10);
   color: var(--v-ink);
@@ -1266,7 +1270,7 @@ a.os-row:focus-visible {
 }
 
 .os-desc {
-  margin-top: 0.5rem;
+  margin-top: 0.375rem;
   font-size: 0.8125rem;
   line-height: 1.55;
   color: var(--v-dim-1);
@@ -1276,12 +1280,13 @@ a.os-row:focus-visible {
    sentence case at body size, left-aligned in its own column. Tracked mono
    caps wrapped to four ragged-right lines at 26ch and read as decoration. */
 .os-contribution {
+  grid-column: 2;
+  max-width: 60ch;
   font-size: 0.75rem;
   line-height: 1.55;
   color: var(--v-dim-1);
-  width: 17rem;
   padding-left: 1rem;
-  border-left: 1px solid var(--v-line-12);
+  border-left: 1px solid var(--v-green-32);
 }
 
 /* The right-hand columns are where the pushed-aside cloud lands. A local dark
@@ -1880,17 +1885,6 @@ body.is-doc {
   .media-row {
     grid-template-columns: minmax(0, 1fr) 15rem;
     gap: 1.75rem;
-  }
-
-  .os-row {
-    grid-template-columns: 3.625rem minmax(0, 1fr);
-    gap: 0.75rem 1.125rem;
-  }
-
-  .os-contribution {
-    grid-column: 2;
-    width: auto;
-    max-width: 60ch;
   }
 
   .pub-row {
