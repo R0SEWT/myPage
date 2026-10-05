@@ -7,17 +7,17 @@ const i = 5;
 const s = SCREENS[i];
 ---
 <section
-  class="screen screen--sheet"
+  class="screen screen--approach"
   data-num={s.num}
   data-es={s.label.es}
   data-en={s.label.en}
   hidden
 >
-  <div class="sheet">
+  <div class="approach">
     <SecHead label={s.label} index={i} />
-    <T t={approach.lede} as="p" class="sheet-lede" />
+    <T t={approach.lede} as="p" class="approach-lede" />
 
-    <div class="sheet-notes">
+    <div class="approach-notes">
       {approach.notes.map((n) => (
         <div>
           <div class="note-num">{n.num}</div>

@@ -10,10 +10,22 @@ import { createField } from './field';
 import { createTrail } from './trail';
 import { DENSITY } from '../data/deck';
 
-const WHEEL_LOCK_MS = 700;
+/**
+ * A wheel gesture ends when its event stream goes quiet for this long. One
+ * gesture moves one screen, however long its inertial tail runs: a trackpad
+ * flick keeps emitting decaying deltas for well over a second, which a fixed
+ * time lock read as several gestures and skipped screens.
+ */
+const WHEEL_IDLE_MS = 220;
+/** Longest stall an inertial tail may have and still count as one gesture. */
+const WHEEL_TAIL_MS = 1200;
+/** Floor between two screen changes, so a fast double flick still reads. */
+const WHEEL_MIN_GAP_MS = 420;
 const SWIPE_PX = 48;
-/** Content crossfade. Must match --v-fade in vesper.css. */
-const FADE_MS = 200;
+/** Screen transition. Long enough to read the direction, short enough not to wait on. */
+const FADE_MS = 280;
+/** How far a screen travels while it fades, in px. Direction follows the nav order. */
+const SHIFT_PX = 22;
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -30,6 +42,10 @@ export function initDeck() {
     es: el.dataset.es ?? '',
     en: el.dataset.en ?? '',
   }));
+  /** Fragment per screen ("#research"), so a screen can be linked to. */
+  const slugs = labels.map((l) =>
+    l.en.toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+  );
   const LAST = screens.length - 1;
 
   const pane = $<HTMLElement>('#pane');
@@ -42,6 +58,8 @@ export function initDeck() {
   const statScreenVal = $<HTMLElement>('#stat-screen-val');
   const statScreenLabel = $<HTMLElement>('#stat-screen-label');
   const navBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-go]'));
+  const pillNav = $<HTMLElement>('.pill');
+  const announcer = $<HTMLElement>('#deck-announcer');
 
   const telemetryHud = $<HTMLElement>('#telemetry-hud');
   const hudPhase = $<HTMLElement>('#hud-phase');
@@ -86,6 +104,29 @@ export function initDeck() {
     if (sysNum) sysNum.textContent = `SYS.${l.num}`;
     if (statScreenVal) statScreenVal.textContent = `${l.num} / ${labels[LAST].num}`;
     if (statScreenLabel) statScreenLabel.textContent = lang === 'en' ? l.en : l.es;
+
+    // On narrow screens the pill scrolls sideways; keep the current section
+    // in it, or the nav stops telling you where you are.
+    const active = pillNav?.querySelector<HTMLElement>('.pill-btn[aria-current="true"]');
+    if (pillNav && active && pillNav.scrollWidth > pillNav.clientWidth) {
+      const left = active.offsetLeft - (pillNav.clientWidth - active.offsetWidth) / 2;
+      pillNav.scrollTo({ left, behavior: reduced ? 'auto' : 'smooth' });
+    }
+  }
+
+  /** Visible state changed without a page load, so say it to assistive tech. */
+  function announce() {
+    if (!announcer) return;
+    const l = labels[screen];
+    announcer.textContent = `${l.num} / ${labels[LAST].num} · ${lang === 'en' ? l.en : l.es}`;
+  }
+
+  function writeHash() {
+    // replaceState, not pushState: Back should leave the site, not rewind the deck.
+    const hash = screen === 0 ? '' : `#${slugs[screen]}`;
+    if (location.hash !== hash) {
+      history.replaceState(null, '', hash || location.pathname + location.search);
+    }
   }
 
   /**
@@ -106,6 +147,7 @@ export function initDeck() {
     const clamped = Math.max(0, Math.min(LAST, next));
     if (clamped === screen) return;
 
+    const dir = clamped > screen ? 1 : -1;
     const from = screens[screen];
     const to = screens[clamped];
     screen = clamped;
@@ -128,9 +170,26 @@ export function initDeck() {
     if (reduced || typeof to.animate !== 'function') {
       settle(from);
     } else {
-      const opts: KeyframeAnimationOptions = { duration: FADE_MS, easing: 'ease' };
-      const out = from.animate([{ opacity: 1 }, { opacity: 0 }], { ...opts, fill: 'forwards' });
-      fades = [to.animate([{ opacity: 0 }, { opacity: 1 }], opts), out];
+      // The screens travel along the reading axis in the direction of the nav,
+      // so the deck has a place for every screen: forward is down, back is up.
+      // The outgoing one leaves faster than the incoming one arrives, so the
+      // two never read as competing at full strength.
+      const d = dir * SHIFT_PX;
+      const out = from.animate(
+        [
+          { opacity: 1, transform: 'translateY(0)' },
+          { opacity: 0, transform: `translateY(${-d * 0.5}px)` },
+        ],
+        { duration: FADE_MS * 0.6, easing: 'cubic-bezier(.4,0,1,1)', fill: 'forwards' },
+      );
+      const inn = to.animate(
+        [
+          { opacity: 0, transform: `translateY(${d}px)` },
+          { opacity: 1, transform: 'translateY(0)' },
+        ],
+        { duration: FADE_MS, delay: FADE_MS * 0.15, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' },
+      );
+      fades = [inn, out];
       out.onfinish = () => {
         out.cancel();
         settle(from);
@@ -139,6 +198,8 @@ export function initDeck() {
     }
 
     paintChrome();
+    announce();
+    writeHash();
     field?.setShape(screen);
     measure();
   }
@@ -286,10 +347,23 @@ export function initDeck() {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const tag = (e.target as HTMLElement | null)?.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
+    // Vertical keys read the current screen first and only turn the page at
+    // its edge, the way they would on a document. Horizontal keys always turn.
+    const vertical: Record<string, number> = { ArrowDown: 1, PageDown: 1, ' ': 1, ArrowUp: -1, PageUp: -1 };
+    const v = e.key === ' ' && e.shiftKey ? -1 : vertical[e.key];
+    if (v !== undefined) {
+      if (tag === 'BUTTON' && e.key === ' ') return;
+      e.preventDefault();
+      if (pane && paneAbsorbs(v)) {
+        const step = e.key.startsWith('Arrow') ? 0.25 : 0.85;
+        pane.scrollBy({ top: v * Math.round(pane.clientHeight * step), behavior: reduced ? 'auto' : 'smooth' });
+      } else {
+        go(screen + v);
+      }
+    } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       go(screen + 1);
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+    } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       go(screen - 1);
     } else if (e.key === 'Home') {
@@ -307,26 +381,62 @@ export function initDeck() {
     return dir > 0 ? !atEnd : !atStart;
   }
 
-  let lastWheel = 0;
+  /**
+   * Wheel → screen, one screen per gesture.
+   *
+   * A gesture is a run of wheel events with no gap longer than WHEEL_IDLE_MS.
+   * It may turn the page only if it *started* with the pane already at that
+   * edge: a gesture that scrolled the pane to its end is spent, and its
+   * inertial tail must not carry the reader onto the next screen.
+   */
+  let lastWheelEvent = 0;
+  let lastDelta = 0;
+  let lastDeltaSigned = 0;
+  let lastTurn = 0;
+  let gestureUsed = false;
+  let gestureMayTurn = false;
   window.addEventListener(
     'wheel',
     (e) => {
-      if (!booted || Math.abs(e.deltaY) < 12) return;
-      const dir = e.deltaY > 0 ? 1 : -1;
-      if (paneAbsorbs(dir)) return;
-      const now = Date.now();
-      if (now - lastWheel < WHEEL_LOCK_MS) return;
-      lastWheel = now;
+      if (!booted) return;
+      const now = performance.now();
+      const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+      const mag = Math.abs(e.deltaY);
+      const gap = now - lastWheelEvent;
+      // Silence alone is not enough to end a gesture: on a busy main thread
+      // (a slow GPU, a long frame) an inertial tail arrives in bursts with
+      // gaps of hundreds of ms. Inertia has a signature, though — the deltas
+      // only ever decay — so a gap followed by a *smaller* delta in the same
+      // direction is still the tail. A fresh flick or a mouse notch is not.
+      const tail = (mag < lastDelta * 0.98 || mag <= 2) && Math.sign(e.deltaY) === Math.sign(lastDeltaSigned) && gap < WHEEL_TAIL_MS;
+      if (gap > WHEEL_IDLE_MS && !tail) {
+        gestureUsed = false;
+        gestureMayTurn = dir !== 0 && !paneAbsorbs(dir);
+      }
+      lastWheelEvent = now;
+      lastDelta = mag;
+      lastDeltaSigned = e.deltaY;
+      if (!dir || Math.abs(e.deltaY) < 4) return;
+      if (paneAbsorbs(dir)) {
+        gestureMayTurn = false;
+        return;
+      }
+      if (gestureUsed || !gestureMayTurn || now - lastTurn < WHEEL_MIN_GAP_MS) return;
+      gestureUsed = true;
+      lastTurn = now;
       go(screen + dir);
     },
     { passive: true },
   );
 
   let touchY: number | null = null;
+  let touchEdge = { up: false, down: false };
   window.addEventListener(
     'touchstart',
     (e) => {
       touchY = e.touches.length === 1 ? e.touches[0].clientY : null;
+      // Same rule as the wheel: only a swipe that starts at an edge turns.
+      touchEdge = { up: !paneAbsorbs(-1), down: !paneAbsorbs(1) };
     },
     { passive: true },
   );
@@ -339,7 +449,7 @@ export function initDeck() {
       touchY = null;
       if (Math.abs(dy) < SWIPE_PX) return;
       const dir = dy > 0 ? 1 : -1;
-      if (paneAbsorbs(dir)) return;
+      if (dir > 0 ? !touchEdge.down : !touchEdge.up) return;
       go(screen + dir);
     },
     { passive: true },
@@ -355,8 +465,22 @@ export function initDeck() {
 
   /* ---------------------------------------------------------------- init */
 
+  /** Open on the screen the URL names, without a transition. */
+  function fromHash() {
+    const i = slugs.indexOf(location.hash.slice(1));
+    if (i <= 0 || i === screen) return;
+    screens[screen].hidden = true;
+    screen = i;
+    screens[screen].hidden = false;
+  }
+  window.addEventListener('hashchange', () => {
+    const i = slugs.indexOf(location.hash.slice(1));
+    go(i < 0 ? 0 : i);
+  });
+
+  fromHash();
   setLang(lang);
   paintChrome();
-  field?.setShape(0);
+  field?.setShape(screen);
   measure();
 }
