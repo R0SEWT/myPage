@@ -15,13 +15,16 @@ const s = SCREENS[i];
 >
   <SecHead label={s.label} index={i} />
 
+  {/* Role first in reading order: it is the heading a scanning reader
+      fixates on (layer-cake pattern); the date reads as its metadata. On
+      wide screens CSS still sets the dates as a left-hand timeline. */}
   {career.map((row) => (
     <div class="lin-row">
-      <T t={row.when} class={row.current ? 'lin-when lin-when--now' : 'lin-when'} />
-      <span>
+      <span class="lin-head">
         <T t={row.role} class="lin-role" />
         <span class="lin-org">{row.org}</span>
       </span>
+      <T t={row.when} class={row.current ? 'lin-when lin-when--now' : 'lin-when'} />
       <T t={row.desc} class="lin-desc" />
     </div>
   ))}
