@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 const URL = process.env.URL || 'http://localhost:4321/';
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args:['--use-gl=swiftshader','--ignore-gpu-blocklist'] });
+const b = await chromium.launch({ executablePath: process.env.CHROMIUM, args:['--use-gl=swiftshader','--ignore-gpu-blocklist'] });
 const out = {};
 const cur = p => p.evaluate(() => [...document.querySelectorAll('.screen')].findIndex(s => !s.hidden && !s.classList.contains('is-out')));
 
