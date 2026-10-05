@@ -1235,6 +1235,16 @@ a:hover {
   border-left: 1px solid var(--v-line-12);
 }
 
+/* The right-hand columns are where the pushed-aside cloud lands. A local dark
+   halo keeps the copy at its contrast tier when particles pass behind it,
+   without dimming the field everywhere else (measured: audit/contrast.mjs). */
+.os-contribution,
+.lin-desc,
+.approach-notes,
+.pub-doi {
+  text-shadow: 0 0 0.75rem #000, 0 0 0.25rem #000, 0 0 0.125rem #000;
+}
+
 /* -------------------------------------------------------------- 04 career */
 
 .lin-row {
@@ -1337,7 +1347,7 @@ a:hover {
   font-family: var(--v-mono);
   font-size: 0.625rem;
   letter-spacing: 0.2em;
-  color: var(--v-dim-3);
+  color: var(--v-dim-2);
   margin-bottom: 0.75rem;
 }
 

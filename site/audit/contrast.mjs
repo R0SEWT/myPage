@@ -58,7 +58,7 @@ for (let s = 0; s < n; s++) {
     }
     return out;
   });
-  await p.addStyleTag({ content: '*{color:transparent!important;text-shadow:none!important;-webkit-text-stroke:0!important} img,video{visibility:hidden!important}' }).then(h => p.evaluate(() => document.querySelector('style:last-of-type').id = 'hide-ink'));
+  await p.addStyleTag({ content: '*{color:transparent!important;-webkit-text-stroke:0!important} img,video{visibility:hidden!important}' }).then(h => p.evaluate(() => document.querySelector('style:last-of-type').id = 'hide-ink'));
   const shots = [];
   for (let k = 0; k < 3; k++) { shots.push(PNG.sync.read(await p.screenshot())); await p.waitForTimeout(400); }
   await p.evaluate(() => document.getElementById('hide-ink')?.remove());
