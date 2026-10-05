@@ -2183,6 +2183,52 @@ body.is-doc {
   }
 }
 
+/* Phones held sideways (~390px tall): the two-row top bar took 120px, 31% of
+   the height, leaving the copy 53–59%. At these widths the pill fits on one
+   row, so the bar collapses to pill + language; the callsign only repeats
+   the name. */
+@media (max-width: 1125px) and (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --v-pane-y: 3.75rem;
+  }
+
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 0.5rem 1rem;
+  }
+
+  .tb-id {
+    display: none;
+  }
+
+  .pill {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .pill-btn {
+    padding-inline: 0.5rem;
+  }
+
+  .pill-cta {
+    margin-left: 0.25rem;
+    padding-inline: 0.75rem;
+  }
+
+  .tb-meta {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .panes .pane {
+    bottom: 2.75rem;
+  }
+
+  .more {
+    bottom: 0.5rem;
+  }
+}
+
 /* --------------------------------------------------------- reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
