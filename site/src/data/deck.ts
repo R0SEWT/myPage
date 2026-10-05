@@ -1,3 +1,4 @@
+import ccisCover from '../assets/deck/imitator-ccis-2895.png';
 /**
  * Content for the Vesper deck (home) — v3.
  *
@@ -244,7 +245,9 @@ export const research = {
     doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
     /** An identifier, not copy — the same in both languages. */
     doiLabel: 'DOI 10.1007/978-3-032-20322-9_23 ↗',
-    cover: '/assets/deck/imitator-ccis-2895.png',
+    // Imported, not a /public path: astro:assets re-encodes it at the size it
+    // is shown (rv-fh4: drop the complete original over this file).
+    cover: ccisCover,
     coverAlt: {
       es: 'Information Management and Big Data — actas de SIMBig 2025, volumen Springer CCIS 2895',
       en: 'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
@@ -256,6 +259,8 @@ export const research = {
 
 export interface OpenSourceRow {
   mark: string;
+  /** Intrinsic size, so the lazy-loaded mark reserves its box (no shift). */
+  markSize: [number, number];
   /** Project marks carry their own name; the same alt serves both languages. */
   markAlt: string;
   /** beads ships a square app mark; the others are transparent wordmarks. */
@@ -270,6 +275,7 @@ export interface OpenSourceRow {
 export const openSource: OpenSourceRow[] = [
   {
     mark: '/assets/deck/os-copilot-studio.png',
+    markSize: [94, 90],
     markAlt: 'Microsoft Copilot Studio',
     name: 'Microsoft Copilot Studio',
     desc: {
@@ -283,6 +289,7 @@ export const openSource: OpenSourceRow[] = [
   },
   {
     mark: '/assets/deck/os-gemini-cli.png',
+    markSize: [90, 90],
     markAlt: 'Gemini CLI',
     name: 'Gemini CLI',
     desc: {
@@ -296,6 +303,7 @@ export const openSource: OpenSourceRow[] = [
   },
   {
     mark: '/assets/deck/os-sklearn-mark.png',
+    markSize: [166, 90],
     markAlt: 'scikit-learn-contrib',
     name: 'scikit-learn',
     desc: {
@@ -306,6 +314,7 @@ export const openSource: OpenSourceRow[] = [
   },
   {
     mark: '/assets/deck/os-beads-mark.png',
+    markSize: [60, 60],
     markAlt: 'beads / bd',
     rounded: true,
     name: 'beads (bd)',

@@ -2,6 +2,7 @@
 import { SCREENS, research } from '../../../data/deck';
 import SecHead from '../SecHead.astro';
 import T from '../T.astro';
+import { Image } from 'astro:assets';
 
 const i = 2;
 const s = SCREENS[i];
@@ -25,14 +26,19 @@ const { program, publication } = research;
 
   <div class="pub-row">
     <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
-      <img
+      {/* Shown at ~78px wide, so 2x that is all a sharp screen needs; lazy,
+          because this screen is not the one the deck opens on. */}
+      <Image
         src={publication.cover}
         alt={publication.coverAlt.es}
         data-i18n="alt"
         data-es={publication.coverAlt.es}
         data-en={publication.coverAlt.en}
-        width="283"
-        height="366"
+        widths={[160, 240]}
+        sizes="(max-width: 1125px) 68px, 98px"
+        format="webp"
+        loading="lazy"
+        decoding="async"
       />
     </a>
 

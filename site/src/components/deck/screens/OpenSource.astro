@@ -26,6 +26,10 @@ const s = SCREENS[i];
           class={row.rounded ? 'os-mark os-mark--rounded' : 'os-mark'}
           src={row.mark}
           alt={row.markAlt}
+          width={row.markSize[0]}
+          height={row.markSize[1]}
+          loading="lazy"
+          decoding="async"
         />
         <div>
           <div class="os-name">
