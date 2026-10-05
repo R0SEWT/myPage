@@ -79,6 +79,10 @@ const profilePageJsonLd = {
     <div class="streaks" aria-hidden="true"></div>
     <div class="vignette" aria-hidden="true"></div>
 
+    {/* First stop for a keyboard: without it, every screen sat behind the
+        eight nav stops (9 Tabs to reach content). */}
+    <a href="#pane" class="skip-link" id="skip-link"><T t={chrome.skip} /></a>
+
     <TopBar />
 
     <main class="panes">

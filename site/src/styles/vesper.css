@@ -383,6 +383,29 @@ a:hover {
   display: none;
 }
 
+/* --------------------------------------------------------------- skip link */
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--v-green);
+  border-radius: 999px;
+  background: var(--v-bg);
+  color: var(--v-ink);
+  font-family: var(--v-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
 /* ------------------------------------------------------------------ topbar */
 
 .topbar {
