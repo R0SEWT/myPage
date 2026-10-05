@@ -537,8 +537,18 @@ export function initDeck() {
     screens[screen].hidden = false;
   }
   window.addEventListener('hashchange', () => {
-    const i = slugs.indexOf(location.hash.slice(1));
-    go(i < 0 ? 0 : i);
+    // Only screen fragments navigate; anything else (an in-page anchor) is
+    // left alone rather than sending the reader back to Home.
+    const h = location.hash.slice(1);
+    if (!h) return go(0);
+    const i = slugs.indexOf(h);
+    if (i >= 0) go(i);
+  });
+
+  // Skip link: focus the pane directly, without touching the URL fragment.
+  $<HTMLAnchorElement>('#skip-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    pane?.focus();
   });
 
   fromHash();
