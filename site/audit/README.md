@@ -24,3 +24,25 @@ Needs `pngjs`.
 
 `uiclip.py` expects `before-<desk|mob>-<i>.png` / `after-…` screenshots in the
 working directory and `torch`, `transformers`, `pillow`.
+
+## Saliency (UEyes)
+
+UEyes (Jiang et al., CHI 2023) publishes gaze heatmaps for 1,980 UIs at 1/3/7 s
+and an official train/test split, but not the UMSI++ weights. So:
+
+1. `fetch_ueyes.py` pulls only images + `heatmaps_1s/3s` out of the 12.9 GB
+   Zenodo zip with HTTP range reads (~1 GB).
+2. `ueyes_feats.py` caches frozen DINOv2-S features (layers 8+12, native aspect).
+3. `ueyes_train.py 3s` trains a small conv readout + learned position prior.
+   Official test split, CC↑/KLD↓: centre-bias only 0.435/1.21, readout
+   0.690/0.64 (web 0.648/0.73, mobile 0.753/0.48).
+4. `aoi.mjs` captures screens + AOI boxes (claim / CTA / evidence / chrome /
+   lit cloud); `ueyes_audit.py <tags>` reports predicted 3 s attention share
+   and lift (share ÷ area) per AOI. It imports `ueyes_train_defs.py`: the
+   class/def blocks of `ueyes_train.py` without the training code.
+
+`target.mjs` reports the Contact link target sizes (WCAG 2.5.8).
+
+Free-viewing saliency is bottom-up: it predicts the first glances, not a
+recruiter searching for "the CV". Use it to check that claims and actions
+sit where the eye already lands, not as a findability test.

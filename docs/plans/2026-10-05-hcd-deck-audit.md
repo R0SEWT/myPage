@@ -1,6 +1,6 @@
 # HCD audit of the deck (screens 01–06, navigation)
 
-- Status: Iteration 1 done
+- Status: Iteration 2 done
 - Date: 2026-10-05
 
 ## Goal
@@ -38,10 +38,49 @@ change justified by a measurable task failure.
 | Mean luminance, Approach vs others | 133 vs ~10 | 9 vs ~10 |
 | UIClip P(after preferred), Approach desktop | — | 0.88 (noise on untouched screens ±0.15) |
 
+## Iteration 2: contrast and saliency
+
+### Effective contrast (audit/contrast.mjs)
+
+Contrast measured against the field as rendered behind each text box, not
+against #000. WCAG 2 ratios passed almost everything; APCA, which models
+polarity, did not: body copy sat at Lc ~51 where running text needs 75.
+
+| Desktop, ~241 text boxes | WCAG AA fails | APCA Bronze fails |
+|---|---|---|
+| Iteration 1 | 16 | 108 |
+| Iteration 2 | 0 | 0 (stable over 2 runs; mobile 0 / 0) |
+
+Changes: dim tiers re-set to Lc ~78/68/62/42; descriptions promoted to
+dim-1; ordinals aria-hidden; local dark halo on right-column copy where the
+cloud lands; labels with wide tracking moved up a tier (a halo cannot cover
+the field between widely tracked glyphs).
+
+### Predicted attention (UEyes readout, 3 s)
+
+Model validated on the official UEyes test split (CC 0.690 vs 0.435 for
+centre bias). Lift = attention share ÷ area share; >1 means the AOI draws
+more than its size.
+
+| Finding | Before | After |
+|---|---|---|
+| Contact CTAs (CV) lift, desktop | 0.19 | 1.46 |
+| Contact CTAs (CV) lift, mobile | 0.16 | 0.79 |
+| Contact CV target, mobile | 70×17 px | 134×45 px |
+| Career role titles lift, desktop | 1.43 | 1.70 |
+| Career role titles lift, mobile | 0.71 | 0.80 |
+
+- Restyling the Contact links into buttons alone did not move attention
+  (0.21); moving them under the address, where the gaze already is, did.
+- The white Approach sheet did not steal attention from its lede (the
+  baseline's AOI selectors missed its old class names; the overlays show the
+  lede attended in both versions). Its cost was integration, the luminance
+  jump, not attention.
+- Home CTAs sit at lift ~0.5; Home is out of scope by decision.
+
 ## Next iterations
 
 1. Real users: 5 short remote sessions (2 recruiters, 2 ML engineers, 1 keyboard/screen-reader) — the synthetic numbers only pick what to watch.
-2. UEyes saliency on each screen: does the eye land on the claim (role, system, outcome) or on the particle cloud?
 3. UXAgent-style LLM personas with PersonaHub seeds, scored against the task list above, for wording and findability (not for visuals).
 4. Systems (01): the CIP lead has no artefact beside it while Wachi has video; consider an architecture diagram.
-5. Contrast audit of `--v-dim-3/4` text over the field at full density.
+5. Career on mobile: role titles still draw less than their area (lift 0.80); the date column competes.
