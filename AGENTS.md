@@ -82,3 +82,19 @@ bd close <id>         # Complete work
 - NEVER say "ready to push when you are" - YOU must push
 - If push fails, resolve and retry until it succeeds
 <!-- END BEADS INTEGRATION -->
+
+### Cloud sessions (Claude Code on the web)
+
+`.claude/hooks/session-start.sh` installs `bd`, clones the Dolt database over
+HTTPS and imports `.beads/issues.jsonl` on top, so `bd` works as usual. The
+git proxy there only accepts pushes to the session branch, so `bd dolt push`
+is refused (403). Replace step 4 with:
+
+```bash
+bd export --include-memories -o .beads/issues.jsonl   # memories are excluded without the flag
+git add .beads/issues.jsonl && git commit -m "bd: ..."
+git push -u origin <session-branch>
+```
+
+Dolt catches up from a local machine: `git pull`, then `bd import -i
+.beads/issues.jsonl` if the post-merge hook did not, then `bd dolt push`.
