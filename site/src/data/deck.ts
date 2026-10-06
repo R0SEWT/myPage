@@ -65,7 +65,8 @@ export const SCREENS: Screen[] = [
     num: '03',
     label: { es: 'Open Source', en: 'Open Source' },
     heading: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' },
-    field: { shape: 1, ...DENSE },
+    // The double helix moved here when Research took the signer.
+    field: { shape: 4, ...DENSE },
   },
   { num: '04', label: { es: 'Trayectoria', en: 'Career' }, field: { shape: 3, ...DENSE } },
   {
