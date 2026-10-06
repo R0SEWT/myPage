@@ -1236,6 +1236,25 @@ a:hover {
   border-color: var(--v-green);
 }
 
+/* Imitator as the lead: the publication row takes the lead's scale, and the
+   thesis follows as a secondary block. */
+.pub-row--lead {
+  padding-top: 0;
+}
+
+.pub-row--lead .media-title {
+  font-size: clamp(1.75rem, 3.4vw, 3.125rem);
+  font-weight: 200;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin-bottom: 0.875rem;
+  max-width: 22ch;
+}
+
+.research-second {
+  padding-top: 1.375rem;
+}
+
 /* --------------------------------------------------------- 03 open source */
 
 /* Contribution sits under the description at every width. In a right-hand
@@ -1937,6 +1956,7 @@ body.is-doc {
       'cover eye'
       'cover title'
       'desc  desc'
+      'meta  meta'
       'doi   doi';
     gap: 0.5rem 1rem;
     align-items: start;
@@ -1957,6 +1977,10 @@ body.is-doc {
   .pub-row .media-title {
     grid-area: title;
     margin-top: 0;
+  }
+
+  .pub-row .media-meta {
+    grid-area: meta;
   }
 
   .pub-row .media-desc {
