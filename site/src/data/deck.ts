@@ -60,7 +60,7 @@ export const SCREENS: Screen[] = [
   { num: '00', label: { es: 'Home', en: 'Home' }, field: { shape: 0, offset: 0, dim: 1 } },
   { num: '01', label: { es: 'Sistemas', en: 'Systems' }, field: { shape: 5, ...DENSE } },
   // Shape 7 is the signer: the field performs Imitator's clip 1660 (field.ts).
-  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 7, ...DENSE, dim: 0.62 } },
+  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 7, ...DENSE, offset: 1.55, dim: 0.62 } },
   {
     num: '03',
     label: { es: 'Open Source', en: 'Open Source' },

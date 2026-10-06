@@ -35,12 +35,19 @@ const FINGERS: [number, number][] = [
 ];
 
 // World units, matching the field's shapes (about ±1.35).
-const SCALE = 1.45;
+const SCALE = 1.6;
 const CY = 0.0;
 
-// Loop, seconds.
-const T_SIGN = FRAMES / FPS;
-const T_HOLD = 0.5;
+// Loop, seconds. The sign runs a little under real speed so the hands can
+// be followed, and holds its last pose before it lets go.
+const SPEED = 0.8;
+const T_SIGN = FRAMES / FPS / SPEED;
+const T_HOLD = 0.9;
+
+// Finger trails: some points follow the pose a few steps late, so the path
+// of the sign stays on screen for a moment, not just its current shape.
+const LAGS = 6;
+const LAG_STEP = 0.03;
 const T_TO_TOKENS = 1.5;
 const T_TOKENS = 1.4;
 const T_MERGE = 1.1;
@@ -111,6 +118,32 @@ export async function loadSigner(n: number): Promise<Signer> {
   for (let i = 0; i < kp.length; i++) kp[i] = raw.getUint16(i * 2, true) / 65535;
   if ('fonts' in document) await document.fonts.ready;
 
+  // Points go to bones in proportion to how long each bone is across the
+  // clip, so a hand the tracker collapsed to a knot gets few points instead
+  // of a bright clump, and the fingers that open and move get the most.
+  const weights = (edges: [number, number][]) => {
+    const cum = new Float32Array(edges.length);
+    let acc = 0;
+    edges.forEach(([ea, eb], k) => {
+      let len = 0;
+      for (let f = 0; f < FRAMES; f++) {
+        const oa = (f * POINTS + ea) * 2;
+        const ob = (f * POINTS + eb) * 2;
+        len += Math.hypot(kp[oa] - kp[ob], kp[oa + 1] - kp[ob + 1]);
+      }
+      acc += len / FRAMES;
+      cum[k] = acc;
+    });
+    return cum.map((c) => c / acc);
+  };
+  const pick = (edges: [number, number][], cum: Float32Array, r: number) => {
+    let k = 0;
+    while (k < cum.length - 1 && cum[k] < r) k++;
+    return edges[k];
+  };
+  const cumFingers = weights(FINGERS);
+  const cumPose = weights(POSE);
+
   const tokens = sampleText(TOKENS, 1.35);
   const word = sampleText(WORD, 1.25);
 
@@ -132,30 +165,35 @@ export async function loadSigner(n: number): Promise<Signer> {
   const tokIdx = new Uint32Array(n);
   const wordIdx = new Uint32Array(n);
   const delay = new Float32Array(n);
+  const lag = new Uint8Array(n);
 
   for (let i = 0; i < n; i++) {
     const r = rnd(i, 21);
     let k = KIND_HAZE;
-    if (r < 0.32) k = KIND_FINGER;
-    else if (r < 0.47) k = KIND_BODY;
-    else if (r < 0.56) k = KIND_FACE;
+    if (r < 0.38) k = KIND_FINGER;
+    else if (r < 0.52) k = KIND_BODY;
+    else if (r < 0.555) k = KIND_FACE;
     kind[i] = k;
     delay[i] = rnd(i, 30);
 
     if (k === KIND_FINGER || k === KIND_BODY) {
-      const edges = k === KIND_FINGER ? FINGERS : POSE;
-      const e = edges[Math.floor(rnd(i, 22) * edges.length)];
+      const e =
+        k === KIND_FINGER ? pick(FINGERS, cumFingers, rnd(i, 22)) : pick(POSE, cumPose, rnd(i, 22));
+      if (k === KIND_FINGER) {
+        const q = rnd(i, 70);
+        lag[i] = q < 0.75 ? 0 : 1 + Math.min(LAGS - 2, Math.floor(((q - 0.75) / 0.25) * (LAGS - 1)));
+      }
       a[i] = e[0];
       b[i] = e[1];
       t[i] = rnd(i, 23);
-      const j = k === KIND_FINGER ? 0.011 : 0.03;
+      const j = k === KIND_FINGER ? 0.011 : 0.022;
       off[i * 3] = gauss(i, 24) * j;
       off[i * 3 + 1] = gauss(i, 27) * j;
       off[i * 3 + 2] = gauss(i, 40) * j * 2;
     } else if (k === KIND_FACE) {
       a[i] = b[i] = 7 + Math.floor(rnd(i, 22) * 64);
-      off[i * 3] = gauss(i, 24) * 0.006;
-      off[i * 3 + 1] = gauss(i, 27) * 0.006;
+      off[i * 3] = gauss(i, 24) * 0.009;
+      off[i * 3 + 1] = gauss(i, 27) * 0.009;
       off[i * 3 + 2] = gauss(i, 40) * 0.01;
     } else {
       // A loose shell around the figure, thicker towards the floor.
@@ -175,9 +213,10 @@ export async function loadSigner(n: number): Promise<Signer> {
     }
   }
 
-  const pose = new Float32Array(POINTS * 2);
+  const pose = new Float32Array(LAGS * POINTS * 2);
 
-  function poseAt(time: number) {
+  /** Pose at loop time `time` into lag slot `slot`. */
+  function poseAt(time: number, slot: number) {
     const fx = clamp01(time / T_SIGN) * (FRAMES - 1);
     const f0 = Math.floor(fx);
     const f1 = Math.min(FRAMES - 1, f0 + 1);
@@ -187,15 +226,17 @@ export async function loadSigner(n: number): Promise<Signer> {
       const o1 = (f1 * POINTS + p) * 2;
       const x = kp[o0] + (kp[o1] - kp[o0]) * u;
       const y = kp[o0 + 1] + (kp[o1 + 1] - kp[o0 + 1]) * u;
-      pose[p * 2] = (x - 0.5) * SCALE;
-      pose[p * 2 + 1] = -(y - 0.5) * SCALE + CY;
+      const o = (slot * POINTS + p) * 2;
+      pose[o] = (x - 0.5) * SCALE;
+      pose[o + 1] = -(y - 0.5) * SCALE + CY;
     }
   }
 
   const sx = new Float32Array(3);
   function signerPoint(i: number) {
-    const pa = a[i] * 2;
-    const pb = b[i] * 2;
+    const base = lag[i] * POINTS * 2;
+    const pa = base + a[i] * 2;
+    const pb = base + b[i] * 2;
     sx[0] = pose[pa] + (pose[pb] - pose[pa]) * t[i] + off[i * 3];
     sx[1] = pose[pa + 1] + (pose[pb + 1] - pose[pa + 1]) * t[i] + off[i * 3 + 1];
     sx[2] = off[i * 3 + 2];
@@ -221,7 +262,8 @@ export async function loadSigner(n: number): Promise<Signer> {
     const p =
       phase === 1 ? s / T_TO_TOKENS : phase === 3 ? s / T_MERGE : phase === 5 ? s / T_BACK : 0;
 
-    poseAt(phase === 0 ? time : phase === 5 ? 0 : T_SIGN);
+    const at = phase === 0 ? time : phase === 5 ? 0 : T_SIGN;
+    for (let l = 0; l < LAGS; l++) poseAt(phase === 0 ? Math.max(0, at - l * LAG_STEP) : at, l);
 
     for (let i = 0; i < n; i++) {
       const o = i * 3;
