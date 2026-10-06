@@ -24,6 +24,7 @@ const { program, publication } = research;
     <T t={program.meta} as="div" class="media-meta" />
   </div>
 
+  <div class="media-row media-row--pub">
   <div class="pub-row">
     <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
       {/* Shown at ~78px wide, so 2x that is all a sharp screen needs; lazy,
@@ -51,5 +52,21 @@ const { program, publication } = research;
     <a class="pub-doi" href={publication.doi} target="_blank" rel="noopener noreferrer">
       {publication.doiLabel}
     </a>
+  </div>
+
+  <div class="media-frame signs-frame" data-signs>
+    <canvas
+      role="img"
+      aria-label={publication.signs.label.es}
+      data-i18n="aria-label"
+      data-es={publication.signs.label.es}
+      data-en={publication.signs.label.en}
+    ></canvas>
+    <T t={publication.signs.caption} as="div" class="media-caption" />
+    <button type="button" class="media-toggle is-paused" data-signs-toggle aria-label="Reproducir animación">
+      <span class="media-toggle-pause" aria-hidden="true">❚❚</span>
+      <span class="media-toggle-play" aria-hidden="true">▶</span>
+    </button>
+  </div>
   </div>
 </section>

@@ -250,6 +250,21 @@ export const research = {
     // Imported, not a /public path: astro:assets re-encodes it at the size it
     // is shown (rv-fh4: drop the complete original over this file).
     cover: ccisCover,
+    /**
+     * The sign itself (src/scripts/signs.ts): real keypoints of clip 1660 and
+     * the checkpoint's subtokens for it. Teacher-forced, and the caption says
+     * so: free-running the same run scored 7.4% exact.
+     */
+    signs: {
+      label: {
+        es: 'Keypoints reales de la seña “hambriento” que se convierten en los subtokens que produjo el modelo',
+        en: 'Real keypoints of the sign “hambriento” turning into the subtokens the model produced',
+      },
+      caption: {
+        es: 'Clip 1660 · teacher-forced',
+        en: 'Clip 1660 · teacher-forced',
+      },
+    },
     coverAlt: {
       es: 'Information Management and Big Data — actas de SIMBig 2025, volumen Springer CCIS 2895',
       en: 'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
