@@ -449,11 +449,18 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     // Home centres the cloud; Approach nudges it; the text-dense screens slide
     // it right so the copy sits on unlit background.
     const comp = COMPOSITION[screen];
-    px += (comp.offset - px) * (reduced ? 1 : 0.05);
-    dim += (comp.dim - dim) * (reduced ? 1 : 0.06);
+    const aspect = cw / Math.max(1, ch);
 
     const onSigner = shape === SIGNER && signer !== null;
     face += ((onSigner ? 1 : 0) - face) * (reduced ? 1 : 0.05);
+
+    // Only the signer formation (shape 7) adapts offset and camera distance for narrow
+    // viewports. All other screens preserve their exact measured offset and camera distance (camZ = 3.5).
+    const signerOffsetFactor = Math.min(1, Math.max(0, (aspect - 0.75) / 0.7));
+    const targetOffset = comp.offset * (1 - face + face * signerOffsetFactor);
+    px += (targetOffset - px) * (reduced ? 1 : 0.05);
+    dim += (comp.dim - dim) * (reduced ? 1 : 0.06);
+
     if (onSigner) {
       const home = Math.round(rotY / (Math.PI * 2)) * Math.PI * 2;
       rotY += (home - rotY) * (reduced ? 1 : 0.04);
@@ -465,7 +472,8 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
       rotY += (dt / 1000) * 0.075;
     }
 
-    modelView(mv, my * (0.3 - 0.22 * face), rotY + mx * (0.5 - 0.4 * face), px + mx * 0.12, 3.5);
+    const camZ = 3.5 + face * (aspect < 1.15 ? (1.15 - aspect) * 1.3 : 0);
+    modelView(mv, my * (0.3 - 0.22 * face), rotY + mx * (0.5 - 0.4 * face), px + mx * 0.12, camZ);
     gl!.uniform1f(uWobble, 1 - 0.9 * face);
 
     gl!.clear(gl!.COLOR_BUFFER_BIT);
