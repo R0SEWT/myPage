@@ -1236,48 +1236,6 @@ a:hover {
   border-color: var(--v-green);
 }
 
-/* Imitator shown rather than told: the publication shares its row with the
-   sign it decodes, in the same 286px well as the Systems video. Inside the
-   narrower column the DOI drops under the copy. */
-.media-row--pub .pub-row {
-  padding-top: 0;
-}
-
-/* The sign is the image now, so the cover steps aside and the copy gets its
-   width back; the DOI still links the publication. */
-.media-row--pub .pub-cover {
-  display: none;
-}
-
-@media (min-width: 1126px) {
-  .media-row--pub .pub-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .media-row--pub .pub-doi {
-    grid-column: 1;
-    justify-self: start;
-    white-space: normal;
-  }
-}
-
-@media (max-width: 1125px) {
-  .media-row--pub .pub-row {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'eye'
-      'title'
-      'desc'
-      'doi';
-  }
-}
-
-.signs-frame canvas {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
 /* --------------------------------------------------------- 03 open source */
 
 /* Contribution sits under the description at every width. In a right-hand

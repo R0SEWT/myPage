@@ -59,7 +59,8 @@ const DENSE = { offset: 1.42, dim: 0.42 };
 export const SCREENS: Screen[] = [
   { num: '00', label: { es: 'Home', en: 'Home' }, field: { shape: 0, offset: 0, dim: 1 } },
   { num: '01', label: { es: 'Sistemas', en: 'Systems' }, field: { shape: 5, ...DENSE } },
-  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 4, ...DENSE } },
+  // Shape 7 is the signer: the field performs Imitator's clip 1660 (field.ts).
+  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 7, ...DENSE, dim: 0.62 } },
   {
     num: '03',
     label: { es: 'Open Source', en: 'Open Source' },
@@ -251,19 +252,14 @@ export const research = {
     // is shown (rv-fh4: drop the complete original over this file).
     cover: ccisCover,
     /**
-     * The sign itself (src/scripts/signs.ts): real keypoints of clip 1660 and
-     * the checkpoint's subtokens for it. Teacher-forced, and the caption says
-     * so: free-running the same run scored 7.4% exact.
+     * The field behind this screen forms the signer (src/scripts/signer.ts):
+     * the real keypoints of clip 1660 and the checkpoint's subtokens for it.
+     * Teacher-forced, and the line says so: free-running the same run scored
+     * 7.4% exact.
      */
-    signs: {
-      label: {
-        es: 'Keypoints reales de la seña “hambriento” que se convierten en los subtokens que produjo el modelo',
-        en: 'Real keypoints of the sign “hambriento” turning into the subtokens the model produced',
-      },
-      caption: {
-        es: 'Clip 1660 · teacher-forced',
-        en: 'Clip 1660 · teacher-forced',
-      },
+    background: {
+      es: 'Fondo: seña real · clip 1660 · salida teacher-forced',
+      en: 'Background: real sign · clip 1660 · teacher-forced output',
     },
     coverAlt: {
       es: 'Information Management and Big Data — actas de SIMBig 2025, volumen Springer CCIS 2895',
