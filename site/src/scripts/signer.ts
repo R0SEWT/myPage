@@ -73,14 +73,24 @@ const POSE: [number, number][] = [
   [1, 5],    // Neck to left shoulder (symmetrical shoulder cap; resting arm omitted)
 ];
 
-// Active right hand structure (carpal root, metacarpal palm webbing, MCP knuckles, and 5 fingers)
-const HAND_EDGES: [number, number][] = [];
-// 5 fingers: 3 bone segments each (indices 0..19 relative to RH)
-for (let f = 0; f < 5; f++) for (let j = 0; j < 3; j++) HAND_EDGES.push([f * 4 + j, f * 4 + j + 1]);
-// Knuckle arch (MCP joints: 0 to 4, 4 to 8, 8 to 12, 12 to 16)
-for (let f = 0; f < 4; f++) HAND_EDGES.push([f * 4, (f + 1) * 4]);
-// Palm metacarpals from carpal root (0) to knuckles (4, 8, 12, 16)
-HAND_EDGES.push([0, 4], [0, 8], [0, 12], [0, 16]);
+// Active right hand structure (20 keypoints 0..19 relative to RH after remove_keypoints):
+// 0: carpal root (wrist) · 1..4: thumb · 5..8: index · 9..12: middle · 13..16: ring · 17..19: pinky
+const HAND_EDGES: [number, number][] = [
+  // Thumb (CMC -> MCP -> IP -> Tip)
+  [0, 1], [1, 2], [2, 3], [3, 4],
+  // Index (MCP -> PIP -> DIP -> Tip)
+  [5, 6], [6, 7], [7, 8],
+  // Middle (MCP -> PIP -> DIP -> Tip)
+  [9, 10], [10, 11], [11, 12],
+  // Ring (MCP -> PIP -> DIP -> Tip)
+  [13, 14], [14, 15], [15, 16],
+  // Pinky (MCP -> PIP -> Tip)
+  [17, 18], [18, 19],
+  // Knuckle arch across MCP joints (1 -> 5 -> 9 -> 13 -> 17)
+  [1, 5], [5, 9], [9, 13], [13, 17],
+  // Palm metacarpals radiating from carpal root (0) to MCP knuckles
+  [0, 5], [0, 9], [0, 13], [0, 17],
+];
 
 const FINGERS: [number, number][] = HAND_EDGES.map(
   ([a, b]) => [RH + a, RH + b] as [number, number]
@@ -304,6 +314,174 @@ function createArchBox(
   return { cx, cy, cz, w, h, d, x0, x1, y0, y1, z0, z1, layerY, edges, vertices };
 }
 
+/**
+ * Reconstructs RTMPose left-border bounding-box clamping on the active right hand
+ * (frames 94–99, 105–106, 110–121 where ulnar joints hit the crop wall) and applies
+ * a zero-phase velocity- and directional-coherence-adaptive Gaussian filter.
+ */
+function stabilizeKeypoints(kp: Float32Array): void {
+  const clamped = new Uint8Array(FRAMES * 20);
+  const frameClamped = new Uint8Array(FRAMES);
+
+  for (let f = 0; f < FRAMES; f++) {
+    let xmin = Infinity;
+    for (let k = 0; k < 20; k++) {
+      const x = kp[(f * POINTS + RH + k) * 2];
+      if (x < xmin) xmin = x;
+    }
+    let wallCount = 0;
+    for (let k = 0; k < 20; k++) {
+      if (Math.abs(kp[(f * POINTS + RH + k) * 2] - xmin) < 2.5e-4) wallCount++;
+    }
+    const x5 = kp[(f * POINTS + RH + 5) * 2];
+    const x17 = kp[(f * POINTS + RH + 17) * 2];
+    if (wallCount >= 3) {
+      frameClamped[f] = 1;
+      for (let k = 0; k < 20; k++) {
+        if (Math.abs(kp[(f * POINTS + RH + k) * 2] - xmin) < 2.5e-4) clamped[f * 20 + k] = 1;
+      }
+    } else if (x5 - x17 < 0.092) {
+      frameClamped[f] = 1;
+      for (const k of [0, 1, 9, 13, 14, 15, 16, 17, 18, 19]) {
+        if (x5 - kp[(f * POINTS + RH + k) * 2] < 0.085) clamped[f * 20 + k] = 1;
+      }
+    }
+  }
+
+  // Reconstruct clamped hand keypoints relative to unclamped radial anchor (index MCP k=5)
+  const relX = new Float32Array(FRAMES);
+  const relY = new Float32Array(FRAMES);
+  for (let k = 0; k < 20; k++) {
+    if (k === 5) continue;
+    let hasBad = false;
+    for (let f = 0; f < FRAMES; f++) {
+      const oK = (f * POINTS + RH + k) * 2;
+      const o5 = (f * POINTS + RH + 5) * 2;
+      relX[f] = kp[oK] - kp[o5];
+      relY[f] = kp[oK + 1] - kp[o5 + 1];
+      if (clamped[f * 20 + k]) hasBad = true;
+    }
+    if (!hasBad) continue;
+
+    for (let f = 0; f < FRAMES; f++) {
+      if (!clamped[f * 20 + k]) continue;
+      let prev = f - 1;
+      while (prev >= 0 && clamped[prev * 20 + k]) prev--;
+      let next = f + 1;
+      while (next < FRAMES && clamped[next * 20 + k]) next++;
+
+      let rx: number;
+      let ry: number;
+      if (prev >= 0 && next < FRAMES) {
+        const u = (f - prev) / (next - prev);
+        rx = relX[prev] + (relX[next] - relX[prev]) * u;
+        ry = relY[prev] + (relY[next] - relY[prev]) * u;
+      } else if (prev >= 0) {
+        rx = relX[prev];
+        ry = relY[prev];
+      } else if (next < FRAMES) {
+        rx = relX[next];
+        ry = relY[next];
+      } else {
+        continue;
+      }
+      const oK = (f * POINTS + RH + k) * 2;
+      const o5 = (f * POINTS + RH + 5) * 2;
+      kp[oK] = kp[o5] + rx;
+      kp[oK + 1] = kp[o5 + 1] + ry;
+    }
+  }
+
+  // Reconstruct pose wrist (kp 4) relative to carpal root (RH+0) when clamped at the crop border
+  for (let f = 0; f < FRAMES; f++) {
+    const oW = (f * POINTS + 4) * 2;
+    const oR = (f * POINTS + RH) * 2;
+    relX[f] = kp[oW] - kp[oR];
+    relY[f] = kp[oW + 1] - kp[oR + 1];
+  }
+  for (let f = 0; f < FRAMES; f++) {
+    if (!frameClamped[f]) continue;
+    let prev = f - 1;
+    while (prev >= 0 && frameClamped[prev]) prev--;
+    let next = f + 1;
+    while (next < FRAMES && frameClamped[next]) next++;
+    const oW = (f * POINTS + 4) * 2;
+    const oR = (f * POINTS + RH) * 2;
+    if (prev >= 0 && next < FRAMES) {
+      const u = (f - prev) / (next - prev);
+      kp[oW] = kp[oR] + relX[prev] + (relX[next] - relX[prev]) * u;
+      kp[oW + 1] = kp[oR + 1] + relY[prev] + (relY[next] - relY[prev]) * u;
+    } else if (prev >= 0) {
+      kp[oW] = kp[oR] + relX[prev];
+      kp[oW + 1] = kp[oR + 1] + relY[prev];
+    }
+  }
+
+  // Zero-Phase Velocity & Directional-Coherence Adaptive Gaussian Filter
+  const src = new Float32Array(kp);
+  const rawSig = new Float32Array(FRAMES);
+  const smoothSig = new Float32Array(FRAMES);
+
+  for (let p = 0; p < POINTS; p++) {
+    const isActive = p >= RH || p === 3 || p === 4;
+    const sigMin = isActive ? 0.28 : 0.90;
+    const sigMax = isActive ? 2.50 : 3.30;
+    const v0 = isActive ? 0.0038 : 0.0024;
+
+    for (let f = 0; f < FRAMES; f++) {
+      const f0 = Math.max(0, f - 2);
+      const f1 = Math.min(FRAMES - 1, f + 2);
+      const span = Math.max(1, f1 - f0);
+      const o0 = (f0 * POINTS + p) * 2;
+      const o1 = (f1 * POINTS + p) * 2;
+      const vNet = Math.hypot(src[o1] - src[o0], src[o1 + 1] - src[o0 + 1]) / span;
+
+      let path = 0;
+      for (let k = f0; k < f1; k++) {
+        const ok0 = (k * POINTS + p) * 2;
+        const ok1 = ((k + 1) * POINTS + p) * 2;
+        path += Math.hypot(src[ok1] - src[ok0], src[ok1 + 1] - src[ok0 + 1]);
+      }
+      const vPath = path / span;
+      const coh = vNet / (vPath + 1e-6);
+      const m = vNet * (0.25 + 0.75 * coh);
+      const ratio = m / v0;
+      rawSig[f] = sigMin + (sigMax - sigMin) / (1 + ratio * ratio);
+    }
+
+    for (let f = 0; f < FRAMES; f++) {
+      let sw = 0;
+      let accS = 0;
+      for (let t = 0; t < FRAMES; t++) {
+        const d = (t - f) / 1.5;
+        const w = Math.exp(-0.5 * d * d);
+        sw += w;
+        accS += w * rawSig[t];
+      }
+      smoothSig[f] = accS / sw;
+    }
+
+    for (let f = 0; f < FRAMES; f++) {
+      const sig = smoothSig[f];
+      let sw = 0;
+      let sx = 0;
+      let sy = 0;
+      for (let t = 0; t < FRAMES; t++) {
+        const d = (t - f) / sig;
+        if (Math.abs(d) > 4.5) continue;
+        const w = Math.exp(-0.5 * d * d);
+        const ot = (t * POINTS + p) * 2;
+        sw += w;
+        sx += w * src[ot];
+        sy += w * src[ot + 1];
+      }
+      const of = (f * POINTS + p) * 2;
+      kp[of] = sx / sw;
+      kp[of + 1] = sy / sw;
+    }
+  }
+}
+
 export async function loadSigner(n: number): Promise<Signer> {
   // A request that never settles would leave the field waiting on the stand-in.
   const res = await fetch(SRC, { signal: AbortSignal.timeout(15_000) });
@@ -312,6 +490,7 @@ export async function loadSigner(n: number): Promise<Signer> {
   const raw = new DataView(buf);
   const kp = new Float32Array(FRAMES * POINTS * 2);
   for (let i = 0; i < kp.length; i++) kp[i] = raw.getUint16(i * 2, true) / 65535;
+  stabilizeKeypoints(kp);
   if ('fonts' in document) await document.fonts.ready;
 
   // The 4 model output tokens and final decoded word positioned in the open viewing zone
@@ -965,20 +1144,30 @@ export async function loadSigner(n: number): Promise<Signer> {
   evalBoxes(formBoxes, 0.0, 0.0);
   evalBoxes(formBoxesEnd, 1.0, 3.8);
 
-  /* Poses for signer, one per trail slot. Real keypoints centered on CX, CY. */
+  /* Poses for signer, one per trail slot. Real keypoints centered on CX, CY with C1 Catmull-Rom interpolation. */
   const pose = new Float32Array(LAGS * POINTS * 2);
   function poseAt(time: number, slot: number) {
     const fx = clamp01(time / T_SIGN) * (FRAMES - 1);
-    const f0 = Math.floor(fx);
-    const f1 = Math.min(FRAMES - 1, f0 + 1);
-    const u = fx - f0;
+    const f1 = Math.floor(fx);
+    const u = fx - f1;
+    const u2 = u * u;
+    const u3 = u2 * u;
+    const f0 = Math.max(0, f1 - 1);
+    const f2 = Math.min(FRAMES - 1, f1 + 1);
+    const f3 = Math.min(FRAMES - 1, f1 + 2);
     const base = slot * POINTS * 2;
     for (let p = 0; p < POINTS; p++) {
       const o0 = (f0 * POINTS + p) * 2;
       const o1 = (f1 * POINTS + p) * 2;
+      const o2 = (f2 * POINTS + p) * 2;
+      const o3 = (f3 * POINTS + p) * 2;
       const o = base + p * 2;
-      pose[o] = (kp[o0] + (kp[o1] - kp[o0]) * u - CX) * SCALE;
-      pose[o + 1] = -(kp[o0 + 1] + (kp[o1 + 1] - kp[o0 + 1]) * u - CY) * SCALE;
+      const x0 = kp[o0], x1 = kp[o1], x2 = kp[o2], x3 = kp[o3];
+      const y0 = kp[o0 + 1], y1 = kp[o1 + 1], y2 = kp[o2 + 1], y3 = kp[o3 + 1];
+      const ix = 0.5 * (2 * x1 + (-x0 + x2) * u + (2 * x0 - 5 * x1 + 4 * x2 - x3) * u2 + (-x0 + 3 * x1 - 3 * x2 + x3) * u3);
+      const iy = 0.5 * (2 * y1 + (-y0 + y2) * u + (2 * y0 - 5 * y1 + 4 * y2 - y3) * u2 + (-y0 + 3 * y1 - 3 * y2 + y3) * u3);
+      pose[o] = (ix - CX) * SCALE;
+      pose[o + 1] = -(iy - CY) * SCALE;
     }
   }
 

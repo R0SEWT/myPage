@@ -487,7 +487,7 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
 
     const camZ = 3.5 + face * (aspect < 1.15 ? (1.15 - aspect) * 2.8 : 0);
     modelView(mv, my * (0.3 - 0.22 * face), rotY + mx * (0.5 - 0.4 * face), px + mx * 0.12, camZ);
-    gl!.uniform1f(uWobble, 1 - 0.9 * face);
+    gl!.uniform1f(uWobble, 1 - face);
 
     gl!.clear(gl!.COLOR_BUFFER_BIT);
     gl!.uniformMatrix4fv(uMV, false, mv);
