@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 
 const i = 2;
 const s = SCREENS[i];
-const { program, publication } = research;
+const { publication } = research;
 ---
 <section
   class="screen screen--research"
@@ -17,39 +17,40 @@ const { program, publication } = research;
 >
   <SecHead label={s.label} index={i} />
 
+  {/* Imitator as the single focus: the field behind this screen performs it (signer.ts),
+      so the copy the eye lands on matches the 3D WebGL inference pipeline. */}
   <div class="lead">
-    <T t={program.eyebrow} as="div" class="eyebrow eyebrow--live" />
-    <T t={program.title} as="h3" class="lead-title lead-title--wide" />
-    <T t={program.desc} as="p" class="lead-desc" />
-    <T t={program.meta} as="div" class="media-meta" />
-  </div>
+    <div class="pub-row pub-row--lead">
+      <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
+        {/* Lazy, because this screen is not the one the deck opens on. */}
+        <Image
+          src={publication.cover}
+          alt={publication.coverAlt.es}
+          data-i18n="alt"
+          data-es={publication.coverAlt.es}
+          data-en={publication.coverAlt.en}
+          widths={[160, 240, 300]}
+          sizes="(max-width: 1125px) 68px, (max-width: 1375px) 120px, 140px"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
 
-  <div class="pub-row">
-    <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
-      {/* Shown at ~78px wide, so 2x that is all a sharp screen needs; lazy,
-          because this screen is not the one the deck opens on. */}
-      <Image
-        src={publication.cover}
-        alt={publication.coverAlt.es}
-        data-i18n="alt"
-        data-es={publication.coverAlt.es}
-        data-en={publication.coverAlt.en}
-        widths={[160, 240, 300]}
-        sizes="(max-width: 1125px) 68px, (max-width: 1375px) 120px, 140px"
-        format="webp"
-        loading="lazy"
-        decoding="async"
-      />
-    </a>
+      <div>
+        <T t={publication.eyebrow} as="div" class="eyebrow eyebrow--live" />
+        <T t={publication.title} as="h3" class="media-title" />
+        <T t={publication.desc} as="p" class="media-desc" />
+        <T t={publication.background} as="div" class="media-meta" />
 
-    <div>
-      <T t={publication.eyebrow} as="div" class="eyebrow eyebrow--live" />
-      <T t={publication.title} as="h3" class="media-title" />
-      <T t={publication.desc} as="p" class="media-desc" />
+        <div class="pub-actions">
+          <a class="pub-doi-btn" href={publication.doi} target="_blank" rel="noopener noreferrer">
+            <span class="pub-doi-tag">DOI</span>
+            <span class="pub-doi-id">{publication.doiLabel}</span>
+            <span class="pub-doi-arrow">↗</span>
+          </a>
+        </div>
+      </div>
     </div>
-
-    <a class="pub-doi" href={publication.doi} target="_blank" rel="noopener noreferrer">
-      {publication.doiLabel}
-    </a>
   </div>
 </section>

@@ -12,6 +12,7 @@
  */
 
 import { SCREENS } from '../data/deck';
+import type { Signer } from './signer';
 
 export interface FieldOptions {
   /** Number of points. */
@@ -35,6 +36,7 @@ export interface Field {
 
 const GA = 2.399963;
 const MORPH_MS = 1500;
+const SIGNER = 7;
 
 /**
  * How each screen composes the field — formation, cloud placement and
@@ -55,8 +57,12 @@ function rnd(i: number, s: number): number {
  *
  * 0 sphere shell · 1 spiral galaxy · 2 two lobes · 3 torus
  * 4 double helix · 5 lattice cube · 6 ring with core
+ *
+ * 7 is the signer (signer.ts), which moves every frame and is written by
+ * `frame()`; until its data has loaded it stands in as the double helix.
  */
 function shapeFor(i: number, n: number, shape: number, out: number[]): void {
+  if (shape === SIGNER) shape = 4;
   const t = (i + 0.5) / n;
   const a = rnd(i, 1);
   const b = rnd(i, 2);
@@ -156,11 +162,12 @@ uniform float uMix;
 uniform float uTime;
 uniform float uSize;
 uniform float uPr;
+uniform float uWobble;
 varying vec3 vColor;
 varying float vFade;
 void main() {
   vec3 p = mix(aFrom, aTo, uMix);
-  float w = 0.035 * sin(uTime * 0.55 + aSeed * 31.4);
+  float w = 0.035 * uWobble * sin(uTime * 0.55 + aSeed * 31.4);
   p += normalize(p + 0.0001) * w;
   vec4 mv = modelViewMatrix * vec4(p, 1.0);
   gl_Position = projectionMatrix * mv;
@@ -313,6 +320,7 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   const uSize = gl.getUniformLocation(prog, 'uSize');
   const uAlpha = gl.getUniformLocation(prog, 'uAlpha');
   const uPr = gl.getUniformLocation(prog, 'uPr');
+  const uWobble = gl.getUniformLocation(prog, 'uWobble');
 
   const bind = (loc: number, buf: WebGLBuffer, size: number) => {
     if (loc < 0) return;
@@ -352,6 +360,15 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   let cw = 0;
   let ch = 0;
 
+  // The signer is drawn face-on and still: rotation winds back to the nearest
+  // full turn, the pointer tilt and the breathing wobble shrink, so the
+  // fingers stay legible.
+  let signer: Signer | null = null;
+  let signerLoading = false;
+  let signStart = 0;
+  let rotY = 0;
+  let face = 0;
+
   let fpsValue = 60;
   let frames = 0;
   let acc = 0;
@@ -384,11 +401,39 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     }
     gl!.bindBuffer(gl!.ARRAY_BUFFER, bufFrom);
     gl!.bufferSubData(gl!.ARRAY_BUFFER, 0, from);
+    if (next === SIGNER) {
+      if (signer) signer.fill(to, reduced ? signer.still : 0);
+      else loadSigner();
+      signStart = performance.now();
+    }
     gl!.bindBuffer(gl!.ARRAY_BUFFER, bufTo);
     gl!.bufferSubData(gl!.ARRAY_BUFFER, 0, to);
     shape = next;
     morphStart = performance.now();
     mixNow = 0;
+  }
+
+  function loadSigner() {
+    if (signer || signerLoading) return;
+    signerLoading = true;
+    import('./signer')
+      .then((m) => m.loadSigner(N))
+      .then((s) => {
+        signer = s;
+        if (shape === SIGNER) retarget(SIGNER);
+      })
+      // A failed or timed-out load leaves the double helix standing in and
+      // lets the next visit near Research try again.
+      .catch(() => {})
+      .finally(() => {
+        signerLoading = false;
+      });
+  }
+
+  /** Research, or a screen next to it: the reader is close enough to fetch. */
+  function nearSigner(index: number): boolean {
+    for (let j = index - 1; j <= index + 1; j++) if (COMPOSITION[j]?.shape === SIGNER) return true;
+    return false;
   }
 
   function frame() {
@@ -415,10 +460,34 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     // Home centres the cloud; Approach nudges it; the text-dense screens slide
     // it right so the copy sits on unlit background.
     const comp = COMPOSITION[screen];
-    px += (comp.offset - px) * (reduced ? 1 : 0.05);
+    const aspect = cw / Math.max(1, ch);
+
+    const onSigner = shape === SIGNER && signer !== null;
+    face += ((onSigner ? 1 : 0) - face) * (reduced ? 1 : 0.05);
+
+    // Only the signer formation (shape 7) adapts offset and camera distance for narrow
+    // viewports. All other screens preserve their exact measured offset and camera distance (camZ = 3.5).
+    const signerOffsetFactor = Math.min(1, Math.max(0, (aspect - 0.75) / 0.7));
+    const targetOffset = comp.offset * (1 - face + face * signerOffsetFactor);
+    px += (targetOffset - px) * (reduced ? 1 : 0.05);
     dim += (comp.dim - dim) * (reduced ? 1 : 0.06);
 
-    modelView(mv, my * 0.3, tsec * 0.075 + mx * 0.5, px + mx * 0.12, 3.5);
+    if (onSigner) {
+      const home = Math.round(rotY / (Math.PI * 2)) * Math.PI * 2;
+      rotY += (home - rotY) * (reduced ? 1 : 0.04);
+      // Reduced motion holds the still pose that retarget() already uploaded.
+      if (!reduced) {
+        signer!.fill(to, ((now - signStart) / 1000) % signer!.cycle);
+        gl!.bindBuffer(gl!.ARRAY_BUFFER, bufTo);
+        gl!.bufferSubData(gl!.ARRAY_BUFFER, 0, to);
+      }
+    } else if (!reduced) {
+      rotY += (dt / 1000) * 0.075;
+    }
+
+    const camZ = 3.5 + face * (aspect < 1.15 ? (1.15 - aspect) * 2.8 : 0);
+    modelView(mv, my * (0.3 - 0.22 * face), rotY + mx * (0.5 - 0.4 * face), px + mx * 0.12, camZ);
+    gl!.uniform1f(uWobble, 1 - face);
 
     gl!.clear(gl!.COLOR_BUFFER_BIT);
     gl!.uniformMatrix4fv(uMV, false, mv);
@@ -456,6 +525,10 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     count: N,
     setShape(index: number) {
       screen = Math.max(0, Math.min(COMPOSITION.length - 1, index));
+      // Fetch the signer once the reader reaches a screen next to Research, so
+      // it usually opens on the figure rather than on its stand-in, while
+      // visitors who never come near it don't download it.
+      if (nearSigner(screen)) loadSigner();
       const next = COMPOSITION[screen].shape;
       if (next === shape) return;
       retarget(next);

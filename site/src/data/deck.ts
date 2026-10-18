@@ -38,7 +38,8 @@ export interface Screen {
    *
    * `shape` indexes the formation table in scripts/field.ts (0 sphere shell ·
    * 1 spiral galaxy · 2 two lobes · 3 torus · 4 double helix · 5 lattice cube ·
-   * 6 ring with core). `offset` slides the cloud right so copy sits on unlit
+   * 6 ring with core · 7 the signer, Imitator's clip 1660, standing in as the
+   * double helix until its data loads). `offset` slides the cloud right so copy sits on unlit
    * background; `dim` is the alpha multiplier for text-dense screens.
    */
   field: { shape: number; offset: number; dim: number };
@@ -59,12 +60,14 @@ const DENSE = { offset: 1.42, dim: 0.42 };
 export const SCREENS: Screen[] = [
   { num: '00', label: { es: 'Home', en: 'Home' }, field: { shape: 0, offset: 0, dim: 1 } },
   { num: '01', label: { es: 'Sistemas', en: 'Systems' }, field: { shape: 5, ...DENSE } },
-  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 4, ...DENSE } },
+  // Shape 7 is the signer: the field performs Imitator's clip 1660 (field.ts).
+  { num: '02', label: { es: 'Investigación', en: 'Research' }, field: { shape: 7, ...DENSE, offset: 1.55, dim: 0.62 } },
   {
     num: '03',
     label: { es: 'Open Source', en: 'Open Source' },
     heading: { es: 'Contribuciones Open Source', en: 'Contributions Open Source' },
-    field: { shape: 1, ...DENSE },
+    // The double helix moved here when Research took the signer.
+    field: { shape: 4, ...DENSE },
   },
   { num: '04', label: { es: 'Trayectoria', en: 'Career' }, field: { shape: 3, ...DENSE } },
   {
@@ -246,10 +249,20 @@ export const research = {
     },
     doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
     /** An identifier, not copy — the same in both languages. */
-    doiLabel: 'DOI 10.1007/978-3-032-20322-9_23 ↗',
+    doiLabel: '10.1007/978-3-032-20322-9_23',
     // Imported, not a /public path: astro:assets re-encodes it at the size it
     // is shown (rv-fh4: drop the complete original over this file).
     cover: ccisCover,
+    /**
+     * The field behind this screen forms the signer (src/scripts/signer.ts):
+     * the real keypoints of clip 1660 and the checkpoint's subtokens for it.
+     * Teacher-forced, and the line says so: free-running the same run scored
+     * 7.4% exact.
+     */
+    background: {
+      es: 'Fondo: seña real · clip 1660 · salida teacher-forced',
+      en: 'Background: real sign · clip 1660 · teacher-forced output',
+    },
     coverAlt: {
       es: 'Information Management and Big Data — actas de SIMBig 2025, volumen Springer CCIS 2895',
       en: 'Information Management and Big Data — SIMBig 2025 proceedings, Springer CCIS volume 2895',
