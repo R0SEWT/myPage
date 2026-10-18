@@ -414,7 +414,7 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
   }
 
   function loadSigner() {
-    if (signerLoading) return;
+    if (signer || signerLoading) return;
     signerLoading = true;
     import('./signer')
       .then((m) => m.loadSigner(N))
@@ -422,7 +422,18 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
         signer = s;
         if (shape === SIGNER) retarget(SIGNER);
       })
-      .catch(() => {});
+      // A failed or timed-out load leaves the double helix standing in and
+      // lets the next visit near Research try again.
+      .catch(() => {})
+      .finally(() => {
+        signerLoading = false;
+      });
+  }
+
+  /** Research, or a screen next to it: the reader is close enough to fetch. */
+  function nearSigner(index: number): boolean {
+    for (let j = index - 1; j <= index + 1; j++) if (COMPOSITION[j]?.shape === SIGNER) return true;
+    return false;
   }
 
   function frame() {
@@ -464,10 +475,12 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
     if (onSigner) {
       const home = Math.round(rotY / (Math.PI * 2)) * Math.PI * 2;
       rotY += (home - rotY) * (reduced ? 1 : 0.04);
-      const ts = reduced ? signer!.still : ((now - signStart) / 1000) % signer!.cycle;
-      signer!.fill(to, ts);
-      gl!.bindBuffer(gl!.ARRAY_BUFFER, bufTo);
-      gl!.bufferSubData(gl!.ARRAY_BUFFER, 0, to);
+      // Reduced motion holds the still pose that retarget() already uploaded.
+      if (!reduced) {
+        signer!.fill(to, ((now - signStart) / 1000) % signer!.cycle);
+        gl!.bindBuffer(gl!.ARRAY_BUFFER, bufTo);
+        gl!.bufferSubData(gl!.ARRAY_BUFFER, 0, to);
+      }
     } else if (!reduced) {
       rotY += (dt / 1000) * 0.075;
     }
@@ -507,14 +520,15 @@ export function createField(host: HTMLElement, opts: FieldOptions): Field | null
 
   resize();
   raf = requestAnimationFrame(frame);
-  // Fetch the signer while the reader is still on earlier screens, so
-  // Research opens on the figure rather than on its stand-in.
-  if (COMPOSITION.some((c) => c.shape === SIGNER)) window.setTimeout(loadSigner, 2500);
 
   return {
     count: N,
     setShape(index: number) {
       screen = Math.max(0, Math.min(COMPOSITION.length - 1, index));
+      // Fetch the signer once the reader reaches a screen next to Research, so
+      // it usually opens on the figure rather than on its stand-in, while
+      // visitors who never come near it don't download it.
+      if (nearSigner(screen)) loadSigner();
       const next = COMPOSITION[screen].shape;
       if (next === shape) return;
       retarget(next);

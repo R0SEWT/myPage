@@ -38,7 +38,8 @@ export interface Screen {
    *
    * `shape` indexes the formation table in scripts/field.ts (0 sphere shell ·
    * 1 spiral galaxy · 2 two lobes · 3 torus · 4 double helix · 5 lattice cube ·
-   * 6 ring with core). `offset` slides the cloud right so copy sits on unlit
+   * 6 ring with core · 7 the signer, Imitator's clip 1660, standing in as the
+   * double helix until its data loads). `offset` slides the cloud right so copy sits on unlit
    * background; `dim` is the alpha multiplier for text-dense screens.
    */
   field: { shape: number; offset: number; dim: number };

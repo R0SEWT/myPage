@@ -218,7 +218,10 @@ function sampleTokensWithIds(
 }
 
 export async function loadSigner(n: number): Promise<Signer> {
-  const buf = await (await fetch(SRC)).arrayBuffer();
+  // A request that never settles would leave the field waiting on the stand-in.
+  const res = await fetch(SRC, { signal: AbortSignal.timeout(15_000) });
+  if (!res.ok) throw new Error(`signer: ${SRC} answered ${res.status}`);
+  const buf = await res.arrayBuffer();
   const raw = new DataView(buf);
   const kp = new Float32Array(FRAMES * POINTS * 2);
   for (let i = 0; i < kp.length; i++) kp[i] = raw.getUint16(i * 2, true) / 65535;
