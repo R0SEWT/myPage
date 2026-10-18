@@ -249,7 +249,7 @@ export const research = {
     },
     doi: 'https://doi.org/10.1007/978-3-032-20322-9_23',
     /** An identifier, not copy — the same in both languages. */
-    doiLabel: 'DOI 10.1007/978-3-032-20322-9_23 ↗',
+    doiLabel: '10.1007/978-3-032-20322-9_23',
     // Imported, not a /public path: astro:assets re-encodes it at the size it
     // is shown (rv-fh4: drop the complete original over this file).
     cover: ccisCover,

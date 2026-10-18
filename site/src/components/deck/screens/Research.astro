@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 
 const i = 2;
 const s = SCREENS[i];
-const { program, publication } = research;
+const { publication } = research;
 ---
 <section
   class="screen screen--research"
@@ -17,11 +17,8 @@ const { program, publication } = research;
 >
   <SecHead label={s.label} index={i} />
 
-  {/* Imitator leads: the field behind this screen performs it (signer.ts),
-      so the copy the eye lands on first names what the figure is doing. The
-      attention audit had put this move at 44% predicted attention for the
-      publication against the thesis dropping from 0.40 to 0.17; the author
-      took that trade once the field started telling Imitator. */}
+  {/* Imitator as the single focus: the field behind this screen performs it (signer.ts),
+      so the copy the eye lands on matches the 3D WebGL inference pipeline. */}
   <div class="lead">
     <div class="pub-row pub-row--lead">
       <a class="pub-cover" href={publication.doi} target="_blank" rel="noopener noreferrer">
@@ -45,18 +42,15 @@ const { program, publication } = research;
         <T t={publication.title} as="h3" class="media-title" />
         <T t={publication.desc} as="p" class="media-desc" />
         <T t={publication.background} as="div" class="media-meta" />
+
+        <div class="pub-actions">
+          <a class="pub-doi-btn" href={publication.doi} target="_blank" rel="noopener noreferrer">
+            <span class="pub-doi-tag">DOI</span>
+            <span class="pub-doi-id">{publication.doiLabel}</span>
+            <span class="pub-doi-arrow">↗</span>
+          </a>
+        </div>
       </div>
-
-      <a class="pub-doi" href={publication.doi} target="_blank" rel="noopener noreferrer">
-        {publication.doiLabel}
-      </a>
     </div>
-  </div>
-
-  <div class="research-second">
-    <T t={program.eyebrow} as="div" class="eyebrow" />
-    <T t={program.title} as="h3" class="media-title" />
-    <T t={program.desc} as="p" class="media-desc" />
-    <T t={program.meta} as="div" class="media-meta" />
   </div>
 </section>
