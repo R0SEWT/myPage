@@ -191,12 +191,12 @@ export const systems = {
       en: 'Wachi — Risk-Aware Pedestrian Routing',
     },
     desc: {
-      es: 'Diseñé y construí un ruteador peatonal sobre un grafo propio de OpenStreetMap: junto a la ruta más corta ofrece otra con menos robos y hurtos registrados cerca, si el desvío es corto.',
-      en: 'Designed and built a pedestrian router on its own OpenStreetMap graph: next to the shortest route it offers one past fewer registered robberies and thefts, when the detour is short.',
+      es: 'Diseñé y construí un ruteador peatonal: junto a la ruta más corta ofrece otra con menos robos y hurtos registrados cerca, solo si el desvío es corto y la exposición baja al menos 20 %.',
+      en: 'Designed and built a pedestrian router: next to the shortest route it offers one past fewer registered robberies and thefts, only when the detour is short and exposure drops by at least 20%.',
     },
     meta: {
-      es: 'Grafo OSM propio · Robos y hurtos a ≤150 m · Desvío ≤ +15 % o +5 min',
-      en: 'Own OSM graph · Robberies and thefts ≤150 m · Detour ≤ +15% or +5 min',
+      es: 'Lima · Robos y hurtos a ≤150 m · Desvío ≤ +15 % o +5 min',
+      en: 'Lima · Robberies and thefts ≤150 m · Detour ≤ +15% or +5 min',
     },
     demo: 'https://wachi.rosewt.dev/',
     demoLabel: { es: 'Demo en vivo', en: 'Live demo' },
