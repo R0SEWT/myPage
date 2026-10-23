@@ -150,7 +150,7 @@ export const home = {
   ],
   name: 'Rody Vilchez',
   role: 'Applied ML Engineer',
-  org: 'AI Intern · CIP–CGIAR',
+  org: 'Assistant – Artificial Intelligence · CIP–CGIAR',
   /**
    * The hero's one CTA. Both editions are rendered and CSS picks by `data-lang`,
    * the same way `T` works — the language toggle writes one attribute and does
@@ -364,13 +364,16 @@ export interface CareerRow {
 
 export const career: CareerRow[] = [
   {
-    when: { es: 'Oct 2025 —<br />Presente', en: 'Oct 2025 —<br />Present' },
+    when: { es: 'Oct 2026 —<br />Presente', en: 'Oct 2026 —<br />Present' },
     current: true,
-    role: { es: 'AI Intern', en: 'AI Intern' },
+    role: {
+      es: 'Assistant — Artificial Intelligence',
+      en: 'Assistant — Artificial Intelligence',
+    },
     org: 'CIP · CGIAR',
     desc: {
-      es: 'Construyo sistemas institucionales de IA multilingüe que integran recuperación de conocimiento, flujos de agentes y evaluación basada en evidencia.',
-      en: 'Building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
+      es: 'Desde oct 2025, primero como AI Intern, construyo sistemas institucionales de IA multilingüe que integran recuperación de conocimiento, flujos de agentes y evaluación basada en evidencia.',
+      en: 'Since Oct 2025, first as an AI Intern, building multilingual institutional AI systems across knowledge retrieval, agent workflows and evidence-grounded evaluation.',
     },
   },
   {
