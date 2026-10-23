@@ -1181,6 +1181,36 @@ a:hover {
   text-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.9);
 }
 
+.media-demo {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: 1.5rem;
+  padding: 0 0.625rem;
+  border: 1px solid var(--v-green-58);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--v-ink);
+  font-family: var(--v-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.media-demo:hover {
+  border-color: var(--v-green);
+  color: var(--v-green);
+}
+
+.media-demo-arrow {
+  color: var(--v-green);
+}
+
 /* The publication is the only peer-reviewed item on the site, but the
    attention mask had it at 3.9% of predicted attention (lift 0.21): the
    thesis headline above took the screen. A larger cover and title and the

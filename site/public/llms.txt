@@ -78,9 +78,10 @@ Rody Vilchez co-authored a published gloss-free multimodal architecture using la
 
 Full name: Wachi — Risk-Aware Pedestrian Routing
 Context: El Comercio Lab
-Stack: H3, geospatial pipelines
+Stack: OpenStreetMap walking graph, Dijkstra routing, mobile web app
+Demo: https://wachi.rosewt.dev/
 
-Rody Vilchez built a geospatial system that re-ranks pedestrian routes by spatiotemporal risk in Lima using H3 surfaces, temporal decay, and six time bands, for an interactive data-journalism experience.
+Rody Vilchez built a pedestrian router for Lima on its own OpenStreetMap walking graph. Next to the shortest route it offers a calmer one that passes fewer registered robberies and thefts within 150 m; the calmer route is capped at +15% distance or +5 minutes and is offered only when it cuts exposure by at least 20%. The risk signal is an all-day count of registered incidents, without time bands.
 
 ## System — ArbitrIA
 
