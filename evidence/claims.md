@@ -35,11 +35,12 @@ Support references use one of these prefixes:
 ### exp-cip-002
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: Assistant I – Artificial Intelligence at International Potato Center (CIP, CGIAR), Lima, Peru, Oct 2026 to present: the staff role that followed the internship in `exp-cip-001`.
+- `claim`: Assistant – Artificial Intelligence at International Potato Center (CIP, CGIAR), Lima, Peru, Oct 2026 to present: the staff role that followed the internship in `exp-cip-001`.
 - `supports`:
   - `public_url`: `https://www.linkedin.com/in/r0sewt/`
-  - _Note._ The staff contract (effective 2026-10-13) still has to be indexed in
-    `.cv-vault/INDEX.md` as a `vault_doc`.
+  - _Note._ The official title is "Assistant I – Artificial Intelligence"; public surfaces
+    drop the grade. The staff contract (effective 2026-10-13) still has to be indexed
+    in `.cv-vault/INDEX.md` as a `vault_doc`.
 
 ### exp-visma-001
 - `surface`: `both`

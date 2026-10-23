@@ -150,7 +150,7 @@ export const home = {
   ],
   name: 'Rody Vilchez',
   role: 'Applied ML Engineer',
-  org: 'Assistant I – Artificial Intelligence · CIP–CGIAR',
+  org: 'Assistant – Artificial Intelligence · CIP–CGIAR',
   /**
    * The hero's one CTA. Both editions are rendered and CSS picks by `data-lang`,
    * the same way `T` works — the language toggle writes one attribute and does
@@ -367,8 +367,8 @@ export const career: CareerRow[] = [
     when: { es: 'Oct 2026 —<br />Presente', en: 'Oct 2026 —<br />Present' },
     current: true,
     role: {
-      es: 'Assistant I — Artificial Intelligence',
-      en: 'Assistant I — Artificial Intelligence',
+      es: 'Assistant — Artificial Intelligence',
+      en: 'Assistant — Artificial Intelligence',
     },
     org: 'CIP · CGIAR',
     desc: {

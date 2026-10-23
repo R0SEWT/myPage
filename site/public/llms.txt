@@ -1,7 +1,7 @@
 # Rody Vilchez
 
 > Applied ML engineer working at the intersection of agent systems, retrieval, and evaluation under imperfect data.
-> Assistant I – Artificial Intelligence at the International Potato Center (CIP, CGIAR), Lima, Peru; AI Intern there from Oct 2025 to Oct 2026.
+> Assistant – Artificial Intelligence at the International Potato Center (CIP, CGIAR), Lima, Peru; AI Intern there from Oct 2025 to Oct 2026.
 > B.Sc. Computer Science at Universidad Peruana de Ciencias Aplicadas (UPC), expected late 2026.
 
 ## Summary
@@ -39,7 +39,7 @@ Applied Machine Learning Engineer, agent systems engineer, multi-agent orchestra
 
 ## Experience — CIP (CGIAR)
 
-Role: Assistant I – Artificial Intelligence (since Oct 2026; AI Intern from Oct 2025 to Oct 2026)
+Role: Assistant – Artificial Intelligence (since Oct 2026; AI Intern from Oct 2025 to Oct 2026)
 Organization: International Potato Center (CIP, CGIAR)
 Location: Lima, Peru
 Period: Oct 2025 – Present
