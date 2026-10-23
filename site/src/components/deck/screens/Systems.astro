@@ -48,6 +48,12 @@ const { lead, prototype } = systems;
         data-en={prototype.videoLabel.en}
       ></video>
       <T t={prototype.caption} as="div" class="media-caption" />
+      {/* Over the capture, not under the text: a row there pushes this
+          screen past the bottom bar at 1440x900. */}
+      <a class="media-demo" href={prototype.demo} target="_blank" rel="noopener noreferrer">
+        <T t={prototype.demoLabel} />
+        <span class="media-demo-arrow" aria-hidden="true">↗</span>
+      </a>
       <button type="button" class="media-toggle" data-video-toggle aria-label="Pausar video">
         <span class="media-toggle-pause" aria-hidden="true">❚❚</span>
         <span class="media-toggle-play" aria-hidden="true">▶</span>

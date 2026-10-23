@@ -132,11 +132,16 @@ Support references use one of these prefixes:
 ### sys-wachi-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: Built a geospatial system (Wachi) that re-ranks pedestrian routes by spatiotemporal risk in Lima using H3 surfaces, temporal decay, and six time bands, for an interactive data-journalism experience with El Comercio Lab.
+- `claim`: Built Wachi, a pedestrian router for Lima that pairs the shortest route with a calmer one passing fewer registered robberies and thefts within 150 m; the calmer route is offered only when it cuts that exposure by at least 20% with a detour of at most +15% distance or +5 min. Working prototype for El Comercio Lab, live as a mobile web app.
 - `supports`:
-  - _No support reference yet._ The working repository is private and the public
-    `R0SEWT/inwach` holds only a LICENSE. This claim is already published on the CV
-    and the deck without traceable backing — see `rv-nbt`.
+  - `public_url`: `https://wachi.rosewt.dev/`
+  - _Note._ Every part of the claim is checkable in the demo: it shows the two routes,
+    and its `/api/route` response carries the selection parameters (`cap_pct` 0.15,
+    `cap_min` 5, `gain_min` 0.2, `radius_m` 150). Engine details (own OSM walking
+    graph, Dijkstra) stay off every public surface until the source repository can be
+    referenced, pending the agreement with El Comercio — see `rv-u14`. Replaces the v1
+    wording (H3 surfaces, temporal decay, six time bands), which Wachi v2 dropped on
+    2026-10-17 — see `rv-nbt`.
 
 ## Research
 

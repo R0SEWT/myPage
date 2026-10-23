@@ -191,19 +191,23 @@ export const systems = {
       en: 'Wachi — Risk-Aware Pedestrian Routing',
     },
     desc: {
-      es: 'Diseñé y construí un prototipo geoespacial que reordena rutas peatonales por distancia y exposición estimada, derivada de patrones espaciotemporales en incidentes reportados.',
-      en: 'Designed and built a geospatial prototype that re-ranks pedestrian routes by distance and estimated exposure derived from spatiotemporal patterns in reported incidents.',
+      es: 'Diseñé y construí un ruteador peatonal: junto a la ruta más corta ofrece otra con menos robos y hurtos registrados cerca, solo si el desvío es corto y la exposición baja al menos 20 %.',
+      en: 'Designed and built a pedestrian router: next to the shortest route it offers one past fewer registered robberies and thefts, only when the detour is short and exposure drops by at least 20%.',
     },
     meta: {
-      es: 'H3 · Decaimiento temporal · Reordenamiento post hoc de rutas',
-      en: 'H3 · Temporal decay · Post-hoc route reranking',
+      es: 'Lima · Robos y hurtos a ≤150 m · Desvío ≤ +15 % o +5 min',
+      en: 'Lima · Robberies and thefts ≤150 m · Detour ≤ +15% or +5 min',
     },
+    demo: 'https://wachi.rosewt.dev/',
+    demoLabel: { es: 'Demo en vivo', en: 'Live demo' },
+    // Recorded on v1 (H3 cells), before v2 dropped them; the caption says so
+    // until a v2 capture replaces this file.
     video: '/assets/deck/wachi-loop.webm',
     videoLabel: {
-      es: 'Loop del reordenamiento de rutas peatonales de Wachi',
-      en: 'Wachi pedestrian route reranking loop',
+      es: 'Loop del reordenamiento de rutas peatonales de Wachi v1',
+      en: 'Wachi v1 pedestrian route reranking loop',
     },
-    caption: { es: 'Captura del prototipo', en: 'Prototype capture' },
+    caption: { es: 'Captura de la v1', en: 'v1 capture' },
   },
 };
 
