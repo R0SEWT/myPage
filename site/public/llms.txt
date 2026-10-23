@@ -1,12 +1,12 @@
 # Rody Vilchez
 
 > Applied ML engineer working at the intersection of agent systems, retrieval, and evaluation under imperfect data.
-> AI Intern at the International Potato Center (CIP, CGIAR), Lima, Peru.
+> Assistant I – Artificial Intelligence at the International Potato Center (CIP, CGIAR), Lima, Peru; AI Intern there from Oct 2025 to Oct 2026.
 > B.Sc. Computer Science at Universidad Peruana de Ciencias Aplicadas (UPC), expected late 2026.
 
 ## Summary
 
-Rody Vilchez is an Applied ML Engineer who designs machine learning systems for non-ideal conditions: incomplete data, ambiguous objectives, and institutional constraints. At CIP (CGIAR) he builds production multi-agent platforms, multilingual GraphRAG, and evaluation infrastructure. Independently he studies measurement failure in urban ML, and co-authored a multimodal architecture published in Springer CCIS.
+Rody Vilchez is an Applied ML Engineer who designs machine learning systems for non-ideal conditions: incomplete data, ambiguous objectives, and institutional constraints. At CIP (CGIAR) he builds production multi-agent platforms, multilingual GraphRAG, and evaluation infrastructure. Independently he studies measurement failure in urban ML: he is first author of a paper on crime prediction under reporting bias accepted at SIMBig 2026, and co-authored a multimodal architecture published in Springer CCIS.
 
 ## Core Expertise
 
@@ -39,7 +39,7 @@ Applied Machine Learning Engineer, agent systems engineer, multi-agent orchestra
 
 ## Experience — CIP (CGIAR)
 
-Role: AI Intern
+Role: Assistant I – Artificial Intelligence (since Oct 2026; AI Intern from Oct 2025 to Oct 2026)
 Organization: International Potato Center (CIP, CGIAR)
 Location: Lima, Peru
 Period: Oct 2025 – Present
@@ -62,6 +62,9 @@ Period: Dec 2024 – Oct 2025
 
 Full name: Infelix — Latent Urban Crime Risk under Reporting Bias
 Context: B.Sc. thesis research · UPC · 2025–2026
+Paper: What Survives an Uneven Record? Fine-Grained Crime Prediction under Reporting Bias: Evidence from Peru (first author)
+Venue: Accepted at SIMBig 2026, Springer CCIS (to appear)
+GitHub: https://github.com/R0SEWT/Crime-Prediction-Learn-under-Reporting-Bias
 
 Rody Vilchez built a Bayesian model over victimization surveys and an 11-source H3 geospatial panel (Sentinel-2, VIIRS, OSM, WorldPop, Street View) to estimate crime risk across 43 Lima–Callao districts; census data were the only source that consistently improved predictions within districts. Features learned in Lima matched models with one year of local data in Arequipa and remained competitive in Cusco and Piura. Stress tests showed that record quality, not only architecture, determines when a system can be evaluated and transferred.
 

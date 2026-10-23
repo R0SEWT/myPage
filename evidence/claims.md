@@ -26,11 +26,20 @@ Support references use one of these prefixes:
 ### exp-cip-001
 - `surface`: `both`
 - `publicable`: `yes`
-- `claim`: AI Intern at International Potato Center (CIP, CGIAR), Lima, Peru, Oct 2025 to present.
+- `claim`: AI Intern at International Potato Center (CIP, CGIAR), Lima, Peru, Oct 2025 to Oct 2026.
 - `supports`:
   - `vault_doc`: `cip_employment_2025_10`
   - `vault_doc`: `cip_employment_2026_04`
   - `public_url`: `https://www.linkedin.com/in/r0sewt/`
+
+### exp-cip-002
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: Assistant I – Artificial Intelligence at International Potato Center (CIP, CGIAR), Lima, Peru, Oct 2026 to present: the staff role that followed the internship in `exp-cip-001`.
+- `supports`:
+  - `public_url`: `https://www.linkedin.com/in/r0sewt/`
+  - _Note._ The staff contract (effective 2026-10-13) still has to be indexed in
+    `.cv-vault/INDEX.md` as a `vault_doc`.
 
 ### exp-visma-001
 - `surface`: `both`
@@ -158,6 +167,17 @@ Support references use one of these prefixes:
 - `claim`: In Infelix, features learned in Lima matched models trained with one year of local data in Arequipa and remained competitive in Cusco and Piura; stress tests showed that record quality, not architecture alone, determines when the system can be evaluated and transferred.
 - `supports`:
   - `public_url`: `https://r0sewt.github.io/infelix/`
+  - `repo`: `https://github.com/R0SEWT/Crime-Prediction-Learn-under-Reporting-Bias`
+
+### res-infelix-003
+- `surface`: `both`
+- `publicable`: `yes`
+- `claim`: First author of "What Survives an Uneven Record? Fine-Grained Crime Prediction under Reporting Bias: Evidence from Peru" (with Christian Velasquez and Carlos Alarcon, UPC), accepted at SIMBig 2026 for Springer CCIS (to appear); it reports the Infelix transfer and evaluability results.
+- `supports`:
+  - `repo`: `https://github.com/R0SEWT/Crime-Prediction-Learn-under-Reporting-Bias`
+  - _Note._ The repository is the paper's replication package; its README states the
+    authors and the venue, and maps each table and figure to a script. Index the
+    acceptance notice in `.cv-vault` and add a `paper` reference once the DOI exists.
 
 ### res-imitator-001
 - `surface`: `both`
